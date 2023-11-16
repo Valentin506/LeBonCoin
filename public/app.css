@@ -62,5 +62,24 @@
     font-size: 10px;
 }
 
+
+.form-register div{
+  margin: 10px;
+  
+}
+
+.form-register label{
+  display: block;
+  
+}
+
+.form-login{
+      /* display: none; */
+}
+
+.form-register{
+  position: absolute;
+  transform: translateX(400px);
+}
   
  
