@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\OwnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,7 @@ use App\Http\Controllers\AccountController;
 */
 Route::get("/annonces",[AccountController::class, "index" ]);
 Route::get("/create-account",[AccountController::class, "create" ]);
+Route::get("/owners",[OwnerController::class, "profil" ]);
 
 Route::get('/', function () {
     return view('welcome');
