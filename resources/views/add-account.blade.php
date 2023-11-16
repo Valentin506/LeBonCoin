@@ -18,7 +18,7 @@
 <input type="radio" id="entreprise" name="typeAccount" value="entreprise" />
 <label for="entreprise">Pour votre entreprise</label>
 </div><br>
-<p>Vous avez deja un compte ?<a class="login-link">Me connecter</a></p> 
+<p>Vous avez deja un compte ?<a href="" class="login-link">Me connecter</a></p> 
 
 <div class="separation"></div>
 
@@ -43,7 +43,7 @@
 <input type="password" id="password" />
 
 </div><br>
-<p><a class="register-link">Mot de passe oublié</a></p> 
+<p><a class="register-link" href="">Mot de passe oublié</a></p> 
 
 <input type="button" value=" Se connecter ">
 
@@ -60,6 +60,14 @@
     const formulaire = document.querySelector('.formulaire')
     const loginLink = document.querySelector('.login-link');
     const registerLink = document.querySelector('.register-link');
+
+    register-link.addEventListener('click',()=> {
+        formulaire.classList.add('active');
+    })
+
+    login-link.addEventListener('click',()=> {
+        formulaire.classList.remove('active');
+    })
 
 
 </script>
