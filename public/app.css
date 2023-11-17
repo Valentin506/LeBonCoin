@@ -1,8 +1,13 @@
  *{
   margin: 0;
-  padding: 16px;
+  padding: 0;
+  font-family: 'Nurito Sans', ui-sans-serif;
  }
  
+
+ body{
+   padding: 16px;
+ }
 
   
 
@@ -11,7 +16,7 @@
 
 
 header{
-   display: flex;
+   display: inline-block;
 
 }
 
@@ -35,7 +40,7 @@ header{
 .nav li {
 font-family: sans-serif ;
  display: inline-block;
- font-size: 14px;
+ font-size: 16px;
  padding: 5px;
 }
 /* .nav li::after {
@@ -48,18 +53,52 @@ font-family: sans-serif ;
 input[type='image']{
    width: 24px;
    height: 24px;
+   align-content: center;
 
 }
 
-#userFunctionalities{
+.buttonMySearch{
    display: flex;
+   flex-direction: column;
+   justify-content: center;
 }
 
-.buttonDeposerAnnonce {
+.buttonFavorite{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.buttonMessages{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.buttonLogin{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+
+#headerFunctionalities{
+   display: flex;
+   padding: 16px;
+   justify-content: space-around;
+}
+
+
+div span{
+   align-content: center;
+}
+
+.buttonPostDeposit {
    border: 0;
-   line-height: 2.5;
+   /* line-height: 2.5; */
+   padding: 10px;
+   margin: 10px;
    font-size: 16px;
-   font-family: 'Nurito Sans', ui-sans-serif;
    font-weight: bold;
    text-align: center;
    text-shadow: 1px 1px 1px #000;
@@ -68,20 +107,19 @@ input[type='image']{
    background-color: rgb(247, 120, 47);
  }
 
- .buttonDeposerAnnonce:hover {
+ .buttonPostDeposit:hover {
    background-color: rgba(250, 133, 66, 0.808);
  }
 
- .buttonDeposerAnnonce:active {
+ .buttonPostDeposit:active {
    box-shadow:
      inset -2px -2px 3px rgba(255, 255, 255, 0.6),
      inset 2px 2px 3px rgba(0, 0, 0, 0.6);
  }
- .buttonSauvegardeRecherche{
+ .buttonSaveSearch{
    border: 0;
    line-height: 2.5;
    padding: 0 20px;
-   font-family: 'Nurito Sans', ui-sans-serif;
    font-weight: bold;
    font-size: 16px;
    text-align: center;
@@ -90,5 +128,13 @@ input[type='image']{
    border-radius: 14px;
    background-color: rgb(247, 120, 47);
    position: sticky;
+ }
+
+
+ .search{
+   padding: 10px;
+   margin: 10px;
+   border-radius: 14px;
+
  }
  

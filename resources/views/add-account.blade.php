@@ -7,7 +7,7 @@
 
 
 
-<form action="/add-account" method="post">
+<form action="{{ url("/User/create") }}" method="post">
     @csrf
 
     <div>
@@ -55,5 +55,9 @@
 
         <input type="ville" name="ville">
         <label for="tvilleel">Ville ou code postal </label>
+    </div>
+
+    <div>
+        <button>S'inscrire</button>
     </div>
 </form>

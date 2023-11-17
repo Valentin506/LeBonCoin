@@ -17,33 +17,35 @@
     	<header>
     		<!-- <h1>@yield('title')</h1> -->
 
-            <img class="logo" src="https://www.leboncoin.fr/logos/leboncoin.svg">
-            <button class="buttonDeposerAnnonce" type="button">+ Déposer une annonce</button>
-
-            <input type="text" class="search" placeholder="Rechercher sur leboncoin" />
-            <i class="fa fa-search" aria-hidden="true"></i>
             <!-- <button class="buttonMesRecherches" type="button">Mes Recherches</button> -->
             <!-- <button class="buttonFavoris" type="button">Favoris</button> -->
             <!-- <button class="buttonMessages" type="button">Messages</button> -->
             <!-- <button class="buttonSeConnecter" type="button">Se Connecter</button> -->
             
             
-            <nav id="userFunctionalities">
+            <nav id="headerFunctionalities">
+                <img class="logo" src="https://www.leboncoin.fr/logos/leboncoin.svg">
                 
+                <button class="buttonPostDeposit" type="button">+ Déposer une annonce</button>
+    
+                <input type="text" class="search" placeholder="Rechercher sur leboncoin" />
+                <i class="fa fa-search" aria-hidden="true"></i>
                 
                 <div class="buttonMySearch">
-                    <input type="image" alt="Se Connecter" src="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/alarm-37.png"/>
+                    <input type="image" alt="Mes recherches" src="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/alarm-37.png"/>
                     <span>Mes recherches</span>
                 </div>
                 <div class="buttonFavorite">
-                    <input type="image" alt="Se Connecter" src="https://freeiconshop.com/wp-content/uploads/edd/heart-outline.png"/>
+                    <input type="image" alt="Favoris" src="https://freeiconshop.com/wp-content/uploads/edd/heart-outline.png"/>
                     <span>Favoris</span>
                 </div>
                 <div class="buttonMessages">
-                    <input type="image" alt="Se Connecter" src="https://cdn-icons-png.flaticon.com/512/685/685887.png"/>
+                    
+                    <input type="image" href="" alt="Messages" src="https://cdn-icons-png.flaticon.com/512/685/685887.png"/>
                     <span>Messages</span>
                 </div>
-                <div class="buttonSeConnecter">
+                <div class="buttonLogin">
+                    <a href="{{url("/create-account")}}"></a>
                     <input type="image" alt="Se Connecter" src="https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png"/>
                     <span>Se connecter</span>
                 </div>
@@ -55,7 +57,7 @@
             <li>•</li>
             <li>Véhicules</li>
             <li>•</li>
-            <li>Locations de vacances</li>
+            <li><a href="{{url("/posts")}}">Locations de vacances</a></li>
             <li>•</li>
             <li>Emploi</li>
             <li>•</li>
@@ -94,7 +96,7 @@
 
     
 
-    <button class="buttonSauvegardeRecherche" type="button">Sauvegarder la recherche</button>
+    <button class="buttonSaveSearch" type="button">Sauvegarder la recherche</button>
 
 
 

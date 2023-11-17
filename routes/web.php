@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\OwnerController;
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +23,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/add-account', [UserController::class, 'create']);
-Route::post('/register', [UserController::class, 'store']);
+Route::get('/add-account/add', [UserController::class, 'add']);
+Route::post('/add-account/save', [UserController::class, 'save']);
 
 
 
