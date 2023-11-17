@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Owner extends Model
 {
     use HasFactory;
-    protected $table = "proprietaire";
-    protected $primaryKey = "idproprietaire";
-    public $timestamps = false;
+    // protected $table = "proprietaire";
+    // protected $primaryKey = "idproprietaire";
+    // public $timestamps = false;
 }

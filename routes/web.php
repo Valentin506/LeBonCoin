@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +17,14 @@ use App\Http\Controllers\OwnerController;
 */
 Route::get("/annonces",[AccountController::class, "index" ]);
 Route::get("/create-account",[AccountController::class, "create" ]);
-Route::get("/owners",[OwnerController::class, "profil" ]);
+Route::get("/view-profile",[OwnerController::class, "profile" ]);
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/add-account', [UserController::class, 'create']);
+Route::post('/register', [UserController::class, 'store']);
 
 
 

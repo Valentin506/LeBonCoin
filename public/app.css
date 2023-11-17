@@ -1,85 +1,94 @@
- li{
-    list-style-type:none;
-    
+ *{
+  margin: 0;
+  padding: 16px;
  }
- a{
-    text-decoration: none;
+ 
+
+  
+
+
+/* Partie header Leboncoin */
+
+
+header{
+   display: flex;
+
+}
+
+
+.logo{
+   align-content: center;
+   height: 60px;
+   width: 140px;
+}
+
+.ul nav{
+   display: flex;
+}
+
+.nav {
+ list-style-type: non;
+ text-align: center;
+ margin: 0;
+ padding: 0;
+}
+.nav li {
+font-family: sans-serif ;
+ display: inline-block;
+ font-size: 14px;
+ padding: 5px;
+}
+/* .nav li::after {
+   display: inline-block;
+   color: #000;
+   content: '•';
+   font-weight: bold;
+} */
+
+input[type='image']{
+   width: 24px;
+   height: 24px;
+
+}
+
+#userFunctionalities{
+   display: flex;
+}
+
+.buttonDeposerAnnonce {
+   border: 0;
+   line-height: 2.5;
+   font-size: 16px;
+   font-family: 'Nurito Sans', ui-sans-serif;
+   font-weight: bold;
+   text-align: center;
+   text-shadow: 1px 1px 1px #000;
+   color: #fff;
+   border-radius: 14px;
+   background-color: rgb(247, 120, 47);
  }
 
- input[type='radio'] {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #747474;
-    border-radius: 20%;
-    outline: none;
-    opacity: 0.6;
-    transition: 0.3s;
-  }
-  
-  input[type='radio']:hover:before {
-    box-shadow: 0px 0px 0px 5px rgba(80, 80, 200, 0.2);
-    border-radius: 50%;
-    opacity: 1;
-  }
-  
-  input[type='radio']:before {
-    content: '';
-    display: block;
-    width: 60%;
-    height: 60%;
-    margin: 20% auto;    
-    border-radius: 50%;
-  }
-      
-  input[type='radio']:checked:before {
-    background: blue;
-  }
-  
-  #account{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: left;
-    max-width: 80%; 
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 2px 2px 5px 5px grey;
-    padding: 50px;
-  }
+ .buttonDeposerAnnonce:hover {
+   background-color: rgba(250, 133, 66, 0.808);
+ }
 
-  #account a{
-    text-decoration: none;
-  }
-
-  .separation {
-    width: 100%;
-    height: 1px; 
-    background-color: #ccc; 
-    margin: 20px 0; 
-}
-.petit{
-    font-size: 10px;
-}
-
-
-.form-register div{
-  margin: 10px;
-  
-}
-
-.form-register label{
-  display: block;
-  
-}
-
-.form-login{
-      /* display: none; */
-}
-
-.form-register{
-  position: absolute;
-  transform: translateX(400px);
-}
-  
+ .buttonDeposerAnnonce:active {
+   box-shadow:
+     inset -2px -2px 3px rgba(255, 255, 255, 0.6),
+     inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+ }
+ .buttonSauvegardeRecherche{
+   border: 0;
+   line-height: 2.5;
+   padding: 0 20px;
+   font-family: 'Nurito Sans', ui-sans-serif;
+   font-weight: bold;
+   font-size: 16px;
+   text-align: center;
+   color: #fff;
+   text-shadow: 1px 1px 1px #000;
+   border-radius: 14px;
+   background-color: rgb(247, 120, 47);
+   position: sticky;
+ }
  
