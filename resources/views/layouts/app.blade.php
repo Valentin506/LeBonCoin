@@ -16,12 +16,7 @@
 
     	<header>
     		<!-- <h1>@yield('title')</h1> -->
-
-            <!-- <button class="buttonMesRecherches" type="button">Mes Recherches</button> -->
-            <!-- <button class="buttonFavoris" type="button">Favoris</button> -->
-            <!-- <button class="buttonMessages" type="button">Messages</button> -->
-            <!-- <button class="buttonSeConnecter" type="button">Se Connecter</button> -->
-            
+                    
             
             <nav id="headerFunctionalities">
                 <img class="logo" src="https://www.leboncoin.fr/logos/leboncoin.svg">
@@ -41,12 +36,11 @@
                 </div>
                 <div class="buttonMessages">
                     
-                    <input type="image" href="" alt="Messages" src="https://cdn-icons-png.flaticon.com/512/685/685887.png"/>
+                    <input type="image" alt="Messages" src="https://cdn-icons-png.flaticon.com/512/685/685887.png"/>
                     <span>Messages</span>
                 </div>
                 <div class="buttonLogin">
-                    <a href="{{url("/create-account")}}"></a>
-                    <input type="image" alt="Se Connecter" src="https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png"/>
+                    <a href="{{url("/create-account")}}"><input type="image" alt="Se Connecter" src="https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png"></a>            
                     <span>Se connecter</span>
                 </div>
             </nav>
