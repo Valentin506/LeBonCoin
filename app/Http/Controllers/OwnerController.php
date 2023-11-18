@@ -8,7 +8,7 @@ use App\Models\Owner;
 class OwnerController extends Controller
 {
     
-    public function profile(){
-    	return view ("owner-list", ['profiles'=>Owner::all() ]);
+    public function owner(){
+    	return view ("owner-list", ['owners'=>Owner::all() ]);
     }
 }

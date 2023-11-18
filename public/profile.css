@@ -1,3 +1,23 @@
+*{
+    font-family: 'Nurito Sans';
+  
+}
+
+
+.userFrame{
+    margin-right: 30%;
+    padding: 30px;
+    border: 0.3px solid rgb(163, 163, 163);
+    border-radius: 10px;
+    
+
+}
+
+.userInfo{
+    display: flex;
+    flex-direction: row;
+}
+
 #photoUser{
  
     border-image: none;
@@ -12,4 +32,55 @@
 #photoUser img{
     width: 100%;
     height: 100%;
+}
+
+#basicUserInfo{
+    margin-left: 20px;
+}
+
+#basicUserInfo h3{
+    margin-bottom: 20px;
+}
+
+#basicUserInfo span{
+    display: flex;
+    
+}
+
+.userMore{
+    border-radius: 15px;
+    border: 0.3px solid rgb(19, 56, 124);
+    width: 44px;
+    height: 44px;
+    margin-left: 300px;
+}
+
+.userMore button{
+    width: 44px;
+    height: 44px;
+    visibility: hidden;
+    margin-left: 300px;
+}
+
+.userMore:hover{
+    background-color: rgb(163, 163, 163);
+}
+
+
+.userDetailInfo{
+    display: flex;
+    margin-top: 15px;
+    
+}
+
+#nbStars{
+    display: flex;
+    width: 12.01px;
+    height: 12px;
+    margin-left: 40px;
+}
+
+#nbStars span{
+    margin-left: 10px;
+    display: block;
 }

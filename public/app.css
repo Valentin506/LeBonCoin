@@ -14,11 +14,18 @@
 
 /* Partie header Leboncoin */
 
+.marginPage:not(.headerBorder){
+   margin-left: 25%;
+}
 
-header{
+.headerBorder{
+   border-bottom: 0.5px solid rgba(163, 163, 163, 0.3);
+
+}
+
+.headerDiv{
    display: inline-block;
-   border-bottom: 0.5px solid black;
-
+   
 }
 
 a{
@@ -163,6 +170,7 @@ div span{
    border-radius: 14px;
    background-color: rgb(247, 120, 47);
    position: sticky;
+   
  }
 
 

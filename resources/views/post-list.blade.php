@@ -5,10 +5,10 @@
 
 
 @section('content')
-<h2>Les annonces</h2>
+<h2>Posts</h2>
 <ul>
-   @foreach ($annonces as $annonce)
-       <li>{{ $annonce-> idannonce}}</li>
+   @foreach ($posts as $post)
+       <li>{{ $post-> idannonce}}</li>
   @endforeach
 </ul>
 @endsection
