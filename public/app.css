@@ -17,7 +17,13 @@
 
 header{
    display: inline-block;
+   border-bottom: 0.5px solid black;
 
+}
+
+a{
+   text-decoration: none;
+   /* color: black; */
 }
 
 
@@ -32,17 +38,24 @@ header{
 }
 
 .nav {
- list-style-type: non;
- text-align: center;
- margin: 0;
- padding: 0;
+   list-style-type: non;
+   text-align: center;
+   margin: 0;
+   padding: 0;
 }
 .nav li {
-font-family: sans-serif ;
- display: inline-block;
- font-size: 16px;
- padding: 5px;
+   font-family: sans-serif ;
+   display: inline-block;
+   font-size: 16px;
+   padding: 5px;
+   margin-bottom: 10px;
 }
+
+.nav li:hover{
+   border-bottom: 3px solid black;
+   transition: all 0.3s ease-out;
+}
+
 /* .nav li::after {
    display: inline-block;
    color: #000;
@@ -57,10 +70,17 @@ input[type='image']{
 
 }
 
+
 .buttonMySearch{
    display: flex;
    flex-direction: column;
    justify-content: center;
+}
+
+.buttonMySearch:hover{
+   border-bottom: 4px solid orange;
+   transition: all 0.3s ease-out;
+   
 }
 
 .buttonFavorite{
@@ -69,16 +89,31 @@ input[type='image']{
    justify-content: center;
 }
 
+.buttonFavorite:hover{
+   border-bottom: 4px solid orange;
+   transition: all 0.3s ease-out;
+}
+
 .buttonMessages{
    display: flex;
    flex-direction: column;
    justify-content: center;
 }
 
+.buttonMessages:hover{
+   border-bottom: 4px solid orange;
+   transition: all 0.3s ease-out;
+}
+
 .buttonLogin{
    display: flex;
    flex-direction: column;
    justify-content: center;
+}
+
+.buttonLogin:hover{
+   border-bottom: 4px solid orange;
+   transition: all 0.3s ease-out;
 }
 
 
@@ -135,6 +170,12 @@ div span{
    padding: 10px;
    margin: 10px;
    border-radius: 14px;
+   background-color: rgba(58, 71, 87, 0.1);
+
+ }
+
+ .search:active{
+   width: 200px;
 
  }
  
