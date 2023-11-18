@@ -1,16 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil de </title>
-    <link rel="stylesheet" type="text/css" href="{{asset('profile.css')}}"/> 
-</head>
-<body>
 
-    
+<title>Profil de </title>
+<link rel="stylesheet" type="text/css" href="{{asset('profile.css')}}"/> 
 
-    
-    
-</body>
-</html>
+@extends('layouts.app')
+
+@section('content')
+
+<div class="userFrame">
+    <div class="userInfo">
+        <div id="photoUser">
+            <img src={{ $todaysPhoto['image'] }} alt="photo utilisateurs">
+        </div>
+        <div id="basicInfo">
+            <h3></h3>
+
+        </div>
+        
+    </div>
+    <div class="userMore">
+        
+    </div>
+    <div class="userDetailInfo">
+        
+    </div>
+
+</div>
+
+@endsection
+
+
+
+
+
+

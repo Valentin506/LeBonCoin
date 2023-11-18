@@ -128,7 +128,7 @@ div span{
    align-content: center;
 }
 
-.buttonPostDeposit {
+#buttonPostDeposit {
    border: 0;
    /* line-height: 2.5; */
    padding: 10px;
@@ -142,11 +142,11 @@ div span{
    background-color: rgb(247, 120, 47);
  }
 
- .buttonPostDeposit:hover {
+ #buttonPostDeposit:hover {
    background-color: rgba(250, 133, 66, 0.808);
  }
 
- .buttonPostDeposit:active {
+ #buttonPostDeposit:active {
    box-shadow:
      inset -2px -2px 3px rgba(255, 255, 255, 0.6),
      inset 2px 2px 3px rgba(0, 0, 0, 0.6);
@@ -166,7 +166,7 @@ div span{
  }
 
 
- .search{
+ #search{
    padding: 10px;
    margin: 10px;
    border-radius: 14px;
@@ -174,8 +174,8 @@ div span{
 
  }
 
- .search:active{
-   width: 200px;
+ #search:focus {
+   padding-right: 150px;
 
  }
  

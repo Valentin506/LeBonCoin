@@ -21,9 +21,9 @@
             <nav id="headerFunctionalities">
                 <img class="logo" src="https://www.leboncoin.fr/logos/leboncoin.svg">
                 
-                <button class="buttonPostDeposit" type="button">+ Déposer une annonce</button>
+                <button id="buttonPostDeposit" type="button">+ Déposer une annonce</button>
     
-                <input type="text" class="search" placeholder="Rechercher sur leboncoin" />
+                <input type="text" id="search" placeholder="Rechercher sur leboncoin" />
                 <i class="fa fa-search" aria-hidden="true"></i>
                 
                 <div class="buttonMySearch">
@@ -47,25 +47,25 @@
 
 
             <ul class="nav">
-            <li>Immobilier</li>
-            <li>•</li>
-            <li>Véhicules</li>
-            <li>•</li>
-            <li><a href="{{url("/posts")}}">Locations de vacances</a></li>
-            <li>•</li>
-            <li>Emploi</li>
-            <li>•</li>
-            <li>Mode</li>
-            <li>•</li>
-            <li>Maison & Jardin</li>
-            <li>•</li>
-            <li>Famille</li>
-            <li>•</li>
-            <li>Électronique</li>
-            <li>•</li>
-            <li>Loisirs</li>
-            <li>•</li>
-            <li>Autres</li>
+                <li>Immobilier</li>
+                <li>•</li>
+                <li>Véhicules</li>
+                <li>•</li>
+                <li><a href="{{url("/posts")}}">Locations de vacances</a></li>
+                <li>•</li>
+                <li>Emploi</li>
+                <li>•</li>
+                <li>Mode</li>
+                <li>•</li>
+                <li>Maison & Jardin</li>
+                <li>•</li>
+                <li>Famille</li>
+                <li>•</li>
+                <li>Électronique</li>
+                <li>•</li>
+                <li>Loisirs</li>
+                <li>•</li>
+                <li>Autres</li>
             </ul>
    
 

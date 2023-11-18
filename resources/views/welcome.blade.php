@@ -10,6 +10,7 @@
     
 @extends('layouts.app')
 
+
 @section('title', 'LeBonCoin')
 
 
@@ -25,6 +26,7 @@
 
 
 @section('content')
+    
 
 @endsection
     
