@@ -3,40 +3,49 @@
 <!-- Formulaire pour les inscriptions -->
 
 
+@extends('layouts.app')
+
+@section('title', 'Leboncoin')
+
+
+
+@section('content')
+<div class="form-login">
+
 <h2> Créez votre compte</h2>
 
 
 
-<form action="{{ url("/User/create") }}" method="post">
+<form action="{{ url("/create-account/save") }}" method="post" class="form">
     @csrf
 
-    <div>
+    <div class="login">
         <input type="radio" name="radio">
         <label for="radio">Pour vous *</label>
     </div>
 
-    <div>
+    <div class="login">
         <input type="radio" name="radio">
         <label for="radio">Pour votre entreprise</label>
     </div>
 
-    <div>
+    <div class="login">
         <input type="email" name="email">
         <label for="email">Email</label>
     </div>
 
-    <div>
+    <div class="login">
         <input type="password" name="password">
         <label for="password">Mot de Passe</label>
     </div>
 
 
-    <div>
+    <div class="login">
         <input type="tel" name="tel" >
         <label for="tel">Numéro de téléphone</label>
     </div>
 
-    <div>
+    <div class="login">
         <input type="name" name="name">
         <label for="name">Nom</label>
 
@@ -45,19 +54,26 @@
     </div>
 
 
-    <div>
+    <div class="login">
         <input type="date" name="date">
         <label for="date">Date de naissance</label>
     </div>
-    <div>
+    <div class="login">
         <input type="adress" name="adress">
         <label for="tel">Adresse </label>
 
-        <input type="ville" name="ville">
-        <label for="tvilleel">Ville ou code postal </label>
+        <input type="contry" name="contry">
+        <label for="contry">Ville ou code postal </label>
     </div>
 
-    <div>
-        <button>S'inscrire</button>
+    <div class="login">
+        <button type="submit">S'inscrire</button>
     </div>
+
+
+   
 </form>
+</div>
+@endsection
+
+

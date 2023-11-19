@@ -76,7 +76,36 @@ input[type='image']{
    
 
 }
+.form{
+   padding: 50px;
+   display: block;
+}
 
+.form .login{
+   padding: 5px;
+}
+.login input{
+   height: 50px;
+   width: 500px;
+   border-radius: 14px;
+}
+
+.login button{
+   height: 50px;
+   width: 500px;
+   border-radius: 14px;
+   background-color: rgb(247, 120, 47);
+  
+}
+
+
+
+.form-login{
+   position: relative;
+   margin: 50px; 
+   
+   
+}
 
 .buttonMySearch{
    display: flex;

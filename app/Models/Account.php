@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Account extends Model
 {
     use HasFactory;
+
+    protected $table = "locataire";
+    protected $primaryKey = "IDLocataire";
+    public $timestamps = false;
 }

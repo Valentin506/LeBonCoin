@@ -10,6 +10,10 @@ use App\Models\Account;
 
 class UserController extends Controller
 {
+
+    public function view(){
+    	return view ("add-account", ['locataires'=>User::all() ]);
+    }
     // public function create(Request $request)
     // {
     //     $user = new User();     // Aucune erreur est détectée dans les champs, on peut enregistrer l'utilisateur !
@@ -32,18 +36,22 @@ class UserController extends Controller
     public function save(Request $request)
     {
         
-        if ($request->input("titre") == "")  {
-            return redirect('annonce/add')->withInput();
+        if ($request->input("email") == "")  {
+            return redirect('add-account/add')->withInput();
           } else {
-            $b = new Annonce;
+            $b = new User;
             $b->timestamps = false;
-            $b->titre = $request->input("titre");
-            $b->description = $request->input("description");
-            $b->nombrepiece = $request->input("nombrepiece");
-            $b->prix = $request->input("prix");
+            $b->email = $request->input("email");
+            $b->password = $request->input("password");
+            $b->tel = $request->input("tel");
+            $b->name = $request->input("name");
+            $b->firstname = $request->input("firstname");
+            $b->date = $request->input("date");
+            $b->adress = $request->input("adress");
+            $b->country = $request->input("country");
             $b->save();
     
-            return redirect('annonces');
+            return redirect('/');
           
           } 
 
@@ -55,9 +63,14 @@ class UserController extends Controller
         Database Insert
         */
         $user = User::create([
-            'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'tel' => $request->tel,
+            'name' => $request->name,
+            'firstname' => $request->firstname,
+            'date' => $request->date,
+            'adress' => $request->adress,
+            'country' => $request->country,
         ]);
 
         return back();
