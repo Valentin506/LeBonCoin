@@ -48,25 +48,25 @@
 
 
                     <ul class="nav">
-                        <li>Immobilier</li>
+                        <li class="category">Immobilier</li>
                         <li>•</li>
-                        <li>Véhicules</li>
+                        <li class="category">Véhicules</li>
                         <li>•</li>
-                        <li><a href="{{url("/posts")}}">Locations de vacances</a></li>
+                        <li class="category"><a href="{{url("/posts")}}">Locations de vacances</a></li>
                         <li>•</li>
-                        <li>Emploi</li>
+                        <li class="category">Emploi</li>
                         <li>•</li>
-                        <li>Mode</li>
+                        <li class="category">Mode</li>
                         <li>•</li>
-                        <li>Maison & Jardin</li>
+                        <li class="category">Maison & Jardin</li>
                         <li>•</li>
-                        <li>Famille</li>
+                        <li class="category">Famille</li>
                         <li>•</li>
-                        <li>Électronique</li>
+                        <li class="category">Électronique</li>
                         <li>•</li>
-                        <li>Loisirs</li>
+                        <li class="category">Loisirs</li>
                         <li>•</li>
-                        <li>Autres</li>
+                        <li class="category">Autres</li>
                     </ul>
                 </div>
 

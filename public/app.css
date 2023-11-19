@@ -58,7 +58,7 @@ a{
    margin-bottom: 10px;
 }
 
-.nav li:hover{
+.category:hover{
    border-bottom: 3px solid black;
    transition: all 0.3s ease-out;
 }
@@ -83,6 +83,7 @@ input[type='image']{
 
 .form .login{
    padding: 5px;
+   
 }
 .login input{
    height: 50px;

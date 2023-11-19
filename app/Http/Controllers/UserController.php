@@ -39,16 +39,14 @@ class UserController extends Controller
         if ($request->input("email") == "")  {
             return redirect('add-account/add')->withInput();
           } else {
-            $b = new User;
+            $b = new Account;
             $b->timestamps = false;
-            $b->email = $request->input("email");
-            $b->password = $request->input("password");
-            $b->tel = $request->input("tel");
-            $b->name = $request->input("name");
-            $b->firstname = $request->input("firstname");
-            $b->date = $request->input("date");
-            $b->adress = $request->input("adress");
-            $b->country = $request->input("country");
+            $b->emaillocataire = $request->input("email");
+            $b->motdepasse = $request->input("password");
+            $b->numtellocataire = $request->input("tel");
+            $b->nomlocataire = $request->input("name");
+            $b->prenomlocataire = $request->input("firstname");
+            $b->datemembre = $request->input("date");
             $b->save();
     
             return redirect('/');

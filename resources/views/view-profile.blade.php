@@ -1,5 +1,5 @@
 
-<title>Profil de  </title>
+<title>Profil de </title>
 <link rel="stylesheet" type="text/css" href="{{asset('profile.css')}}"/> 
 
 

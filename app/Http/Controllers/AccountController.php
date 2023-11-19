@@ -19,7 +19,7 @@ class AccountController extends Controller
         if ($request->input("email") == "")  {
             return redirect('add-account/add')->withInput();
           } else {
-            $b = new User;
+            $b = new Account;
             $b->timestamps = false;
             $b->email = $request->input("email");
             $b->password = $request->input("password");
