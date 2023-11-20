@@ -10,12 +10,18 @@
  }
 
   
+ .hidden {
+   display: none;
+ }
 
 
 /* Partie header Leboncoin */
 
 .marginPage:not(.headerBorder){
    margin-left: 25%;
+   margin-right: 25%;
+   width: 75%;
+   box-sizing: border-box;
 }
 
 .headerBorder{

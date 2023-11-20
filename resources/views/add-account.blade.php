@@ -19,33 +19,95 @@
 <form action="{{ url("/create-account/save") }}" method="post" class="form">
     @csrf
 
-    <div class="login">
-        <input type="radio" name="radio">
-        <label for="radio">Pour vous *</label>
-    </div>
+    <label>
+      <input type="radio" name="inputType" value="text" onclick="showInput('personnel')"> Pour vous
+    </label>
+    <label>
+      <input type="radio" name="inputType" value="professionel" onclick="showInput('professionel')"> Pour votre entreprise
+    </label>
+</form>
+    <div id="personnelInput" class="hidden">
+    <label for="dynamicPersonnel">Email:</label>
+    <input type="email" id="dynamicPersonnel">
 
-    <div class="login">
-        <input type="radio" name="radio">
-        <label for="radio">Pour votre entreprise</label>
-    </div>
+    <label for="dynamicPersonnel">Mot de passe:</label>
+    <input type="password" id="dynamicPersonnel">
 
-    <div class="login">
+    <label for="dynamicPersonnel">Numéro de téléphone:</label>
+    <input type="tel" id="dynamicPersonnel">
+
+    <label for="dynamicPersonnel">Nom:</label>
+    <input type="text" id="dynamicPersonnel">
+
+    <label for="dynamicPersonnel">Prenom:</label>
+    <input type="text" id="dynamicPersonnel">
+
+  </div>
+  
+
+  <div id="professionelInput" class="hidden">
+    <label for="dynamicProfessionel">Numéro de Siret:</label>
+    <input type="numeric" id="dynamicProfessionel">
+
+    <label for="dynamicProfessionel">Nom de société:</label>
+    <input type="text" id="dynamicProfessionel">
+
+    <label for="dynamicProfessionel">Adresse:</label>
+    <input type="text" id="dynamicProfessionel">
+
+    <label for="dynamicProfessionel">Ville:</label>
+    <input type="text" id="dynamicProfessionel">
+
+    <label for="dynamicProfessionel">Code Postal:</label>
+    <input type="numeric" id="dynamicProfessionel">
+
+    <label for="dynamicProfessionel">Secteur d'activité:</label>
+    
+    <select name="" id="">
+        <Option>Hello</Option>
+        <Option>Ouistiti</Option>
+    </select>
+
+  </div>
+
+ 
+
+  <script>
+    function showInput(inputType) {
+      var personnelInput = document.getElementById("personnelInput");
+      var professionelInput = document.getElementById("professionelInput");
+
+      // Hide all inputs
+      personnelInput.classList.add("hidden");
+      professionelInput.classList.add("hidden");
+
+      // Show the selected input
+      if (inputType === "personnel") {
+        personnelInput.classList.remove("hidden");
+      } else if (inputType === "professionel") {
+        professionelInput.classList.remove("hidden");
+      }
+    }
+  </script>
+
+
+    <div id="textInput" class="hidden">
         <input type="email" name="email">
         <label for="email">Email</label>
     </div>
 
-    <div class="login">
+    <div id="textInput" class="hidden">
         <input type="password" name="password">
         <label for="password">Mot de Passe</label>
     </div>
 
 
-    <div class="login">
+    <div id="textInput" class="hidden">
         <input type="tel" name="tel" >
         <label for="tel">Numéro de téléphone</label>
     </div>
 
-    <div class="login">
+    <div id="textInput" class="hidden">
         <input type="name" name="name">
         <label for="name">Nom</label>
 
@@ -54,11 +116,11 @@
     </div>
 
 
-    <div class="login">
+    <div id="textInput" class="hidden">
         <input type="date" name="date">
         <label for="date">Date de naissance</label>
     </div>
-    <div class="login">
+    <div id="textInput" class="hidden">
         <input type="adress" name="adress">
         <label for="tel">Adresse </label>
 
@@ -72,8 +134,16 @@
 
 
    
-</form>
+
 </div>
+
+
+
+
+
+
+
+
 @endsection
 
 

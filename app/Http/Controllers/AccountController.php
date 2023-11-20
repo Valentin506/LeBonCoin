@@ -28,7 +28,7 @@ class AccountController extends Controller
             $b->firstname = $request->input("firstname");
             $b->date = $request->input("date");
             $b->adress = $request->input("adress");
-            $b->country = $request->input("country");
+            
             $b->save();
     
             return redirect('/');

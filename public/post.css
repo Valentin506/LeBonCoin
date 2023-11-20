@@ -1,0 +1,27 @@
+
+.filterBar{
+    display: flex;
+    margin: 10px;
+}
+
+.filterBar div{
+    margin-right: 10px;
+    border: 0.3px solid rgb(163, 163, 163);
+    border-radius: 10px;
+    padding: 10px;
+
+
+}
+
+.filterBar div input{
+    border: none;
+
+    
+}
+
+
+
+
+
+
+
