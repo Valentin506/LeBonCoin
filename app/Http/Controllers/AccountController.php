@@ -8,11 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
-    // Retrieve the currently authenticated user...
-$user = Auth::user();
- 
-// Retrieve the currently authenticated user's ID...
-$id = Auth::id();
+   
 
     
     public function add()
@@ -43,6 +39,11 @@ $id = Auth::id();
            
 
             $b->save();
+             // Retrieve the currently authenticated user...
+            $user = Auth::user();
+ 
+            // Retrieve the currently authenticated user's ID...
+            $id = Auth::id();
             Auth::login($user, $remember = false);  
             return redirect("/");
     
