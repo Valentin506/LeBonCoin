@@ -42,4 +42,7 @@ Route::get('/create-account', [AccountController::class, 'add']);
 Route::post('/create-account/save', [AccountController::class, 'save']);
 
 
+Route::get('/connect-account', [AccountController::class, 'connect']);
+
+
 

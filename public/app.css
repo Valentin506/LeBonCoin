@@ -82,9 +82,12 @@ input[type='image']{
    
 
 }
-.form{
-   padding: 50px;
+.form-register input{
+   padding: 15px;
    display: block;
+   border-radius: 14px;
+   width: 400px;
+   text-align: center;
 }
 
 .form .login{

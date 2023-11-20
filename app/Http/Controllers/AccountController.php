@@ -13,12 +13,16 @@ class AccountController extends Controller
     {
         return view('add-account');
     }
+    public function connect()
+    {
+        return view('login');
+    }
 
     public function save(Request $request)
     {
         
         if ($request->input("email") == ""){
-            return redirect('create-annonce')->withInput();
+            return redirect("create-account")->withInput();
           } else {
             $b = new User;
             $b->timestamps = false;
