@@ -23,7 +23,7 @@ Route::get('/', [SiteController::class, "index" ]);
 Route::get("/annonces",[AccountController::class, "index" ]);
 // Route::get("/create-account",[AccountController::class, "create" ]);
 Route::get("/posts",[PostController::class, "post" ]);
-Route::get("/post/{idannonce}",[PostController::class, "view" ]);
+Route::get("/post/{id}",[PostController::class, "one" ]);
 Route::get("/view-profile",[OwnerController::class, "owner" ]);
 Route::get("/view-profile",[SiteController::class, "photoRandom" ]);
 // Route::get("/view-profile",[SiteController::class, "ownerRandom" ]);

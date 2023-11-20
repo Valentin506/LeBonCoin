@@ -11,7 +11,7 @@ class PostController extends Controller
     	return view ("post-list", ['posts'=>Post::all() ]);
     }
 
-    public function view($idannonce){
-        return view ("post-view", ['post'=>Post::findOrFail($idannonce) ]);
+    public function one($id){
+        return view ("one-post", ['post'=>Post::find($id) ]);
     }
 }

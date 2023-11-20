@@ -25,9 +25,22 @@
  
 }
 
+.mapContainer{
+    display: flex;
+}
+
 #divMap{
     display: flex;
     justify-content: flex-end;
+}
+
+#divPost{
+    display: flex;
+    
+}
+
+.divForEachPost{
+    border-bottom: 2px solid rgba(163, 163, 163, 0.3);
 }
 
 /* autocomplete address */

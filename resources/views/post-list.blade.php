@@ -1,15 +1,13 @@
 <title>Location vacances maison, gite et appartement entre particuliers - leboncoin </title>
 <link rel="stylesheet" type="text/css" href="{{asset('post.css')}}"/> 
 
-<link href="https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.min.css" rel="stylesheet">
-<script id="search-js" defer="" src="https://api.mapbox.com/search-js/v1.0.0-beta.18/web.js"></script>
-
 @extends('layouts.app')
 
 @section('title', 'Leboncoin')
 
-<script src="/js/post-list.js">
-</script>
+<script src="/js/post-list.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initAutocomplete&libraries=places&v=weekly" defer></script>
 
 
 
@@ -22,7 +20,7 @@
 <div class="filterBar">
   <div>
     
-    <input class="input mb12" name="address" autocomplete="shipping address-line1" placeholder="Choisir une destination">
+    <input id="destinationAddress" name="destinationAddress" required autocomplete="off" placeholder="Choisir une destination">
     <select name="" id="">
       <option value=""></option>
     </select>
@@ -54,21 +52,27 @@
 
 
 <div class="mapContainer">
-  <div id="divAnnonce">
-    <h2>Posts</h2>
-
-    <div id="divMap">
-    <h2>Interactive Map</h2>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11105.943561496075!2d6.13165585!3d45.90159445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2sfr!4v1700488430687!5m2!1svi!2sfr" width="570" height="917" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-
-  </div>
+  <div id="divPost">
+    <!-- <h2>Posts</h2> -->
     <ul>
-       @foreach ($posts as $post)
-           <li>{{ $post-> idannonce}}</li>
+      @foreach ($posts as $post)
+      <div class="divForEachPost">
+        <li id="postTitle"><a href="{{ url("/post/".$post->idannonce )}}">{{ $post-> titreannonce}}</a></li>
+        <li>{{ $post -> idcapacite}}</li>
+        <li>{{ $post -> idimage}}</li>
+        <li>{{ $post -> paiementenligne}}</li>
+
+      </div>
       @endforeach
     </ul>
     
+    
+  </div>
+  
+  <div id="divMap">
+    <!-- <h2>Interactive Map</h2> -->
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11105.943561496075!2d6.13165585!3d45.90159445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2sfr!4v1700488430687!5m2!1svi!2sfr" width="570" height="917" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
   
   
   @endsection
