@@ -42,29 +42,8 @@
     </div>
 
     <div>
-    <label for="name">Nom</label>
-        <input type="name" name="name">
-        
-        <label for="firstname">Prénom</label>
-        <input type="firstname" name="firstname">
-        
         <label for="pseudo">Nom d'utilisateur</label>
         <input type="pseudo" name="pseudo">
-        
-    </div>
-
-
-    <div>
-    <label for="date">Date de naissance</label>
-        <input type="date" name="date">
-        
-    </div>
-    <div>
-    <label for="tel">Adresse </label>
-        <input type="adress" name="adress">
-        
-        <label for="contry">Ville ou code postal </label>
-        <input type="contry" name="contry">
         
     </div>
 

@@ -87,8 +87,14 @@ input[type='image']{
    display: block;
    border-radius: 14px;
    width: 400px;
-   text-align: center;
+
+   
 }
+.form-register{
+   background-color: red;
+   border: 2px black;
+}
+
 
 .form .login{
    padding: 5px;
@@ -107,6 +113,7 @@ input[type='image']{
    background-color: rgb(247, 120, 47);
   
 }
+
 
 
 
