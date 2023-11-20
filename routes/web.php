@@ -32,9 +32,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/ville', function () {
-    return view('ville-list');
-});
+// Route::get('/ville', function () {
+//     return view('ville-list');
+// });
 
 
 

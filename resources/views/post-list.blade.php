@@ -52,17 +52,22 @@
 </div>
 
 
-
 <div class="mapContainer">
   <div id="divPost">
     <!-- <h2>Posts</h2> -->
     <ul>
       @foreach ($posts as $post)
       <div class="divForEachPost">
+        
         <li id="postTitle"><a href="{{ url("/post/".$post->idannonce )}}">{{ $post-> titreannonce}}</a></li>
-        <li>capacité : {{ $post -> idcapacite}}</li>
-        <li>{{ $post -> idimage}}</li>
-        <li>payement en ligne disponible :{{ $post -> paiementenligne}}</li>
+        <li>Voyageurs : {{ $post -> idcapacite}}</li>
+        <!-- <li>{{ $post -> idimage}}</li> -->
+        <li>Paiement en ligne disponible :{{ $post -> paiementenligne}}</li>
+        @if($post->paiementenligne)
+            Paiement en ligne disponible
+        @else
+            Paiement en ligne pas disponible
+        @endif
         
       </div>
       @endforeach
@@ -76,6 +81,6 @@
     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11105.943561496075!2d6.13165585!3d45.90159445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2sfr!4v1700488430687!5m2!1svi!2sfr" width="570" height="917" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     
-    <!-- <button class="buttonSaveSearch" type="button">Sauvegarder la recherche</button>   -->
+    <button class="buttonSaveSearch" type="button">Sauvegarder la recherche</button>  
   
   @endsection
