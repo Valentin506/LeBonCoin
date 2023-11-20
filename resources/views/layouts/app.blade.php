@@ -75,13 +75,13 @@
                         
             </header>
 
-            @section('nav')
+            <!-- @section('nav')
                 <ul>
                     <li><a href="{{ url("/") }}">Accueil</a></li>
                     <li><a href="{{url("/create-account")}}">Créer compte</a></li>
                     <li><a href="{{url("/view-profile")}}">Profil de</a></li>
                 </ul>
-            @show
+            @show -->
 
             <div class="container">
                 @yield('content')
@@ -91,7 +91,7 @@
 
         
 
-            <button class="buttonSaveSearch" type="button">Sauvegarder la recherche</button>
+            <!-- <button class="buttonSaveSearch" type="button">Sauvegarder la recherche</button> -->
         </div>
 
     	

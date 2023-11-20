@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
+    // Retrieve the currently authenticated user...
+$user = Auth::user();
+ 
+// Retrieve the currently authenticated user's ID...
+$id = Auth::id();
 
     
     public function add()
@@ -37,6 +43,7 @@ class AccountController extends Controller
            
 
             $b->save();
+            Auth::login($user, $remember = false);  
             return redirect("/");
     
             

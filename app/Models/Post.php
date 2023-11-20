@@ -10,5 +10,10 @@ class Post extends Model
     use HasFactory;
     protected $table = "annonce";
     protected $primaryKey = "idannonce";
+    protected $foreignKey1 = "idcapacite";
+    protected $foreignKey2 = "idadresse";
+    protected $foreignKey3 = "idhebergement";
+    protected $foreignKey4 = "idimage";
+    protected $foreignKey5 = "idproprietaire";
     public $timestamps = false;
 }
