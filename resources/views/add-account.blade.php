@@ -20,12 +20,12 @@
     @csrf
 
     <label>
-      <input type="radio" name="inputType" value="text" onclick="showInput('personnel')"> Pour vous
+      <input type="radio" name="inputType" value="personnel" onclick="showInput('personnel')"> Pour vous
     </label>
     <label>
       <input type="radio" name="inputType" value="professionel" onclick="showInput('professionel')"> Pour votre entreprise
     </label>
-</form>
+
     <div id="personnelInput" class="hidden">
     <label for="dynamicPersonnel">Email:</label>
     <input type="email" id="dynamicPersonnel">
@@ -68,9 +68,16 @@
         <Option>Ouistiti</Option>
     </select>
 
+
+    
+
   </div>
 
- 
+  <div class="login">
+        <button type="submit">S'inscrire</button>
+    </div>
+
+    </form>
 
   <script>
     function showInput(inputType) {
@@ -128,9 +135,7 @@
         <label for="contry">Ville ou code postal </label>
     </div>
 
-    <div class="login">
-        <button type="submit">S'inscrire</button>
-    </div>
+    
 
 
    

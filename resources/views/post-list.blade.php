@@ -5,7 +5,8 @@
 
 @section('title', 'Leboncoin')
 
-<script src="/resources/js/post-list.js" defer>
+<script src="/resources/js/post-list.js">
+
 </script>
 
 @section('content')
@@ -27,7 +28,7 @@
   </div>
   <div>
     <label>Voyageurs</label>
-    <input id=plusMinusInput type=number min=1 max=12>
+    <input id="plusMinusInput" type=number min=1 max=12>
     <button class="plusMinusTraveler" onclick="increment()">+</button>
     <button class="plusMinusTraveler" onclick="decrement()">-</button>
   </div>
