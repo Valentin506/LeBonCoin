@@ -25,7 +25,7 @@
     </select>
   </div>
   <div>
-    <input type="range" placeholder="Voyageurs" autocomplete="off" autocapitalize="off"/>
+    <input type="range" placeholder="Voyageurs" autocomplete="off" autocapitalize="off" min="1" max="12+" step="1"/>
   </div>
   <div>
     <input type="text" placeholder="Paiement en ligne" autocomplete="off" autocapitalize="off"/>
