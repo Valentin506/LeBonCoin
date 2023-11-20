@@ -1,5 +1,5 @@
 
-
+// increment & decrement travelers
 function increment() {
     document.getElementById('plusMinusInput').stepUp();
  }

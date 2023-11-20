@@ -10,7 +10,7 @@
 
 
 @section('content')
-<div class="form-login">
+
 
 <h2> Créez votre compte</h2>
 
@@ -25,21 +25,21 @@
     <label>
       <input type="radio" name="inputType" value="professionel" onclick="showInput('professionel')"> Pour votre entreprise
     </label>
-</form>
+
     <div id="personnelInput" class="hidden">
-    <label for="dynamicPersonnel">Email:</label>
+    <label for="dynamicPersonnel" name="email">Email:</label>
     <input type="email" id="dynamicPersonnel">
 
-    <label for="dynamicPersonnel">Mot de passe:</label>
+    <label for="dynamicPersonnel" name="password">Mot de passe:</label>
     <input type="password" id="dynamicPersonnel">
 
-    <label for="dynamicPersonnel">Numéro de téléphone:</label>
+    <label for="dynamicPersonnel" name="tel">Numéro de téléphone:</label>
     <input type="tel" id="dynamicPersonnel">
 
-    <label for="dynamicPersonnel">Nom:</label>
+    <label for="dynamicPersonnel" name="name">Nom:</label>
     <input type="text" id="dynamicPersonnel">
 
-    <label for="dynamicPersonnel">Prenom:</label>
+    <label for="dynamicPersonnel" name="firstname">Prenom:</label>
     <input type="text" id="dynamicPersonnel">
 
   </div>
@@ -70,8 +70,10 @@
 
   </div>
 
- 
-
+  <div class="login">
+        <button type="submit">S'inscrire</button>
+    </div>
+</form>
   <script>
     function showInput(inputType) {
       var personnelInput = document.getElementById("personnelInput");
@@ -128,9 +130,7 @@
         <label for="contry">Ville ou code postal </label>
     </div>
 
-    <div class="login">
-        <button type="submit">S'inscrire</button>
-    </div>
+    
 
 
    

@@ -32,6 +32,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/ville', function () {
+    return view('ville-list');
+});
+
+
 
 Route::get('/create-account', [AccountController::class, 'add']);
 Route::post('/create-account/save', [AccountController::class, 'save']);
