@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class AccountController extends Controller
 {
    
-
+    
     
     public function add()
     {
@@ -35,19 +35,29 @@ class AccountController extends Controller
             $b->nomcompte = $request->input("name");
             $b->prenomcompte = $request->input("firstname");
             $b->datenaissanceparticulier = $request->input("date");
-            
-           
-
             $b->save();
-             // Retrieve the currently authenticated user...
-            $user = Auth::user();
- 
-            // Retrieve the currently authenticated user's ID...
-            $id = Auth::id();
-            Auth::login($user, $remember = false);  
+
+            
+             
+            if (Auth::attempt($b)) {
+                $request->session()->regenerate();
+     
+                return redirect()->intended('connect-account');
+            }
+     
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ])->onlyInput('email');
+        }
+
+            
+            
             return redirect("/");
     
             
           
-          } }
-}
+          } 
+        
+        
+        }
+

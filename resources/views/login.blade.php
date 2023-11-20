@@ -14,7 +14,7 @@
 
 <form action="{{url("/connect-acount") }}" method="post" class="form">
 
-
+<div class="form-register">
 <div>
     <label  for="email">E-mail</label><br>
         <input class="form-register" type="email" name="email">
@@ -25,10 +25,16 @@
         <input class="form-register" type="password" name="password">
         
     </div>  
-    <button id="buttonPostDeposit" type="button">Se connecter</button> <br>
+    <div>
+    <button id="buttonPostDeposit" type="submit">Se connecter</button><br>
+    </div>
     <label>Envie de nous rejoindre ?</label>
     <a href="{{url("/create-account")}}">Créez un compte</a>
+    </div>
+    @csrf
+
 </div>
+</form>
 
 
 

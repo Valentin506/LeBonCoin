@@ -14,4 +14,10 @@ class PostController extends Controller
     public function one($id){
         return view ("one-post", ['post'=>Post::find($id) ]);
     }
+
+    public function photoUser()
+    {
+       return $this->belongsTo('App\Models\PhotoUser','idimage');
+    }
+
 }

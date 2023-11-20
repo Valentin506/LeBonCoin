@@ -11,5 +11,9 @@ class PhotoUserController extends Controller
     	return view ("photo-list", ['photoUsers'=>PhotoUser::all() ]);
     }
 
+    public function post(){
+        return $this->hasMany('App\Models\Post');
+    }
+    
 
 }

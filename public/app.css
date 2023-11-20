@@ -69,6 +69,11 @@ a{
    transition: all 0.3s ease-out;
 }
 
+.elementsDescription li{
+   display: inline-block;
+
+}
+
 /* .nav li::after {
    display: inline-block;
    color: #000;

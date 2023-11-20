@@ -42,6 +42,7 @@
 .divForEachPost{
     border-bottom: 2px solid rgba(163, 163, 163, 0.3);
     list-style-type: none;
+    display: flex;
 }
 
 
