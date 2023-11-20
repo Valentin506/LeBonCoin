@@ -89,12 +89,12 @@
     </div>
 
 
-    <div id="textInput" class="hidden">
+    <div>
         <input type="tel" name="tel" >
         <label for="tel">Numéro de téléphone</label>
     </div>
 
-    <div id="textInput" class="hidden">
+    <div>
         <input type="name" name="name">
         <label for="name">Nom</label>
 
@@ -103,11 +103,11 @@
     </div>
 
 
-    <div id="textInput" class="hidden">
+    <div>
         <input type="date" name="date">
         <label for="date">Date de naissance</label>
     </div>
-    <div id="textInput" class="hidden">
+    <div>
         <input type="adress" name="adress">
         <label for="tel">Adresse </label>
 

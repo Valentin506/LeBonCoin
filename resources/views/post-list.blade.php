@@ -8,14 +8,22 @@
 <script src="/js/post-list.js">
 </script>
 
+
 @section('content')
+
+
+
+<!-- filter Bar -->
 
 <div class="filterBar">
   <div>
-    <input type="text" placeholder="Choisir une destination" autocomplete="off" autocapitalize="off"/>
+    <!-- <input type="text" placeholder="Choisir une destination" autocomplete="on" autocapitalize="off"/>
     <select name="" id="">
       <option value=""></option>
-    </select>
+    </select> -->
+
+    <!-- address autocomplete -->
+    <div class="autocomplete-container" id="autocomplete-container"></div>
   
   </div>
   <div>
@@ -49,9 +57,9 @@
 
     <div id="divMap">
     <h2>Interactive Map</h2>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d26411.621884404085!2d6.138626302718275!3d45.907715502195934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1700498094956!5m2!1sfr!2sfr" width="570" height="917" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11105.943561496075!2d6.13165585!3d45.90159445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2sfr!4v1700488430687!5m2!1svi!2sfr" width="570" height="917" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-    
+
   </div>
     <ul>
        @foreach ($posts as $post)
