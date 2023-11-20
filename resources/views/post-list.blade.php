@@ -5,7 +5,8 @@
 
 @section('title', 'Leboncoin')
 
-
+<script src="/resources/js/post-list.js" defer>
+</script>
 
 @section('content')
 <h2>Posts</h2>
@@ -25,7 +26,10 @@
     </select>
   </div>
   <div>
-    <input type="range" placeholder="Voyageurs" autocomplete="off" autocapitalize="off" min="1" max="12+" step="1"/>
+    <label>Voyageurs</label>
+    <input id=plusMinusInput type=number min=1 max=12>
+    <button class="plusMinusTraveler" onclick="increment()">+</button>
+    <button class="plusMinusTraveler" onclick="decrement()">-</button>
   </div>
   <div>
     <input type="text" placeholder="Paiement en ligne" autocomplete="off" autocapitalize="off"/>

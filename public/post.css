@@ -16,7 +16,12 @@
 .filterBar div input{
     border: none;
 
-    
+}
+
+.plusMinusTraveler{
+    border-radius: 50% 50% 50% 50%;
+    border: 1px solid black;
+    padding: 5px;
 }
 
 

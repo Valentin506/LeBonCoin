@@ -19,9 +19,9 @@
 
 .marginPage:not(.headerBorder){
    margin-left: 25%;
-   margin-right: 25%;
-   width: 75%;
-   box-sizing: border-box;
+   /* margin-right: 25%;
+   width: 75%; */
+   /* box-sizing: border-box; */
 }
 
 .headerBorder{
@@ -39,6 +39,10 @@ a{
    /* color: black; */
 }
 
+
+/* #personnelInput{
+   display: block;
+} */
 
 .logo{
    align-content: center;
