@@ -5,8 +5,7 @@
 
 @section('title', 'Leboncoin')
 
-<script src="/resources/js/post-list.js">
-
+<script src="/js/post-list.js">
 </script>
 
 @section('content')

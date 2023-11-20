@@ -16,7 +16,7 @@ class AccountController extends Controller
     public function save(Request $request)
     {
         
-        if ($request->input("inputType") == "personnel")  {
+        if ($request->input("inputType") == "professionel")  {
             return redirect('add-account/add')->withInput();
           } else {
             $b = new Account;
