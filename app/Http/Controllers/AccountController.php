@@ -16,7 +16,7 @@ class AccountController extends Controller
     public function save(Request $request)
     {
         
-        if ($request->input("email") == "")  {
+        if ($request->input("tel") == "")  {
             return redirect('add-account/add')->withInput();
           } else {
             $b = new Account;
