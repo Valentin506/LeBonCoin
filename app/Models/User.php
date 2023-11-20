@@ -17,8 +17,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $table = "locataire";
-    protected $primaryKey = "IDLocataire";
+    protected $table = "compte";
+    protected $primaryKey = "idcompte";
     public $timestamps = false;
 }
 

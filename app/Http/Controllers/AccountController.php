@@ -7,6 +7,7 @@ use App\Models\Account;
 
 class AccountController extends Controller
 {
+
     
     public function add()
     {
@@ -16,22 +17,22 @@ class AccountController extends Controller
     public function save(Request $request)
     {
         
-        if ($request->input("tel") == "")  {
-            return redirect('add-account/add')->withInput();
+        if ($request->input("email") == ""){
+            return redirect('create-annonce')->withInput();
           } else {
-            $b = new Account;
+            $b = new User;
             $b->timestamps = false;
-            $b->email = $request->input("email");
-            $b->password = $request->input("password");
-            $b->tel = $request->input("tel");
-            $b->name = $request->input("name");
-            $b->firstname = $request->input("firstname");
-            $b->date = $request->input("date");
-            $b->adress = $request->input("adress");
+            $b->emailcompte = $request->input("email");
+            $b->motdepasse = $request->input("password");
+            $b->numtelcompte = $request->input("tel");
+            $b->nomcompte = $request->input("name");
+            $b->prenomcompte = $request->input("firstname");
+            $b->datenaissanceparticulier = $request->input("date");
+            
             
             $b->save();
     
-            return redirect('/');
+            
           
           } }
 }

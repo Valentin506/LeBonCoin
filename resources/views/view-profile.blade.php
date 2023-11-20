@@ -2,6 +2,7 @@
 <title>Profil de </title>
 <link rel="stylesheet" type="text/css" href="{{asset('profile.css')}}"/> 
 
+<script src="/js/view-profile.js" defer></script>
 
 <div class="marginViewProfile">
     @extends('layouts.app')
@@ -24,7 +25,20 @@
     
             </div>
             <div class="userMore">
-                <button></button>
+                <div class="popupDiv" onclick="popupOptions()">
+                    <button>
+                    </button>                     
+                    <span class="popuptext" id="myPopup">
+                        <div id="moreOptionsDiv">
+                            <header>
+                                <p>Plus d'options</p>
+                                <span id="buttonX">X</span>
+                            </header>
+                            <span>Signaler cet utilisateur</span>
+                            <span>Partager</span>
+                        </div>
+                    </span>
+                </div>
             </div>
             
         </div>

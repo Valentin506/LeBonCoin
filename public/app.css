@@ -1,7 +1,7 @@
  *{
   margin: 0;
   padding: 0;
-  font-family: 'Nurito Sans', ui-sans-serif;
+  font-family: 'Nunito Sans';
  }
  
 
@@ -14,14 +14,13 @@
    display: none;
  }
 
+ 
 
 /* Partie header Leboncoin */
 
 .marginPage:not(.headerBorder){
    margin-left: 25%;
-   /* margin-right: 25%;
-   width: 75%; */
-   /* box-sizing: border-box; */
+   
 }
 
 .headerBorder{
@@ -36,7 +35,7 @@
 
 a{
    text-decoration: none;
-   /* color: black; */
+   color: black;
 }
 
 
@@ -59,7 +58,6 @@ a{
    padding: 0;
 }
 .nav li {
-   font-family: sans-serif ;
    display: inline-block;
    font-size: 16px;
    padding: 5px;

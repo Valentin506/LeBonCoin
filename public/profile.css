@@ -1,5 +1,5 @@
 *{
-    font-family: 'Nurito Sans';
+    font-family: 'Nunito Sans';
   
 }
 
@@ -63,7 +63,7 @@
 }
 
 .userMore:hover{
-    background-color: rgb(163, 163, 163);
+    background-color: rgba(163, 163, 163, 0.3);
 }
 
 
@@ -84,3 +84,84 @@
     margin-left: 10px;
     display: block;
 }
+
+#moreOptionsDiv{
+    width: 280px;
+    height: 160px;
+    padding: 16px 40px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+#moreOptionsDiv header{
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: space-evenly;
+
+}
+
+#buttonX{
+    color: rgb(5, 46, 121);
+}
+
+#buttonX:hover{
+    width: 32px;
+    height: 32px;
+    border-radius: 50% 50% 50% 50%;
+    background-color: rgba(163, 163, 163, 0.2);
+}
+
+
+#moreOptionsDiv span{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+
+
+
+/* popupDiv container */
+.popupDiv {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+  
+/* The actual popupDiv (appears on top) */
+.popupDiv .popuptext {
+visibility: hidden;
+width: 280px;
+height: 160px;
+background-color: white;
+color: black;
+text-align: center;
+border-radius: 6px;
+padding: 8px 0;
+position: absolute;
+z-index: 1;
+bottom: -200%;
+left: 40%;
+margin-left: -80px;
+box-shadow: 0px 0px 5px grey;
+}
+
+/* Toggle this class when clicking on the popupDiv container (hide and show the popupDiv) */
+.popupDiv .show {
+visibility: visible;
+-webkit-animation: fadeIn 1s;
+animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popupDiv) */
+@-webkit-keyframes fadeIn {
+from {opacity: 0;}
+to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+from {opacity: 0;}
+to {opacity:1 ;}
+}
+
+

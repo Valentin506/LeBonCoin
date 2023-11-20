@@ -1,4 +1,8 @@
 
+
+
+
+
 <link rel="stylesheet" type="text/css" href="{{asset('app.css')}}"/> 
 <!-- Formulaire pour les inscriptions -->
 
@@ -16,10 +20,10 @@
 
 
 
-<form action="{{ url("/create-account/save") }}" method="post" class="form">
-    @csrf
+<form action="{{url("/create-account/save") }}" method="post" class="form">
+    
 
-    <label>
+    <!-- <label>
       <input type="radio" name="inputType" value="personnel" onclick="showInput('personnel')"> Pour vous
     </label>
     <label>
@@ -41,6 +45,8 @@
 
     <label for="dynamicPersonnel" name="firstname">Prenom:</label>
     <input type="text" id="dynamicPersonnel">
+
+    
 
   </div>
   
@@ -70,37 +76,14 @@
     </select>
     <div class="auto-search-wrapper">
   </div>
-  </div>
-
-  <div class="login">
-        <button type="submit">S'inscrire</button>
-    </div>
-</form>
-  <script>
-    function showInput(inputType) {
-      var personnelInput = document.getElementById("personnelInput");
-      var professionelInput = document.getElementById("professionelInput");
-
-      // Hide all inputs
-      personnelInput.classList.add("hidden");
-      professionelInput.classList.add("hidden");
-
-      // Show the selected input
-      if (inputType === "personnel") {
-        personnelInput.classList.remove("hidden");
-      } else if (inputType === "professionel") {
-        professionelInput.classList.remove("hidden");
-      }
-    }
-  </script>
-
-
-    <div id="textInput" class="hidden">
+ 
+  </div> -->
+  <div>
         <input type="email" name="email">
         <label for="email">Email</label>
     </div>
 
-    <div id="textInput" class="hidden">
+    <div>
         <input type="password" name="password">
         <label for="password">Mot de Passe</label>
     </div>
@@ -132,6 +115,33 @@
         <label for="contry">Ville ou code postal </label>
     </div>
 
+
+  <div class="login">
+        <button type="submit" Vakue="S'inscrire"></button>
+    </div>
+
+  @csrf
+</form>
+  <script>
+    function showInput(inputType) {
+      var personnelInput = document.getElementById("personnelInput");
+      var professionelInput = document.getElementById("professionelInput");
+
+      // Hide all inputs
+      personnelInput.classList.add("hidden");
+      professionelInput.classList.add("hidden");
+
+      // Show the selected input
+      if (inputType === "personnel") {
+        personnelInput.classList.remove("hidden");
+      } else if (inputType === "professionel") {
+        professionelInput.classList.remove("hidden");
+      }
+    }
+  </script>
+
+
+    
     
 
 
