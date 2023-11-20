@@ -24,7 +24,8 @@
                 </span>
     
             </div>
-            <button id="buttonPostDeposit" type="button">Suivre</button> <br>
+            <div>
+            <button id="buttonPostDeposit" type="button">Suivre</button> 
             <div class="userMore">
                 <div class="popupDiv" onclick="popupOptions()">
                     <button>
@@ -40,6 +41,9 @@
                         </div>
                     </span>
                 </div>
+
+            </div>
+            
             </div>
             
         </div>

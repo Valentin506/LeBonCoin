@@ -92,7 +92,8 @@ input[type='image']{
 }
 .form-register{
    background-color: red;
-   border: 2px black;
+   border: 2px solid #333; 
+    padding: 20px;
 }
 
 
