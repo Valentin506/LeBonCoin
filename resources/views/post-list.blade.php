@@ -1,12 +1,16 @@
 <title>Location vacances maison, gite et appartement entre particuliers - leboncoin </title>
 <link rel="stylesheet" type="text/css" href="{{asset('post.css')}}"/> 
 
+<link href="https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.min.css" rel="stylesheet">
+<script id="search-js" defer="" src="https://api.mapbox.com/search-js/v1.0.0-beta.18/web.js"></script>
+
 @extends('layouts.app')
 
 @section('title', 'Leboncoin')
 
 <script src="/js/post-list.js">
 </script>
+
 
 
 @section('content')
@@ -17,13 +21,11 @@
 
 <div class="filterBar">
   <div>
-    <!-- <input type="text" placeholder="Choisir une destination" autocomplete="on" autocapitalize="off"/>
+    
+    <input class="input mb12" name="address" autocomplete="shipping address-line1" placeholder="Choisir une destination">
     <select name="" id="">
       <option value=""></option>
-    </select> -->
-
-    <!-- address autocomplete -->
-    <div class="autocomplete-container" id="autocomplete-container"></div>
+    </select>
   
   </div>
   <div>

@@ -100,6 +100,9 @@
 
         <input type="firstname" name="firstname">
         <label for="firstname">Prénom</label>
+
+        <input type="pseudo" name="pseudo">
+        <label for="pseudo">Nom d'utilisateur</label>
     </div>
 
 

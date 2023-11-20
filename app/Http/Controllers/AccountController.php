@@ -25,12 +25,15 @@ class AccountController extends Controller
             $b->emailcompte = $request->input("email");
             $b->motdepasse = $request->input("password");
             $b->numtelcompte = $request->input("tel");
+            $b->pseudocompte = $request->input("pseudo");
             $b->nomcompte = $request->input("name");
             $b->prenomcompte = $request->input("firstname");
             $b->datenaissanceparticulier = $request->input("date");
             
-            
+           
+
             $b->save();
+            return redirect("/");
     
             
           
