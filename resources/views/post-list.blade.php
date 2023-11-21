@@ -58,12 +58,14 @@
     <ul>
       @foreach ($posts as $post)
       <div class="divForEachPost">
-        <div>
-          @if($post->image)
-              <img src="{{ $post->image->url }}" alt="Image de l'annonce">
-          @else
-              <p>Aucune image associée</p>
-          @endif
+        <div id="divImagePost">
+          @foreach ($photoUsers as $photoUser)
+            @if($photoUser->image)
+              <img src="{{ $photoUser -> image }}" alt="Image de l'annonce">
+            @else
+                <p>Aucune image associée</p>
+            @endif
+          @endforeach
             
           </div>
           <div>

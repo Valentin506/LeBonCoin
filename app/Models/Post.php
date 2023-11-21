@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Post extends Model
 {
@@ -16,10 +16,8 @@ class Post extends Model
     ];
     public $timestamps = false;
 
-    public function getImage(){
-        $photos = Post::select('photo.image')
-        	->join('annonce', 'annonce.idimage', '=', 'photo.idimage')
-        	->get();
+    public function photoUser(): HasMany{
+        return $this->hasMany(PhotoUser::class);
     }
 
     
