@@ -17,21 +17,6 @@ class PostController extends Controller
         return view ("one-post", ['post'=>Post::find($id) ]);
     }
 
-    public function photoUser()
-    {
-    //    return $this->belongsTo('App\Models\PhotoUser','idimage');
-
-    $posts = Post::with('image')->get();
-    ($posts);
-    return view('post-list', compact('posts'));
-    }
-    // public function proprietaireAnnonce()
-    // {
-    // //    return $this->belongsTo('App\Models\PhotoUser','idimage');
-
-    // $postes = Post::with('image')->get();
-    // dd($annonces);
-    // return view('post-list', compact('annonces'));
-    // }
+    
 
 }

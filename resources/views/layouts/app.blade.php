@@ -42,9 +42,15 @@
                             <span>Messages</span>
                         </div>
                         <div class="buttonLogin">
+
+                        @if (Auth::check())
+                        <a href="{{url("/account/")}}"><input type="image" alt="Mon compte" src="https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png"></a>   
+                        <span>Mon compte</span>
+                        @else        
                             <!-- <label>{{ session('user_authenticated') ? 'Connecté' : 'Se connecter' }}</label> -->
                             <a href="{{url("/login")}}"><input type="image" alt="Se Connecter" src="https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png"></a>            
                             <span>Se connecter</span>
+                        @endif
                         </div>
 
                     </nav>

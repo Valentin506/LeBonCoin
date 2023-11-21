@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Account;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -28,6 +29,15 @@ class UserController extends Controller
 
     //     return redirect('/');
     // }
+
+    public function index(){
+        return view('my-account');
+  
+    }
+    public function one($id){
+        return view ("my-account", ['user'=>User::find($id) ]);
+    }
+
     public function add()
     {
         return view('add-account');
@@ -43,11 +53,15 @@ class UserController extends Controller
             $user->timestamps = false;
             $user->emaillocataire = $request->input("email");
             $user->motdepasse = $request->input("password");
+            $user->pseudocompte = $request->input("pseudo");
             $user->numtellocataire = $request->input("tel");
             $user->nomlocataire = $request->input("name");
             $user->prenomlocataire = $request->input("firstname");
             $user->datemembre = $request->input("date");
             $user->save();
+
+            Auth::login($user);
+            // Auth::check();
     
             return redirect('/');
           
