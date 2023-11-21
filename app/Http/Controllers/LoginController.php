@@ -16,6 +16,8 @@ class LoginController extends Controller
    }
 
    public function doLogin(LoginRequest $request){
+        $credentials = $request->validated();
 
+        Auth::attemp($credentials);
    }
 }
