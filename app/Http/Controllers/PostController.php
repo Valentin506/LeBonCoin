@@ -25,5 +25,13 @@ class PostController extends Controller
     dd($annonces);
     return view('post-list', compact('annonces'));
     }
+    // public function proprietaireAnnonce()
+    // {
+    // //    return $this->belongsTo('App\Models\PhotoUser','idimage');
+
+    // $postes = Post::with('image')->get();
+    // dd($annonces);
+    // return view('post-list', compact('annonces'));
+    // }
 
 }

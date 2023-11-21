@@ -7,39 +7,54 @@
 
 @section('content')
 
-<div class="postDiv">
-        <h2>{{ $post -> titreannonce }}</h2>
-        <ul class="elementsDescription">
-                <li>{{ $post -> idhebergement }}</li>
-                <li>•</li>
-                <li>{{ $post -> idcapacite }}</li>
-                <li>•</li>
-                <li>{{ $post -> idadresse }}</li>
-        </ul>
+<div class="postContainer">
+        <div class="postDiv">
+                <h2>{{ $post -> titreannonce }}</h2>
+                @if($post->image)
+                      <img src="{{ $post->image->url }}" alt="Image de l'annonce">
+                  @else
+                      <p>Aucune image associée</p>
+                  @endif
+                <ul class="elementsDescription">
+                        <li>{{ $post -> idhebergement }}</li>
+                        <li>•</li>
+                        <li>{{ $post -> idcapacite }}</li>
+                        <li>•</li>
+                        <li>{{ $post -> idadresse }}</li>
+                </ul>
+                
+                @if($post->paiementenligne)
+                Paiement en ligne disponible
+                @else
+                Paiement en ligne pas disponible
+                @endif
+                
+                <p>Publié le {{ $post -> datepublication }}</p>
+                <h3>Description</h3>
+                <p>{{ $post -> description }}</p>
+                <h3>Critères</h3>
+                <h3>{{ $post -> idadresse }}</h3>
         
-        @if($post->paiementenligne)
-        Paiement en ligne disponible
-        @else
-        Paiement en ligne pas disponible
-        @endif
+        </div>
         
-        <p>Publié le {{ $post -> datepublication }}</p>
-        <h3>Description</h3>
-        <p>{{ $post -> description }}</p>
-        <h3>Critères</h3>
-        <h3>{{ $post -> idadresse }}</h3>
+        <div class="ownerPostDiv">
+                <div id="postDateDiv">
+                        <div></div>
+                        <div></div>
+                </div>
+                <div id="postOwnerDiv">
+                        <div id="divPhoto">
+                                <img src="" alt="photo utilisateurs">
+                        </div>
+                        <div id="basicInfoDiv">
+                                <h3><a href="{{ url("/profile/".$owner->idproprietaire) }}">{{ $owner-> idproprietaire}}</a></h3>
+                                <span> </span>
+                        </div>
+        
+                </div>
 
 </div>
 
-<div class="ownerPostDiv">
-        <div id="postDateDiv">
-                <div></div>
-                <div></div>
-        </div>
-        <div id="postOwnerDiv">
-                
-
-        </div>
 
 </div>
 

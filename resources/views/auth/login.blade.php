@@ -12,7 +12,7 @@
 <p>Connectez-vous pour découvrir toutes nos fonctionnalités.</p>
 
 
-<form action="{{ url("/login") }}" method="post" class="form">
+<form action="{{ url("auth.login") }}" method="post" class="form">
 
 <div class="form-register">
     <div>
