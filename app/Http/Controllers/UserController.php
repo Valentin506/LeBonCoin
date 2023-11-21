@@ -30,10 +30,10 @@ class UserController extends Controller
     //     return redirect('/');
     // }
 
-    public function index(){
-        return view('my-account');
+    // public function index(){
+    //     return view('my-account');
   
-    }
+    // }
     public function one($id){
         return view ("my-account", ['user'=>User::find($id) ]);
     }
@@ -65,7 +65,7 @@ class UserController extends Controller
     
             return redirect('/');
           
-          } 
+          
 
             
             
@@ -86,4 +86,4 @@ class UserController extends Controller
 
         return back();
     }
-}
+}}

@@ -23,7 +23,7 @@ class LoginController extends Controller
    public function doLogin(LoginRequest $request){
 
         $credentials = $request->validated();
-        Auth::loginUsingId($credentials);
+        Auth::login($credentials);
         
         
    }
