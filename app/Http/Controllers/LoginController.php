@@ -9,18 +9,21 @@ use Illuminate\Support\Facades\Auth;
 
 
 
+
 class LoginController extends Controller
 {
 
    public function login(){
         return view('auth.login');
    }
+   
+   
 
+  
    public function doLogin(LoginRequest $request){
+
         $credentials = $request->validated();
-
         dd(Auth::attempt($credentials));
-
         
    }
 }

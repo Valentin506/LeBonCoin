@@ -45,7 +45,7 @@ Route::get('/create-account', [AccountController::class, 'add']);
 Route::post('/create-account/save', [AccountController::class, 'save']);
 
 
-Route::get('/login', [LoginController::class, 'login'])->name('auth.login');
+Route::get('/login', [LoginController::class, 'login'])->name('/login');
 Route::post('/login', [LoginController::class, 'doLogin']);
 // Route::get('/connect-account', 'LoginController@index')->middleware('auth');
 

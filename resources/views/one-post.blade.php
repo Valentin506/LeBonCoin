@@ -47,7 +47,7 @@
                                 <img src="" alt="photo utilisateurs">
                         </div>
                         <div id="basicInfoDiv">
-                                <h3><a href="{{ url("/profile/".$owner->idproprietaire) }}">{{ $owner-> idproprietaire}}</a></h3>
+                                <h3><a href="">Nom utilisateur</a></h3>
                                 <span> </span>
                         </div>
         

@@ -23,7 +23,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'emailcompte' => 'required|email',
-            'password' => 'required|min:4'
+            'motdepasse' => 'required|min:4'
         ];
     }
 }
