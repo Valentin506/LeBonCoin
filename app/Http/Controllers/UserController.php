@@ -34,14 +34,19 @@ class UserController extends Controller
     //     return view('my-account');
   
     // }
-    public function one($id){
-        return view ("my-account", ['user'=>User::find($id) ]);
+    public function one(){
+        return view ("my-account", ['user'=>User::find(60) ]);
     }
 
     public function add()
     {
         return view('add-account');
     }
+    public function modif()
+    {
+        return view('modif-account');
+    }
+
 
     public function save(Request $request)
     {
