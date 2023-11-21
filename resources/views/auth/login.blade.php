@@ -8,16 +8,19 @@
 
 
 @section('content')
+
+<div class="form-register">
+
 <h2>Bonjour !</h2>
 <p>Connectez-vous pour découvrir toutes nos fonctionnalités.</p>
 
 
-<form action="{{ route('/login') }}" method="post" class="form">
+<form action="{{ route('auth.login') }}" method="post" class="form">
 
-<div class="form-register">
+
     <div>
-        <label  for="email">E-mail</label><br>
-        <input class="form-register" type="email" name="email" id="email">
+        <label for="email">E-mail</label><br>
+        <input class="form-register" type="emailcompte" name="emailcompte" id="emailcompte" required>
         @error("email")
         {{ $message }}
         @enderror
@@ -25,7 +28,7 @@
 
     <div>
         <label  for="password">Mot de passe</label><br>
-        <input class="form-register" type="password" name="password" id="pssword">
+        <input class="form-register" type="password" name="password" id="pssword" required>
         @error("password")
         {{ $message }}
         @enderror

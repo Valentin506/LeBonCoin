@@ -1,4 +1,4 @@
-<title>Profil de {{ $owner -> idproprietaire}}</title>
+<title>Profil de {{ $owner -> idcompte -> pseudocompte}}</title>
 <link rel="stylesheet" type="text/css" href="{{asset('profile.css')}}"/> 
 
 <script src="/js/view-profile.js" defer></script>
@@ -14,7 +14,7 @@
                 <img src={{ $todaysPhoto['image'] }} alt="photo utilisateurs">
             </div>
             <div id="basicUserInfo">
-                <h3> SandrineGeraldrine </h3>
+                <h3> {{ $owner -> idcompte -> pseudocompte}} </h3>
                 <span>
                     Pièce d'identité vérifiée
                 </span>

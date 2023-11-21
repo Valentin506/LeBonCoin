@@ -16,12 +16,13 @@
 @section('content')
 
 
-<h2> Créez votre compte</h2>
+
 
 
 
 <form action="{{url("/create-account/save") }}" method="post" class="form">
 <div class="form-register">
+<h2> Créez votre compte</h2>
   <div>
         <label for="email">Email</label>
         <input type="email" name="email">

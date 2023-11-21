@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\LoginRequest;
 
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -32,7 +33,10 @@ class AccountController extends Controller
             $b->nomcompte = $request->input("name");
             $b->prenomcompte = $request->input("firstname");
             $b->datenaissanceparticulier = $request->input("date");
+            
             $b->save();
+            Auth::login($b);
+            
             
             
             return redirect("/");
@@ -43,4 +47,5 @@ class AccountController extends Controller
         
         
         }
+       
     }

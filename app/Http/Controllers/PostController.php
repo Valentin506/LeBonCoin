@@ -21,9 +21,9 @@ class PostController extends Controller
     {
     //    return $this->belongsTo('App\Models\PhotoUser','idimage');
 
-    $postes = Post::with('image')->get();
-    dd($annonces);
-    return view('post-list', compact('annonces'));
+    $posts = Post::with('image')->get();
+    dd($posts);
+    return view('post-list', compact('posts'));
     }
     // public function proprietaireAnnonce()
     // {

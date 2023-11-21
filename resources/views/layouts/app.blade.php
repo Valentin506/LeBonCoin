@@ -42,7 +42,7 @@
                         </div>
                         <div class="buttonLogin">
                             <!-- <label>{{ session('user_authenticated') ? 'Connecté' : 'Se connecter' }}</label> -->
-                            <a href="{{url("/create-account")}}"><input type="image" alt="Se Connecter" src="https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png"></a>            
+                            <a href="{{url("/login")}}"><input type="image" alt="Se Connecter" src="https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png"></a>            
                             <span>Se connecter</span>
                         </div>
                     </nav>

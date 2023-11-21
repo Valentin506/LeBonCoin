@@ -1,8 +1,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('post.css')}}"/> 
+<title>{{ $post-> titreannonce." - Locations saisonières"}}</title>
 
 @extends('layouts.app')
-
-@section('title', 'Leboncoin')
 
 
 @section('content')
@@ -11,6 +10,7 @@
         <div class="postDiv">
                 <h2>{{ $post -> titreannonce }}</h2>
                 @if($post->image)
+                      
                       <img src="{{ $post->image->url }}" alt="Image de l'annonce">
                   @else
                       <p>Aucune image associée</p>
@@ -47,7 +47,7 @@
                                 <img src="" alt="photo utilisateurs">
                         </div>
                         <div id="basicInfoDiv">
-                                <h3><a href="">Nom utilisateur</a></h3>
+                                <h3><a href="{{ url("/profile/".$post->idproprietaire) }}">{{ $post-> idproprietaire}}</a></h3>
                                 <span> </span>
                         </div>
         
