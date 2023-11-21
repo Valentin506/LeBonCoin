@@ -26,6 +26,7 @@ Route::get("/annonces",[AccountController::class, "index" ]);
 Route::get("/posts",[PostController::class, "post" ]);
 Route::get("/post/{id}",[PostController::class, "one" ]);
 Route::get("/view-profile",[OwnerController::class, "owner" ]);
+Route::get("/profile/{id}",[OwnerController::class, "one" ]);
 Route::get("/view-profile",[SiteController::class, "photoRandom" ]);
 // Route::get("/view-profile",[SiteController::class, "ownerRandom" ]);
 
@@ -43,8 +44,10 @@ Route::get('/create-account', [AccountController::class, 'add']);
 Route::post('/create-account/save', [AccountController::class, 'save']);
 
 
-Route::get('/connect-account', [LoginController::class, 'connect']);
+Route::get('/login', [LoginController::class, 'login'])->name('auth.login');
+Route::post('/login', [LoginController::class, 'doLogin']);
 // Route::get('/connect-account', 'LoginController@index')->middleware('auth');
+
 
 
 

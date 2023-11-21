@@ -30,11 +30,14 @@
         <h3>{{ $post -> idadresse }}</h3>
 
 </div>
+
 <div class="ownerPostDiv">
         <div id="postDateDiv">
-
+                <div></div>
+                <div></div>
         </div>
         <div id="postOwnerDiv">
+                <h3><a href="{{ url("/profile/".$owner->idproprietaire )}}">{{ $owner-> idproprietaire}}</a></h3>
 
         </div>
 

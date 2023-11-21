@@ -53,27 +53,11 @@
     </div>
 
     <label>Vous avez déjà un compte ?</label>
-    <a href="{{url("/connect-account")}}">Se connecter</a>
+    <a href="{{url("/login")}}">Se connecter</a>
 </div>
   @csrf
 </form>
-  <script>
-    function showInput(inputType) {
-      var personnelInput = document.getElementById("personnelInput");
-      var professionelInput = document.getElementById("professionelInput");
-
-      // Hide all inputs
-      personnelInput.classList.add("hidden");
-      professionelInput.classList.add("hidden");
-
-      // Show the selected input
-      if (inputType === "personnel") {
-        personnelInput.classList.remove("hidden");
-      } else if (inputType === "professionel") {
-        professionelInput.classList.remove("hidden");
-      }
-    }
-  </script>
+  
 
 
     

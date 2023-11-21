@@ -7,6 +7,8 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
+
+    
     public function post(){
     	return view ("post-list", ['posts'=>Post::all() ]);
     }
@@ -17,7 +19,11 @@ class PostController extends Controller
 
     public function photoUser()
     {
-       return $this->belongsTo('App\Models\PhotoUser','idimage');
+    //    return $this->belongsTo('App\Models\PhotoUser','idimage');
+
+    $postes = Post::with('image')->get();
+    dd($annonces);
+    return view('post-list', compact('annonces'));
     }
 
 }

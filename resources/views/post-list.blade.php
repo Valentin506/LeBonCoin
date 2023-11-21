@@ -59,8 +59,12 @@
       @foreach ($posts as $post)
       <div class="divForEachPost">
         <div>
-          <img src="{{ $post -> image}}" alt="image annonce">
-          
+          @if($post->image)
+              <img src="{{ $post->image->url }}" alt="Image de l'annonce">
+          @else
+              <p>Aucune image associée</p>
+          @endif
+            
           </div>
           <div>
             <li id="postTitle"><a href="{{ url("/post/".$post->idannonce )}}">{{ $post-> titreannonce}}</a></li>

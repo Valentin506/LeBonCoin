@@ -10,6 +10,7 @@ class PhotoUser extends Model
     use HasFactory;
     protected $table = "photo";
     protected $primaryKey = "idimage";
+    
     public $timestamps = false;
 
 }

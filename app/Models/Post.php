@@ -14,4 +14,9 @@ class Post extends Model
 
     ];
     public $timestamps = false;
+    public function image()
+    {
+        return $this->belongsTo(PhotoUser::class, 'idimage');
+    }
+    
 }

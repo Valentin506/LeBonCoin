@@ -12,18 +12,23 @@
 <p>Connectez-vous pour découvrir toutes nos fonctionnalités.</p>
 
 
-<form action="{{url("/connect-acount") }}" method="post" class="form">
+<form action="{{ url("/login") }}" method="post" class="form">
 
 <div class="form-register">
-<div>
-    <label  for="email">E-mail</label><br>
-        <input class="form-register" type="email" name="email">
+    <div>
+        <label  for="email">E-mail</label><br>
+        <input class="form-register" type="email" name="email" id="email">
+        @error("email")
+        {{ $message }}
+        @enderror
     </div>
 
     <div>
         <label  for="password">Mot de passe</label><br>
-        <input class="form-register" type="password" name="password">
-        
+        <input class="form-register" type="password" name="password" id="pssword">
+        @error("password")
+        {{ $message }}
+        @enderror
     </div>  
     <div>
     <button id="buttonPostDeposit" type="submit">Se connecter</button><br>
