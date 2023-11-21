@@ -37,7 +37,7 @@
                 <div></div>
         </div>
         <div id="postOwnerDiv">
-                <h3><a href="{{ route('profil', ['id' => $owner->id]) }}">{{ $owner-> idproprietaire}}</a></h3>
+                
 
         </div>
 

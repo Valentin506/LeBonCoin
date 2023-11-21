@@ -67,7 +67,7 @@
             
           </div>
           <div>
-            <li id="postTitle"><a href="{{ url("/post/".$post->idpost) }}">{{ $post-> titreannonce}}</a></li>
+            <li id="postTitle"><a href="{{ url("/post/".$post->idannonce) }}">{{ $post-> titreannonce}}</a></li>
             <li>Voyageurs : {{ $post -> idcapacite}}</li>
             @if($post->paiementenligne)
                 Paiement en ligne disponible

@@ -9,7 +9,7 @@ class OwnerController extends Controller
 {
     
     public function owner(){
-    	return view ("owner-list", ['owners'=>dd(Owner::all()) ]);
+    	return view ("owner-list", ['owners'=>Owner::all() ]);
     }
 
     public function one($id){
