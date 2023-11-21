@@ -8,6 +8,7 @@ use App\Http\Controllers\PhotoUserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LoginController;
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +25,13 @@ Route::get('/', [SiteController::class, "index" ]);
 // Route::get("/annonces",[AccountController::class, "index" ]);
 // Route::get("/create-account",[AccountController::class, "create" ]);
 Route::get("/posts",[PostController::class, "post" ]);
+// Route::get("/posts",[Post::class, "getImage" ]);
 Route::get("/post/{id}",[PostController::class, "one" ]);
 Route::get("/profiles",[OwnerController::class, "owner" ]);
 Route::get("/profile/{id}",[OwnerController::class, "one" ]);
 Route::get("/view-profile",[SiteController::class, "photoRandom" ]);
 Route::get("/profile/{id}",[SiteController::class, "photoRandom" ]);
+
 
 Route::get('/account/60', [UserController::class, 'one']);
 Route::get('/account/60/modif-account', [UserController::class, 'modif']);

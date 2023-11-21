@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class PhotoUser extends Model
 {
@@ -13,10 +14,6 @@ class PhotoUser extends Model
     
     public $timestamps = false;
 
-    public function getImage(){
-        $posts = Post::select('photo.image')
-        	->join('annonce', 'annonce.idimage', '=', 'photo.idimage')
-        	->get();
-    }
+    
 
 }

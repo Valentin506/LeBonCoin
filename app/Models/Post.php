@@ -16,6 +16,12 @@ class Post extends Model
     ];
     public $timestamps = false;
 
+    public function getImage(){
+        $photos = Post::select('photo.image')
+        	->join('annonce', 'annonce.idimage', '=', 'photo.idimage')
+        	->get();
+    }
+
     
     
     
