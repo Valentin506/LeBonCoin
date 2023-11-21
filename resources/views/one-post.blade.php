@@ -7,26 +7,40 @@
 
 @section('content')
 
-<h2>{{ $post -> titreannonce }}</h2>
-<ul class="elementsDescription">
-        <li>{{ $post -> idhebergement }}</li>
-        <li>•</li>
-        <li>{{ $post -> idcapacite }}</li>
-        <li>•</li>
-        <li>{{ $post -> idadresse }}</li>
-</ul>
+<div class="postDiv">
+        <h2>{{ $post -> titreannonce }}</h2>
+        <ul class="elementsDescription">
+                <li>{{ $post -> idhebergement }}</li>
+                <li>•</li>
+                <li>{{ $post -> idcapacite }}</li>
+                <li>•</li>
+                <li>{{ $post -> idadresse }}</li>
+        </ul>
+        
+        @if($post->paiementenligne)
+        Paiement en ligne disponible
+        @else
+        Paiement en ligne pas disponible
+        @endif
+        
+        <p>Publié le {{ $post -> datepublication }}</p>
+        <h3>Description</h3>
+        <p>{{ $post -> description }}</p>
+        <h3>Critères</h3>
+        <h3>{{ $post -> idadresse }}</h3>
 
-@if($post->paiementenligne)
-Paiement en ligne disponible
-@else
-Paiement en ligne pas disponible
-@endif
+</div>
+<div class="ownerPostDiv">
+        <div id="postDateDiv">
 
-<p>Publié le {{ $post -> datepublication }}</p>
-<h3>Description</h3>
-<p>{{ $post -> description }}</p>
-<h3>Critères</h3>
-<h3>{{ $post -> idadresse }}</h3>
+        </div>
+        <div id="postOwnerDiv">
+
+        </div>
+
+</div>
+
+
 
 <p><a href="{{ url("/posts") }}">Retour vers les locations saisonières</a></p>
 

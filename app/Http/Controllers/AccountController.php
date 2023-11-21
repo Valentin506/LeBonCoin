@@ -15,10 +15,7 @@ class AccountController extends Controller
     {
         return view('add-account');
     }
-    public function connect()
-    {
-        return view('login');
-    }
+    
 
     public function save(Request $request)
     {
@@ -36,20 +33,6 @@ class AccountController extends Controller
             $b->prenomcompte = $request->input("firstname");
             $b->datenaissanceparticulier = $request->input("date");
             $b->save();
-
-            
-             
-            if (Auth::attempt($b)) {
-                $request->session()->regenerate();
-     
-                return redirect()->intended('connect-account');
-            }
-     
-            return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ])->onlyInput('email');
-        }
-
             
             
             return redirect("/");
@@ -60,4 +43,4 @@ class AccountController extends Controller
         
         
         }
-
+    }

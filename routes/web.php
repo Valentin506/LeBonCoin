@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PhotoUserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,8 @@ Route::get('/create-account', [AccountController::class, 'add']);
 Route::post('/create-account/save', [AccountController::class, 'save']);
 
 
-Route::get('/connect-account', [AccountController::class, 'connect']);
+Route::get('/connect-account', [LoginController::class, 'connect']);
+// Route::get('/connect-account', 'LoginController@index')->middleware('auth');
 
 
 
