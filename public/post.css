@@ -32,17 +32,29 @@
 #divMap{
     display: flex;
     justify-content: flex-end;
+    margin-left: 10px;
 }
+
 
 #divPost{
     display: flex;
     
 }
 
+#divImagePost img{
+    width: 180px;
+    height: 127.5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+
+}
+
 .divForEachPost{
     border-bottom: 2px solid rgba(163, 163, 163, 0.3);
     list-style-type: none;
     display: flex;
+    margin-bottom: 10px;
 }
 
 
@@ -59,6 +71,8 @@
 .postDiv{
     display: flex;
     flex-direction: column;
+    margin-right: 10px;
+    text-align: justify;
 }
 
 .ownerPostDiv{
@@ -98,6 +112,9 @@
     width: 100%;
     height: 100%;
 }
+
+
+
 
 /* autocomplete address */
 

@@ -10,6 +10,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LoginController;
 use App\Models\Post;
 use App\Models\PhotoUser;
+use App\Models\Owner;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,6 @@ Route::get('/', [SiteController::class, "index" ]);
 // Route::get("/annonces",[AccountController::class, "index" ]);
 // Route::get("/create-account",[AccountController::class, "create" ]);
 Route::get("/posts",[PostController::class, "post" ]);
-// Route::get("/posts",[Post::class, "getImage" ]);
 Route::get("/post/{id}",[PostController::class, "one" ]);
 Route::get("/profiles",[OwnerController::class, "owner" ]);
 Route::get("/profile/{id}",[OwnerController::class, "owner" ]);

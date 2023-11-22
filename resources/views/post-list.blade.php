@@ -7,7 +7,7 @@
 
 <script src="/js/post-list.js"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initAutocomplete&libraries=places&v=weekly" defer></script>
+<script type=”text/javascript” src=”https://maps.googleapis.com/maps/api/js?key=AIzaSyC-Izr5CeGnoqIE8a5AGquUSIE8DnRVR34&libraries=places“></script>
 
 
 
@@ -20,7 +20,7 @@
 <div class="filterBar">
   <div>
     
-    <input id="destinationAddress" name="destinationAddress" required autocomplete="off" placeholder="Choisir une destination">
+    <input id="destinationAddress" name="destinationAddress" required placeholder="Choisir une destination">
     <select name="" id="">
       <option value=""></option>
     </select>
@@ -59,26 +59,29 @@
       @foreach ($posts as $post)
       <div class="divForEachPost">
         <div id="divImagePost">
+          @php $hasPhoto = false; @endphp
           @foreach ($photoUsers as $photoUser)
-            @if($photoUser->image)
-              <img src="{{ $photoUser -> image }}" alt="Image de l'annonce">
-            @else
-                <p>Aucune image associée</p>
+            @if($photoUser->image && $photoUser -> idimage === $post -> idimage)
+              <img src="{{ $photoUser-> image }}" alt="Image de l'annonce">
+              @php $hasPhoto = true; break; @endphp
             @endif
           @endforeach
-            
-          </div>
-          <div>
-            <li id="postTitle"><a href="{{ url("/post/".$post->idannonce) }}">{{ $post-> titreannonce}}</a></li>
-            <li>Voyageurs : {{ $post -> idcapacite}}</li>
-            @if($post->paiementenligne)
-                Paiement en ligne disponible
-            @else
-                Paiement en ligne pas disponible
-            @endif
+          @if(!$hasPhoto)
+              <p>Aucune image associée</p>
+          @endif
             
         </div>
         
+        <div>
+          <li id="postTitle"><h3><a href="{{ url("/post/".$post->idannonce) }}">{{ $post-> titreannonce}}</a></h3></li>
+          <li>Voyageurs : {{ $post -> idcapacite}}</li>
+          @if($post->paiementenligne)
+              Paiement en ligne disponible
+          @else
+              Paiement en ligne pas disponible
+          @endif
+          
+        </div>
       </div>
       @endforeach
     </ul>
