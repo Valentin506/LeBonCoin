@@ -35,7 +35,7 @@ class UserController extends Controller
   
     // }
     public function one(){
-        return view ("my-account", ['user'=>User::find(60) ]);
+        return view ("my-account", ['user'=>User::find($id) ]);
     }
 
     public function add()
@@ -90,5 +90,20 @@ class UserController extends Controller
         ]);
 
         return back();
+        /*
+        Database Update
+        */
+        $user = User::update([
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'tel' => $request->tel,
+            'name' => $request->name,
+            'firstname' => $request->firstname,
+            'date' => $request->date,
+
+        ]);
+
+        return back();
+        
     }
 }}

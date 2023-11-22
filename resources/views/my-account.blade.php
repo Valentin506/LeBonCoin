@@ -16,7 +16,7 @@
                 <h3>Pseudo : {{$user-> pseudocompte}}</h3>
                 <p>Email : {{$user-> emailcompte}}</p>
                 <p>Numéro de téléphone : {{$user-> numtelcompte}}</p>
-                <button href="{{ url("/account/59/modif-account") }}" id="buttonPostDeposit" type="button">Modifier mon profil</button>
+                <button href="{{ url("/account/60/modif-account") }}" id="buttonPostDeposit" type="button">Modifier mon profil</button>
             </div>
            
         </div>

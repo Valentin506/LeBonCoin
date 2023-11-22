@@ -34,7 +34,7 @@ Route::get("/profile/{id}",[OwnerController::class, "one" ]);
 Route::get("/view-profile",[SiteController::class, "photoRandom" ]);
 Route::get("/profile/{id}",[SiteController::class, "photoRandom" ]);
 
-Route::get('/account/60', [UserController::class, 'one']);
+Route::get('/account/{idcompte}', [UserController::class, 'one']);
 Route::get('/account/60/modif-account', [UserController::class, 'modif']);
 
 // Route::get("/view-profile",[SiteController::class, "ownerRandom" ]);
