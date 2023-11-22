@@ -6,16 +6,21 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\PhotoUser;
 use App\Models\Owner;
+use App\Models\User;
 
 class PostController extends Controller
 {
 
     
     public function post(){
-        $photoUsers = PhotoUser::all();
-        $owners = Owner::all();
-        $posts = Post::all();
-    	return view ("post-list", compact('posts','photoUsers','owners'));
+        // $posts = Post::all();
+        // $photoUsers = PhotoUser::all();
+        // $owners = Owner::all();
+        // $users = User::all();
+    	return view ("post-list", ['posts'=> Post::all(),
+                    'photoUsers'=>PhotoUser::all(),
+                    'owners'=>Owner::all(),
+                    'users'=>User::all()]);
     }
 
     public function one($id){

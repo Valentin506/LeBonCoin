@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
@@ -20,6 +22,18 @@ class User extends Authenticatable
     protected $table = "compte";
     protected $primaryKey = "idcompte";
     public $timestamps = false;
+
+
+    public function owner(){
+        return $this->belongsTo(Owner::class, "idcompte", "idproprietaire");
+    }
+
+    public function photoUser(){
+        return $this->hasOne(PhotoUser::class, "idimage");
+    }
+
+
+
 }
 
     /**

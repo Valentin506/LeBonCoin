@@ -6,6 +6,7 @@ use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\PhotoUser;
 
 class AccountController extends Controller
 {
@@ -17,7 +18,7 @@ class AccountController extends Controller
     
     public function add()
     {
-        return view('add-account');
+        return view('add-account', ['users'=>User::all(), 'photoUsers'=>PhotoUser::all()]);
     }
     
 

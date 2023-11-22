@@ -11,6 +11,7 @@ use App\Http\Controllers\LoginController;
 use App\Models\Post;
 use App\Models\PhotoUser;
 use App\Models\Owner;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
