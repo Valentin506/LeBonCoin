@@ -25,7 +25,7 @@ class User extends Authenticatable
 
 
     public function owner(){
-        return $this->belongsTo(Owner::class, "idcompte", "idproprietaire");
+        return $this->HasOne(Owner::class, "idcompte", "idproprietaire");
     }
 
     public function photoUser(){
