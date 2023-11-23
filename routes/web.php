@@ -9,7 +9,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LoginController;
 use App\Models\Post;
-use App\Models\PhotoUser;
+use App\Models\PhotoPost;
 use App\Models\Owner;
 use App\Models\User;
 use App\Models\Address;

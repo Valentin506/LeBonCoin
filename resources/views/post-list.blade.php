@@ -60,9 +60,9 @@
       <div class="divForEachPost">
         <div id="divImagePost">
           @php $hasPhoto = false; @endphp
-          @foreach ($photoUsers as $photoUser)
-            @if($photoUser->image && $photoUser -> idimage === $post -> idimage)
-              <img src="{{ $photoUser-> image }}" alt="Image de l'annonce">
+          @foreach ($photoPosts as $photoPost)
+            @if($photoPost->image && $photoPost -> idimage === $post -> idimage)
+              <img src="{{ $photoPost-> image }}" alt="Image de l'annonce">
               @php $hasPhoto = true; break; @endphp
             @endif
           @endforeach

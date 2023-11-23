@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-use App\Models\PhotoUser;
+use App\Models\PhotoPost;
 use App\Models\Owner;
 use App\Models\User;
 
@@ -18,7 +18,7 @@ class PostController extends Controller
         // $owners = Owner::all();
         // $users = User::all();
     	return view ("post-list", ['posts'=> Post::all(),
-                    'photoUsers'=>PhotoUser::all(),
+                    'photoPosts'=>PhotoPost::all(),
                     'owners'=>Owner::all(),
                     'users'=>User::all()]);
     }
