@@ -13,7 +13,7 @@ class PhotoUser extends Model
     
     public $timestamps = false;
 
-    public function post(): BelongsTo{
+    public function user(): BelongsTo{
         return $this->belongsTo(User::class, 'idphotoprofil', 'idcompte');
     }
 

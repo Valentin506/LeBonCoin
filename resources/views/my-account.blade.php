@@ -12,21 +12,18 @@
     
     <div >
         <div >
+            {{$user}}
+            {{$user->photoUser}} {{$user-> idphotoprofil === $user-> photoUser-> idphotoprofil}}
             
             <div id=boxUserName>
-                <img id="photoUser" src="$user->photoprofil->urlphotoprofil" alt="Photo de profil">
+                <img id="photoUser" src="{{$user->photoUser->urlphotoprofil}}" alt="Photo de profil">
                 <h3>{{$user-> pseudocompte}}</h3>
             </div>
-            @if($user->idimage)
-                <div id=boxUserName>
-                    <h3>Pseudo : {{$user-> pseudocompte}}</h3>
-                </div>
-            @else
-                <p>Email : {{$user-> emailcompte}}</p>
-                <p>Numéro de téléphone : {{$user-> numtelcompte}}</p>
-                <button href="{{ url("/account/.Auth::user()->idcompte/modif-account") }}" id="buttonPostDeposit" type="button">Modifier mon profil</button>
-            @endif
-            </div>
+            <p>Email : {{$user-> emailcompte}}</p>
+            <p>Numéro de téléphone : {{$user-> numtelcompte}}</p>
+            <button href="{{ url("/account/.Auth::user()->idcompte/modif-account") }}" id="buttonPostDeposit" type="button">Modifier mon profil</button>
+           
+            
            
         </div>
     

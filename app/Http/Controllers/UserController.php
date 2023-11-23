@@ -47,6 +47,11 @@ class UserController extends Controller
         return view('modif-account');
     }
 
+    public function user(){
+        return view("my-account", ['users' => User::all(), 
+        'photoUsers' => PhotoPost::all()]);
+    }
+
 
     public function save(Request $request)
     {

@@ -5,6 +5,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PhotoUserController;
+use App\Http\Controllers\PhotoPostController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LoginController;
@@ -13,6 +14,7 @@ use App\Models\PhotoPost;
 use App\Models\Owner;
 use App\Models\User;
 use App\Models\Address;
+use App\Models\PhotoUser;
 
 
 /*

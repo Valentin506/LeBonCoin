@@ -14,7 +14,7 @@
                 <img src={{ $todaysPhoto['image'] }} alt="photo utilisateurs">
             </div>
             <div id="basicUserInfo">
-                <h3> {{$owner->user->pseudocompte}}</h3>
+                <h3> SandrineGeraldrine </h3>
                 <span>
                     Pièce d'identité vérifiée
                 </span>
