@@ -34,7 +34,7 @@ class UserController extends Controller
     //     return view('my-account');
   
     // }
-    public function one(){
+    public function one($id){
         return view ("my-account", ['user'=>User::find($id) ]);
     }
 
@@ -42,7 +42,7 @@ class UserController extends Controller
     {
         return view('add-account');
     }
-    public function modif()
+    public function modif($id)
     {
         return view('modif-account');
     }

@@ -1,7 +1,6 @@
 
 <title>Profil de </title>
 <link rel="stylesheet" type="text/css" href="{{asset('profile.css')}}"/> 
-
 <script src="/js/view-profile.js" defer></script>
 
 <div class="marginViewProfile">
@@ -15,7 +14,7 @@
                 <img src={{ $todaysPhoto['image'] }} alt="photo utilisateurs">
             </div>
             <div id="basicUserInfo">
-                <h3> SandrineGeraldrine </h3>
+                <h3> {{$owner->user->pseudocompte}}</h3>
                 <span>
                     Pièce d'identité vérifiée
                 </span>

@@ -19,8 +19,8 @@ class Owner extends Model
         return $this->hasMany(Post::class, 'idproprietaire');
     }
 
-    public function user(): HasMany{
-        return $this->hasMany(User::class, 'idcompte');
+    public function user(): belongsTo{
+        return $this->belongsTo(User::class, 'idproprietaire','idcompte');
     }
 
 

@@ -48,6 +48,38 @@
         
     </div>
 
+    <div>
+        <label for="adresse">Adresse</label>
+        <input type="adresse" name="adresse" id="adresse">
+        <select name="completion" id="completion">
+        </select> 
+    </div>
+
+    <script>
+        const adresseInput = document.querySelector("#adresse")
+        const completionSelect = document.querySelector("#completion")
+
+        adresseInput.addEventListener("keyup", event => {
+            if(adresseInput.value.lenght > 4){
+                fetch("htttps://api-adresse.data.gouv.fr/search/?q="adresseInput.value)
+                    .then(reponse => reponse.json())
+                    .then(data => {
+                        completionSelect.querySelectorAll("option").foreach(option => option.remove())
+                        data.features.foreach( feauture => {
+                            let option = document.createElement("option")
+                            completionSelect.appendChild(option)
+                            option.innerHTML = feature.properties.city
+                        })
+                    })
+            }
+        })
+
+    </script>
+
+    <div>
+        <label for="ville">Ville</label>
+        <input type="ville" name="ville">
+    </div>
 
   <div class="login">
         <button type="submit" Vakue="S'inscrire">S'inscrire</button>

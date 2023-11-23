@@ -32,6 +32,10 @@ class User extends Authenticatable
         return $this->hasOne(PhotoUser::class, "idimage");
     }
 
+    public function address(){
+        return $this->hasOne(Address::class, 'idadresse');
+    }
+
 
 
 }

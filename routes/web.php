@@ -12,6 +12,8 @@ use App\Models\Post;
 use App\Models\PhotoUser;
 use App\Models\Owner;
 use App\Models\User;
+use App\Models\Address;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +38,7 @@ Route::get("/view-profile",[SiteController::class, "photoRandom" ]);
 Route::get("/profile/{id}",[SiteController::class, "photoRandom" ]);
 
 Route::get('/account/{idcompte}', [UserController::class, 'one']);
-Route::get('/account/60/modif-account', [UserController::class, 'modif']);
+Route::get('/account/{idcompte}/modif-account', [UserController::class, 'modif']);
 
 // Route::get("/view-profile",[SiteController::class, "ownerRandom" ]);
 
@@ -44,9 +46,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/ville', function () {
-//     return view('ville-list');
-// });
+Route::get('/ville', function () {
+    return view('ville-list');
+});
 
 
 

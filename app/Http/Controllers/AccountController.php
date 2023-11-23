@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PhotoUser;
+use App\Models\Address;
 
 class AccountController extends Controller
 {
@@ -18,7 +19,7 @@ class AccountController extends Controller
     
     public function add()
     {
-        return view('add-account', ['users'=>User::all(), 'photoUsers'=>PhotoUser::all()]);
+        return view('add-account', ['users'=>User::all(), 'photoUsers'=>PhotoUser::all(), 'addresses'=>Address::all()]);
     }
     
 
@@ -37,6 +38,7 @@ class AccountController extends Controller
             $b->nomcompte = $request->input("name");
             $b->prenomcompte = $request->input("firstname");
             $b->datenaissanceparticulier = $request->input("date");
+            $b->rue = $request->input("adresse");
             
             $b->save();
             Auth::login($b);
