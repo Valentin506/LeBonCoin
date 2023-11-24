@@ -19,7 +19,7 @@ class Adresse extends Model
         return $this->belongsTo(User::class, 'idadresse', 'idcompte');
     }
     public function ville(){
-        return $this->hasOne(Ville::class, "idville", "idville");
+        return $this->hasOne(Ville::class, "idville");
     }
 
 }

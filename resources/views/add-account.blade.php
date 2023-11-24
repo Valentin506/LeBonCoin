@@ -58,6 +58,7 @@
     <input name="rueclient" id="rueclient" type="hidden"/>
     <input name="codepostal" id="codepostal" type="hidden"/>
     <input name="ville" id="ville" type="hidden"/>
+    <input name="departement" id="departement" type="hidden"/>
     <input name="pays" id="pays" type="hidden"/>
 
 
@@ -102,6 +103,7 @@ adresseInput.addEventListener("keyup", event => {
                         form.querySelector("#rueclient").value =  feature.properties.street
                         form.querySelector("#codepostal").value = feature.properties.postcode
                         form.querySelector("#ville").value =  feature.properties.city
+                        form.querySelector("#departement").value =  feature.properties.context
                         form.querySelector("#pays").value = "France" // :wink:
                         completionSelect.querySelectorAll("li").forEach(option => option.remove())
                         adresseInput.value = feature.properties.label

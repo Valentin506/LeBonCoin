@@ -67,22 +67,27 @@ class UserController extends Controller
           } else {
 
 
-            $numerodep = substr($request -> codepostal,0,2);
-            $depname = Departement::find($numerodep)->nomdepartement;
-            
-
-            
             
             // $departement->$numerodep = $request->input("codepostal");
             // $departement->save();
 
            
+            $numerodep = substr($request -> codepostal,0,2);
+            $depname = Departement::find($numerodep)->nomdepartement;
+            
             
 
             $ville = new Ville;
             $ville->timestamps = false;
             $ville->nomville = $request->input("ville");
+            $ville->codepostal = $request->input("codepostal");
+
+            $ville->iddepartement = $request->$numerodep->$depname->input("departement");
             $ville->save();
+
+            
+
+
 
             $adresse = new Adresse;
             $adresse->timestamps = false;
@@ -103,6 +108,7 @@ class UserController extends Controller
             $user->prenomlocataire = $request->input("firstname");
             $adresse->idadresse = $request->input("adresse");
             $ville->idville = $request->input("ville");
+            
             
             $user->datemembre = $request->input("date");
             

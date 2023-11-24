@@ -19,6 +19,10 @@ class Owner extends Model
         return $this->hasMany(Post::class, 'idproprietaire');
     }
 
+    public function avisOwner(): HasMany{
+        return $this->hasMany(AvisOwner::class, 'idproprietaire', 'idavis');
+    }
+
     public function user(): belongsTo{
         return $this->belongsTo(User::class, 'idproprietaire','idcompte');
     }

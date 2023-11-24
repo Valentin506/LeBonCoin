@@ -26,8 +26,14 @@
         <h3>Commeçons par l'essentiel !</h3>
         <label for="inputTitlePost">Quel est le titre de l'annonce ? *</label>
         <div id="divTitlePost">
-            <input type="input" id="inputTitlePost"></input>
-            <button type="input">Continuer</button>
+            <input type="input" id="inputTitlePost" required></input>
+            <button type="input"><a href="#"></a></button>
+        </div>
+        <div>
+            <label for="checkboxCategory">Choisissez une catégorie suggérée</label>
+            <input type="checkbox" class="inputCategory">
+            <input type="checkbox" class="inputCategory">
+            <input type="checkbox" class="inputCategory">
         </div>
 
     </div>
