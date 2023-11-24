@@ -16,7 +16,8 @@
 
 
 <form action="{{ route('auth.login') }}" method="post" class="form">
-
+    
+@csrf
 
     <div>
         <label for="email">E-mail</label><br>

@@ -54,8 +54,11 @@ Route::get('/ville', function () {
 
 
 
-Route::get('/create-account', [AccountController::class, 'add']);
-Route::post('/create-account/save', [AccountController::class, 'save']);
+// Route::get('/create-account', [AccountController::class, 'add']);
+// Route::post('/create-account/save', [AccountController::class, 'save']);
+
+Route::get('/create-account', [UserController::class, 'add']);
+Route::post('/create-account/save', [UserController::class, 'save']);
 
 
 Route::get('/login', [LoginController::class, 'login'])->name('auth.login');

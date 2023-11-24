@@ -20,7 +20,7 @@
 <!-- <div class="form-register"> -->
 
 
-<form action="{{url("/create-account/save") }}" method="post" class="form" id="form>
+<form action="{{url("/create-account/save") }}" method="post" class="form" id="form">
 <div class="form-register">
 <h2> Créez votre compte</h2>
   <div>
@@ -31,7 +31,7 @@
 
     <div>
     <label for="password">Mot de Passe</label>
-        <input type="password" name="password">
+        <input type="password" name="password" required   minlength="12">
         
     </div>
 

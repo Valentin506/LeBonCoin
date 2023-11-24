@@ -12,7 +12,7 @@
     
     <div >
         <div >
-            {{$user}}
+            {{$user-> adresse}}
             {{$user->photoUser}} {{$user-> idphotoprofil === $user-> photoUser-> idphotoprofil}}
             
             <div id=boxUserName>

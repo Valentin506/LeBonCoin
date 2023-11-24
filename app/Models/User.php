@@ -29,11 +29,11 @@ class User extends Authenticatable
     }
 
     public function photoUser(){
-        return $this->hasOne(PhotoUser::class, "idphotoprofil");
+        return $this->hasOne(PhotoUser::class, "idphotoprofil", "idphotoprofil");
     }
 
-    public function address(){
-        return $this->hasOne(Address::class, 'idadresse');
+    public function adresse(){
+        return $this->hasOne(Address::class, "idadresse", "idadresse");
     }
 
 

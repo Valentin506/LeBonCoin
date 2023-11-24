@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Models\Account;
+
 use App\Models\User;
+
 
 class UserController extends Controller
 {
@@ -35,7 +36,7 @@ class UserController extends Controller
   
     // }
     public function one($id){
-        return view ("my-account", ['user'=>User::find($id) ]);
+        return view ("my-account", ['user'=>User::find($id)]);
     }
 
     public function add()
@@ -59,7 +60,7 @@ class UserController extends Controller
         if ($request->input("email") == "")  {
             return redirect('add-account/add')->withInput();
           } else {
-            $user = new Account;
+            $user = new User;
             $user->timestamps = false;
             $user->emaillocataire = $request->input("email");
             $user->motdepasse = $request->input("password");
@@ -68,6 +69,7 @@ class UserController extends Controller
             $user->nomlocataire = $request->input("name");
             $user->prenomlocataire = $request->input("firstname");
             $user->datemembre = $request->input("date");
+            $user->adresse->rue = $request->input("adresse");
             $user->save();
 
             Auth::login($user);
@@ -91,6 +93,7 @@ class UserController extends Controller
             'name' => $request->name,
             'firstname' => $request->firstname,
             'date' => $request->date,
+            'adresse' => $request->address,
 
         ]);
 
@@ -105,10 +108,13 @@ class UserController extends Controller
             'name' => $request->name,
             'firstname' => $request->firstname,
             'date' => $request->date,
+            'adresse' => $request->address,
 
         ]);
 
         return back();
         
     }
+
+   
 }}
