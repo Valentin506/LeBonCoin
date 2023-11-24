@@ -60,6 +60,8 @@ class UserController extends Controller
         if ($request->input("email") == "")  {
             return redirect('add-account/add')->withInput();
           } else {
+            $adresse = new Address;
+            $adresse->idadresse = $request->input("adresse");
             $user = new User;
             $user->timestamps = false;
             $user->emaillocataire = $request->input("email");
@@ -69,7 +71,7 @@ class UserController extends Controller
             $user->nomlocataire = $request->input("name");
             $user->prenomlocataire = $request->input("firstname");
             $user->datemembre = $request->input("date");
-            $user->adresse->rue = $request->input("adresse");
+            
             $user->save();
 
             Auth::login($user);
