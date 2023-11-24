@@ -65,17 +65,18 @@ class UserController extends Controller
         if ($request->input("email") == "")  {
             return redirect('add-account/add')->withInput();
           } else {
-            $numerodep=substr($request -> codepostal,0,2);
-            dd(Departement::find($numerodep)->nomdepartement);
+
+
+            $numerodep = substr($request -> codepostal,0,2);
+            $depname = Departement::find($numerodep)->nomdepartement;
             
 
-            $departement = new Departement;
-            $departement->timestamps = false;
-            $departement->nomdepartement = $request->input("codepostal");
-            $departement->save();
+            
+            
+            // $departement->$numerodep = $request->input("codepostal");
+            // $departement->save();
 
-            $deuxPremiersChiffres = substr($departement, 0, 2);
-            $deuxPremiersChiffres-> $request->input("postal");
+           
             
 
             $ville = new Ville;

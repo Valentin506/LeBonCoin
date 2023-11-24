@@ -59,7 +59,7 @@
     <input name="codepostal" id="codepostal" type="hidden"/>
     <input name="ville" id="ville" type="hidden"/>
     <input name="pays" id="pays" type="hidden"/>
-    <input name="postal" id="postal" type="hidden"/>
+
 
 
 

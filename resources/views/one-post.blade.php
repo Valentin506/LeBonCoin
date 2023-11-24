@@ -10,8 +10,7 @@
         <div class="postDiv">
                 
                 @if($post->image)
-                      
-                      <img src="{{ $post->photoPost->image }}" alt="Image de l'annonce">
+                      <img src="{{ $photoPost-> image}}" alt="Image de l'annonce">
                   @else
                       <p>Aucune image associée</p>
                   @endif
