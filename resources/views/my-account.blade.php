@@ -12,13 +12,11 @@
     
     <div >
         <div >
-            <!-- {{$user-> adresse}}
-            {{$user->photoUser}} {{$user-> idphotoprofil === $user-> photoUser-> idphotoprofil}} -->
             
             <div id=boxUserName>
                 <img id="photoUser" src="{{$user->photoUser->urlphotoprofil}}" alt="Photo de profil">
                 <h3>{{$user-> pseudocompte}}</h3>
-                <p >Accéder à mon profil public</p>
+                <a href="{{ url("/profile/".$user->idcompte) }}">Accéder à mon profil public</a>
             </div>
 
             <div class="tableUser">

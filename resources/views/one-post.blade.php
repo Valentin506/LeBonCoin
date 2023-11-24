@@ -6,6 +6,7 @@
 
 @section('content')
 
+
 <div class="postContainer">
         <div class="postDiv">
                 
@@ -43,6 +44,7 @@
                         <div></div>
                 </div>
                 <div id="postOwnerDiv">
+                
                         <div id="divPhoto">
                                 <img src="" alt="photo utilisateurs">
                         </div>

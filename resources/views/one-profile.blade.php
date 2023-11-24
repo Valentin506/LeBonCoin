@@ -1,4 +1,4 @@
-<title>Profil de {{ $owner -> idcompte -> pseudocompte}}</title>
+<title>Profil de {{ $owner -> user-> pseudocompte}}</title>
 <link rel="stylesheet" type="text/css" href="{{asset('profile.css')}}"/> 
 
 <script src="/js/view-profile.js" defer></script>
@@ -11,10 +11,10 @@
     <div class="userFrame">
         <div class="userInfo">
             <div id="photoUser">
-                <img src={{ $todaysPhoto['image'] }} alt="photo utilisateurs">
+                <img src="{{$owner->user->photoUser->urlphotoprofil}}" alt="photo utilisateurs">
             </div>
             <div id="basicUserInfo">
-                <h3> {{ $owner -> idcompte -> pseudocompte}} </h3>
+                <h3> {{ $owner -> user -> pseudocompte}} </h3>
                 <span>
                     Pièce d'identité vérifiée
                 </span>

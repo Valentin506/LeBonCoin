@@ -1,8 +1,11 @@
-
-<title>Profil de  </title>
+@if({{$owner->user->pseudocompte}})
+    <title>Profil de {{$owner->user->pseudocompte}} </title>
+@else
+    <title>Profil de {{$user->pseudocompte}} </title>
+@endif
 <link rel="stylesheet" type="text/css" href="{{asset('profile.css')}}"/> 
 <script src="/js/view-profile.js" defer></script>
-<div class="marginViewProfile">
+<div class="marginViewProfile"> 
     @extends('layouts.app')
     
     @section('content')

@@ -35,11 +35,9 @@ Route::get('/', [SiteController::class, "index" ]);
 Route::get("/posts",[PostController::class, "post" ]);
 Route::get("/post/{id}",[PostController::class, "one" ]);
 Route::get("/profiles",[OwnerController::class, "owner" ]);
-// Route::get("/profile/{id}",[OwnerController::class, "owner" ]);
 Route::get("/profile/{id}",[OwnerController::class, "one" ]);
 Route::get("/view-profile",[SiteController::class, "photoRandom" ]);
-Route::get("/view-profile",[OwnerController::class, "owner" ]);
-Route::get("/profile/{id}",[SiteController::class, "photoRandom" ]);
+// Route::get("/view-profile",[OwnerController::class, "owner" ]);
 Route::get("/deposit-post",[DepositPostController::class, "post" ]);
 
 
