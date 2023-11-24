@@ -49,7 +49,7 @@ class UserController extends Controller
 
     public function user(){
         return view("my-account", ['users' => User::all(), 
-        'photoUsers' => PhotoPost::all()]);
+        'photoUsers' => PhotoUser::all()]);
     }
 
 
