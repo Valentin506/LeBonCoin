@@ -1,3 +1,4 @@
+
 <title>Profil de {{ $owner -> user-> pseudocompte}}</title>
 <link rel="stylesheet" type="text/css" href="{{asset('profile.css')}}"/> 
 
