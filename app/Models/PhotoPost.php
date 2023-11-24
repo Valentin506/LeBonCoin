@@ -16,7 +16,7 @@ class PhotoPost extends Model
     public $timestamps = false;
 
     public function post(): HasOne{
-        return $this->HasOne(Post::class, 'idannonce', 'idimage');
+        return $this->HasOne(Post::class, 'idannonce', 'idannonce');
     }
 
 }

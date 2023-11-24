@@ -36,6 +36,9 @@
             @show
 
 @endsection
-    
+
+<?php
+echo Hash::make("Jesuisbeauetmuscleleboncoinonestdanslecaca");
+?>
 </body>
 </html>

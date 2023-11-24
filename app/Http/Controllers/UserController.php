@@ -10,6 +10,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Adresse;
 use App\Models\Ville;
+use App\Models\Owner;
+use App\Models\Region;
+use App\Models\Departement;
 
 
 class UserController extends Controller
@@ -52,7 +55,7 @@ class UserController extends Controller
 
     public function user(){
         return view("my-account", ['users' => User::all(), 
-        'photoUsers' => PhotoUser::all()]);
+        'photoUsers' => PhotoUser::all(), 'owners'=>Owner::all()]);
     }
 
 
@@ -62,16 +65,30 @@ class UserController extends Controller
         if ($request->input("email") == "")  {
             return redirect('add-account/add')->withInput();
           } else {
+            $numerodep=substr($request -> codepostal,0,2);
+            dd(Departement::find($numerodep)->nomdepartement);
+            
 
+            $departement = new Departement;
+            $departement->timestamps = false;
+            $departement->nomdepartement = $request->input("codepostal");
+            $departement->save();
 
-            $adresse = new Adresse;
-            $adresse->timestamps = false;
-            $adresse->rue = $request->input("adresse");
-
+            $deuxPremiersChiffres = substr($departement, 0, 2);
+            $deuxPremiersChiffres-> $request->input("postal");
+            
 
             $ville = new Ville;
             $ville->timestamps = false;
             $ville->nomville = $request->input("ville");
+            $ville->save();
+
+            $adresse = new Adresse;
+            $adresse->timestamps = false;
+            $adresse->rue = $request->input("rueclient");
+            $adresse->save();
+
+
             
 
 
@@ -84,6 +101,8 @@ class UserController extends Controller
             $user->nomlocataire = $request->input("name");
             $user->prenomlocataire = $request->input("firstname");
             $adresse->idadresse = $request->input("adresse");
+            $ville->idville = $request->input("ville");
+            
             $user->datemembre = $request->input("date");
             
             $user->save();

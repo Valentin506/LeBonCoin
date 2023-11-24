@@ -2,12 +2,13 @@
   margin: 0;
   padding: 0;
   font-family: 'Nunito Sans';
+
  }
  
 
  body{
-   padding: 16px;
-   padding-top: 0px;
+   display: block;
+   margin: 8px;
  }
 
   
@@ -28,10 +29,16 @@
    border-bottom: 0.5px solid rgba(163, 163, 163, 0.3);
 
 }
+/* 
+header{
+   position: absolute;
+   top: 0px;
+   left: 0px;
+
+} */
 
 .headerDiv{
-   display: inline-block;
-   
+   display: inline-block;  
 }
 
 a{
@@ -199,8 +206,7 @@ div span{
    font-size: 16px;
    font-weight: bold;
    text-align: center;
-   text-shadow: 1px 1px 1px #000;
-   color: #fff;
+   color: white;
    border-radius: 14px;
    background-color: rgb(247, 120, 47);
  }

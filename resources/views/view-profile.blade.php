@@ -1,8 +1,7 @@
 
-<title>Profil de </title>
+<title>Profil de {{ $owner -> user -> pseudocompte}} </title>
 <link rel="stylesheet" type="text/css" href="{{asset('profile.css')}}"/> 
 <script src="/js/view-profile.js" defer></script>
-
 <div class="marginViewProfile">
     @extends('layouts.app')
     

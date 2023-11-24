@@ -16,14 +16,14 @@
     <body>
 
         <div class="marginPage">
-            <header>
+            <header >
                 <!-- <h1>@yield('title')</h1> -->
 
                 <div class="headerDiv">
                     <nav id="headerFunctionalities">
                         <a href="{{url("/")}}"><img class="logo" src="https://www.leboncoin.fr/logos/leboncoin.svg"></a>
                         
-                        <button id="buttonPostDeposit" type="button">+ Déposer une annonce</button>
+                        <button id="buttonPostDeposit" type="button"><a href="{{ url("/deposit-post") }}">+ Déposer une annonce</a></button>
             
                         <input type="text" id="search" placeholder="Rechercher sur leboncoin" />
                         <i class="fa fa-search" aria-hidden="true"></i>

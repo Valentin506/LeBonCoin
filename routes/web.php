@@ -9,6 +9,7 @@ use App\Http\Controllers\PhotoPostController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DepositPostController;
 use App\Models\Post;
 use App\Models\PhotoPost;
 use App\Models\Owner;
@@ -37,7 +38,11 @@ Route::get("/profiles",[OwnerController::class, "owner" ]);
 Route::get("/profile/{id}",[OwnerController::class, "owner" ]);
 Route::get("/profile/{id}",[OwnerController::class, "one" ]);
 Route::get("/view-profile",[SiteController::class, "photoRandom" ]);
+Route::get("/view-profile",[OwnerController::class, "owner" ]);
+Route::get("/view-profile",[UserController::class, "user" ]);
 Route::get("/profile/{id}",[SiteController::class, "photoRandom" ]);
+Route::get("/deposit-post",[DepositPostController::class, "post" ]);
+
 
 Route::get('/account/{idcompte}', [UserController::class, 'one']);
 Route::get('/account/{idcompte}/modif-account', [UserController::class, 'modif']);

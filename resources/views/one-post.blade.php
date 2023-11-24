@@ -8,19 +8,20 @@
 
 <div class="postContainer">
         <div class="postDiv">
-                <h2>{{ $post -> titreannonce }}</h2>
+                
                 @if($post->image)
                       
-                      <img src="{{ $post->image->url }}" alt="Image de l'annonce">
+                      <img src="{{ $post->photoPost->image }}" alt="Image de l'annonce">
                   @else
                       <p>Aucune image associée</p>
                   @endif
                 <ul class="elementsDescription">
-                        <li>{{ $post -> idhebergement }}</li>
+                        <h2>{{ $post -> titreannonce }}</h2>
+                        <li>{{ $post -> typeHebergement ->libelletypehebergement }}</li>
                         <li>•</li>
-                        <li>{{ $post -> idcapacite }}</li>
+                        <li>{{ $post -> capaciteLogement -> nombrepersonne }} personnes</li>
                         <li>•</li>
-                        <li>{{ $post -> idadresse }}</li>
+                        <li>{{ $post -> adresseAnnonce -> ville -> nomville }}</li>
                 </ul>
                 
                 @if($post->paiementenligne)

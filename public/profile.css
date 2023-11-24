@@ -1,6 +1,5 @@
 *{
     font-family: 'Nunito Sans';
-  
 }
 
 
@@ -18,6 +17,33 @@
     flex-direction: row;
 }
 
+.tableUser{
+    grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    gap: 1rem ;
+}
+
+.boxTableUser{
+    display: inline;
+    border-radius: 1.6rem;
+    padding: 2rem;
+    background: rgb(255, 255, 255);
+    cursor: pointer;
+    border: 0.1rem solid rgba(222, 226, 231, 0.568);
+    border-radius: 1.6rem;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.20) 1.95px 1px 2.6px;
+   
+}
+
+.boxLogo{
+    margin-bottom: 10px;
+
+}
+
+
+
+
 #photoUser{
     margin-left : 10px;
     margin-right : 10px;
@@ -31,20 +57,24 @@
 }
 
 #boxUserName{
-    display: flex;
-     -webkit-box-align: center;
+     display:flex;
      align-items: center;
      height: 10rem;
      border: 0.1rem solid rgb(202, 209, 217);
      border-radius: 1.6rem;
      background-color: rgb(255, 255, 255);
      width: 100%;
-     font-family: sans-serif;
+     margin-bottom: 1rem;
+     margin-top: 1rem;
+
 }
 
 #photoUser img{
     width: 100%;
     height: 100%;
+}
+#boxUserName p {
+    margin-left: auto;
 }
 
 #basicUserInfo{

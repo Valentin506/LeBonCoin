@@ -18,12 +18,22 @@ class Post extends Model
     public $timestamps = false;
 
     public function photoPost(): HasMany{
-        return $this->hasMany(PhotoPost::class, 'idimage');
+        return $this->hasMany(PhotoPost::class, 'idimage', 'idimage');
     }
 
     public function owner(): HasOne{
-        return $this->hasOne(Owner::class, 'idproprietaire');
+        return $this->hasOne(Owner::class, 'idproprietaire', 'idproprietaire');
     }
+    public function typeHebergement(): HasOne{
+        return $this->hasOne(TypeHebergement::class, 'idhebergement','idhebergement');
+    }
+    public function capaciteLogement(): HasOne{
+        return $this->hasOne(CapaciteLogement::class, 'idcapacite', 'idcapacite');
+    }
+    public function adresseAnnonce(): HasOne{
+        return $this->hasOne(Adresse::class, 'idadresse', 'idadresse');
+    }
+
 
     
     

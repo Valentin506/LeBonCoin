@@ -1,0 +1,67 @@
+*{
+    font-family: 'Nunito Sans';
+}
+
+/* section header */
+header{
+    position: sticky top;
+    box-shadow: 0px 2px 5px grey;
+    width: 100%;
+    height: 61px;
+}
+
+.headerNav{
+    display: flex;
+    padding-top: 10px;   
+    align-items: center; 
+    justify-content: space-between;
+}
+
+#divImgLogo img{
+    height: 27.39px;
+    width: 140px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+#divDepositText{
+    display: flex;
+    color: rgba(23, 14, 102, 0.9);
+    margin-right: 620px;
+    
+}
+
+#divQuitButton{
+    display: flex;
+    padding: 10px;
+    border-radius: 15px;
+    border: solid 1px rgba(23, 14, 102, 0.9);
+    margin-right: 10px;
+    
+}
+
+#divQuitButton button{
+    display: flex;
+    background-color: transparent;
+    border: none;
+    color: rgba(23, 14, 102, 0.9);
+    font-weight: bold;
+}
+
+
+/* section body */
+#divTitlePost{
+    height: 44px;
+    width: 768px;
+}
+
+#inputTitlePost{
+    border-radius: 10px;
+    border: 0.3px solid rgba(23, 14, 102, 0.9);
+}
+
+#divTitlePost button{
+    color: white;
+    border: none;
+    background-color: ;
+}
