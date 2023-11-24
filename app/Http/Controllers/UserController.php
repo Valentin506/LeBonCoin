@@ -60,9 +60,11 @@ class UserController extends Controller
         if ($request->input("email") == "")  {
             return redirect('add-account/add')->withInput();
           } else {
+
+
             $adresse = new Adresse;
 
-            
+            $ville = new Ville;
 
 
             $user = new User;
