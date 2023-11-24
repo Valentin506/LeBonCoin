@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class PhotoPost extends Model
 {
@@ -14,8 +15,8 @@ class PhotoPost extends Model
     
     public $timestamps = false;
 
-    public function post(): BelongsTo{
-        return $this->belongsTo(Post::class, 'idannonce', 'idimage');
+    public function post(): HasOne{
+        return $this->HasOne(Post::class, 'idannonce', 'idimage');
     }
 
 }

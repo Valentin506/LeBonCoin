@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
 use App\Models\User;
+use App\Models\Adresse;
+use App\Models\Ville;
 
 
 class UserController extends Controller
@@ -63,8 +65,14 @@ class UserController extends Controller
 
 
             $adresse = new Adresse;
+            $adresse->timestamps = false;
+            $adresse->rue = $request->input("adresse");
+
 
             $ville = new Ville;
+            $ville->timestamps = false;
+            $ville->nomville = $request->input("ville");
+            
 
 
             $user = new User;

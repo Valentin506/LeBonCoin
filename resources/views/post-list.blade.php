@@ -61,7 +61,7 @@
         <div id="divImagePost">
           @php $hasPhoto = false; @endphp
           @foreach ($photoPosts as $photoPost)
-            @if($photoPost->image && $photoPost -> idimage === $post -> idimage)
+            @if($photoPost->image && $photoPost -> idannonce === $post -> idannonce)
               <img src="{{ $photoPost-> image }}" alt="Image de l'annonce">
               @php $hasPhoto = true; break; @endphp
             @endif

@@ -17,10 +17,10 @@
 
 <form action="{{ route('auth.login') }}" method="post" class="form">
     
-@csrf
+    @csrf
 
     <div>
-        <label for="email">E-mail</label><br>
+        <label for="emailcompte">E-mail</label><br>
         <input class="form-register" type="emailcompte" name="emailcompte" id="emailcompte" required>
         @error("email")
         {{ $message }}
@@ -40,7 +40,7 @@
     <label>Envie de nous rejoindre ?</label>
     <a href="{{url("/create-account")}}">Créez un compte</a>
     </div>
-    @csrf
+    
 
 </div>
 </form>
