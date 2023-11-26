@@ -46,7 +46,9 @@ a{
    color: black;
 }
 
-
+#buttonPostDeposit a{
+   color: white;
+}
 
 
 .logo{

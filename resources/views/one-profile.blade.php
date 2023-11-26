@@ -87,8 +87,6 @@
                 <div>⭐</div>
                 <div>⭐</div>
                 <span>x avis</span>
-
-                {{$owner->avisOwner -> idavis}}
     
             </div>
         </div>

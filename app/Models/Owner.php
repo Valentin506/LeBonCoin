@@ -20,7 +20,7 @@ class Owner extends Model
     }
 
     public function avisOwner(): HasMany{
-        return $this->hasMany(AvisOwner::class, 'idproprietaire', 'idavis');
+        return $this->hasMany(AvisOwner::class, 'idavis', 'idproprietaire');
     }
 
     public function user(): belongsTo{
