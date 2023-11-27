@@ -11,4 +11,10 @@ class TypeHebergement extends Model
     protected $table = "typehebergement";
     protected $primaryKey = "idhebergement";
     public $timestamps = false;
+
+    public function post(): HasMany{
+        return $this->hasMany(Post::class, 'idhebergement', 'idannonce');
+    }
+
+
 }

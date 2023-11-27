@@ -19,9 +19,11 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
     protected $table = "compte";
-    protected $primaryKey = "idcompte";
     public $timestamps = false;
+    protected $primaryKey = "idcompte";
+    
 
 
     public function owner(){
@@ -38,6 +40,8 @@ class User extends Authenticatable
 
 
 }
+
+
 
     /**
      * The attributes that should be hidden for serialization.

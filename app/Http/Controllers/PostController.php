@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\PhotoPost;
 use App\Models\Owner;
 use App\Models\User;
+use App\Models\TypeHebergement;
 
 class PostController extends Controller
 {
@@ -19,6 +20,7 @@ class PostController extends Controller
         // $users = User::all();
     	return view ("post-list", ['posts'=> Post::all(),
                     'photoPosts'=>PhotoPost::all(),
+                    'typeHebergements'=>TypeHebergement::all(),
                     'owners'=>Owner::all(),
                     'users'=>User::all()]);
     }
@@ -26,6 +28,8 @@ class PostController extends Controller
     public function one($id){
         return view ("one-post", ['post'=>Post::find($id) ]);
     }
+
+    
 
 
 

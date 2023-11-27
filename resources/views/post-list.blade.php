@@ -19,8 +19,9 @@
 
 <div class="filterBar">
   <div>
-    
-    <input id="destinationAddress" name="destinationAddress" required placeholder="Choisir une destination">
+    <button onclick="clickDestination()" class="dropdown-content"></button>
+    <input type="text" id="destinationAddress" name="destinationAddress" placeholder="Choisir une destination" onkeyup="filterFunction()" required>
+    <a href=""></a>
     <select name="" id="">
       <option value=""></option>
     </select>
@@ -47,6 +48,19 @@
     <button>Filtres</button>
     <!-- <input placeholder="Filtres" autocomplete="off" autocapitalize="off"/> -->
   </div>
+  <div>
+    
+    <!-- <input placeholder="Filtres" autocomplete="off" autocapitalize="off"/> -->
+    
+    <select name="" id="">
+        @foreach ($typeHebergements as $typeHebergement)
+          <option value="">{{ $typeHebergement ->libelletypehebergement }}</option>
+        @endforeach
+     </select>
+      
+    
+  </div>
+  
 
 
 </div>

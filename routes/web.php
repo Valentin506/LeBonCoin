@@ -16,6 +16,7 @@ use App\Models\Owner;
 use App\Models\User;
 use App\Models\Address;
 use App\Models\PhotoUser;
+use App\Models\TypeHebergement;
 
 
 /*
