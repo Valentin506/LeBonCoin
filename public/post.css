@@ -115,6 +115,74 @@
 
 
 
+/* filter */
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    visibility: hidden;
+    position: absolute;
+    background-color: white;
+    width: 362px;
+    height: 159px;
+    z-index: 1;
+    margin-top: 20px;
+    margin-left: -10px;
+    border: none;
+    box-shadow: 0px 2px 10px grey;
+}
+
+/* Show the dropdown menu*/
+.show {visibility:visible;}
+
+#divDestination{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+#divResult{
+    width: 346px;
+    height: 51.5px;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+}
+
+#divEraseValidate{
+    display: flex;
+    justify-content: space-around;
+}
+
+#divEraseValidate button{
+    border-radius: 15px;
+    padding: 10px;
+}
+
+#buttonErase{
+    color: rgba(0, 2, 112);
+    background-color: transparent;
+    border: rgba(0, 2, 112) solid 1px;
+    font-weight: bold;
+
+}
+
+#buttonErase:hover{
+    background-color: rgba(163,163,163,0.3)
+}
+
+#buttonValidate{
+    color: white;
+    background-color: rgb(243,81,29);
+    border: none;
+    font-weight: bold;
+}
+
+#buttonValidate:hover{
+    background-color: rgba(243,81,29,0.8);
+    
+}
+
+
+
 
 /* autocomplete address */
 

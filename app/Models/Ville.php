@@ -18,9 +18,9 @@ class Ville extends Model
         return $this->hasOne(Departement::class, "iddepartement","idville");
     }
 
-    public function adresse(): HasMany{
-        return $this->has
-    }
+    // public function adresse(): HasMany{
+    //     return $this->has
+    // }
 
 
 }

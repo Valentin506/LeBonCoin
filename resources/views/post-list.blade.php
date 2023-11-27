@@ -19,9 +19,18 @@
 
 <div class="filterBar">
   <div>
-    <button onclick="clickDestination()" class="dropdown-content"></button>
-    <input type="text" id="destinationAddress" name="destinationAddress" placeholder="Choisir une destination" onkeyup="filterFunction()" required>
-    <a href=""></a>
+    <input type="text" id="inputDestination" class="dropinput" name="inputDestination" placeholder="Ajouter une destination"
+    onclick="clickDropdown()"
+    required>
+    <div id="divDestination" class="dropdown-content">
+      <div id="divResult">
+        Veuillez sélectionner un lieu
+      </div>
+      <div id="divEraseValidate">
+        <button id="buttonErase">Effacer</button>
+        <button id="buttonValidate">Valider</button>
+      </div>
+    </div>
     <select name="" id="">
       <option value=""></option>
     </select>

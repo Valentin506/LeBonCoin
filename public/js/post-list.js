@@ -8,6 +8,14 @@ function increment() {
  }
 
 
+// filter destination
+
+function clickDropdown() {
+   document.getElementById("divDestination").classList.toggle("show");
+ }
+
+
+
 // autocomplete address
 // let autocomplete;
 // let address1Field;
