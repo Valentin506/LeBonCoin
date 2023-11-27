@@ -8,6 +8,8 @@ use App\Models\PhotoPost;
 use App\Models\Owner;
 use App\Models\User;
 use App\Models\TypeHebergement;
+use App\Models\Ville;
+use App\Models\Departement;
 
 class PostController extends Controller
 {
@@ -20,8 +22,10 @@ class PostController extends Controller
         // $users = User::all();
     	return view ("post-list", ['posts'=> Post::all(),
                     'photoPosts'=>PhotoPost::all(),
-                    'typeHebergements'=>TypeHebergement::all(),
                     'owners'=>Owner::all(),
+                    'typeHebergements'=>TypeHebergement::all(),
+                    'cities'=>Ville::all(),
+                    'departments'=>Departement::all(),
                     'users'=>User::all()]);
     }
 

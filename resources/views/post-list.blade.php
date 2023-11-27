@@ -18,22 +18,21 @@
 <!-- filter Bar -->
 
 <div class="filterBar">
-  <div>
+  <div id="divFormAddress">
     <input type="text" id="inputDestination" class="dropinput" name="inputDestination" placeholder="Ajouter une destination"
     onclick="clickDropdown()"
+    onkeyup="autocompleteDestination()"
     required>
     <div id="divDestination" class="dropdown-content">
       <div id="divResult">
-        Veuillez sélectionner un lieu
+        <ul name="completion" id="completion"></ul> 
       </div>
       <div id="divEraseValidate">
         <button id="buttonErase">Effacer</button>
         <button id="buttonValidate">Valider</button>
       </div>
     </div>
-    <select name="" id="">
-      <option value=""></option>
-    </select>
+    <select name="" id=""></select>
   
   </div>
   <div>

@@ -15,6 +15,39 @@ function clickDropdown() {
  }
 
 
+// autocomplete destination
+function autocompleteDestination(){
+   const form = document.querySelector("#divFormAddress")
+   const adresseInput = document.querySelector("#inputDestination")
+   const completionSelect = document.querySelector("#completion")
+
+   adresseInput.addEventListener("keyup", event => {
+
+      if (adresseInput.value.length > 4) {
+         fetch("https://api-adresse.data.gouv.fr/search/?q="+adresseInput.value)
+            .then(response => response.json())
+            .then(data => {
+               completionSelect.querySelectorAll("li").forEach(option => option.remove())
+               data.features.forEach( feature =>  {
+                  let option = document.createElement("li")
+                  completionSelect.appendChild(option)
+                  option.innerHTML = feature.properties.label
+                  option.addEventListener("click", e => {
+                     form.querySelector("#codepostal").value = feature.properties.postcode
+                     form.querySelector("#ville").value =  feature.properties.city
+                     form.querySelector("#departement").value =  feature.properties.postcode
+                     form.querySelector("#pays").value = "France"
+                     completionSelect.querySelectorAll("li").forEach(option => option.remove())
+                     adresseInput.value = feature.properties.label
+
+                  })
+               })
+         })
+      }
+
+   })
+}
+
 
 // autocomplete address
 // let autocomplete;

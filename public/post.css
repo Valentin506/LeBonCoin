@@ -145,6 +145,7 @@
     display: flex;
     align-items: center;
     font-size: 13px;
+    border: none;
 }
 
 #divEraseValidate{
@@ -181,7 +182,13 @@
     
 }
 
+#completion{
+    list-style-type: none;
+}
 
+#completion li:hover{
+    background-color: rgba(163,163,163,0.3)
+}
 
 
 /* autocomplete address */

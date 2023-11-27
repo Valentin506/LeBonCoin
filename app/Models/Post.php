@@ -34,6 +34,13 @@ class Post extends Model
         return $this->hasOne(Adresse::class, 'idadresse', 'idadresse');
     }
 
+    // public function adresseAnnonce(): WhereHas{
+    //     return $this->whereHas('city', function($query) use ($city) {
+    //         $query->where('nomville', $city);
+    //     })
+    //     ->get();
+    // }
+
 
     
     
