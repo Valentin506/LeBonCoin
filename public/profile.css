@@ -12,6 +12,7 @@
 
 }
 
+
 .userInfo{
     display: flex;
     flex-direction: row;
@@ -88,6 +89,29 @@
 #basicUserInfo span{
     display: flex;
     
+}
+.userInfoModif{
+    /* background-color: red; */
+}
+
+#basicUserInfoModif{
+    /* background-color: blue; */
+}
+#radioButtonGenre{
+    display: inline;
+    /* background-color: green; */
+}
+
+
+#boxModifEmail{
+    align-items: center;
+    display: flex;
+    margin-right: 30%;
+    padding: 30px;
+    border: 0.3px solid rgb(163, 163, 163);
+    border-radius: 10px;
+    
+
 }
 
 .userMore{

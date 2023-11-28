@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 
 class Post extends Model
 {
@@ -34,11 +36,23 @@ class Post extends Model
         return $this->hasOne(Adresse::class, 'idadresse', 'idadresse');
     }
 
+    public function ville(){
+        return $this->belongsTo(Ville::class);
+    }
+
     // public function adresseAnnonce(): WhereHas{
     //     return $this->whereHas('city', function($query) use ($city) {
     //         $query->where('nomville', $city);
     //     })
     //     ->get();
+    // }
+
+    // public function nbPost(){
+    //     return $nbPost = Post::join('adresse', 'adresse.idadresse', '=', 'annonce.idadresse')
+    //                         -> join('ville', 'ville.idville', '=', 'adresse.idville')
+    //                         -> where('ville.nomville', 'like', '%'.'Annecy')
+    //                         -> select('annonce.idannonce')
+    //                         ->get();
     // }
 
 

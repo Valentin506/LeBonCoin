@@ -28,17 +28,13 @@
 
 @section('content')
 @section('nav')
-                <ul>
-                    <li><a href="{{ url("/") }}">Accueil</a></li>
-                    <li><a href="{{url("/create-account")}}">Créer compte</a></li>
-                    
-                </ul>
+                
             @show
 
 @endsection
 
 <?php
-echo Hash::make("Jesuisbeauetmuscleleboncoinonestdanslecaca");
+
 ?>
 </body>
 </html>

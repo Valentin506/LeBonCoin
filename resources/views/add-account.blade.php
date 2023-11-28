@@ -18,16 +18,19 @@
 
 
 <!-- <div class="form-register"> -->
-
+<div class="register">
 
 <form action="{{url("/create-account/save") }}" method="post" class="form">
+{{$errors}}
 <div class="form-register" id="form">
 <h2> Créez votre compte</h2>
   <div>
         <label for="email">Email</label>
-        <input type="email" name="email">
+        <input type="email" name="email" >
+
         
     </div>
+   
 
     <div>
     <label for="password">Mot de Passe</label>
@@ -38,7 +41,7 @@
 
     <div>
     <label for="tel">Numéro de téléphone</label>
-        <input type="tel" name="tel" >
+        <input type="tel" name="tel" pattern="0[0-9]{9}" placeholder="0640175369" maxlength="10" required >
         
     </div>
 
@@ -58,7 +61,7 @@
     <input name="rueclient" id="rueclient" type="hidden"/>
     <input name="codepostal" id="codepostal" type="hidden"/>
     <input name="ville" id="ville" type="hidden"/>
-    <input name="departement" id="departement" />
+    <input name="departement" id="departement" type="hidden" />
     <input name="pays" id="pays" type="hidden"/>
 
 
@@ -66,8 +69,8 @@
 
   
 
-  <div class="login">
-        <button type="submit" Vakue="S'inscrire">S'inscrire</button>
+    <div class="login">
+        <button type="submit" Value="S'inscrire">S'inscrire</button>
     </div>
 
     <label>Vous avez déjà un compte ?</label>
@@ -77,7 +80,7 @@
 
   
 </form>
-  
+</div>
 <!-- </div> -->
 
 <script>

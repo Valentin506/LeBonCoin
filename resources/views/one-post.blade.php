@@ -10,8 +10,8 @@
 <div class="postContainer">
         <div class="postDiv">
                 
-                @if($post-> photoPost-> image)
-                      <img src="{{ $post->photoPost-> image}}" alt="Image de l'annonce">
+                @if($post-> image)
+                      <img src="{{ $post->image}}" alt="Image de l'annonce">
                 @else
                       <p>Aucune image associée</p>
                 @endif

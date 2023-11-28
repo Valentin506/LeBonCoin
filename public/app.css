@@ -97,7 +97,7 @@ input[type='image']{
    
 
 }
-.form-register input{
+.register input{
    padding: 15px;
    display: block;
    border-radius: 14px;
@@ -105,20 +105,22 @@ input[type='image']{
 
    
 }
-.form-register{
+.register{
+   display: flex;
    background-color: white;
    border: 1px solid #333; 
    padding: 20px;
    box-shadow: 2px 5px 2px 2px grey;
    width: 50%;
    border-radius: 20px;
+   align-items: center;
 }
 
 
-.form .login{  
+/* .form .login{  
    padding: 5px;
    
-}
+} */
 .login input{
    height: 50px;
    width: 500px;

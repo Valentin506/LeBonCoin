@@ -7,7 +7,11 @@
 
 <script src="/js/post-list.js"></script>
 
-<script type=”text/javascript” src=”https://maps.googleapis.com/maps/api/js?key=AIzaSyC-Izr5CeGnoqIE8a5AGquUSIE8DnRVR34&libraries=places“></script>
+<!-- <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA02_zspd6i0hRXtpR4bPXltkZHn5C-Irc&libraries=places&callback=initAutocomplete">
+</script> -->
+
+
 
 
 
@@ -18,7 +22,8 @@
 <!-- filter Bar -->
 
 <div class="filterBar">
-  <div id="divFormAddress">
+  <form id="divFormAddress" method="post" action="/posts">
+    @csrf
     <input type="text" id="inputDestination" class="dropinput" name="inputDestination" placeholder="Ajouter une destination"
     onclick="clickDropdown()"
     onkeyup="autocompleteDestination()"
@@ -32,9 +37,14 @@
         <button id="buttonValidate">Valider</button>
       </div>
     </div>
-    <select name="" id=""></select>    
-  
-  </div>
+    <select name="" id=""></select> 
+    <input name="postalcode" id="postalcode" type="hidden"/>
+    <input name="city" id="city" type="hidden"/>
+    <input name="department" id="department" type="hidden" />
+    <input name="countries" id="countries" type="hidden"/>
+    
+     
+</form>
   <div>
     <input type="date" placeholder="Dates" autocomplete="off" autocapitalize="off"/>
     <select name="" id="">
@@ -93,6 +103,8 @@
           @endif
             
         </div>
+
+        
         
         <div>
           <li id="postTitle"><h3><a href="{{ url("/post/".$post->idannonce) }}">{{ $post-> titreannonce}}</a></h3></li>

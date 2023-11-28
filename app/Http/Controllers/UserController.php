@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 
 use App\Models\User;
@@ -50,7 +52,7 @@ class UserController extends Controller
     }
     public function modif($id)
     {
-        return view('modif-account');
+        return view('modif-account', ['user'=>User::find($id)]);
     }
 
     public function user(){
@@ -58,12 +60,44 @@ class UserController extends Controller
         'photoUsers' => PhotoUser::all(), 'owners'=>Owner::all()]);
     }
 
+    public function update(Request $request){
+        if ($request->input("nomcompte") == "")  {
+            
+            return redirect('modif-account')->withInput();
+          } else {
+
+            
+            
+            $user = Auth::user();
+
+            $user->sexe = $request->input("sexe");    
+            $user->nomcompte = $request->input("nomcompte");
+            $user->prenomcompte = $request->input("prenomcompte");
+            $user->datenaissanceparticulier = $request->input("datenaissanceparticulier");
+            $user->emailcompte = $request->input("emailcompte");
+            $user->update();
+            return redirect('/');
+
+
+          }
+
+
+    }
+
 
     public function save(Request $request)
     {
+
+       
+        if(User::where("emailcompte","=", $request->input("email"))->count()>0){
+            return redirect('create-account')->withInput()->withErrors("Email deja existant");
+        }
+else{
+        
         
         if ($request->input("email") == "")  {
-            return redirect('add-account/add')->withInput();
+            
+            return redirect('create-account')->withInput();
           } else {
 
 
@@ -103,7 +137,7 @@ class UserController extends Controller
             $user = new User;
             $user->timestamps = false;
             $user->emailcompte = $request->input("email");
-            $user->motdepasse = $request->input("password");
+            $user->motdepasse = bcrypt($request->input("password"));
             $user->pseudocompte = $request->input("pseudo");
             $user->numtelcompte = $request->input("tel");
             $user->nomcompte = $request->input("name");
@@ -112,7 +146,7 @@ class UserController extends Controller
             $ville->idville = $request->input("ville");
             
             
-            $user->datemembre = $request->input("date");
+
             
             $user->save();
 
@@ -144,21 +178,21 @@ class UserController extends Controller
         return back();
         /*
         Database Update
-        */
-        $user = User::update([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'tel' => $request->tel,
-            'name' => $request->name,
-            'firstname' => $request->firstname,
-            'date' => $request->date,
-            'adresse' => $request->address,
+        // */
+        // $user = User::update([
+        //     'email' => $request->email,
+        //     'password' => Hash::make($request->password),
+        //     'tel' => $request->tel,
+        //     'name' => $request->name,
+        //     'firstname' => $request->firstname,
+        //     'date' => $request->date,
+        //     'adresse' => $request->address,
 
-        ]);
+        // ]);
 
-        return back();
+        // return back();
         
-    }
+    }}
 
    
 }}
