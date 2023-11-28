@@ -16,7 +16,10 @@
             <div id="basicUserInfoModif">
 
                 <h3>Profil</h3>
-            
+                <div id=boxModifEmail>
+                    <img id="photoUser" src="{{$user->photoUser->urlphotoprofil}}" alt="photo utilisateurs" >
+
+                </div>
 
 
 

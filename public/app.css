@@ -115,6 +115,9 @@ input[type='image']{
    border-radius: 20px;
    align-items: center;
 }
+.errors{
+   color: red;
+}
 
 
 /* .form .login{  

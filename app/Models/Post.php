@@ -40,20 +40,7 @@ class Post extends Model
         return $this->belongsTo(Ville::class);
     }
 
-    // public function adresseAnnonce(): WhereHas{
-    //     return $this->whereHas('city', function($query) use ($city) {
-    //         $query->where('nomville', $city);
-    //     })
-    //     ->get();
-    // }
-
-    // public function nbPost(){
-    //     return $nbPost = Post::join('adresse', 'adresse.idadresse', '=', 'annonce.idadresse')
-    //                         -> join('ville', 'ville.idville', '=', 'adresse.idville')
-    //                         -> where('ville.nomville', 'like', '%'.'Annecy')
-    //                         -> select('annonce.idannonce')
-    //                         ->get();
-    // }
+    
 
 
     

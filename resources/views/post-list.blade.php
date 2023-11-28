@@ -71,9 +71,7 @@
     <!-- <input placeholder="Filtres" autocomplete="off" autocapitalize="off"/> -->
     
     <select name="" id="">
-        @foreach ($typeHebergements as $typeHebergement)
-          <option value="">{{ $typeHebergement ->libelletypehebergement }}</option>
-        @endforeach
+        
      </select>
       
     
@@ -91,16 +89,7 @@
       @foreach ($posts as $post)
       <div class="divForEachPost">
         <div id="divImagePost">
-          @php $hasPhoto = false; @endphp
-          @foreach ($photoPosts as $photoPost)
-            @if($photoPost->image && $photoPost -> idannonce === $post -> idannonce)
-              <img src="{{ $photoPost-> image }}" alt="Image de l'annonce">
-              @php $hasPhoto = true; break; @endphp
-            @endif
-          @endforeach
-          @if(!$hasPhoto)
-              <p>Aucune image associée</p>
-          @endif
+          
             
         </div>
 

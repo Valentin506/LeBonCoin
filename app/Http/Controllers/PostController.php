@@ -36,11 +36,12 @@ class PostController extends Controller
 
     public function getPostsByCity(Request $request){
         $nomville=$request->get('city');
-        dd($nomville);
+        
         $posts = Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville){
             $query->where('nomville', $nomville);
         })->get();
 
+        
         return view('post-list', compact('posts'));
     }
 

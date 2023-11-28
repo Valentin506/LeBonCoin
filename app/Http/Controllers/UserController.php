@@ -61,6 +61,9 @@ class UserController extends Controller
     }
 
     public function update(Request $request){
+        $request->validate([
+            'datenaissanceparticulier' => ['required', 'date', 'before:today']
+        ]);
         if ($request->input("nomcompte") == "")  {
             
             return redirect('modif-account')->withInput();
@@ -89,8 +92,14 @@ class UserController extends Controller
     {
 
        
-        if(User::where("emailcompte","=", $request->input("email"))->count()>0){
-            return redirect('create-account')->withInput()->withErrors("Email deja existant");
+        if (User::where("emailcompte", "=", $request->input("email"))->count() > 0) {
+            return redirect('create-account')
+                ->withInput()
+                ->withErrors(['email' => 'L\'adresse e-mail existe déjà. Veuillez en choisir une autre.']);
+        } elseif (User::where("numtelcompte", "=", $request->input("tel"))->count() > 0) {
+            return redirect('create-account')
+                ->withInput()
+                ->withErrors(['tel' => 'Ce numéro de téléphone existe déjà. Veuillez en choisir un autre.']);
         }
 else{
         

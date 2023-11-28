@@ -21,13 +21,13 @@
 <div class="register">
 
 <form action="{{url("/create-account/save") }}" method="post" class="form">
-{{$errors}}
+
 <div class="form-register" id="form">
 <h2> Créez votre compte</h2>
   <div>
         <label for="email">Email</label>
         <input type="email" name="email" >
-
+        <p class="errors">{{$errors}}</p>
         
     </div>
    
@@ -42,7 +42,7 @@
     <div>
     <label for="tel">Numéro de téléphone</label>
         <input type="tel" name="tel" pattern="0[0-9]{9}" placeholder="0640175369" maxlength="10" required >
-        
+        <p class="errors">{{$errors}}</p>
     </div>
 
     <div>
