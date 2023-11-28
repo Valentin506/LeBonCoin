@@ -101,7 +101,7 @@ input[type='image']{
    padding: 15px;
    display: block;
    border-radius: 14px;
-   width: 400px;
+   width: 100%;
 
    
 }
@@ -111,11 +111,12 @@ input[type='image']{
    border: 1px solid #333; 
    padding: 20px;
    box-shadow: 2px 5px 2px 2px grey;
-   width: 50%;
+   width:45%;
    border-radius: 20px;
    align-items: center;
+   
 }
-.errors{
+.text-danger{
    color: red;
 }
 
@@ -125,16 +126,17 @@ input[type='image']{
    
 } */
 .login input{
-   height: 50px;
-   width: 500px;
+   height: 50%;
+   width: 50%;
    border-radius: 14px;
 }
 
 .login button{
-   height: 50px;
-   width: 500px;
+   height: 50%;
+   width: 50%;
    border-radius: 14px;
    background-color: rgb(247, 120, 47);
+   align-items: center;
   
 }
 

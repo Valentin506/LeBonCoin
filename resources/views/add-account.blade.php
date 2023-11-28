@@ -27,7 +27,9 @@
   <div>
         <label for="email">Email</label>
         <input type="email" name="email" >
-        <p class="errors">{{$errors}}</p>
+        @if($errors->has('email'))
+            <p class="text-danger">{{ $errors->first('email') }}</p>
+        @endif
         
     </div>
    
@@ -42,12 +44,17 @@
     <div>
     <label for="tel">Numéro de téléphone</label>
         <input type="tel" name="tel" pattern="0[0-9]{9}" placeholder="0640175369" maxlength="10" required >
-        <p class="errors">{{$errors}}</p>
+        @if($errors->has('tel'))
+            <p class="text-danger">{{ $errors->first('tel') }}</p>
+        @endif
     </div>
 
     <div>
         <label for="pseudo">Nom d'utilisateur</label>
         <input type="pseudo" name="pseudo">
+        @if($errors->has('pseudo'))
+            <p class="text-danger">{{ $errors->first('pseudo') }}</p>
+        @endif
         
     </div>
 
@@ -56,6 +63,9 @@
         <input type="adresse" name="adresse" id="adresse">
         <ul name="completion" id="completion"></ul> 
     </p>
+    <div class="login">
+        <button type="submit" Value="S'inscrire">S'inscrire</button>
+    </div>
 
     <input name="numero" id="numero" type="hidden"/>
     <input name="rueclient" id="rueclient" type="hidden"/>
@@ -69,9 +79,7 @@
 
   
 
-    <div class="login">
-        <button type="submit" Value="S'inscrire">S'inscrire</button>
-    </div>
+    
 
     <label>Vous avez déjà un compte ?</label>
     <a href="{{url("/login")}}">Se connecter</a>

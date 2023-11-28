@@ -62,7 +62,8 @@ class UserController extends Controller
 
     public function update(Request $request){
         $request->validate([
-            'datenaissanceparticulier' => ['required', 'date', 'before:today']
+            'datenaissanceparticulier' => ['required', 'date', 'before:today'],
+            'motdepasse' => ['nullable', 'string', 'min:12']
         ]);
         if ($request->input("nomcompte") == "")  {
             
@@ -73,11 +74,40 @@ class UserController extends Controller
             
             $user = Auth::user();
 
+            if(!empty($request->input("adresse"))){
+                $ville = new Ville;
+                $ville->timestamps = false;
+                $ville->nomville = $request->input("ville");
+                $codepostal = $request->input("codepostal");
+                $ville ->codepostal = (int) $codepostal;
+                $iddepartement = substr($request->input("departement"), 0, 2);
+                $ville->iddepartement = (int) $iddepartement;
+                $ville->save();
+    
+                
+    
+                $adresse = new Adresse;
+                $adresse->timestamps = false;
+                $adresse->rue = $request->input("rueclient");
+                $adresse->idville = $ville->idville;
+                $adresse->save();
+                $user->idadresse = $adresse->idadresse;
+                $ville->idville = $request->input("ville");
+
+            }
+
+
             $user->sexe = $request->input("sexe");    
             $user->nomcompte = $request->input("nomcompte");
             $user->prenomcompte = $request->input("prenomcompte");
             $user->datenaissanceparticulier = $request->input("datenaissanceparticulier");
             $user->emailcompte = $request->input("emailcompte");
+            if(!empty($request->input("motdepasse"))){
+
+                $user->motdepasse = bcrypt($request->input("motdepasse"));
+            }
+            
+
             $user->update();
             return redirect('/');
 
@@ -101,13 +131,22 @@ class UserController extends Controller
                 ->withInput()
                 ->withErrors(['tel' => 'Ce numéro de téléphone existe déjà. Veuillez en choisir un autre.']);
         }
+         elseif (User::where("pseudocompte", "=", $request->input("pseudo"))->count() > 0) {
+        return redirect('create-account')
+            ->withInput()
+            ->withErrors(['pseudo' => 'Ce pseudo existe déjà. Veuillez en choisir un autre.']);
+    }
+
+
+
+
+
+
+    
 else{
         
         
-        if ($request->input("email") == "")  {
-            
-            return redirect('create-account')->withInput();
-          } else {
+       
 
 
             
@@ -204,4 +243,4 @@ else{
     }}
 
    
-}}
+}
