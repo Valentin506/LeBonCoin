@@ -71,7 +71,9 @@
     <!-- <input placeholder="Filtres" autocomplete="off" autocapitalize="off"/> -->
     
     <select name="" id="">
-        
+        @foreach($typeHebergements as $typeHebergement)
+          {{ $typeHebergement ->libelletypehebergement}}
+        @endforeach
      </select>
       
     
@@ -89,12 +91,18 @@
       @foreach ($posts as $post)
       <div class="divForEachPost">
         <div id="divImagePost">
-          
-            
+          @php $hasPhoto = false; @endphp
+          @foreach ($photoPosts as $photoPost)
+            @if($photoPost->image && $photoPost-> idannonce === $post->idannonce)
+              <img src="{{ $photoPost -> image}}" alt="Image de l'annonce">
+              @php $hasPhoto = true; break; @endphp
+            @endif
+          @endforeach
+          @if (!$hasPhoto)
+            <p>Aucune image associée</p>
+          @endif
         </div>
 
-        
-        
         <div>
           <li id="postTitle"><h3><a href="{{ url("/post/".$post->idannonce) }}">{{ $post-> titreannonce}}</a></h3></li>
           <li>{{ $post -> idcapacite}} pers. • {{ $post -> typeHebergement ->libelletypehebergement }}</li>

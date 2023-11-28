@@ -46,7 +46,7 @@
                         <h2>Réservation de vacances</h2>
                         <p>Retrouver vos réservations en tant que voyageur</p>
                     </div></a>
-                <a class="boxTableUser" href="{{ url("/account/{$user->idcompte}/modif-profil")}}">
+                <a class="boxTableUser" href="{{ url("/account/{$user->idcompte}/modif-profile")}}">
                     <div class="boxLogo">
                         <img src="https://www.leboncoin.fr/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprivate-profile.ccf8698a.png&w=48&q=75" alt="Logo profil">
                     </div>
@@ -62,7 +62,7 @@
                         <h2>Paramètres</h2>
                         <p>Compléter et modifier mes informations privées et préférences</p>
                     </div></a>
-                <a class="boxTableUser" href="{{ url("/account/{$user->idcompte}/connexion")}}">
+                <a class="boxTableUser" href="{{ url("/account/{$user->idcompte}/modif-securite")}}">
                     <div class="boxLogo">
                         <img src="https://www.leboncoin.fr/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsecurite.288e30ea.png&w=48&q=75" alt="Logo parametres">
                     </div>

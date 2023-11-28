@@ -43,8 +43,12 @@ Route::post("/posts",[PostController::class, "getPostsByCity" ]);
 
 
 Route::get('/account/{idcompte}', [UserController::class, 'one']);
-Route::get('/account/{idcompte}/modif-account', [UserController::class, 'modif']);
-Route::post('/modif-account/update', [UserController::class, 'update']);
+Route::get('/account/{idcompte}/modif-account', [UserController::class, 'modifAccount']);
+Route::get('/account/{idcompte}/modif-profile', [UserController::class, 'modifProfile']);
+Route::get('/account/{idcompte}/modif-securite', [UserController::class, 'modifSecurite']);
+Route::post('/modif-account/updateAccount', [UserController::class, 'updateAccount']);
+Route::post('/modif-profile/updateProfile', [UserController::class, 'updateProfile']);
+Route::post('/modif-account/updateSecurite', [UserController::class, 'updateSecurite']);
 
 
 // Route::get("/view-profile",[SiteController::class, "ownerRandom" ]);

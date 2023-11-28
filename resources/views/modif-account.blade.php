@@ -8,7 +8,7 @@
     
     @section('content')
 
-<form action="{{url("/modif-account/update") }}" method="post" class="form">
+<form action="{{url("/modif-account/updateAccount") }}" method="post" class="form">
 <div class="form-register" id="form">
         <div class="userInfoModif">
             <h2>Paramètres</h2>
@@ -61,9 +61,6 @@
                     <!-- <img width="16" height="16" src="https://img.icons8.com/external-thin-kawalan-studio/16/external-protected-shipping-delivery-thin-kawalan-studio-2.png" alt="external-protected-shipping-delivery-thin-kawalan-studio-2"/> -->
                     <input id="emailcompte"type="text" name="emailcompte" required value="{{$user->emailcompte}}"/>
                 </div>
-                <p for="motdepasse"> Mot de passe</p>
-                <input id="motdepasse"type="text" name="motdepasse" />
-
                 <p for="adresse">Adresse</p>
                 <input type="adresse" name="adresse" id="adresse" >
                 <ul name="completion" id="completion"></ul> 

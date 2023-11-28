@@ -41,8 +41,11 @@ class PostController extends Controller
             $query->where('nomville', $nomville);
         })->get();
 
+        $photoPosts = PhotoPost::all();
+        $typeHebergements = TypeHebergement::all();
+
         
-        return view('post-list', compact('posts'));
+        return view('post-list', compact('posts', 'photoPosts', 'typeHebergements'));
     }
 
     

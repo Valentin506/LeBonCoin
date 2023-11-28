@@ -50,20 +50,70 @@ class UserController extends Controller
     {
         return view('add-account');
     }
-    public function modif($id)
+    public function modifAccount($id)
     {
         return view('modif-account', ['user'=>User::find($id)]);
     }
+    public function modifProfile($id)
+    {
+        return view('modif-profile', ['user'=>User::find($id)]);
+    }
+
+    
+    public function modifSecurite($id)
+    {
+        return view('modif-securite', ['user'=>User::find($id)]);
+    }
+
 
     public function user(){
         return view("my-account", ['users' => User::all(), 
         'photoUsers' => PhotoUser::all(), 'owners'=>Owner::all()]);
     }
 
-    public function update(Request $request){
+    public function updateSecurite(Request $request){
+        $request->validate(['motdepasse' => ['nullable', 'string', 'min:12']
+        ]);
+        if ($request->input("motdepasse") == "")  {
+            
+            return redirect('modif-securite')->withInput();
+        } else {
+
+            $user = Auth::user();
+
+            if(!empty($request->input("motdepasse"))){
+
+                $user->motdepasse = bcrypt($request->input("motdepasse"));
+            }
+            $user->update();
+            return redirect('/');
+
+
+        }
+
+        
+    }
+    public function updateProfile(Request $request){
+        if ($request->input("pseudocompte") == "")  {
+            
+            return redirect('modif-profile')->withInput();
+        } else {
+
+            $user = Auth::user();
+
+            $user->pseudocompte = $request->input("pseudocompte"); 
+            $user->update();
+            return redirect('/');
+
+
+        }
+
+        
+    }
+
+    public function updateAccount(Request $request){
         $request->validate([
-            'datenaissanceparticulier' => ['required', 'date', 'before:today'],
-            'motdepasse' => ['nullable', 'string', 'min:12']
+            'datenaissanceparticulier' => ['required', 'date', 'before:today']
         ]);
         if ($request->input("nomcompte") == "")  {
             
@@ -102,10 +152,7 @@ class UserController extends Controller
             $user->prenomcompte = $request->input("prenomcompte");
             $user->datenaissanceparticulier = $request->input("datenaissanceparticulier");
             $user->emailcompte = $request->input("emailcompte");
-            if(!empty($request->input("motdepasse"))){
-
-                $user->motdepasse = bcrypt($request->input("motdepasse"));
-            }
+            
             
 
             $user->update();
