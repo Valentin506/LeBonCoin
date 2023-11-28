@@ -90,11 +90,10 @@ class UserController extends Controller
 
            
 
-
             $adresse = new Adresse;
             $adresse->timestamps = false;
             $adresse->rue = $request->input("rueclient");
-            $adresse->idville = $ville;
+            $adresse->idville = $ville->idville;
             $adresse->save();
 
 
@@ -103,13 +102,13 @@ class UserController extends Controller
 
             $user = new User;
             $user->timestamps = false;
-            $user->emaillocataire = $request->input("email");
+            $user->emailcompte = $request->input("email");
             $user->motdepasse = $request->input("password");
             $user->pseudocompte = $request->input("pseudo");
-            $user->numtellocataire = $request->input("tel");
-            $user->nomlocataire = $request->input("name");
-            $user->prenomlocataire = $request->input("firstname");
-            $adresse->idadresse = $request->input("adresse");
+            $user->numtelcompte = $request->input("tel");
+            $user->nomcompte = $request->input("name");
+            $user->prenomcompte = $request->input("firstname");
+            $user->idadresse = $adresse->idadresse;
             $ville->idville = $request->input("ville");
             
             

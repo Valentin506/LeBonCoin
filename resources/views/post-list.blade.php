@@ -32,7 +32,7 @@
         <button id="buttonValidate">Valider</button>
       </div>
     </div>
-    <select name="" id=""></select>
+    <select name="" id=""></select>    
   
   </div>
   <div>

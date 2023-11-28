@@ -10,11 +10,11 @@
 <div class="postContainer">
         <div class="postDiv">
                 
-                @if($post->image)
-                      <img src="{{ $photoPost-> image}}" alt="Image de l'annonce">
-                  @else
+                @if($post-> photoPost-> image)
+                      <img src="{{ $post->photoPost-> image}}" alt="Image de l'annonce">
+                @else
                       <p>Aucune image associée</p>
-                  @endif
+                @endif
                 <ul class="elementsDescription">
                         <h2>{{ $post -> titreannonce }}</h2>
                         <li>{{ $post -> typeHebergement ->libelletypehebergement }}</li>
