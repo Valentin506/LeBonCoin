@@ -26,7 +26,7 @@
 <h2> Créez votre compte</h2>
   <div>
         <label for="email">Email</label>
-        <input type="email" name="email" >
+        <input type="email" name="email" value='{{ old("email") }}'>
         @if($errors->has('email'))
             <p class="text-danger">{{ $errors->first('email') }}</p>
         @endif
@@ -36,14 +36,14 @@
 
     <div>
     <label for="password">Mot de Passe</label>
-        <input type="password" name="password" required   minlength="12">
+        <input type="password" name="password"  value='{{ old("password") }}' required   minlength="12">
         
     </div>
 
 
     <div>
     <label for="tel">Numéro de téléphone</label>
-        <input type="tel" name="tel" pattern="0[0-9]{9}" placeholder="0640175369" maxlength="10" required >
+        <input type="tel" name="tel" value='{{ old("tel") }}' pattern="0[0-9]{9}" placeholder="0640175369" maxlength="10" required >
         @if($errors->has('tel'))
             <p class="text-danger">{{ $errors->first('tel') }}</p>
         @endif
@@ -51,7 +51,7 @@
 
     <div>
         <label for="pseudo">Nom d'utilisateur</label>
-        <input type="pseudo" name="pseudo">
+        <input type="pseudo" name="pseudo" value='{{ old("pseudo") }}'>
         @if($errors->has('pseudo'))
             <p class="text-danger">{{ $errors->first('pseudo') }}</p>
         @endif
@@ -60,7 +60,7 @@
 
     <p>
         <label for="adresse">Adresse</label>
-        <input type="adresse" name="adresse" id="adresse">
+        <input type="adresse" name="adresse" id="adresse" value='{{ old("adresse") }}'>
         <ul name="completion" id="completion"></ul> 
     </p>
     <div class="login">

@@ -9,32 +9,59 @@
 
 <div class="postContainer">
         <div class="postDiv">
-                
-                @if($post-> image)
-                      <img src="{{ $post->image}}" alt="Image de l'annonce">
-                @else
-                      <p>Aucune image associée</p>
-                @endif
-                <ul class="elementsDescription">
-                        <h2>{{ $post -> titreannonce }}</h2>
-                        <li>{{ $post -> typeHebergement ->libelletypehebergement }}</li>
-                        <li>•</li>
-                        <li>{{ $post -> capaciteLogement -> nombrepersonne }} personnes</li>
-                        <li>•</li>
-                        <li>{{ $post -> adresseAnnonce -> ville -> nomville }}</li>
-                </ul>
-                
-                @if($post->paiementenligne)
-                Paiement en ligne disponible
-                @else
-                Paiement en ligne pas disponible
-                @endif
-                
-                <p>Publié le {{ $post -> datepublication }}</p>
-                <h3>Description</h3>
-                <p>{{ $post -> description }}</p>
-                <h3>Critères</h3>
-                <h3>{{ $post -> idadresse }}</h3>
+                <div id="postPhotoDiv">
+                        @foreach ($photoPosts as $photoPost)
+                                @if($photoPost->image && $photoPost->idannonce === $post->idannonce)
+                                        <img src="{{ $photoPost -> image}}" alt="Image de l'annonce">
+                                @endif
+                                @if (!$photoPost->image)
+                                <p>Aucune image associée</p>
+                                @endif
+                        @endforeach
+
+                </div>
+                <div id="postDescriptionDiv">
+                        <ul class="elementsDescription">
+                                <h2>{{ $post -> titreannonce }}</h2>
+                                <li>{{ $post -> typeHebergement ->libelletypehebergement }}</li>
+                                <li>•</li>
+                                <li>{{ $post -> capaciteLogement -> nombrepersonne }} personnes</li>
+                                <li>•</li>
+                                <li>{{ $post -> adresseAnnonce -> ville -> nomville }}</li>
+                        </ul>
+                        
+                        @if($post->paiementenligne)
+                        Paiement en ligne disponible
+                        @else
+                        Paiement en ligne pas disponible
+                        @endif
+                        
+                        <p>Publié le {{ $post -> datepublication }}</p>
+                        <h3>Description</h3>
+                        <p>{{ $post -> description }}</p>
+                        <h3>Critères</h3>
+                        <div id="postCriteresDiv">
+                                <div>
+                                        <p>Nombre d'étoiles</p>
+                                        <span>Non classé</span>
+                                </div>
+                                <div>
+                                        <p>Capacité</p>
+                                        <span>{{ $post->idcapacite}} personnes</span>
+                                </div>
+                                <div>
+                                        <p>Type de logement</p>
+                                        <span>{{ $post->typeHebergement->libelletypehebergement}}</span>
+                                </div>
+                                
+                                <div>
+                                        <p>Nature du logement</p>
+                                        <span>{{ $post->typeHebergement->libelletypehebergement}}</span>
+                                </div>
+                        </div>
+                        
+                        <h3><p><a href="{{ url("/posts") }}">Retour vers les locations saisonières</a></p></h3>
+                </div>
         
         </div>
         
@@ -46,7 +73,11 @@
                 <div id="postOwnerDiv">
                 
                         <div id="divPhoto">
-                                <img src="" alt="photo utilisateurs">
+                                @foreach($photoUsers as $photoUser)
+                                        @if($photoUser->urlphotoprofil)
+                                                <img src="" alt="photo utilisateurs">
+                                        @endif
+                                @endforeach
                         </div>
                         <div id="basicInfoDiv">
                                 
@@ -63,6 +94,5 @@
 
 
 
-<p><a href="{{ url("/posts") }}">Retour vers les locations saisonières</a></p>
 
 @endsection

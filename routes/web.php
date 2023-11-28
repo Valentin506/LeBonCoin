@@ -49,6 +49,7 @@ Route::get('/account/{idcompte}/modif-securite', [UserController::class, 'modifS
 Route::post('/modif-account/updateAccount', [UserController::class, 'updateAccount']);
 Route::post('/modif-profile/updateProfile', [UserController::class, 'updateProfile']);
 Route::post('/modif-account/updateSecurite', [UserController::class, 'updateSecurite']);
+Route::get('posts/search', [PostController::class, 'search'])->name('search');
 
 
 // Route::get("/view-profile",[SiteController::class, "ownerRandom" ]);

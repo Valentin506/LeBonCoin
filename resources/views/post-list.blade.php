@@ -67,17 +67,29 @@
     <!-- <input placeholder="Filtres" autocomplete="off" autocapitalize="off"/> -->
   </div>
   <div>
-    
-    <!-- <input placeholder="Filtres" autocomplete="off" autocapitalize="off"/> -->
-    
-    <select name="" id="">
+        
+  <form id="searchForm" action="{{ route('search') }}" method="GET">
+    <select name="type_hebergement" id="type_hebergement">
+        <option value="" disabled selected>Select Type of Accommodation</option>
         @foreach($typeHebergements as $typeHebergement)
-          {{ $typeHebergement ->libelletypehebergement}}
+            <option value="{{ $typeHebergement->id }}">{{ $typeHebergement->libelletypehebergement }}</option>
         @endforeach
-     </select>
-      
+    </select>
+    <button type="submit">Search</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#type_hebergement').on('change', function() {
+            $('#searchForm').submit();
+        });
+    });
+</script>
+
     
   </div>
+
   
 
 
@@ -130,4 +142,6 @@
 
     
     @endsection
+    
+
     

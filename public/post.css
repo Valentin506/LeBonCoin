@@ -2,6 +2,7 @@
 .filterBar{
     display: flex;
     margin: 10px;
+    align-items: center;
 }
 
 .filterBar div{
@@ -16,6 +17,12 @@
 .filterBar div input{
     border: none;
 
+}
+
+.filterBar form input{
+    border-radius: 10px;
+    border: 0.3px solid rgb(163, 163, 163);
+    padding: 10px;
 }
 
 .plusMinusTraveler{
@@ -66,13 +73,27 @@
 
 .postContainer{
     display: flex;
+    margin-top: 10px;
 }
 
+/* style for one post */
 .postDiv{
     display: flex;
     flex-direction: column;
     margin-right: 10px;
     text-align: justify;
+}
+#postPhotoDiv img{
+    width: 692.89px;
+    height: 320px;
+    display: flex;
+}
+#postDescriptionDiv{
+    width: 676.89px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .ownerPostDiv{
@@ -114,6 +135,18 @@
 }
 
 
+#postCriteresDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#postCriteresDiv span{
+    font-weight: bold;
+}
+
+#postCriteresDiv p{
+    color: rgba(163, 163, 163);
+}
 
 /* filter */
 
@@ -189,6 +222,7 @@
 #completion li:hover{
     background-color: rgba(163,163,163,0.3)
 }
+
 
 
 /* autocomplete address */

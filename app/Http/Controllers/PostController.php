@@ -11,6 +11,7 @@ use App\Models\TypeHebergement;
 use App\Models\Ville;
 use App\Models\Departement;
 use App\Models\Adresse;
+use App\Models\PhotoUser;
 
 class PostController extends Controller
 {
@@ -31,7 +32,11 @@ class PostController extends Controller
     }
 
     public function one($id){
-        return view ("one-post", ['post'=>Post::find($id) ]);
+        $post = Post::find($id);
+        $photoPosts = PhotoPost::all();
+        $photoUsers = PhotoUser::all();
+        $users = User::all();
+        return view ("one-post", compact('post', 'photoPosts', 'photoUsers', 'users'));
     }
 
     public function getPostsByCity(Request $request){
@@ -48,6 +53,24 @@ class PostController extends Controller
         return view('post-list', compact('posts', 'photoPosts', 'typeHebergements'));
     }
 
+
+    public function search(Request $request)
+{
+    $typeHebergementId = $request->input('type_hebergement');
+
+    // Effectuez la logique de recherche en fonction de $typeHebergementId
+    // Utilisez Eloquent ou le constructeur de requêtes pour interroger la base de données
+    $posts = Post::whereHas('typehebergement', function($query) use ($typeHebergementId){
+        $query->where('typehebergement', $typeHebergementId);
+    })->get();
+
+    // Retournez les résultats de la recherche à la vue
+    $results = Post::where('idhebergement', $typeHebergementId)->get();
+
+    return view('post-list', compact('posts', 'typeHebergements'));
+}
+
+    
     
 
 
