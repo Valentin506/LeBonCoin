@@ -40,6 +40,10 @@ class PostController extends Controller
     }
 
     public function getPostsByCity(Request $request){
+
+        $request->validate([
+            'city' => 'required', // Adjust validation rules as needed
+        ]);
         $nomville=$request->get('city');
         
         $posts = Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville){
@@ -55,21 +59,27 @@ class PostController extends Controller
 
 
     public function search(Request $request)
-{
-    $typeHebergementId = $request->input('type_hebergement');
+    {
+        $typeHebergements = Post::all();
+        // Validate the form data as needed
+        $typeHebergementId = $request->input('type_hebergement');
+        
+        // Vérifiez si un type d'hébergement a été sélectionné
+            // Récupérez les annonces liées au type d'hébergement sélectionné
+            // $annonces = Post::whereHas('typeHebergement', function ($query) use ($typeHebergementId) {
+            //     $query->where('idhebergement', $typeHebergementId);
+            // })->get();
 
-    // Effectuez la logique de recherche en fonction de $typeHebergementId
-    // Utilisez Eloquent ou le constructeur de requêtes pour interroger la base de données
-    $posts = Post::whereHas('typehebergement', function($query) use ($typeHebergementId){
-        $query->where('typehebergement', $typeHebergementId);
-    })->get();
+            $searchResults = Post::where('idhebergement', $typeHebergementId)
+        ->get();
 
-    // Retournez les résultats de la recherche à la vue
-    $results = Post::where('idhebergement', $typeHebergementId)->get();
 
-    return view('post-list', compact('posts', 'typeHebergements'));
-}
-
+            
+            // Vous pouvez maintenant utiliser $annonces comme vous le souhaitez
+            // par exemple, le retourner à une vue pour l'affichage
+            return view('post-list', compact('typeHebergements'));
+        
+    }
     
     
 

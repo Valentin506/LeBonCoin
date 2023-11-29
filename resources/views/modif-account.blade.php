@@ -51,9 +51,9 @@
                 </div>
 
                 <p for="nomcompte">Nom </p>
-                <input id="nomcompte" type="text" name="nomcompte" required value="{{$user->prenomcompte}}"/>
+                <input id="nomcompte" type="text" name="nomcompte" required value="{{$user->nomcompte}}"/>
                 <p for="prenomcompte">Prénom</p>
-                <input id="prenomcompte"type="text" name="prenomcompte" required value="{{$user->nomcompte}}"></input>
+                <input id="prenomcompte"type="text" name="prenomcompte" required value="{{$user->prenomcompte}}"></input>
                 <p for="datenaissanceparticulier">Date de naissance</p>
                 <input id="datenaissanceparticulier"type="date" name="datenaissanceparticulier" required value="{{$user->datenaissanceparticulier}}"/>
                 <h3>E-mail</h3>
@@ -62,7 +62,9 @@
                     <input id="emailcompte"type="text" name="emailcompte" required value="{{$user->emailcompte}}"/>
                 </div>
                 <p for="adresse">Adresse</p>
+                <p required value="">{{$user->adresse->rue}}</p>
                 <input type="adresse" name="adresse" id="adresse" >
+                
                 <ul name="completion" id="completion"></ul> 
 
 

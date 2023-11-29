@@ -40,6 +40,11 @@ class Post extends Model
         return $this->belongsTo(Ville::class);
     }
 
+    // public function typeHebergement()
+    // {
+    //     return $this->belongsTo(TypeHebergement::class, 'idhebergement');
+    // }
+
     
 
 

@@ -67,25 +67,25 @@
     <!-- <input placeholder="Filtres" autocomplete="off" autocapitalize="off"/> -->
   </div>
   <div>
-        
-  <form id="searchForm" action="{{ route('search') }}" method="GET">
+
+ 
+  <form id="searchForm" action="{{ route('search') }}" method="post">
+    @csrf
+      
+    @if(!is_null($typeHebergements) && count($typeHebergements) > 0)
     <select name="type_hebergement" id="type_hebergement">
-        <option value="" disabled selected>Select Type of Accommodation</option>
+        <option value=""></option>
+
         @foreach($typeHebergements as $typeHebergement)
-            <option value="{{ $typeHebergement->id }}">{{ $typeHebergement->libelletypehebergement }}</option>
+            <option value="{{ $typeHebergement->idhebergement }}">{{ $typeHebergement->libelletypehebergement }}</option>
         @endforeach
     </select>
-    <button type="submit">Search</button>
+@else
+    <p>No accommodation types available</p>
+@endif
+    <button type="submit" name="submitForm">Envoyer</button>
 </form>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#type_hebergement').on('change', function() {
-            $('#searchForm').submit();
-        });
-    });
-</script>
 
     
   </div>
@@ -128,6 +128,7 @@
       </div>
       @endforeach
     </ul>
+    
     
     
   </div>
