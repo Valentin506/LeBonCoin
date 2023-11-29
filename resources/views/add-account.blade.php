@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <div>
     <label for="password">Mot de Passe</label>
-        <input type="password" name="password"   required   minlength="12">
+        <input type="password" name="password"   required   minlength="12" maxlength="50">
         
     </div>
 

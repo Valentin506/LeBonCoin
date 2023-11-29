@@ -83,10 +83,16 @@
     margin-right: 10px;
     text-align: justify;
 }
-#postPhotoDiv img{
+.postTotalPhotoDiv{
     width: 692.89px;
     height: 320px;
     display: flex;
+    margin-bottom: 50px;
+}
+.postPhotoDiv img{
+    width: 692.89px;
+    height: 320px;
+    margin: 10px;
 }
 #postDescriptionDiv{
     width: 676.89px;
@@ -222,6 +228,8 @@
 #completion li:hover{
     background-color: rgba(163,163,163,0.3)
 }
+
+/* slider style */
 
 
 
