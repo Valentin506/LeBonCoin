@@ -132,7 +132,9 @@
         <script type="text/javascript">
                 $('.postTotalPhotoDiv').slick({
                         slidesToShow: 1,
-                        slidesToScroll: 1
+                        slidesToScroll: 1,
+                        prevArrow: '<button type="button" class="slick-custom-arrow slick-prev"> < </button>',
+                        nextArrow: '<button type="button" class="slick-custom-arrow slick-next"> > </button>'
                 });
         </script>
 </body>
