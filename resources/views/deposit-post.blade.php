@@ -33,16 +33,15 @@
             <button type="input" onclick="showCategoryDeposit()">Continuer</button>
         </div>
         <div id="divCategoryDeposit">
-            <label for="checkboxCategory">Choisissez une catégorie suggérée</label>
             <div id="divInputCatgory">
-                <input type="checkbox"><label> Maison & Jardin > Bricolage</label>
-                <input type="checkbox"><label> Services > Cours particuliers</label>
-                <input type="checkbox"><label> Loisirs > Instruments de musique</label>
+                <label for="checkboxCategory">Location de vacances</label></br>
+                <input type="radio"  name="locavac" id="vacance"  value="H"/>
+                        <label for="vacances">Locations de vacances</label></br>
+                <input type="radio" name="locavac"  id="saisonnières" value="F"/>
+                        <label for="saisonnières">Locations saisonnières</label>
+                
             </div>
-            <label for="inputAnotherCategory">Ou choisissez une autre catégorie</label>
-            <div>
-                <input type="text" placeholder="Choisissez"><select name="" id=""></select></input>
-            </div>
+            
 
                 
 

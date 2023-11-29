@@ -14,19 +14,36 @@
 
 
 @section('content')
+<?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $password = $_POST["password"];
 
+    // Vérifie la présence de majuscules, minuscules, chiffres et caractères spéciaux
+    $hasUpperCase = preg_match('/[A-Z]/', $password);
+    $hasLowerCase = preg_match('/[a-z]/', $password);
+    $hasDigits = preg_match('/\d/', $password);
+    $hasSpecialChars = preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password);
+
+    if (!$hasUpperCase || !$hasLowerCase || !$hasDigits || !$hasSpecialChars) {
+        echo "Le mot de passe doit contenir au moins une majuscule, des minuscules, des chiffres et des caractères spéciaux.";
+    } else {
+        echo "Mot de passe valide !";
+        // Vous pouvez ajouter ici le code pour traiter le formulaire ou rediriger l'utilisateur, etc.
+    }
+}
+?>
 
 
 <!-- <div class="form-register"> -->
 <div class="register">
 
-<form action="{{url("/create-account/save") }}" method="post" class="form">
+<form action="{{url("/create-account/save") }}" method="post" class="form" >
 
 <div class="form-register" id="form">
 <h2> Créez votre compte</h2>
   <div>
         <label for="email">Email</label>
-        <input type="email" name="email" value='{{ old("email") }}'>
+        <input type="email" name="email" value='{{ old("email") }}' required>
         @if($errors->has('email'))
             <p class="text-danger">{{ $errors->first('email') }}</p>
         @endif
@@ -36,7 +53,7 @@
 
     <div>
     <label for="password">Mot de Passe</label>
-        <input type="password" name="password"  value='{{ old("password") }}' required   minlength="12">
+        <input type="password" name="password"   required   minlength="12">
         
     </div>
 
@@ -60,12 +77,13 @@
 
     <p>
         <label for="adresse">Adresse</label>
-        <input type="adresse" name="adresse" id="adresse" value='{{ old("adresse") }}'>
+        <input type="adresse" name="adresse" id="adresse" value='{{ old("adresse") }}' required>
         <ul name="completion" id="completion"></ul> 
+       
     </p>
-    <div class="login">
-        <button type="submit" Value="S'inscrire">S'inscrire</button>
-    </div>
+    
+        <input type="submit" Value="S'inscrire">S'inscrire</input>
+   
 
     <input name="numero" id="numero" type="hidden"/>
     <input name="rueclient" id="rueclient" type="hidden"/>
@@ -129,6 +147,25 @@ adresseInput.addEventListener("keyup", event => {
 
 
 </script>
+
+
+<!-- <script>
+    function validatePassword() {
+      var password = document.getElementById("password").value;
+
+      // Vérifie la présence de majuscules, de minuscules et de caractères spéciaux
+      var hasUpperCase = /[A-Z]/.test(password);
+      var hasLowerCase = /[a-z]/.test(password);
+      var hasSpecialChars = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+      if (!hasUpperCase || !hasLowerCase || !hasSpecialChars) {
+        alert("Le mot de passe doit contenir des majuscules, des minuscules et des caractères spéciaux.");
+        return false;
+      }
+
+      return true;
+    }
+  </script> -->
 
 
 

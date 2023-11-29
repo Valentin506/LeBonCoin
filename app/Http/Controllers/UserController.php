@@ -8,6 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Rules\Password;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\User;
 use App\Models\Adresse;
@@ -19,6 +21,8 @@ use App\Models\Departement;
 
 class UserController extends Controller
 {
+
+    
 
     // public function view(){
     // 	return view ("add-account", ['locataires'=>User::all() ]);
@@ -168,6 +172,19 @@ class UserController extends Controller
     public function save(Request $request)
     {
 
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|min:12', Rules\Password::defaults(),
+            'tel' => 'required|regex:/^0[0-9]{9}$/',
+            'pseudo' => 'required',
+            'adresse' => 'required',
+            // Add other validation rules as needed
+        ],[
+            'password.min'=> 'Pour des raisons de sécurité, votre mot de passe doit contenir :min caractère',
+            'tel.regex'=> 'Le numéro doit commencer par un 0 et avoir 10 chiffre au total',
+            'email'=> 'Cet adresse mail est deja utilisé'
+        ]);
+
        
         if (User::where("emailcompte", "=", $request->input("email"))->count() > 0) {
             return redirect('create-account')
@@ -183,6 +200,7 @@ class UserController extends Controller
             ->withInput()
             ->withErrors(['pseudo' => 'Ce pseudo existe déjà. Veuillez en choisir un autre.']);
     }
+    
 
 
 
@@ -288,6 +306,7 @@ else{
         // return back();
         
     }}
+    
 
    
 }

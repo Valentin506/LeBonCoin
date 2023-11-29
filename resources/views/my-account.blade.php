@@ -74,6 +74,11 @@
 
             </div>
 
+            <form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button type="submit">Déconnexion</button>
+</form>
+
             <!-- 
             <p>Email : {{$user-> emailcompte}}</p>
             <p>Numéro de téléphone : {{$user-> numtelcompte}}</p>

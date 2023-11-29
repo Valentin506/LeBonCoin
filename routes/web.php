@@ -50,6 +50,7 @@ Route::post('/modif-account/updateAccount', [UserController::class, 'updateAccou
 Route::post('/modif-profile/updateProfile', [UserController::class, 'updateProfile']);
 Route::post('/modif-account/updateSecurite', [UserController::class, 'updateSecurite']);
 Route::post('/search', [PostController::class, 'search'])->name('search');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 // Route::get("/view-profile",[SiteController::class, "ownerRandom" ]);
@@ -62,6 +63,9 @@ Route::get('/ville', function () {
     return view('ville-list');
 });
 
+Route::get('/politique-confidentialite', function () {
+    return view('politique-confidentialite');
+});
 
 
 // Route::get('/create-account', [AccountController::class, 'add']);

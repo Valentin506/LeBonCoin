@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="app.css">
     <title>leboncoin, site de peties annonces gratuites</title>
     <link rel="icon" type="image/x-icon" href="https://img.utdstc.com/icon/f01/c30/f01c30e1ae7730771565e60e5b26d888a6a6a49f2112235ba23d30abbc4b4923:200">   
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b204e1a2-24bd-4334-9438-681f655ca2db" data-blockingmode="auto" type="text/javascript"></script>
 </head>
 <body>
     

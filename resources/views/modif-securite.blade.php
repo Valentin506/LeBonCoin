@@ -16,7 +16,7 @@
             <div id="basicUserInfoModif">
 
                 <p for="motdepasse">Mot de passe</p>
-                <input id="motdepasse"type="text" name="motdepasse" />
+                <input id="motdepasse"type="password" name="motdepasse" />
 
                 
              

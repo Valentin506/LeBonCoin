@@ -71,13 +71,16 @@ class PostController extends Controller
             // })->get();
 
             $searchResults = Post::where('idhebergement', $typeHebergementId)
-        ->get();
+            ->get();
 
-
+            $posts = Post::all();
+            $photoPosts = PhotoPost::all();
+            $typeHebergements = TypeHebergement::all();
+    
             
-            // Vous pouvez maintenant utiliser $annonces comme vous le souhaitez
-            // par exemple, le retourner à une vue pour l'affichage
-            return view('post-list', compact('typeHebergements'));
+        // Vous pouvez maintenant utiliser $annonces comme vous le souhaitez
+        // par exemple, le retourner à une vue pour l'affichage
+        return view('post-list', compact('posts', 'photoPosts','typeHebergements'));
         
     }
     
