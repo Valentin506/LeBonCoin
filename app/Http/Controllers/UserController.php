@@ -76,7 +76,14 @@ class UserController extends Controller
     }
 
     public function updateSecurite(Request $request){
-        $request->validate(['motdepasse' => ['nullable', 'string', 'min:12']
+        $request->validate([
+            'motdepasse' => [
+                'required',
+                'string',
+                'min:12', // par exemple, au moins 8 caractères
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/'
+            ]
+           
         ]);
         if ($request->input("motdepasse") == "")  {
             
@@ -98,14 +105,35 @@ class UserController extends Controller
         
     }
     public function updateProfile(Request $request){
+        $user = Auth::user();
+        
+        $request->validate([
+            'pseudocompte' => [
+            'required',
+            'string', 
+            Rule::unique('compte')->ignore($user->idcompte, 'idcompte') ], 
+            'nouvellePhoto' => 'nullable|image|mimes:jpeg,png,jpg,gif', ]);
         if ($request->input("pseudocompte") == "")  {
             
             return redirect('modif-profile')->withInput();
-        } else {
+        } 
+        else {
 
-            $user = Auth::user();
+            
 
             $user->pseudocompte = $request->input("pseudocompte"); 
+
+            if ($request->hasFile('nouvellePhoto')) {
+                $photoPath = $request->file('nouvellePhoto')->store('photoprofil', 'public');
+
+                
+                    // Sinon, créez une nouvelle PhotoUser
+                    $photoUser = new PhotoUser(['urlphotoprofil' => $photoPath]);
+                    $user->photoUser()->save($photoUser);
+                
+            }
+
+
             $user->update();
             return redirect('/');
 
@@ -116,17 +144,22 @@ class UserController extends Controller
     }
 
     public function updateAccount(Request $request){
+        $user = Auth::user();
+        
         $request->validate([
-            'datenaissanceparticulier' => ['required', 'date', 'before:today']
+            'datenaissanceparticulier' => ['required', 'date', 'before:today'], 
+            'emailcompte' => [
+                'string', 
+                Rule::unique('compte')->ignore($user->emailcompte, 'emailcompte')]
         ]);
         if ($request->input("nomcompte") == "")  {
             
             return redirect('modif-account')->withInput();
-          } else {
+        }
+        
+        else {
 
             
-            
-            $user = Auth::user();
 
             if(!empty($request->input("adresse"))){
                 $ville = new Ville;
@@ -172,24 +205,24 @@ class UserController extends Controller
     public function save(Request $request)
     {
 
-        $request ->validate([
-            'email' => 'required|email',
-            'password' => ['required',
-            'min:12',
-            'max:50',
-            'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
-            'confirmed'],
-            'tel' => 'required|regex:/^0[0-9]{9}$/',
-            'pseudo' => 'required',
-            'adresse' => 'required',
-            // Add other validation rules as needed
+        $request->validate([
+            'password' => [
+                'required',
+                'string',
+                'min:12', // par exemple, au moins 8 caractères
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/'
+            ]
+           
         ],[
-            'password.min'=> 'Pour des raisons de sécurité, votre mot de passe doit contenir :min caractère',
-            'password.regex'=> 'Pour des raisons de sécurité, votre mot de passe doit contenir :regex caractère',
-            'tel.regex'=> 'Le numéro doit commencer par un 0 et avoir 10 chiffre au total',
-            'email'=> 'Cet adresse mail est deja utilisé'
-        ]
-    );
+            'password.regex' => 'Le mot de passe doit respecter les critères suivants :'
+            . "\n. Au moins 12 caractères."
+            . "\n. Au moins une lettre minuscule."
+            . "\n. Au moins une lettre majuscule."
+            . "\n. Au moins un chiffre."
+            . "\n. Au moins un caractère spécial parmi @$!%*?&.'",
+        ]);
+
+        
 
        
         if (User::where("emailcompte", "=", $request->input("email"))->count() > 0) {
@@ -200,6 +233,10 @@ class UserController extends Controller
             return redirect('create-account')
                 ->withInput()
                 ->withErrors(['tel' => 'Ce numéro de téléphone existe déjà. Veuillez en choisir un autre.']);
+        }elseif (User::where("motdepasse", "=", $request->input("password"))->count() > 0) {
+            return redirect('create-account')
+                ->withInput()
+                ->withErrors(['password' => 'Le mot de passe doit contenir \\n1 Majuscule \\n1 caractère spécial.']);
         }
          elseif (User::where("pseudocompte", "=", $request->input("pseudo"))->count() > 0) {
         return redirect('create-account')

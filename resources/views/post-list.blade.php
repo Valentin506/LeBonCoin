@@ -69,7 +69,7 @@
   <div>
 
  
-  <form id="searchForm" action="{{ route('search') }}" method="post">
+  <form id="searchForm" action="/posts" method="post">
     @csrf
       
     @if(!is_null($typeHebergements) && count($typeHebergements) > 0)

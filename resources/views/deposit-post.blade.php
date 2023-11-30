@@ -34,11 +34,64 @@
         </div>
         <div id="divCategoryDeposit">
             <div id="divInputCatgory">
-                <label for="checkboxCategory">Location de vacances</label></br>
-                <input type="radio"  name="locavac" id="vacance"  value="H"/>
-                        <label for="vacances">Locations de vacances</label></br>
-                <input type="radio" name="locavac"  id="saisonnières" value="F"/>
-                        <label for="saisonnières">Locations saisonnières</label>
+                <h3>Locations saisonnières</h3>
+
+                <label>Dites-nous en plus</label></br>
+                </br>
+
+                <div>
+                    <label>Type de résidence*</label></br>
+                    </br>
+                    <input type="radio"  name="typeres" id="secondaire"  value="S" />
+                    <label for="secondaire" >Secondaire</label>
+                    <input type="radio" name="typeres"  id="principale" value="P" />
+                    <label for="principale">Principale</label>
+                    <input type="radio" name="typeres"  id="nonres" value="NR"/>
+                    <label for="nonres">Non résidentielutre</label></br>
+                    </br>
+                </div>
+
+                <label>Type de logement</label></br>
+                <div>
+
+                    <form id="searchForm" method="post">
+                    @csrf
+                        
+                    
+                    <select name="type_hebergement" id="type_hebergement">
+                        <option value=""></option>
+
+                        @foreach($typeHebergements as $typeHebergement)
+                            <option value="{{ $typeHebergement->idhebergement }}">{{ $typeHebergement->libelletypehebergement }}</option>
+                        @endforeach
+                    </select>                    
+                    </form>
+
+                </div>
+
+                </br>
+                <label>Capacité*</label></br>
+                <div>
+                    <form id="searchForm" method="post">
+                        @csrf
+                            
+                        
+                        <select name="capacite_hebergement" id="capacite_hebergement">
+                            <option value=""></option>
+
+                            @foreach( $capacitelogements as $capacitelogement)
+                                <option value="{{ $capacitelogement->idcapacite }}">{{ $capacitelogement->idcapacite}}</option>
+                            @endforeach
+                        </select>                    
+                        </form>
+                </div>
+                
+
+                </br>
+                <label>Equipements</label></br>
+
+                </br>
+                <label>Services et accessibilité</label></br>
                 
             </div>
             

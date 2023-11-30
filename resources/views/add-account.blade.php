@@ -54,7 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <div>
     <label for="password">Mot de Passe</label>
         <input type="password" name="password"   required   minlength="12" maxlength="50">
-        
+        @if($errors->has('password'))
+            <p class="text-danger">{{ $errors->first('password') }}</p>
+        @endif
     </div>
 
 
@@ -77,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <p>
         <label for="adresse">Adresse</label>
-        <input type="adresse" name="adresse" id="adresse" value='{{ old("adresse") }}' required>
+        <input type="adresse" name="adresse" id="adresse"  required>
         <ul name="completion" id="completion"></ul> 
        
     </p>

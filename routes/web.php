@@ -17,6 +17,7 @@ use App\Models\User;
 use App\Models\Address;
 use App\Models\PhotoUser;
 use App\Models\TypeHebergement;
+use App\Models\CapaciteLogement;
 
 
 /*
@@ -39,6 +40,7 @@ Route::get("/profiles",[OwnerController::class, "owner" ]);
 Route::get("/profile/{id}",[OwnerController::class, "one" ]);
 Route::get("/view-profile",[SiteController::class, "photoRandom" ]);
 Route::get("/deposit-post",[DepositPostController::class, "post" ]);
+Route::get("/deposit-post/publish",[DepositPostController::class, 'publish' ]);
 Route::post("/posts",[PostController::class, "getPostsByCity" ]);
 
 
@@ -49,7 +51,7 @@ Route::get('/account/{idcompte}/modif-securite', [UserController::class, 'modifS
 Route::post('/modif-account/updateAccount', [UserController::class, 'updateAccount']);
 Route::post('/modif-profile/updateProfile', [UserController::class, 'updateProfile']);
 Route::post('/modif-account/updateSecurite', [UserController::class, 'updateSecurite']);
-Route::post('/search', [PostController::class, 'search'])->name('search');
+Route::post('/posts', [PostController::class, 'search'])->name('posts');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 

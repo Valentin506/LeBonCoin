@@ -23,8 +23,8 @@ class AuthController extends Controller
    public function doLogin(LoginRequest $request){
 
         $credentials = $request->validated();
-        dd(Auth::attempt($credentials));
-        //dd(Auth::login($credentials));
+     //    Auth::attempt($credentials);
+        Auth::login($credentials);
         
    }
 

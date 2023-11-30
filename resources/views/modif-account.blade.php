@@ -32,32 +32,32 @@
                         <label for="monsieur" >Monsieur</label>
                         <input type="radio" name="sexe"  id="madame" value="F" checked/>
                         <label for="madame">Madame</label>
-                        <input type="radio" name="sexe"  id="madame" value="A"/>
-                        <label for="madame">Autre</label>
+                        <input type="radio" name="sexe"  id="autre" value="A"/>
+                        <label for="autre">Autre</label>
                     
                     @elseif($user->sexe == 'H')
                         <input type="radio"  name="sexe" id="monsieur"  value="H" checked/>
                         <label for="monsieur">Monsieur</label>
                         <input type="radio" name="sexe"  id="madame" value="F"/>
                         <label for="madame">Madame</label>
-                        <input type="radio" name="sexe"  id="madame" value="A"/>
-                        <label for="madame">Autre</label>
+                        <input type="radio" name="sexe"  id="autre" value="A"/>
+                        <label for="autre">Autre</label>
 
                     @elseif($user->sexe == 'A')
                         <input type="radio"  name="sexe" id="monsieur"  value="H"/>
                         <label for="monsieur">Monsieur</label>
                         <input type="radio" name="sexe"  id="madame" value="F"/>
                         <label for="madame">Madame</label>
-                        <input type="radio" name="sexe"  id="madame" value="A" checked/>
-                        <label for="madame">Autre</label>
+                        <input type="radio" name="sexe"  id="autre" value="A" checked/>
+                        <label for="autre">Autre</label>
                     @else
 
                         <input type="radio"  name="sexe" id="monsieur"  value="H"/>
                         <label for="monsieur">Monsieur</label>
                         <input type="radio" name="sexe"  id="madame" value="F"/>
                         <label for="madame">Madame</label>
-                        <input type="radio" name="sexe"  id="madame" value="A"/>
-                        <label for="madame">Autre</label>
+                        <input type="radio" name="sexe"  id="autre" value="A"/>
+                        <label for="autre">Autre</label>
                     
                     @endif
                         
@@ -100,7 +100,6 @@
 
 <form action="{{ route('logout') }}" method="POST">
     @csrf
-    <button type="submit">Déconnexion</button>
 </form>
 
 <script>

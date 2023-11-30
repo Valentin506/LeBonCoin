@@ -12,6 +12,7 @@ use App\Models\Ville;
 use App\Models\Departement;
 use App\Models\Adresse;
 use App\Models\PhotoUser;
+use App\Models\CapaciteLogement;
 
 class PostController extends Controller
 {
@@ -62,18 +63,18 @@ class PostController extends Controller
     {
         $typeHebergements = Post::all();
         // Validate the form data as needed
-        $typeHebergementId = $request->input('type_hebergement');
+        $typeHebergementId = $request->get('type_hebergement');
         
         // Vérifiez si un type d'hébergement a été sélectionné
             // Récupérez les annonces liées au type d'hébergement sélectionné
-            // $annonces = Post::whereHas('typeHebergement', function ($query) use ($typeHebergementId) {
-            //     $query->where('idhebergement', $typeHebergementId);
-            // })->get();
+            $posts = Post::whereHas('typeHebergement', function ($query) use ($typeHebergementId) {
+                $query->where('idhebergement', $typeHebergementId);
+            })->get();
 
-            $searchResults = Post::where('idhebergement', $typeHebergementId)
-            ->get();
+            // $searchResults = Post::where('idhebergement', $typeHebergementId)
+            // ->get();
 
-            $posts = Post::all();
+            // $posts = Post::all();
             $photoPosts = PhotoPost::all();
             $typeHebergements = TypeHebergement::all();
     
@@ -83,7 +84,6 @@ class PostController extends Controller
         return view('post-list', compact('posts', 'photoPosts','typeHebergements'));
         
     }
-    
     
 
 
