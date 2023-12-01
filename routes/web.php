@@ -18,7 +18,7 @@ use App\Models\Address;
 use App\Models\PhotoUser;
 use App\Models\TypeHebergement;
 use App\Models\CapaciteLogement;
-
+use App\Models\Equipement;
 
 /*
 |--------------------------------------------------------------------------

@@ -17,6 +17,7 @@ use App\Models\Ville;
 use App\Models\Owner;
 use App\Models\Region;
 use App\Models\Departement;
+use App\Models\PhotoUser;
 
 
 class UserController extends Controller
@@ -124,12 +125,13 @@ class UserController extends Controller
             $user->pseudocompte = $request->input("pseudocompte"); 
 
             if ($request->hasFile('nouvellePhoto')) {
-                $photoPath = $request->file('nouvellePhoto')->store('photoprofil', 'public');
-
+                $photoPath = $request->file('nouvellePhoto')->store('images');
                 
-                    // Sinon, créez une nouvelle PhotoUser
-                    $photoUser = new PhotoUser(['urlphotoprofil' => $photoPath]);
-                    $user->photoUser()->save($photoUser);
+                $photoUser = new PhotoUser(['urlphotoprofil' => $photoPath]);
+                $photoUser->save();
+                
+                $user->idphotoprofil=$photoUser->idphotoprofil;
+                $user->save();
                 
             }
 

@@ -89,10 +89,37 @@
 
                 </br>
                 <label>Equipements</label></br>
+                <div>
+                    <form id="searchForm" method="post">
+                        @csrf
+                            
+                        
+                        <select name="equipement" id="equipement">
+                            <option value=""></option>
 
+                            @foreach( $equipements as $equipement)
+                                <option value="{{ $equipement->idequipement }}">{{ $equipement->libelleequipement}}</option>
+                            @endforeach
+                        </select>                    
+                        </form>
+                </div>
                 </br>
+
                 <label>Services et accessibilité</label></br>
-                
+                <div>
+                    <form id="searchForm" method="post">
+                        @csrf
+                            
+                        
+                        <select name="services_accessibilites" id="service_accessibilites">
+                            <option value=""></option>
+
+                            @foreach( $serviceaccessibilittes as $serviceaccessibilitte)
+                                <option  value="{{ $serviceaccessibilitte->idservice }}">{{ $serviceaccessibilitte->libelleservice}}</option>
+                            @endforeach
+                        </select>                    
+                        </form>
+                </div>
             </div>
             
 

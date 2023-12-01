@@ -12,9 +12,11 @@ class PhotoUser extends Model
     protected $primaryKey = "idphotoprofil";
     
     public $timestamps = false;
+    public $fillable = ["urlphotoprofil"];
 
     public function user(): BelongsTo{
         return $this->belongsTo(User::class, 'idphotoprofil', 'idcompte');
     }
+
 
 }
