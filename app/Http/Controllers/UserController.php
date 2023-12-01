@@ -125,9 +125,13 @@ class UserController extends Controller
             $user->pseudocompte = $request->input("pseudocompte"); 
 
             if ($request->hasFile('nouvellePhoto')) {
-                $photoPath = $request->file('nouvellePhoto')->store('images');
-                
-                $photoUser = new PhotoUser(['urlphotoprofil' => $photoPath]);
+                // $photoPath = $request->file('nouvellePhoto')->store('images');
+
+                // dd($request->file('nouvellePhoto'));
+                $photo = $request->file('nouvellePhoto')->getClientOriginalName();
+                $request->file('nouvellePhoto')->move(public_path('images'), $photo);
+                $photoUser = new PhotoUser(['urlphotoprofil' => $photo]);
+                // dd($photo);
                 $photoUser->save();
                 
                 $user->idphotoprofil=$photoUser->idphotoprofil;
@@ -285,6 +289,7 @@ else{
             $adresse = new Adresse;
             $adresse->timestamps = false;
             $adresse->rue = $request->input("rueclient");
+            $adresse->numero = $request->input("numero");
             $adresse->idville = $ville->idville;
             $adresse->save();
 

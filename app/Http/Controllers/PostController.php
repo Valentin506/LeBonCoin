@@ -35,9 +35,10 @@ class PostController extends Controller
     public function one($id){
         $post = Post::find($id);
         $photoPosts = PhotoPost::all();
-        $photoUsers = PhotoUser::all();
+        $photoUser = PhotoUser::find($id);
+        $owner = Owner::find($id);
         $users = User::all();
-        return view ("one-post", compact('post', 'photoPosts', 'photoUsers', 'users'));
+        return view ("one-post", compact('post', 'photoPosts', 'photoUser','owner', 'users'));
     }
 
     public function getPostsByCity(Request $request){
@@ -67,10 +68,12 @@ class PostController extends Controller
         
         // Vérifiez si un type d'hébergement a été sélectionné
             // Récupérez les annonces liées au type d'hébergement sélectionné
+            
             $posts = Post::whereHas('typeHebergement', function ($query) use ($typeHebergementId) {
                 $query->where('idhebergement', $typeHebergementId);
             })->get();
 
+           
             // $searchResults = Post::where('idhebergement', $typeHebergementId)
             // ->get();
 
@@ -84,13 +87,6 @@ class PostController extends Controller
         return view('post-list', compact('posts', 'photoPosts','typeHebergements'));
         
     }
-    
-
-
-
-
-    
-
     
 
 }

@@ -75,7 +75,7 @@
                     <input id="emailcompte"type="text" name="emailcompte" required value="{{$user->emailcompte}}"/>
                 </div>
                 <p for="adresse">Adresse</p>
-                <p required value="">{{$user->adresse->rue}}</p>
+                <p required value="">{{$user->adresse->numero}} {{$user->adresse->rue}}</p>
                 <input type="adresse" name="adresse" id="adresse" >
                 
                 <ul name="completion" id="completion"></ul> 

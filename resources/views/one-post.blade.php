@@ -18,41 +18,17 @@
         <div class="postContainer">
                 <div class="postDiv">
                         <div class="postTotalPhotoDiv">
-                                <div class="postPhotoDiv">
-                                        @foreach ($photoPosts as $photoPost)
+                                @foreach ($photoPosts as $photoPost)
+                                
                                         @if($photoPost->image && $photoPost->idannonce === $post->idannonce)
-                                        <img src="{{ $photoPost -> image}}" alt="Image de l'annonce">
-                                                @endif
-                                                @if (!$photoPost->image)
-                                                <p>Aucune image associée</p>
-                                                @endif
-                                        @endforeach
-        
-                                </div>
-        
-                                <div class="postPhotoDiv">
-                                        @foreach ($photoPosts as $photoPost)
-                                        @if($photoPost->image && $photoPost->idannonce === $post->idannonce)
-                                        <img src="{{ $photoPost -> image}}" alt="Image de l'annonce">
-                                                @endif
-                                                @if (!$photoPost->image)
-                                                <p>Aucune image associée</p>
-                                                @endif
-                                        @endforeach
-        
-                                </div>
-        
-                                <div class="postPhotoDiv">
-                                        @foreach ($photoPosts as $photoPost)
-                                        @if($photoPost->image && $photoPost->idannonce === $post->idannonce)
-                                        <img src="{{ $photoPost -> image}}" alt="Image de l'annonce">
-                                                @endif
-                                                @if (!$photoPost->image)
-                                                <p>Aucune image associée</p>
-                                                @endif
-                                        @endforeach
-        
-                                </div>
+                                        <div class="postPhotoDiv">
+                                                <img src="{{ $photoPost -> image}}" alt="Image de l'annonce">
+                                        </div>
+                                        @endif
+                                                
+                                
+                                @endforeach
+                                
         
                         </div>
                         
@@ -109,11 +85,14 @@
                         <div id="postOwnerDiv">
                         
                                 <div id="divPhoto">
-                                        @foreach($photoUsers as $photoUser)
+                                        
                                                 @if($photoUser->urlphotoprofil)
+                                                        <img src="{{$photoUser->urlphotoprofil}}" alt="photo utilisateurs">
+                                                @endif
+                                                @if(!$photoUser->urlphotoprofil)
                                                         <img src="" alt="photo utilisateurs">
                                                 @endif
-                                        @endforeach
+                                        
                                 </div>
                                 <div id="basicInfoDiv">
                                         

@@ -13,25 +13,42 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
 
-   public function login(){
-        return view('auth.login');
+  
+     public function showLoginForm(){
+      return view('/auth/login');
+     }
+
+   public function login(Request $request){
+
+    // dd($request->all());
+    $credentials = $request->validate([
+      'emailcompte' => ['required'],
+      'passwd' => ['required'],
+    ]);
+
+    unset($credentials["passwd"]);
+    $credentials["password"] = $request->passwd;
+
+
+    if (Auth::attempt($credentials)) {
+      $request->session()->regenerate();
+      return redirect()->intended('/');
+    }
+
+  return back()->withErrors([
+      'email' => 'Mauvais identifiant ou mot de passe.',
+  ]);
    }
    
    
 
   
-   public function doLogin(LoginRequest $request){
-
-        $credentials = $request->validated();
-     //    Auth::attempt($credentials);
-        Auth::login($credentials);
-        
-   }
+   
 
    public function logout()
     {
           Auth::logout();
 
-        return redirect('/');
+          return redirect()->route('login');
     }
 }

@@ -6,35 +6,21 @@
 
 @section('content')
 
-<div class="form-register">
+<div class="register">
     <h2>Bonjour !</h2>
     <p>Connectez-vous pour découvrir toutes nos fonctionnalités.</p>
 
-    <form action="{{ route('auth.login') }}" method="post" class="form">
+    <form method="POST" action="{{ route('login') }}" >
         @csrf
 
-        <div>
-            <label for="emailcompte">E-mail</label><br>
-            <input class="form-register" type="email" name="email" id="emailcompte" required>
-            @error("email")
-                {{ $message }}
-            @enderror
-        </div>
-
-        <div>
-            <label for="password">Mot de passe</label><br>
-            <input class="form-register" type="password" name="password" id="password" required>
-            @error("password")
-                {{ $message }}
-            @enderror
-        </div>
-
-        <div>
-            <button type="submit">Se connecter</button><br>
-        </div>
+        <input type="email" name="emailcompte"/>
+        <input type="password" name="passwd"/>
+        <input type="submit" value="connexion"/>
 
         <label>Envie de nous rejoindre ?</label>
         <a href="{{ url("/create-account") }}">Créez un compte</a>
+
+        {{ $errors }}
     </form>
 
 </div>

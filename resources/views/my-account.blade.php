@@ -14,7 +14,14 @@
         <div >
             
             <div id=boxUserName>
-                <img id="photoUser" src="{{$user->photoUser->urlphotoprofil}}" alt="Photo de profil">
+                @if (Str::startsWith($user->photoUser->urlphotoprofil, 'https'))
+                    <img id="photoUser" src="{{ $user->photoUser->urlphotoprofil }}" alt="photo utilisateurs">
+                @else
+                    
+                    <img id="photoUser" src="/images/{{ $user->photoUser->urlphotoprofil }}" alt="Photo de profil">
+                @endif
+
+                <!-- <img id="photoUser" src="/images/{{$user->photoUser->urlphotoprofil}}" alt="Photo de profil"> -->
                 <h3>{{$user-> pseudocompte}}</h3>
                 <a href="{{ url("/profile/".$user->idcompte) }}">Accéder à mon profil public</a>
             </div>

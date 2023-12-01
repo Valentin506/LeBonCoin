@@ -72,18 +72,14 @@
                 </br>
                 <label>Capacité*</label></br>
                 <div>
-                    <form id="searchForm" method="post">
-                        @csrf
-                            
-                        
                         <select name="capacite_hebergement" id="capacite_hebergement">
                             <option value=""></option>
-
-                            @foreach( $capacitelogements as $capacitelogement)
-                                <option value="{{ $capacitelogement->idcapacite }}">{{ $capacitelogement->idcapacite}}</option>
-                            @endforeach
+                                @foreach( $capacitelogements as $capacitelogement)
+                                    <option value="{{ $capacitelogement->idcapacite }}">{{ $capacitelogement->idcapacite}}</option>
+                                @endforeach
+                            </div>
                         </select>                    
-                        </form>
+                        
                 </div>
                 
 
@@ -96,14 +92,27 @@
                         
                         <select name="equipement" id="equipement">
                             <option value=""></option>
-
-                            @foreach( $equipements as $equipement)
-                                <option value="{{ $equipement->idequipement }}">{{ $equipement->libelleequipement}}</option>
-                            @endforeach
-                        </select>                    
+                                    @foreach( $equipements as $equipement)
+                                        <option value="{{ $equipement->idequipement }}">{{ $equipement->libelleequipement}}</option>
+                                    @endforeach
+                            </select>                    
                         </form>
                 </div>
                 </br>
+
+                <div class="menu_equipement">
+                        <select type="text" id="inputEquipement" class="dropselect" name="inputEquipement" placeholder="Ajouter un équipement"
+                        onclick="clickDropdown()"
+                        required>
+                        
+                            <div id="divEquipement" class="dropdown-content">
+                                @foreach( $equipements as $equipement)
+                                    <input type="checkbox" value="{{ $equipement->idequipement }}">{{ $equipement->libelleequipement}}</input>
+                                @endforeach
+                            </div>
+                        </select>
+                        
+                </div>
 
                 <label>Services et accessibilité</label></br>
                 <div>
@@ -115,11 +124,13 @@
                             <option value=""></option>
 
                             @foreach( $serviceaccessibilittes as $serviceaccessibilitte)
-                                <option  value="{{ $serviceaccessibilitte->idservice }}">{{ $serviceaccessibilitte->libelleservice}}</option>
+                                <option value="{{ $serviceaccessibilitte->idservice }}">{{ $serviceaccessibilitte->libelleservice}}</option>
                             @endforeach
                         </select>                    
                         </form>
                 </div>
+
+                
             </div>
             
 

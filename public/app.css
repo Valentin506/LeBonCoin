@@ -16,7 +16,6 @@
    display: none;
  }
 
- 
 
 /* Partie header Leboncoin */
 
@@ -101,7 +100,8 @@ input[type='image']{
    padding: 15px;
    display: block;
    border-radius: 14px;
-   width: 100%;
+   width: 70%;
+   margin-left: 15%;
 
    
 }
@@ -114,7 +114,11 @@ input[type='image']{
    width:45%;
    border-radius: 20px;
    align-items: center;
+   display: block;
    
+}
+form label{
+   margin-left: 15%;
 }
 .text-danger{
    color: red;

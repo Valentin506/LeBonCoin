@@ -24,7 +24,9 @@ class User extends Authenticatable
     public $timestamps = false;
     protected $primaryKey = "idcompte";
     
-
+    public function getAuthPassword() {
+        return $this->motdepasse;
+    }
 
     public function owner(){
         return $this->HasOne(Owner::class, "idcompte", "idproprietaire");

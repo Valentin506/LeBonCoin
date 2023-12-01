@@ -52,6 +52,8 @@ Route::post('/modif-account/updateAccount', [UserController::class, 'updateAccou
 Route::post('/modif-profile/updateProfile', [UserController::class, 'updateProfile']);
 Route::post('/modif-account/updateSecurite', [UserController::class, 'updateSecurite']);
 Route::post('/posts', [PostController::class, 'search'])->name('posts');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
@@ -77,8 +79,8 @@ Route::get('/create-account', [UserController::class, 'add']);
 Route::post('/create-account/save', [UserController::class, 'save']);
 
 
-Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
-Route::post('/login', [AuthController::class, 'doLogin']);
+// Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+// Route::post('/login', [AuthController::class, 'doLogin']);
 
 
 

@@ -17,7 +17,12 @@
 
                 <h3>Profil</h3>
                 <div id=boxModifEmail>
-                    <img id="photoUser" class="image-clickable" src="{{ $user->photoUser->urlphotoprofil }}" alt="photo utilisateurs">
+                    @if (Str::startsWith($user->photoUser->urlphotoprofil, 'https'))
+                         <img id="photoUser" class="image-clickable" src="{{ $user->photoUser->urlphotoprofil }}" alt="photo utilisateurs">
+                    @else
+                    
+                        <img id="photoUser" class="image-clickable" src="/images/{{ $user->photoUser->urlphotoprofil }}" alt="Photo de profil">
+                    @endif
                     <input type="file" name="nouvellePhoto" id="nouvellePhoto" style="display: none;">
                 </div>
                 <p for="pseudocompte">Nom d'utilisateur</p>
