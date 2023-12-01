@@ -87,7 +87,8 @@
     width: 692.89px;
     height: 320px;
     display: flex;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+    
 }
 .postPhotoDiv img{
     width: 692.89px;
@@ -102,6 +103,10 @@
     justify-content: space-between;
 }
 
+#postDescriptionDiv h3 p a:hover{
+    color: rgb(243,81,29);
+}
+
 .ownerPostDiv{
     display: flex;
     flex-direction: column;
@@ -111,8 +116,9 @@
     display: flex;
     width: 288px;
     height: 357px;
-    box-shadow: 0px 0px 3px black;
+    box-shadow: 0px 0px 6px grey;
     margin-bottom: 20px;
+    border-radius: 5px;
 
 }
 
@@ -120,22 +126,30 @@
     display: flex;
     width: 288px;
     height: 155px;
-    box-shadow: 0px 0px 3px black;
+    box-shadow: 0px 0px 6px grey;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 5px;
+}
+
+#postOwnerDiv div a img{
+    height: 16px;
+    width: 16px;
 }
 
 
-#divPhoto{
+#divPhotoOwner{
  
     border-image: none;
     border-radius: 50% 50% 50% 50%;
     border-style: hidden;
-    height: 104px;
-    width: 104px;
+    height: 64px;
+    width: 64px;
     overflow: hidden;
 
 }
 
-#divPhoto img{
+#divPhotoOwner img{
     width: 100%;
     height: 100%;
 }
@@ -230,17 +244,29 @@
 }
 
 /* slider style */
-.slick-custom-arrow slick-prev{
-    padding: 10px;
+.postPhotoButton{
+    display: flex;
+    justify-content: space-between;
+}
+
+.postPhoto button{
+    padding: 15px;
     border-radius: 50% 50% 50% 50%;
+    display: flex;
+    border: none;
     
 }
-
-.slick-custom-arrow slick-next{
-    padding: 10px;
-    border-radius: 50% 50% 50% 50%;
+.postPhoto button:hover{
+    background-color: rgba(163, 163, 163, 0.3);
+    font-weight: bold;
+}
+.prevArrow{
+    display: flex;
 }
 
+.nextArrow{
+    display: flex;
+}
 
 /* autocomplete address */
 

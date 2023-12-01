@@ -10,28 +10,31 @@
 
 
 @section('content')
-<body>
-        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        
-        
+<body>        
         <div class="postContainer">
                 <div class="postDiv">
-                        <div class="postTotalPhotoDiv">
-                                @foreach ($photoPosts as $photoPost)
-                                
+                        <!-- image description with slider -->
+                        <div class="postPhoto">
+                                <div class="postPhotoButton">
+                                        <button class="prevArrow"><</button>
+                                        <button class="nextArrow">></button>
+
+                                </div>
+                                <div class="postTotalPhotoDiv">
+                                        @foreach ($photoPosts as $photoPost)
                                         @if($photoPost->image && $photoPost->idannonce === $post->idannonce)
                                         <div class="postPhotoDiv">
                                                 <img src="{{ $photoPost -> image}}" alt="Image de l'annonce">
                                         </div>
                                         @endif
-                                                
-                                
-                                @endforeach
-                                
-        
+                                        @endforeach
+                                        
+                
+                                </div>
+
                         </div>
                         
+                        <!-- description div for post description -->
                         <div id="postDescriptionDiv">
                                 <ul class="elementsDescription">
                                         <h2>{{ $post -> titreannonce }}</h2>
@@ -72,48 +75,56 @@
                                         </div>
                                 </div>
                                 
+                                <!-- to return to locations page -->
                                 <h3><p><a href="{{ url("/posts") }}">Retour vers les locations saisonières</a></p></h3>
                         </div>
                 
                 </div>
                 
+                <!-- div about owner -->
                 <div class="ownerPostDiv">
+                        <!-- date avail div -->
                         <div id="postDateDiv">
                                 <div></div>
                                 <div></div>
                         </div>
+                        <!-- photo and info owner div -->
                         <div id="postOwnerDiv">
-                        
-                                <div id="divPhoto">
-                                        
-                                                @if($photoUser->urlphotoprofil)
-                                                        <img src="{{$photoUser->urlphotoprofil}}" alt="photo utilisateurs">
-                                                @endif
-                                                @if(!$photoUser->urlphotoprofil)
-                                                        <img src="" alt="photo utilisateurs">
-                                                @endif
-                                        
+                                <!-- photo for each owner of the post -->
+                                <div id="divPhotoOwner">
+                                        <img src="{{$post->owner->user->photoUser->urlphotoprofil}}" alt="photo utilisateurs">
                                 </div>
+                                <!-- basic info owner -->
                                 <div id="basicInfoDiv">
-                                        
+                                        <!-- link owner with post -->
                                         <h3><a href="{{ url("/profile/".$post->idproprietaire) }}">{{ $post -> owner->user->pseudocompte}}</a></h3>
-                                        <span> </span>
+                                        <!-- total of owner's posts -->
+                                        @php $totalPosts = 0; @endphp
+                                        @foreach ($posts as $post)
+                                                @if($post->idproprietaire === $owner->idproprietaire)
+                                                        @php $totalPosts++; @endphp
+                                                @endif
+                                        @endforeach
+                                        <p>{{$totalPosts}} annonces</p>
+                                        <p>Note de x sur x</p>
                                 </div>
+                                <div><a href="{{ url("/profile/".$post->idproprietaire) }}"><img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="arrow direct to owner page"></a></div>
                 
                         </div>
         
-        </div>
+                </div>
         
-        
         </div>
+
+        <!-- slider -->
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
         <script type="text/javascript">
                 $('.postTotalPhotoDiv').slick({
                         slidesToShow: 1,
                         slidesToScroll: 1,
-                        prevArrow: '<button type="button" class="slick-custom-arrow slick-prev"> < </button>',
-                        nextArrow: '<button type="button" class="slick-custom-arrow slick-next"> > </button>'
+                        prevArrow: $(".prevArrow"),
+                        nextArrow: $(".nextArrow")
                 });
         </script>
 </body>

@@ -34,11 +34,12 @@ class PostController extends Controller
 
     public function one($id){
         $post = Post::find($id);
+        $posts = Post::all();
         $photoPosts = PhotoPost::all();
         $photoUser = PhotoUser::find($id);
         $owner = Owner::find($id);
-        $users = User::all();
-        return view ("one-post", compact('post', 'photoPosts', 'photoUser','owner', 'users'));
+        $user = User::find($id);
+        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user'));
     }
 
     public function getPostsByCity(Request $request){
