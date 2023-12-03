@@ -69,7 +69,7 @@
   <div>
 
  
-  <form id="searchForm" action="/posts" method="post">
+  <form id="searchForm" action="/posts/type" method="post">
     @csrf
       
     @if(!is_null($typeHebergements) && count($typeHebergements) > 0)

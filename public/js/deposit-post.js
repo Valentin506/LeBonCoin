@@ -7,6 +7,10 @@ function clickDropdown() {
     document.getElementById("divEquipement").classList.toggle("show");
 }
 
+function clickDropdown2() {
+    document.getElementById("divService").classList.toggle("show");
+}
+
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function(event) {
     if (!event.target.matches('.dropselect')) {
@@ -19,4 +23,9 @@ window.onclick = function(event) {
         }
       }
     }
+}
+
+function showDescriptionDeposit() {
+  var categoryDescriptionDeposit = document.getElementById("divDescriptionDeposit");
+  categoryDescriptionDeposit.style.visibility="visible";
 }

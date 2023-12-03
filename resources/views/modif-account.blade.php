@@ -14,20 +14,10 @@
             <h2>Paramètres</h2>
             
             <div id="basicUserInfoModif">
-<!-- 
-                <h3>Profil</h3>
-                <div id=boxModifEmail>
-                    <img id="photoUser" src="{{$user->photoUser->urlphotoprofil}}" alt="photo utilisateurs" >
-
-                </div> -->
-
-
-
 
                 <h3>Informations sur le compte</h3>
                 <div id="radioButtonGenre">
                     @if($user->sexe =='F')
-
                         <input type="radio"  name="sexe" id="monsieur"  value="H" />
                         <label for="monsieur" >Monsieur</label>
                         <input type="radio" name="sexe"  id="madame" value="F" checked/>

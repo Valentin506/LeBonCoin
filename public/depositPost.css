@@ -136,4 +136,11 @@ input[type=checkbox]{
 }
 
 /* Show the dropdown menu*/
-.show {visibility:visible;}
+.show {
+    visibility:visible;
+    display: block;
+}
+
+.categoryDescriptionDeposit {
+    visibility: false;
+}

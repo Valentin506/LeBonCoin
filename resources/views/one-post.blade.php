@@ -74,7 +74,8 @@
                                                 <span>{{ $post->typeHebergement->libelletypehebergement}}</span>
                                         </div>
                                 </div>
-                                
+                                <!-- bouton pour partager -->
+                                <button id="copyButton">Partager l'annonce</button>
                                 <!-- to return to locations page -->
                                 <h3><p><a href="{{ url("/posts") }}">Retour vers les locations saisonières</a></p></h3>
                         </div>
@@ -106,6 +107,7 @@
                                                 @endif
                                         @endforeach
                                         <p>{{$totalPosts}} annonces</p>
+<!--  -->
                                         <p>Note de x sur x</p>
                                 </div>
                                 <div><a href="{{ url("/profile/".$post->idproprietaire) }}"><img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="arrow direct to owner page"></a></div>
@@ -127,6 +129,31 @@
                         nextArrow: $(".nextArrow")
                 });
         </script>
+       
+
+       <script>
+        document.getElementById('copyButton').addEventListener('click', function() {
+            // Récupérer le lien du site
+            var currentURL = window.location.href;
+
+            // Créer un élément temporaire (input) pour y placer le lien
+            var tempInput = document.createElement('input');
+            tempInput.value = currentURL;
+            document.body.appendChild(tempInput);
+
+            // Sélectionner le texte dans l'élément temporaire
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); /* For mobile devices */
+
+            // Copier le texte dans le presse-papiers
+            document.execCommand('copy');
+
+            // Retirer l'élément temporaire
+            document.body.removeChild(tempInput);
+
+            alert('Lien copié dans le presse-papiers : ' + currentURL);
+        });
+    </script>
 </body>
 
 
