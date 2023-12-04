@@ -78,6 +78,10 @@ class DepositPostController extends Controller
                 $post -> description = $request->input("description");
                 $post -> paiementenligne = $request->input("typeres");
                 
+                if ($post -> paiementenligne = $request->input("typeres") == "S")
+                    $post -> paiementenligne = true;
+                else
+                    $post -> paiementenligne = false;
 
 
                 $ville = new Ville;
@@ -103,6 +107,7 @@ class DepositPostController extends Controller
                 
                 $post->save();
 
+                
                 
 
 

@@ -77,15 +77,7 @@
                                 <!-- Bouton de partage Instagram -->
                                 <a href="#" onclick="shareOnInstagram()">Partager sur Instagram</a>
 
-                                <script>
-                                function shareOnInstagram() {
-                                        // Remplacez les valeurs avec celles de votre annonce
-                                        var annonceImageURL = window.location.href;;
-
-                                        // Ouvre la fenêtre Instagram prête à publier
-                                        window.open('https://www.instagram.com/create?image=' + encodeURIComponent(annonceImageURL), '_blank');
-                                }
-                                </script>
+                                
                                 <!-- bouton pour partager -->
                                 <button id="copyButton">Partager l'annonce</button>
                                 <!-- to return to locations page -->
@@ -160,6 +152,15 @@
             alert('Lien copié dans le presse-papiers : ' + currentURL);
         });
     </script>
+
+        <script>        
+        function shareOnInstagram() {
+        // Remplacez les valeurs avec celles de votre annonce
+        var annonceImageURL = window.location.href;;
+        // Ouvre la fenêtre Instagram prête à publier
+        window.open('https://www.instagram.com/create?image=' + encodeURIComponent(annonceImageURL), '_blank');
+        }
+        </script>
 </body>
 
 

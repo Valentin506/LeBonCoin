@@ -14,6 +14,20 @@ function clickDropdown() {
    document.getElementById("divDestination").classList.toggle("show");
  }
 
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+   if (!event.target.matches('.dropinput')) {
+     var dropdowns = document.getElementsByClassName("dropdown-content");
+     var i;
+     for (i = 0; i < dropdowns.length; i++) {
+       var openDropdown = dropdowns[i];
+       if (openDropdown.classList.contains('show')) {
+         openDropdown.classList.remove('show');
+       }
+     }
+   }
+ }
+
  // autocomplete destination
 //  function autocompleteDestination(){
 //    $(function () {
@@ -45,14 +59,14 @@ function autocompleteDestination(){
                   if (!uniquePostalCodes.has(feature.properties.postcode)){
                      let option = document.createElement("li")
                      completionSelect.appendChild(option)
-                     option.innerHTML = feature.properties.postcode + '-' + feature.properties.city;
+                     option.innerHTML = '('+feature.properties.postcode + ') ' + feature.properties.city;
                      option.addEventListener("click", e => {
                        formInput.querySelector("#postalcode").value = feature.properties.citycode;
                        formInput.querySelector("#city").value =  feature.properties.city;
                      //   formInput.querySelector("#department").value =  feature.properties.postcode;
                      //   formInput.querySelector("#countries").value = "France";
                        completionSelect.querySelectorAll("li").forEach(option => option.remove())
-                       adresseInput.value = feature.properties.postcode + '-' + feature.properties.city;
+                       adresseInput.value = '('+feature.properties.postcode + ') ' + feature.properties.city;
                      });
                      uniquePostalCodes.add(feature.properties.postcode);
                   }

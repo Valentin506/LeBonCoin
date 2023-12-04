@@ -41,9 +41,22 @@
     <select name="" id=""></select> 
     <input name="postalcode" id="postalcode" type="hidden"/>
     <input name="city" id="city" type="hidden"/>
-    <input name="department" id="department" type="hidden" />
-    <input name="countries" id="countries" type="hidden"/>
+    <!-- <input name="department" id="department" type="hidden" /> -->
+    <!-- <input name="countries" id="countries" type="hidden"/> -->
     
+
+
+    @if(!is_null($typeHebergements) && count($typeHebergements) > 0)
+    <select name="type_hebergement" id="type_hebergement">
+        <option value=""></option>
+
+        @foreach($typeHebergements as $typeHebergement)
+            <option value="{{ $typeHebergement->idhebergement }}">{{ $typeHebergement->libelletypehebergement }}</option>
+        @endforeach
+    </select>
+@else
+    <p>No accommodation types available</p>
+@endif
      
 </form>
   <div>
