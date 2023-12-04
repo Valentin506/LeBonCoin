@@ -48,10 +48,16 @@ class PostController extends Controller
             'city' => 'required', // Adjust validation rules as needed
         ]);
         $nomville=$request->get('city');
-        
+        $typeHebergementId = $request->get('type_hebergement');
         $posts = Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville){
             $query->where('nomville', $nomville);
+        })->whereHas('typeHebergement', function ($query) use ($typeHebergementId) {
+            $query->where('idhebergement', $typeHebergementId);
         })->get();
+
+        // $typehebergements = Post::whereHas('typeHebergement', function ($query) use ($typeHebergementId) {
+        //     $query->where('idhebergement', $typeHebergementId);
+        // })->get();
 
         $photoPosts = PhotoPost::all();
         $typeHebergements = TypeHebergement::all();
@@ -61,34 +67,34 @@ class PostController extends Controller
     }
 
 
-    public function search(Request $request)
-    {
-        $annonces = Post::orderBy('idadresse')->orderBy('idhebergement')->get();
-        $typeHebergements = Post::all();
-        // Validate the form data as needed
-        $typeHebergementId = $request->get('type_hebergement');
+    // public function search(Request $request)
+    // {
+    //     $annonces = Post::orderBy('idadresse')->orderBy('idhebergement')->get();
+    //     $typeHebergements = Post::all();
+    //     // Validate the form data as needed
+    //     $typeHebergementId = $request->get('type_hebergement');
         
-        // Vérifiez si un type d'hébergement a été sélectionné
-            // Récupérez les annonces liées au type d'hébergement sélectionné
+    //     // Vérifiez si un type d'hébergement a été sélectionné
+    //         // Récupérez les annonces liées au type d'hébergement sélectionné
             
-            $posts = Post::whereHas('typeHebergement', function ($query) use ($typeHebergementId) {
-                $query->where('idhebergement', $typeHebergementId);
-            })->get();
+    //         $posts = Post::whereHas('typeHebergement', function ($query) use ($typeHebergementId) {
+    //             $query->where('idhebergement', $typeHebergementId);
+    //         })->get();
 
            
-            // $searchResults = Post::where('idhebergement', $typeHebergementId)
-            // ->get();
+    //         // $searchResults = Post::where('idhebergement', $typeHebergementId)
+    //         // ->get();
 
-            // $posts = Post::all();
-            $photoPosts = PhotoPost::all();
-            $typeHebergements = TypeHebergement::all();
+    //         // $posts = Post::all();
+    //         $photoPosts = PhotoPost::all();
+    //         $typeHebergements = TypeHebergement::all();
     
             
-        // Vous pouvez maintenant utiliser $annonces comme vous le souhaitez
-        // par exemple, le retourner à une vue pour l'affichage
-        return view('post-list', compact('posts', 'photoPosts','typeHebergements'));
+    //     // Vous pouvez maintenant utiliser $annonces comme vous le souhaitez
+    //     // par exemple, le retourner à une vue pour l'affichage
+    //     return view('post-list', compact('posts', 'photoPosts','typeHebergements'));
         
-    }
+    // }
     
 
 }

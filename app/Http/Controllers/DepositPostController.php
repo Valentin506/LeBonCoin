@@ -11,6 +11,9 @@ use App\Models\ServiceAccessibilite;
 use App\Models\User;
 use App\Models\Ville;
 use App\Models\Adresse;
+use App\Models\Owner;
+use Illuminate\Support\Facades\Auth;
+
 
 class DepositPostController extends Controller
 {
@@ -23,14 +26,22 @@ class DepositPostController extends Controller
         $typeHebergements = Post::all();
         // Validate the form data as needed
         $typeHebergementId = $request->input('type_hebergement');
+
         
        
         
+    }
+
+    public function one($id){
+        return view ("my-account", ['user'=>User::find($id)]);
     }
     
     public function save(Request $request)
     {
         $typeHebergements = Post::all();
+        $user = Auth::user();
+        
+       
         
 
         
@@ -67,17 +78,24 @@ class DepositPostController extends Controller
         
     //else{
                 
+               
                 $post = new Post;
                 $post -> titreannonce = $request->input("title");
                 $idhebergement = $request->input("type_hebergement");
                 $post -> idhebergement = $idhebergement;
-                $idproprietaire = 1; //$request->input("type_hebergement");
+
+                $owner = Owner::where('idcompte', $user -> idcompte)->first();
+
+                if ($owner === null)
+                    $owner = new Owner;
+
+                $idproprietaire = $owner -> idcompte; 
                 $post -> idproprietaire = $idproprietaire;
                 $idcapacite = $request->input("capacite_hebergement");
                 $post -> idcapacite = $idcapacite;
                 $post -> description = $request->input("description");
                 $post -> paiementenligne = $request->input("typeres");
-                
+
                 if ($post -> paiementenligne = $request->input("typeres") == "S")
                     $post -> paiementenligne = true;
                 else

@@ -28,7 +28,7 @@
     onclick="clickDropdown()"
     onkeyup="autocompleteDestination()"
     autocomplete="off"
-    required>
+    required >
     <div id="divDestination" class="dropdown-content">
       <div id="divResult">
         <ul name="completion" id="completion"></ul> 
@@ -112,6 +112,7 @@
 
 <div class="mapContainer">
   <div id="divPost">
+
     <!-- <h2>Posts</h2> -->
     <ul>
       @foreach ($posts as $post)
@@ -128,8 +129,8 @@
             <p>Aucune image associée</p>
           @endif
         </div>
-
-        <div>
+        
+        <div >
           <li id="postTitle"><h3><a href="{{ url("/post/".$post->idannonce) }}">{{ $post-> titreannonce}}</a></h3></li>
           <li>{{ $post -> idcapacite}} pers. • {{ $post -> typeHebergement ->libelletypehebergement }}</li>
           @if($post->paiementenligne)
@@ -138,6 +139,9 @@
               Paiement en ligne pas disponible
           @endif
           
+        </div>
+        <div clas="favoris">
+          <img width="20" height="20" src="https://img.icons8.com/ios/20/like--v1.png" alt="like--v1" id="favoris"/>
         </div>
       </div>
       @endforeach

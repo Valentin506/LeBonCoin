@@ -268,5 +268,15 @@
     display: flex;
 }
 
+
+#favoris{
+    display: flex;
+    padding-left: 15px;
+    margin-left: 20px;
+}
+.favoris img{
+    
+}
+
 /* autocomplete address */
 

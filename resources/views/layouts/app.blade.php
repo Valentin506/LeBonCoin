@@ -24,7 +24,14 @@
                     <nav id="headerFunctionalities">
                         <a href="{{url("/")}}"><img class="logo" src="https://www.leboncoin.fr/logos/leboncoin.svg"></a>
                         
-                        <button id="buttonPostDeposit" type="button"><a href="{{ url("/deposit-post") }}">+ Déposer une annonce</a></button>
+                        <div class="buttonAdd">
+                            @if (Auth::check())
+                                <button id="buttonPostDeposit" type="button"><a href="{{ url("/deposit-post") }}">+ Déposer une annonce</a></button>
+                            @else
+                                <button id="buttonPostDeposit" type="button"><a href="{{ url("/login") }}">+ Déposer une annonce</a></button>
+                            @endif
+                            
+                        </div>
             
                         <input type="text" id="search" placeholder="Rechercher sur leboncoin" />
                         <i class="fa fa-search" aria-hidden="true"></i>

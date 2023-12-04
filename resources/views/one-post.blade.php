@@ -74,10 +74,8 @@
                                                 <span>{{ $post->typeHebergement->libelletypehebergement}}</span>
                                         </div>
                                 </div>
-                                <!-- Bouton de partage Instagram -->
-                                <a href="#" onclick="shareOnInstagram()">Partager sur Instagram</a>
-
-                                
+                                <!-- Bouton de partage Facebook -->
+                                <button onclick="shareOnFacebook()">Partager sur Facebook</button>
                                 <!-- bouton pour partager -->
                                 <button id="copyButton">Partager l'annonce</button>
                                 <!-- to return to locations page -->
@@ -151,16 +149,28 @@
 
             alert('Lien copié dans le presse-papiers : ' + currentURL);
         });
-    </script>
-
-        <script>        
-        function shareOnInstagram() {
-        // Remplacez les valeurs avec celles de votre annonce
-        var annonceImageURL = window.location.href;;
-        // Ouvre la fenêtre Instagram prête à publier
-        window.open('https://www.instagram.com/create?image=' + encodeURIComponent(annonceImageURL), '_blank');
-        }
         </script>
+
+        <script>
+                function shareOnFacebook() {
+                // Remplacez les valeurs avec celles de votre annonce
+                var annonceTitre = {{$post->titreannonce}};
+                var annonceDescription = {{$post->description}};
+                var annonceImageURL = {{$photoPost->image}};
+                var annonceURL =  window.location.href;
+
+                // Utilisez l'API Facebook pour partager
+                FB.ui({
+                        method: 'share',
+                        href: annonceURL,
+                        quote: annonceTitre + ' - ' + annonceDescription,
+                        picture: annonceImageURL
+                }, function(response){});
+                }
+        </script>
+
+        <!-- Chargez le SDK Facebook -->
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0&appId=VOTRE_APP_ID&autoLogAppEvents=1" nonce="v8R9DuoI"></script>
 </body>
 
 
