@@ -66,19 +66,17 @@ class DepositPostController extends Controller
         
         
     //else{
-
+                
                 $post = new Post;
-                $post -> titreannonce = $request -> input("title"); 
+                $post -> titreannonce = $request->input("title");
                 $idhebergement = $request->input("type_hebergement");
                 $post -> idhebergement = $idhebergement;
                 $idproprietaire = 1; //$request->input("type_hebergement");
                 $post -> idproprietaire = $idproprietaire;
                 $idcapacite = $request->input("capacite_hebergement");
                 $post -> idcapacite = $idcapacite;
-                $idcapacite = $request->input("capacite_hebergement");
-                $post -> idcapacite = $idcapacite;
-                $post -> description = $request->input("add_description");
-                $post -> paiementenligne = $request->input("mode_paiement");
+                $post -> description = $request->input("description");
+                $post -> paiementenligne = $request->input("typeres");
                 
 
 
@@ -96,8 +94,11 @@ class DepositPostController extends Controller
                 $adresse->rue = $request->input("rueclient");
                 $adresse->numero = (int)$request->input("numero");
                 $adresse->idville = $ville->idville;
-                $post -> idadresse = $adresse;
+
                 $adresse->save();
+
+                $post -> idadresse = $adresse -> idadresse;
+                
                 
                 
                 $post->save();

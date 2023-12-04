@@ -32,6 +32,7 @@ function autocompleteDestination(){
    const formInput = document.querySelector("#divFormAddress")
    const adresseInput = document.querySelector("#inputDestination")
    const completionSelect = document.querySelector("#completion")
+   const uniquePostalCodes = new Set(); // create a set to store unique postal codes
 
    adresseInput.addEventListener("keyup", event => {
 
@@ -41,18 +42,21 @@ function autocompleteDestination(){
             .then(data => {
                completionSelect.querySelectorAll("li").forEach(option => option.remove())
                data.features.forEach( feature =>  {
-                  let option = document.createElement("li")
-                  completionSelect.appendChild(option)
-                  option.innerHTML = feature.properties.label
-                  option.addEventListener("click", e => {
-                    formInput.querySelector("#postalcode").value = feature.properties.citycode;
-                    formInput.querySelector("#city").value =  feature.properties.city;
-                    formInput.querySelector("#department").value =  feature.properties.postcode;
-                    formInput.querySelector("#countries").value = "France";
-                    completionSelect.querySelectorAll("li").forEach(option => option.remove())
-                    adresseInput.value = feature.properties.label
+                  if (!uniquePostalCodes.has(feature.properties.postcode)){
+                     let option = document.createElement("li")
+                     completionSelect.appendChild(option)
+                     option.innerHTML = feature.properties.postcode + '-' + feature.properties.city;
+                     option.addEventListener("click", e => {
+                       formInput.querySelector("#postalcode").value = feature.properties.citycode;
+                       formInput.querySelector("#city").value =  feature.properties.city;
+                     //   formInput.querySelector("#department").value =  feature.properties.postcode;
+                     //   formInput.querySelector("#countries").value = "France";
+                       completionSelect.querySelectorAll("li").forEach(option => option.remove())
+                       adresseInput.value = feature.properties.postcode + '-' + feature.properties.city;
+                     });
+                     uniquePostalCodes.add(feature.properties.postcode);
+                  }
 
-                  })
                })
          })
       }

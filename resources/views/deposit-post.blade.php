@@ -32,27 +32,16 @@
             <h3>Commeçons par l'essentiel !</h3>
             <label for="inputTitlePost">Quel est le titre de l'annonce ? *</label>
             <div id="divTitlePost">
-                <input type="text" id="title" required></input>
+                <input type="text" id="title" name="title" required></input>
                 <button type="input" onclick="showCategoryDeposit()">Continuer</button>
             </div>
             <div id="divCategoryDeposit">
                 <div id="divInputCatgory">
-                    <h3>Locations saisonnières</h3>
+                    <h3>Dites-nous en plus</h3>
 
-                    <label>Dites-nous en plus</label></br>
+                    
                     </br>
 
-                    <div>
-                        <label>Type de résidence*</label></br>
-                        </br>
-                        <input type="radio"  name="typeres" id="secondaire"  value="S" />
-                        <label for="secondaire" >Secondaire</label>
-                        <input type="radio" name="typeres"  id="principale" value="P" />
-                        <label for="principale">Principale</label>
-                        <input type="radio" name="typeres"  id="nonres" value="NR"/>
-                        <label for="nonres">Non résidentielutre</label></br>
-                        </br>
-                    </div>
 
                     <label>Type de logement</label></br>
                     <div>
@@ -147,7 +136,7 @@
 
                 <label>Description</label></br>
 
-                <input type="text"  id="add_description"></input>
+                <input type="text"  id="add_description" name="description"></input>
 
                 
                 </br>

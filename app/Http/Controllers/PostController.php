@@ -63,6 +63,7 @@ class PostController extends Controller
 
     public function search(Request $request)
     {
+        $annonces = Post::orderBy('idadresse')->orderBy('idhebergement')->get();
         $typeHebergements = Post::all();
         // Validate the form data as needed
         $typeHebergementId = $request->get('type_hebergement');

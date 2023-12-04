@@ -27,6 +27,7 @@
     <input type="text" id="inputDestination" class="dropinput" name="inputDestination" placeholder="Ajouter une destination"
     onclick="clickDropdown()"
     onkeyup="autocompleteDestination()"
+    autocomplete="off"
     required>
     <div id="divDestination" class="dropdown-content">
       <div id="divResult">
