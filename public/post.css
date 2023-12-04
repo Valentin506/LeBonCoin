@@ -269,14 +269,26 @@
 }
 
 
-#favoris{
+
+
+
+.favoris {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
     display: flex;
     padding-left: 15px;
     margin-left: 20px;
-}
-.favoris img{
     
 }
 
+.favoris img {
+    transition: box-shadow 0.3s ease; /* Ajoutez une transition pour rendre l'effet plus fluide */
+}
+
+.favoris:hover img {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
 /* autocomplete address */
 

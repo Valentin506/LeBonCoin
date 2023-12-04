@@ -10,7 +10,8 @@
 
 
 @section('content')
-<body>        
+<body> 
+        
         <div class="postContainer">
                 <div class="postDiv">
                         <!-- image description with slider -->

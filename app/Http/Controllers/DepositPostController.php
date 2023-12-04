@@ -45,10 +45,12 @@ class DepositPostController extends Controller
         
 
         
-    //if (titre == null) {
+    if (titre == null) {
+        return redirect('title')
+            ->withInput()
+            ->withErrors(['title' => 'Veuillez renseignez ce champ']);
 
-
-
+        }
         
         //     if (User::where("emailcompte", "=", $request->input("email"))->count() > 0) {
         //         return redirect('create-account')
@@ -76,7 +78,7 @@ class DepositPostController extends Controller
 
         
         
-    //else{
+    else{
                 
                
                 $post = new Post;
@@ -87,10 +89,14 @@ class DepositPostController extends Controller
                 $owner = Owner::where('idcompte', $user -> idcompte)->first();
 
                 if ($owner === null)
+                {
                     $owner = new Owner;
+                    $owner -> idcompte = $user -> idcompte;
+                    $owner -> save();
+                }
 
-                $idproprietaire = $owner -> idcompte; 
-                $post -> idproprietaire = $idproprietaire;
+                
+                $post -> idproprietaire = $owner -> idproprietaire;
                 $idcapacite = $request->input("capacite_hebergement");
                 $post -> idcapacite = $idcapacite;
                 $post -> description = $request->input("description");
@@ -120,9 +126,6 @@ class DepositPostController extends Controller
                 $adresse->save();
 
                 $post -> idadresse = $adresse -> idadresse;
-                
-                
-                
                 $post->save();
 
                 

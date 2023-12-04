@@ -24,7 +24,7 @@ class Owner extends Model
     }
 
     public function user(): belongsTo{
-        return $this->belongsTo(User::class, 'idproprietaire','idcompte');
+        return $this->belongsTo(User::class, 'idcompte','idcompte');
     }
 
 

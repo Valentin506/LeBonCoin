@@ -11,6 +11,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepositPostController;
 use App\Http\Controllers\AddPostController; 
+use App\Http\Controllers\FavorisController; 
 
 use App\Models\Post;
 use App\Models\PhotoPost;
@@ -81,6 +82,9 @@ Route::get('/politique-confidentialite', function () {
 
 Route::get('/create-account', [UserController::class, 'add']);
 Route::post('/create-account/save', [UserController::class, 'save']);
+
+Route::get('/favoris', [FavorisController::class, 'fav']);
+Route::post('/favoris/save', [FavorisController::class, 'save']);
 
 
 // Route::get('/login', [AuthController::class, 'login'])->name('auth.login');

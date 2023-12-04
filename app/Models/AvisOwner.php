@@ -11,7 +11,7 @@ class AvisOwner extends Model
     protected $table = "avis";
     protected $primaryKey = "idavis";
     public $timestamps = false;
-    public function user(): belongsTo{
+    public function user(): BelongsTo{
         return $this->belongsTo(User::class, 'idproprietaire','idavis');
     }
     

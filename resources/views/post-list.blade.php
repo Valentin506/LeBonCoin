@@ -140,9 +140,14 @@
           @endif
           
         </div>
-        <div clas="favoris">
-          <img width="20" height="20" src="https://img.icons8.com/ios/20/like--v1.png" alt="like--v1" id="favoris"/>
-        </div>
+
+        <form action="{{url("/favoris/save") }}" method="post">
+          @csrf
+          <button type="submit" name="favoris" class="favoris">
+              <img src="https://img.icons8.com/ios/20/like--v1.png " alt="like--v1" width="20" height="20">
+          </button>
+        </form>
+    
       </div>
       @endforeach
     </ul>

@@ -37,11 +37,11 @@
                         <i class="fa fa-search" aria-hidden="true"></i>
                         
                         <div class="buttonMySearch">
-                            <input type="image" alt="Mes recherches" src="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/alarm-37.png"/>
+                        <input type="image" alt="Mes recherches" src="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/alarm-37.png"/>
                             <span>Mes recherches</span>
                         </div>
                         <div class="buttonFavorite">
-                            <input type="image" alt="Favoris" src="https://freeiconshop.com/wp-content/uploads/edd/heart-outline.png"/>
+                        <a href="{{url("/favorite")}}"><input type="image" alt="Favoris" src="https://freeiconshop.com/wp-content/uploads/edd/heart-outline.png"/>
                             <span>Favoris</span>
                         </div>
                         <div class="buttonMessages">
