@@ -100,14 +100,8 @@
                                         <!-- link owner with post -->
                                         <h3><a href="{{ url("/profile/".$post->idproprietaire) }}">{{ $post -> owner->user->pseudocompte}}</a></h3>
                                         <!-- total of owner's posts -->
-                                        @php $totalPosts = 0; @endphp
-                                        @foreach ($posts as $post)
-                                                @if($post->idproprietaire === $owner->idproprietaire)
-                                                        @php $totalPosts++; @endphp
-                                                @endif
-                                        @endforeach
-                                        <p>{{$totalPosts}} annonces</p>
-<!--  -->
+                                        
+                                        <!--  -->
                                         <p>Note de x sur x</p>
                                 </div>
                                 <div><a href="{{ url("/profile/".$post->idproprietaire) }}"><img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="arrow direct to owner page"></a></div>

@@ -55,7 +55,7 @@ class PostController extends Controller
 
         $photoPosts = PhotoPost::all();
         $typeHebergements = TypeHebergement::all();
-
+        
         
         return view('post-list', compact('posts', 'photoPosts', 'typeHebergements'));
     }

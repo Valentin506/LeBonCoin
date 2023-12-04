@@ -94,11 +94,11 @@ class DepositPostController extends Controller
                 $adresse = new Adresse;
                 $adresse->timestamps = false;
                 $adresse->rue = $request->input("rueclient");
-                $adresse->numero = $request->input("numero");
+                $adresse->numero = (int)$request->input("numero");
                 $adresse->idville = $ville->idville;
                 $post -> idadresse = $adresse;
                 $adresse->save();
-
+                
                 
                 $post->save();
 

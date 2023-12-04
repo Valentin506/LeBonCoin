@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
        
     </p>
     
-        <input type="submit" Value="S'inscrire">S'inscrire</input>
+        <input type="submit" Value="S'inscrire"></input>
    
 
     <input name="numero" id="numero" type="hidden"/>
