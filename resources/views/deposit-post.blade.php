@@ -46,7 +46,7 @@
                     </br>
 
 
-                    <label>Type de logement</label></br>
+                    <label>Type de logement*</label></br>
                     <div>
 
                         <form id="searchForm" method="post">
@@ -141,13 +141,13 @@
                 
                 </br>
 
-                <label>Description</label></br>
+                <label>Description*</label></br>
 
                 <input type="text"  id="add_description" name="description"></input>
 
                 
                 </br>
-                <label>Adresse</label></br>
+                <label>Adresse*</label></br>
     
                 <input type="adresse" name="adresse" id="adresse"  required>
                 <ul name="completion" id="completion"></ul> 
@@ -160,11 +160,11 @@
                 <input name="pays" id="pays" type="hidden"/>
 
 
-                </br>
+                
+                
+                <label>Prix par nuit*</label></br>
 
-                <label>Prix par nuit</label></br>
-
-                <input type="text"  id="add_prix" name="prix_par_nuit"></input>
+                <input type="number"  id="add_prix" name="prix_par_nuit"></input>
 
                 </br>
                 <label>Paiement en ligne</label></br>

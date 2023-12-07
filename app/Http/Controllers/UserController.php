@@ -18,6 +18,9 @@ use App\Models\Owner;
 use App\Models\Region;
 use App\Models\Departement;
 use App\Models\PhotoUser;
+use App\Models\Post;
+use App\Models\PhotoPost;
+
 
 
 class UserController extends Controller
@@ -68,6 +71,14 @@ class UserController extends Controller
     public function modifSecurite($id)
     {
         return view('modif-securite', ['user'=>User::find($id)]);
+    }
+
+    public function modifPost($id){
+        $user = User::find($id);
+        $posts = Post::all();
+        $owner = Owner::find($id);
+        $photoPosts = PhotoPost::all();
+        return view('modif-post', compact('user','posts','owner','photoPosts'));
     }
 
 

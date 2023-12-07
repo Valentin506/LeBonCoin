@@ -47,6 +47,8 @@ Route::get("/view-profile",[SiteController::class, "photoRandom" ]);
 Route::get("/deposit-post",[DepositPostController::class, "post" ]);
 Route::post("/deposit-post/save",[DepositPostController::class, 'save' ]);
 Route::post("/posts",[PostController::class, "getPostsByCity" ]);
+Route::get("/account/{idcompte}/my-posts",[UserController::class, "modifPost" ]);
+
 
 
 Route::get('/account/{idcompte}', [UserController::class, 'one']);
@@ -87,7 +89,8 @@ Route::get('/create-account', [UserController::class, 'add']);
 Route::post('/create-account/save', [UserController::class, 'save']);
 
 Route::get('/favoris', [FavorisController::class, 'fav']);
-Route::post('/favoris/save', [FavorisController::class, 'save']);
+Route::post('/favoris/{idpost}', [FavorisController::class, 'save']);
+// Route::post('/favoris/save', [FavorisController::class, 'save']);
 
 
 // Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
