@@ -148,12 +148,38 @@
           
         </div>
 
-        <form action="{{url("/favoris/save") }}" method="post">
+
+
+
+        <!-- Supposons que $post est une instance de App\Models\Post -->
+        <form action="{{ url("/favoris/".$post->idannonce."/save") }}" method="post">
+            @csrf
+          
+            @if (Auth::check() && Auth::user()->estDansLesFavoris($post->idannonce))
+                <button type="submit" name="favoris" class="favoris">
+                    <img src="https://img.icons8.com/windows/20/filled-heart.png" alt="favori" width="20" height="20">
+                </button>
+            @else
+                @if(Auth::check())
+                  <button type="submit" name="favoris" class="favoris">
+                      <img src="https://img.icons8.com/ios/20/like--v1.png" alt="like--v1" width="20" height="20">
+                  </button>
+                @else
+                <button type="button" name="favoris" class="favoris">
+                <a href="{{url("/login")}}"><img src="https://img.icons8.com/ios/20/like--v1.png" alt=""></a>
+                  </button>
+                    
+                @endif
+            @endif 
+         
+          
+        </form>
+        <!-- <form action="{{ url("/favoris/".$post->idannonce."/save") }}" method="post">
           @csrf
           <button type="submit" name="favoris" class="favoris">
               <img src="https://img.icons8.com/ios/20/like--v1.png " alt="like--v1" width="20" height="20">
           </button>
-        </form>
+        </form> -->
     
       </div>
       @endforeach
@@ -170,16 +196,7 @@
   </div>
 
     <button class="buttonSaveSearch" type="button">Sauvegarder la recherche</button>  
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const favorisButton = document.querySelector('.favoris');
-        
-        favorisButton.addEventListener('click', function() {
-            this.classList.add('clicked');
-            // Vous pouvez ajouter ici une logique pour changer l'image si nécessaire
-        });
-    });
-</script>
+   
     
     @endsection
     

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 
+
 class Post extends Model
 {
     use HasFactory;
@@ -63,8 +64,12 @@ class Post extends Model
             Favorite::class,
             'met_en_favoris',
             'idannonce',
-            'idcompte'
+            'idannonce'
         );
+    }
+
+    public function calendar(): hasMany{
+        return $this->hasMany(Calendar::class, 'idcalendrier');
     }
 
     

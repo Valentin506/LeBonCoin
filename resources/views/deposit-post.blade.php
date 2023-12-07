@@ -33,9 +33,10 @@
             <label for="inputTitlePost">Quel est le titre de l'annonce ? *</label>
             <div id="divTitlePost">
                 <input type="text" id="title" name="title" required></input>
-                    @error('title')
-                        <p class="text-danger">{{ $errors->first('password') }}</p>
-                    @enderror
+                @if($errors->has('title'))
+                    <p class="text-danger">{{ $errors->first('title') }}</p>
+                @endif
+                    
                 <button type="input" onclick="showCategoryDeposit()">Continuer</button>
             </div>
             <div id="divCategoryDeposit">
@@ -55,9 +56,9 @@
                         
                         <select name="type_hebergement" id="type_hebergement">
                             <option value=""></option>
-                            @error('type_hebergement')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
+                            @if($errors->has('title'))
+                                <p class="text-danger">{{ $errors->first('title') }}</p>
+                            @endif
 
                             @foreach($typeHebergements as $typeHebergement)
                                 <option value="{{ $typeHebergement->idhebergement }}">{{ $typeHebergement->libelletypehebergement }}</option>
@@ -83,21 +84,6 @@
 
                     </br>
 
-                    <!-- <label>Equipements</label></br>
-                    <div>
-                        <form id="searchForm" method="post">
-                            @csrf
-                                
-                            
-                            <select name="equipement" id="equipement">
-                                <option value=""></option>
-                                        @foreach( $equipements as $equipement)
-                                            <option value="{{ $equipement->idequipement }}">{{ $equipement->libelleequipement}}</option>
-                                        @endforeach
-                                </select>                    
-                            </form>
-                    </div> -->
-                    
                     </br>
 
                     <div class="menu_equipement">

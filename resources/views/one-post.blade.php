@@ -112,6 +112,7 @@
                                 </div>
                                 <!-- to return to locations page -->
                                 <h3><p><a href="{{ url("/posts") }}">Retour vers les locations saisonières</a></p></h3>
+
                         </div>
                 
                 </div>
@@ -119,11 +120,15 @@
                 <!-- div about owner -->
                 <div class="ownerPostDiv">
                         <!-- date avail div -->
+                        <form action="{{url("/reservation/save") }}" method="post" class="form" >
                         <div id="postDateDiv">
                                 <div>
                                         <p>Date de séjour</p>
-                                        <input type="date" >
-                                        <input type="date" >
+                                        <input type="date"  >
+                                        <input type="date"  >
+                                </div>
+                                <div>
+                                <input type="range" id="vol" name="vol" min="0" max="12">
                                 </div>
                                 <div>
                                 <p>A partir de </p>
@@ -150,6 +155,8 @@
                         </div>
         
                 </div>
+
+                </form>
         
         </div>
 

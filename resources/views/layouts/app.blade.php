@@ -31,23 +31,24 @@
                             @endif
                             
                         </div>
-            
                         <input type="text" id="search" placeholder="Rechercher sur leboncoin" />
                         <i class="fa fa-search" aria-hidden="true"></i>
-                        
-                        <div class="buttonMySearch">
+                        <div class="buttonMySearch">  
                         <input type="image" alt="Mes recherches" src="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/alarm-37.png"/>
                             <span>Mes recherches</span>
                         </div>
+
+
                         <div class="buttonFavorite">
                         <a href="{{url("/favoris")}}"><input type="image" alt="Favoris" src="https://freeiconshop.com/wp-content/uploads/edd/heart-outline.png"/>
                             <span>Favoris</span>
                         </div>
+
                         <div class="buttonMessages">
-                            
                             <input type="image" alt="Messages" src="https://cdn-icons-png.flaticon.com/512/685/685887.png"/>
                             <span>Messages</span>
                         </div>
+
                         <div class="buttonLogin">
 
                         @if (Auth::check())

@@ -20,6 +20,7 @@ use App\Models\Departement;
 use App\Models\PhotoUser;
 use App\Models\Post;
 use App\Models\PhotoPost;
+use App\Models\TypeHebergement;
 
 
 
@@ -76,9 +77,10 @@ class UserController extends Controller
     public function modifPost($id){
         $user = User::find($id);
         $posts = Post::all();
+        $post = Post::find($id);
         $owner = Owner::find($id);
         $photoPosts = PhotoPost::all();
-        return view('modif-post', compact('user','posts','owner','photoPosts'));
+        return view('modif-post', compact('user','posts','post','owner','photoPosts'));
     }
 
 
@@ -86,7 +88,41 @@ class UserController extends Controller
         return view("my-account", ['users' => User::all(), 
         'photoUsers' => PhotoUser::all(), 'owners'=>Owner::all()]);
     }
+    public function favoris()
+    {
+        // Assurez-vous que l'utilisateur est authentifié
+        if (Auth::check()) {
+            $user = Auth::user();
 
+            // Récupérez les favoris de l'utilisateur
+            $favorites = $user->favoris;
+
+            // Récupérez les posts associés aux favoris
+            $posts = $favorites->map(function ($favorite) {
+                return $favorite->post;
+            });
+
+            // Le reste de votre code reste inchangé
+            return view("favorite", [
+                'user' => $user,
+                'posts' => $posts,
+                'photoPosts' => PhotoPost::all(),
+                'owners' => Owner::all(),
+                'typeHebergements' => TypeHebergement::all(),
+                'cities' => Ville::all(),
+                'departments' => Departement::all(),
+                'users' => User::all(),
+                'favorites' => $favorites,
+            ]);
+        }
+
+        // Si l'utilisateur n'est pas authentifié, vous pouvez rediriger ou prendre une autre action
+        return redirect('/');
+    }
+
+
+
+    
 
     
 

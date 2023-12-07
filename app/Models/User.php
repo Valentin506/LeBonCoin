@@ -39,7 +39,18 @@ class User extends Authenticatable
     public function adresse(){
         return $this->hasOne(Adresse::class, "idadresse", "idadresse");
     }
+    public function favoris()
+    {
+        return $this->hasMany(Favorite::class, 'idcompte');
+    }
+    public function estDansLesFavoris($idannonce)
+    {
+        return $this->favoris()->where('met_en_favoris.idannonce', $idannonce)->exists();
+    }
 
+    public function posts() {
+        return $this->hasMany(Post::class);
+    }
 
 }
 

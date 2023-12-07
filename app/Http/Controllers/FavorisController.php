@@ -28,25 +28,26 @@ class FavorisController extends Controller
     public function fav()
     {
         
-        return view('favorite');
+        return view('/');
     }
     
-    public function save($idpost)
+    public function save($idannonce)
     {
         // Récupérez l'utilisateur authentifié
         $user = Auth::user();
+        $post = Post::find($idannonce);
 
-        // $existingFavorite = Favorite::where('idcompte', $user->idcompte)
-        //     ->where('idannonce', $idpost)
-        //     ->first();
+        $existingFavorite = Favorite::where('idcompte', $user->idcompte)
+            ->where('idannonce', $idannonce)
+            ->first();
 
-        // if (!$existingFavorite) {
+        if (!$existingFavorite) {
             // Si ce n'est pas déjà en favoris, ajoutez une nouvelle entrée
             $favorite = new Favorite();
             $favorite->idcompte = $user->idcompte;
             $favorite->idannonce = $post->idannonce;
             $favorite->save();
-        // }
+        }
 
         return redirect()->back()->with('success', 'Annonce ajoutée aux favoris avec succès');
     }

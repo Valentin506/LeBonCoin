@@ -88,8 +88,11 @@ Route::get('/politique-confidentialite', function () {
 Route::get('/create-account', [UserController::class, 'add']);
 Route::post('/create-account/save', [UserController::class, 'save']);
 
-Route::get('/favoris', [FavorisController::class, 'fav']);
-Route::post('/favoris/{idpost}', [FavorisController::class, 'save']);
+Route::get('/favoris', [UserController::class, 'favoris']);
+Route::post('/favoris/{idannonce}/save', [FavorisController::class, 'save']);
+
+Route::get('/reservation', [ReservationController::class, 'reserve']);              
+Route::post('/reservation/save', [ReservationController::class, 'save']);
 // Route::post('/favoris/save', [FavorisController::class, 'save']);
 
 

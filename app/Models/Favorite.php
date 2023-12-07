@@ -14,5 +14,11 @@ class Favorite extends Model
     public $timestamps = false;
     protected $primaryKey ="idannonce";
     // protected $primaryKey = ["idannonce", "idcompte"];
+
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class, 'idannonce');
+    }
     
 }

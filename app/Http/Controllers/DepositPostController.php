@@ -15,7 +15,7 @@ use App\Models\Owner;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Possess;
 use App\Models\Hold;
-
+use App\Models\Calendar;
 
 class DepositPostController extends Controller
 {
@@ -47,47 +47,28 @@ class DepositPostController extends Controller
         
        
         
-
+        // if (empty($request->input('title'))) {
+        //     // Champ "title" vide, ajout d'un message d'erreur à la session
+        //     session()->flash('error', 'Ce champ est obligatoire');
+        //     // Rediriger l'utilisateur vers le formulaire
+        //     return redirect('deposit-post');
+        // }
         
-    // if (Post::where("titreannonce", "=", $request -> input("title")) -> count() > 0 ) {
-    //     return redirect()->route('deposit-post')
-    //         ->withInput()
-    //         ->withErrors(['title' => 'Veuillez renseigner ce champ']);
+        // elseif (empty($request->input('type_hebergement'))) {
+        //     // Champ "title" vide, ajout d'un message d'erreur à la session
+        //     session()->flash('error', 'Ce champ est obligatoire');
+        //     // Rediriger l'utilisateur vers le formulaire
+        //     return redirect('deposit-post');
+        // }
+            
+   
+        // if (empty($request->input('type_hebergement'))) {
+        //     return redirect('deposit-post')
+        //         ->withInput()
+        //         ->withErrors(['title' => 'Champ obligatoire']);
+        // }
 
-    //     }
-    // elseif (Post::where("idhebergement", "=", $request -> input("type_hebergement")) == null) {
-    //     return redirect()->route('deposit-post')
-    //         ->withInput()
-    //         ->withErrors(['type_hebergement' => 'Veuillez renseigner ce champ']);
-    //     }
-        
-    //     //     if (User::where("emailcompte", "=", $request->input("email"))->count() > 0) {
-    //     //         return redirect('create-account')
-    //     //             ->withInput()
-    //     //             ->withErrors(['email' => 'L\'adresse e-mail existe déjà. Veuillez en choisir une autre.']);
-    //     //     } elseif (User::where("numtelcompte",     "=", $request->input("tel"))->count() > 0) {
-    //     //         return redirect('create-account')
-    //     //             ->withInput()
-    //     //             ->withErrors(['tel' => 'Ce numéro de téléphone existe déjà. Veuillez en choisir un autre.']);
-    //     //     }elseif (User::where("motdepasse", "=", $request->input("password"))->count() > 0) {
-    //     //         return redirect('create-account')
-    //     //             ->withInput()
-    //     //             ->withErrors(['password' => 'Le mot de passe doit contenir \\n1 Majuscule \\n1 caractère spécial.']);
-    //     //     }
-    //     //      elseif (User::where("pseudocompte", "=", $request->input("pseudo"))->count() > 0) {
-    //     //     return redirect('create-account')
-    //     //         ->withInput()
-    //     //         ->withErrors(['pseudo' => 'Ce pseudo existe déjà. Veuillez en choisir un autre.']);
-    //     // }
-        
-
-
-
-
-
-        
-        
-    // else{
+        // else{
                 
             //    Annonces
                 $post = new Post;
@@ -137,9 +118,9 @@ class DepositPostController extends Controller
                 $post -> idadresse = $adresse -> idadresse;
                 $post->save();
             
-            //dd($request->input("equipement2"));
+            
 
-                //detient equipements
+                //possede equipements
                 foreach ($request->input("equipement2") as $idequipement){
                     
                     $possess = new Possess;
@@ -160,20 +141,27 @@ class DepositPostController extends Controller
     
                     $hold->save();
                 }
-                
-                
 
+                //dd($request ->input("prix_par_nuit"));
+                //calendar
+                $calendar = new Calendar;
+                $request ->input("prix_par_nuit");
+                $calendar -> prixpardate = $request ->input("prix_par_nuit");
+                $calendar ->  idannonce = $post -> idannonce;
+                $calendar ->save();
+
+                $post->save();
              return redirect('/');
         
-    }
+        // }
 
     
 
    
+    }
     public function add()
     {
         return view('deposit-post');
     }
-    
 }
 
