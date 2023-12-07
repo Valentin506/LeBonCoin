@@ -38,11 +38,18 @@
         <button id="buttonValidate">Valider</button>
       </div>
     </div>
-    <select name="" id=""></select> 
+    <!-- <select name="" id=""></select>  -->
     <input name="postalcode" id="postalcode" type="hidden"/>
     <input name="city" id="city" type="hidden"/>
     <!-- <input name="department" id="department" type="hidden" /> -->
     <!-- <input name="countries" id="countries" type="hidden"/> -->
+
+    <!-- <form id="divFormRadius" method="post" action="/posts">
+      @csrf
+      <input type="range" id="inputDestination" class="dropinput" name="inputDestination" placeholder="Choisir un rayon"
+      onclick="clickDropdown()"
+      autocomplete="off"
+      required > -->
     
 
 
@@ -163,7 +170,16 @@
   </div>
 
     <button class="buttonSaveSearch" type="button">Sauvegarder la recherche</button>  
-
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const favorisButton = document.querySelector('.favoris');
+        
+        favorisButton.addEventListener('click', function() {
+            this.classList.add('clicked');
+            // Vous pouvez ajouter ici une logique pour changer l'image si nécessaire
+        });
+    });
+</script>
     
     @endsection
     

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Owner;
 use App\Models\User;
+use App\Models\Post;
+use App\Models\PhotoPost;
 
 class OwnerController extends Controller
 {
@@ -15,7 +17,11 @@ class OwnerController extends Controller
     }
 
     public function one($id){
-        return view ("one-profile", ['owner'=>Owner::find($id) ]);
+
+        $owner = Owner::find($id);
+        $posts = Post::where('idproprietaire', $owner->idproprietaire)->get();
+        $photoPosts = PhotoPost::all();
+        return view ("one-profile", compact('owner','posts','photoPosts'));
     }
 
 }

@@ -263,3 +263,7 @@ div span{
  }
 
 
+footer{
+   background-color: grey;
+   position: absolute;
+}

@@ -11,6 +11,8 @@
 
 @section('content')
 <body> 
+<div id="fb-root"></div>
+
         
         <div class="postContainer">
                 <div class="postDiv">
@@ -37,24 +39,45 @@
                         
                         <!-- description div for post description -->
                         <div id="postDescriptionDiv">
-                                <ul class="elementsDescription">
-                                        <h2>{{ $post -> titreannonce }}</h2>
-                                        <li>{{ $post -> typeHebergement ->libelletypehebergement }}</li>
-                                        <li>•</li>
-                                        <li>{{ $post -> capaciteLogement -> nombrepersonne }} personnes</li>
-                                        <li>•</li>
-                                        <li>{{ $post -> adresseAnnonce -> ville -> nomville }}</li>
-                                </ul>
-                                
-                                @if($post->paiementenligne)
-                                Paiement en ligne disponible
-                                @else
-                                Paiement en ligne pas disponible
-                                @endif
-                                
-                                <p>Publié le {{ $post -> datepublication }}</p>
-                                <h3>Description</h3>
-                                <p>{{ $post -> description }}</p>
+                                <div>
+                                        <ul class="elementsDescription">
+                                                <h2>{{ $post -> titreannonce }}</h2>
+                                                <li>{{ $post -> typeHebergement ->libelletypehebergement }}</li>
+                                                <li>•</li>
+                                                <li>{{ $post -> capaciteLogement -> nombrepersonne }} personnes</li>
+                                                <li>•</li>
+                                                <li>{{ $post -> adresseAnnonce -> ville -> nomville }}</li>
+                                        </ul>
+                                        
+                                        @if($post->paiementenligne)
+                                        Paiement en ligne disponible
+                                        @else
+                                        Paiement en ligne pas disponible
+                                        @endif
+                                        
+                                        <p>Publié le {{ $post -> datepublication }}</p>
+
+                                </div>
+
+                                <div>
+
+                                        <h3>Équipements et services</h3>
+                                        <div class="divEquipService">
+                                               @foreach($post->equipements as $equipement)
+                                                        <div id="divEquip"><p>{{$equipement->libelleequipement}}</p></div>
+                                               @endforeach 
+                                               @foreach($post->services as $service)
+                                                        <div id="divService"><p>{{$service->libelleservice}}</p></div>
+                                               @endforeach
+                                        </div>
+                                </div>
+
+                                <div>
+                                        <h3>Description</h3>
+                                        <p>{{ $post -> description }}</p>
+
+                                </div>
+
                                 <h3>Critères</h3>
                                 <div id="postCriteresDiv">
                                         <div>
@@ -75,10 +98,18 @@
                                                 <span>{{ $post->typeHebergement->libelletypehebergement}}</span>
                                         </div>
                                 </div>
-                                <!-- Bouton de partage Facebook -->
-                                <button onclick="shareOnFacebook()">Partager sur Facebook</button>
-                                <!-- bouton pour partager -->
-                                <button id="copyButton">Partager l'annonce</button>
+                               
+                                <div id="buttonFooter">
+                                        <!-- button copy link -->
+                                        <button id="copyButton">Copier le lien de l'annonce</button>
+                                        <!-- button share on facebook-->
+                                        <!-- script to share on  facebook  -->
+                                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v18.0" nonce="70MaByun"></script>
+                                        <div class="fb-share-button" data-href="{{ url("/post/".$post->idannonce) }}" data-layout="" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Partager</a></div>
+                                        <!-- button share on twitter -->
+                                        <a class="twitter-share-button"href="https://twitter.com/intent/tweet?text={{ url("/post/".$post->idannonce) }}"data-size="large"><i><img width="18" height="18" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23fff%22%20d%3D%22M68.812%2015.14c-2.348%201.04-4.87%201.744-7.52%202.06%202.704-1.62%204.78-4.186%205.757-7.243-2.53%201.5-5.33%202.592-8.314%203.176C56.35%2010.59%2052.948%209%2049.182%209c-7.23%200-13.092%205.86-13.092%2013.093%200%201.026.118%202.02.338%202.98C25.543%2024.527%2015.9%2019.318%209.44%2011.396c-1.125%201.936-1.77%204.184-1.77%206.58%200%204.543%202.312%208.552%205.824%2010.9-2.146-.07-4.165-.658-5.93-1.64-.002.056-.002.11-.002.163%200%206.345%204.513%2011.638%2010.504%2012.84-1.1.298-2.256.457-3.45.457-.845%200-1.666-.078-2.464-.23%201.667%205.2%206.5%208.985%2012.23%209.09-4.482%203.51-10.13%205.605-16.26%205.605-1.055%200-2.096-.06-3.122-.184%205.794%203.717%2012.676%205.882%2020.067%205.882%2024.083%200%2037.25-19.95%2037.25-37.25%200-.565-.013-1.133-.038-1.693%202.558-1.847%204.778-4.15%206.532-6.774z%22%2F%3E%3C%2Fsvg%3E" alt="twitter--v1"/></i>Tweet</a>
+                                        
+                                </div>
                                 <!-- to return to locations page -->
                                 <h3><p><a href="{{ url("/posts") }}">Retour vers les locations saisonières</a></p></h3>
                         </div>
@@ -89,8 +120,15 @@
                 <div class="ownerPostDiv">
                         <!-- date avail div -->
                         <div id="postDateDiv">
-                                <div></div>
-                                <div></div>
+                                <div>
+                                        <p>Date de séjour</p>
+                                        <input type="date" >
+                                        <input type="date" >
+                                </div>
+                                <div>
+                                <p>A partir de </p>
+                                <input type="submit" value="Réserver">
+                                </div>
                         </div>
                         <!-- photo and info owner div -->
                         <div id="postOwnerDiv">
@@ -152,29 +190,10 @@
         });
         </script>
 
-        <script>
-                function shareOnFacebook() {
-                // Remplacez les valeurs avec celles de votre annonce
-                var annonceTitre = {{$post->titreannonce}};
-                var annonceDescription = {{$post->description}};
-                var annonceImageURL = {{$photoPost->image}};
-                var annonceURL =  window.location.href;
 
-                // Utilisez l'API Facebook pour partager
-                FB.ui({
-                        method: 'share',
-                        href: annonceURL,
-                        quote: annonceTitre + ' - ' + annonceDescription,
-                        picture: annonceImageURL
-                }, function(response){});
-                }
-        </script>
-
-        <!-- Chargez le SDK Facebook -->
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0&appId=VOTRE_APP_ID&autoLogAppEvents=1" nonce="v8R9DuoI"></script>
 </body>
 
-
-
-
 @endsection
+
+
+

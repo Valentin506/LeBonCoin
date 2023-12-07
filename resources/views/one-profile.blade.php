@@ -6,10 +6,11 @@
 
 <script src="/js/view-profile.js" defer></script>
 
+@extends('layouts.app')
+
+@section('content')
 <div class="marginViewProfile">
-    @extends('layouts.app')
     
-    @section('content')
     
     <div class="userFrame">
         <div class="userInfo">
@@ -31,7 +32,6 @@
     
             </div>
             <div>
-            <button id="buttonPostDeposit" type="button">Suivre</button> 
             <div class="userMore">
                 <div class="popupDiv" onclick="popupOptions()">
                     <button>
@@ -86,13 +86,53 @@
                 <div>⭐</div>
                 <div>⭐</div>
                 <div>⭐</div>
-                <span>x avis</span>
+                <span>x avis</span> 
     
             </div>
         </div>
     
     </div>
-    
-    @endsection
 
+
+    <div class="userPost">
+        <div id="userInfoPost">
+            @foreach($posts as $post)
+            @php $totalPost =0; @endphp
+                @if($post->proprietaire === $post->owner->proprietaire)
+                    @php $totalPost++; @endphp
+                @endif
+            @endforeach
+            <p>{{$totalPost}} annonce(s)</p>
+            <div>
+                <button>Plus récentes</button>
+            </div>
+        </div>
+        <div id="userPosts">
+            @foreach ($posts as $post)
+            <div class="divForEachPost">
+                <div>
+                    <h3><a href="{{ url("/post/".$post->idannonce) }}">{{ $post-> titreannonce}}</a></h3>
+                </div>
+                @php $hasPhoto = false; @endphp
+                @foreach ($photoPosts as $photoPost)
+                @if($photoPost-> idannonce === $post->idannonce)
+                    <div id="divImagePost">
+                        <img src="{{ $photoPost -> image}}" alt="Image de l'annonce">
+                        @php $hasPhoto = true; break; @endphp
+                    </div>
+                    @endif
+                @endforeach
+            @endforeach
+
+            
+                
+            </div>
+
+            
+            
+        </div>
+
+    </div>
+    
 </div>
+@endsection

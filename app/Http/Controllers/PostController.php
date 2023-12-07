@@ -13,6 +13,7 @@ use App\Models\Departement;
 use App\Models\Adresse;
 use App\Models\PhotoUser;
 use App\Models\CapaciteLogement;
+use App\Models\Equipement;
 
 class PostController extends Controller
 {
@@ -39,7 +40,8 @@ class PostController extends Controller
         $photoUser = PhotoUser::find($id);
         $owner = Owner::find($id);
         $user = User::find($id);
-        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user'));
+        $equipements = Equipement::all();
+        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements'));
     }
 
     public function getPostsByCity(Request $request){
@@ -49,12 +51,23 @@ class PostController extends Controller
         ]);
         $nomville=$request->get('city');
         $typeHebergementId = $request->get('type_hebergement');
-        $posts = Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville){
-            $query->where('nomville', $nomville);
-        })->whereHas('typeHebergement', function ($query) use ($typeHebergementId) {
-            $query->where('idhebergement', $typeHebergementId);
-        })->get();
 
+        if($typeHebergementId == ""){
+            $posts = Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville){
+                $query->where('nomville', $nomville);
+            })->get();
+    
+        }
+        else{
+            $posts = Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville){
+                $query->where('nomville', $nomville);
+            })->whereHas('typeHebergement', function ($query) use ($typeHebergementId) {
+                $query->where('idhebergement', $typeHebergementId);
+            })->get();
+        }
+        
+
+        
         // $typehebergements = Post::whereHas('typeHebergement', function ($query) use ($typeHebergementId) {
         //     $query->where('idhebergement', $typeHebergementId);
         // })->get();

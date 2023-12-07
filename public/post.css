@@ -76,6 +76,7 @@
     margin-top: 10px;
 }
 
+
 /* style for one post */
 .postDiv{
     display: flex;
@@ -105,6 +106,11 @@
 
 #postDescriptionDiv h3 p a:hover{
     color: rgb(243,81,29);
+}
+
+.divEquipService{
+    display: flex;
+    justify-content: space-between;
 }
 
 .ownerPostDiv{
@@ -268,7 +274,10 @@
     display: flex;
 }
 
-
+#postDateDiv{
+    display: block;
+    
+}
 
 
 
@@ -292,3 +301,63 @@
 }
 /* autocomplete address */
 
+#copyButton {
+    border: 0;
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    border-radius: 14px;
+    background-color: rgb(247, 120, 47);
+  }
+  
+#copyButton a{
+    color: white;
+ }
+ 
+  #copyButton:hover {
+    background-color: rgba(250, 133, 66, 0.808);
+  }
+ 
+  #copyButton:active {
+    box-shadow:
+      inset -2px -2px 3px rgba(255, 255, 255, 0.6),
+      inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+  }
+
+  #buttonFooter{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+  }
+
+  .fb-share-button{
+    width: 200px;
+    font: size 20px;
+  }
+
+  .twitter-share-button  {
+    height: 28px;
+    border-radius: 9999px;
+    padding: 1px 12px 1px 12px;
+    position: relative;
+    /* height: 20px; */
+    box-sizing: border-box;
+    background-color: #1d9bf0;
+    color: #fff;
+    border-radius: 9999px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+}
+.twitter-share-button i{
+    position: relative;
+    display: inline-block;
+    top: 4px;
+    height: 18px;
+    width: 18px;
+}

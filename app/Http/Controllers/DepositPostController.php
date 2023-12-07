@@ -13,12 +13,14 @@ use App\Models\Ville;
 use App\Models\Adresse;
 use App\Models\Owner;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Possess;
+use App\Models\Hold;
 
 
 class DepositPostController extends Controller
 {
     public function post(){
-        return view("deposit-post", ['posts'=>Post::all(), 'typeHebergements'=>TypeHebergement::all(),'capacitelogements'=>CapaciteLogement::all(),'equipements'=>Equipement::all(),'serviceaccessibilittes'=>ServiceAccessibilite::all()]);
+        return view("deposit-post", ['posts'=>Post::all(), 'typeHebergements'=>TypeHebergement::all(),'capacitelogements'=>CapaciteLogement::all(),'equipements'=>Equipement::all(),'serviceaccessibilittes'=>ServiceAccessibilite::all(),'possess'=>Possess::all(), 'hold'=>Hold::all()]);
     }
 
     public function publish(Request $request)
@@ -26,6 +28,7 @@ class DepositPostController extends Controller
         $typeHebergements = Post::all();
         // Validate the form data as needed
         $typeHebergementId = $request->input('type_hebergement');
+        
 
         
        
@@ -36,6 +39,7 @@ class DepositPostController extends Controller
         return view ("my-account", ['user'=>User::find($id)]);
     }
     
+
     public function save(Request $request)
     {
         $typeHebergements = Post::all();
@@ -45,31 +49,36 @@ class DepositPostController extends Controller
         
 
         
-    if (titre == null) {
-        return redirect('title')
-            ->withInput()
-            ->withErrors(['title' => 'Veuillez renseignez ce champ']);
+    // if (Post::where("titreannonce", "=", $request -> input("title")) -> count() > 0 ) {
+    //     return redirect()->route('deposit-post')
+    //         ->withInput()
+    //         ->withErrors(['title' => 'Veuillez renseigner ce champ']);
 
-        }
+    //     }
+    // elseif (Post::where("idhebergement", "=", $request -> input("type_hebergement")) == null) {
+    //     return redirect()->route('deposit-post')
+    //         ->withInput()
+    //         ->withErrors(['type_hebergement' => 'Veuillez renseigner ce champ']);
+    //     }
         
-        //     if (User::where("emailcompte", "=", $request->input("email"))->count() > 0) {
-        //         return redirect('create-account')
-        //             ->withInput()
-        //             ->withErrors(['email' => 'L\'adresse e-mail existe déjà. Veuillez en choisir une autre.']);
-        //     } elseif (User::where("numtelcompte", "=", $request->input("tel"))->count() > 0) {
-        //         return redirect('create-account')
-        //             ->withInput()
-        //             ->withErrors(['tel' => 'Ce numéro de téléphone existe déjà. Veuillez en choisir un autre.']);
-        //     }elseif (User::where("motdepasse", "=", $request->input("password"))->count() > 0) {
-        //         return redirect('create-account')
-        //             ->withInput()
-        //             ->withErrors(['password' => 'Le mot de passe doit contenir \\n1 Majuscule \\n1 caractère spécial.']);
-        //     }
-        //      elseif (User::where("pseudocompte", "=", $request->input("pseudo"))->count() > 0) {
-        //     return redirect('create-account')
-        //         ->withInput()
-        //         ->withErrors(['pseudo' => 'Ce pseudo existe déjà. Veuillez en choisir un autre.']);
-        // }
+    //     //     if (User::where("emailcompte", "=", $request->input("email"))->count() > 0) {
+    //     //         return redirect('create-account')
+    //     //             ->withInput()
+    //     //             ->withErrors(['email' => 'L\'adresse e-mail existe déjà. Veuillez en choisir une autre.']);
+    //     //     } elseif (User::where("numtelcompte",     "=", $request->input("tel"))->count() > 0) {
+    //     //         return redirect('create-account')
+    //     //             ->withInput()
+    //     //             ->withErrors(['tel' => 'Ce numéro de téléphone existe déjà. Veuillez en choisir un autre.']);
+    //     //     }elseif (User::where("motdepasse", "=", $request->input("password"))->count() > 0) {
+    //     //         return redirect('create-account')
+    //     //             ->withInput()
+    //     //             ->withErrors(['password' => 'Le mot de passe doit contenir \\n1 Majuscule \\n1 caractère spécial.']);
+    //     //     }
+    //     //      elseif (User::where("pseudocompte", "=", $request->input("pseudo"))->count() > 0) {
+    //     //     return redirect('create-account')
+    //     //         ->withInput()
+    //     //         ->withErrors(['pseudo' => 'Ce pseudo existe déjà. Veuillez en choisir un autre.']);
+    //     // }
         
 
 
@@ -78,9 +87,9 @@ class DepositPostController extends Controller
 
         
         
-    else{
+    // else{
                 
-               
+            //    Annonces
                 $post = new Post;
                 $post -> titreannonce = $request->input("title");
                 $idhebergement = $request->input("type_hebergement");
@@ -127,62 +136,32 @@ class DepositPostController extends Controller
 
                 $post -> idadresse = $adresse -> idadresse;
                 $post->save();
-
-                
-                
-
-
-            //     $user = new User;
-            //     $user->timestamps = false;
-            //     $user->emailcompte = $request->input("email");
-            //     $user->motdepasse = bcrypt($request->input("password"));
-            //     $user->pseudocompte = $request->input("pseudo");
-            //     $user->numtelcompte = $request->input("tel");
-            //     $user->nomcompte = $request->input("name");
-            //     $user->prenomcompte = $request->input("firstname");
-            //     $user->idadresse = $adresse->idadresse;
-            //     $ville->idville = $request->input("ville");
-                
-                
-
-                
-            //     $user->save();    
-            //     return redirect('/');
             
-            
+            //dd($request->input("equipement2"));
 
+                //detient equipements
+                foreach ($request->input("equipement2") as $idequipement){
+                    
+                    $possess = new Possess;
+                    $possess -> idequipement = $idequipement;
+                    $possess ->  idannonce = $post -> idannonce;
+    
+                    $possess->save();
+                }
+                
+
+                //detient services
+                foreach ($request->input("equipement2") as $idservice )
+                {
+
+                    $hold = new Hold;
+                    $hold -> idservice = $idservice;
+                    $hold ->  idannonce = $post -> idannonce;
+    
+                    $hold->save();
+                }
                 
                 
-            // ;
-
-            // /*
-            // Database Insert
-            // */
-            // $user = User::create([
-            //     'email' => $request->email,
-            //     'password' => Hash::make($request->password),
-            //     'tel' => $request->tel,
-            //     'name' => $request->name,
-            //     'firstname' => $request->firstname,
-            //     'date' => $request->date,
-            //     'adresse' => $request->address,
-
-            // ]);
-
-            // return back();
-            /*
-            Database Update
-            // */
-            // $user = User::update([
-            //     'email' => $request->email,
-            //     'password' => Hash::make($request->password),
-            //     'tel' => $request->tel,
-            //     'name' => $request->name,
-            //     'firstname' => $request->firstname,
-            //     'date' => $request->date,
-            //     'adresse' => $request->address,
-
-            // ]);
 
              return redirect('/');
         

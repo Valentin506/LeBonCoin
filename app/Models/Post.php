@@ -49,6 +49,24 @@ class Post extends Model
         );
     }
 
+    public function services(){
+        return $this->belongsToMany(
+            ServiceAccessibilite::class,
+            'detient',
+            'idannonce',
+            'idservice'
+        );
+    }
+
+    public function favorites(){
+        return $this->belongsToMany(
+            Favorite::class,
+            'met_en_favoris',
+            'idannonce',
+            'idcompte'
+        );
+    }
+
     
 
 

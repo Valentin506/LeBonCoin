@@ -22,6 +22,7 @@ use App\Models\PhotoUser;
 use App\Models\TypeHebergement;
 use App\Models\CapaciteLogement;
 use App\Models\Equipement;
+use App\Models\Favorite;
 
 
 /*
@@ -55,6 +56,8 @@ Route::get('/account/{idcompte}/modif-securite', [UserController::class, 'modifS
 Route::post('/modif-account/updateAccount', [UserController::class, 'updateAccount']);
 Route::post('/modif-profile/updateProfile', [UserController::class, 'updateProfile']);
 Route::post('/modif-account/updateSecurite', [UserController::class, 'updateSecurite']);
+
+
 // Route::post('/posts/type', [PostController::class, 'search'])->name('posts');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);

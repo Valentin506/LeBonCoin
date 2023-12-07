@@ -33,6 +33,9 @@
             <label for="inputTitlePost">Quel est le titre de l'annonce ? *</label>
             <div id="divTitlePost">
                 <input type="text" id="title" name="title" required></input>
+                    @error('title')
+                        <p class="text-danger">{{ $errors->first('password') }}</p>
+                    @enderror
                 <button type="input" onclick="showCategoryDeposit()">Continuer</button>
             </div>
             <div id="divCategoryDeposit">
@@ -52,6 +55,9 @@
                         
                         <select name="type_hebergement" id="type_hebergement">
                             <option value=""></option>
+                            @error('type_hebergement')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
 
                             @foreach($typeHebergements as $typeHebergement)
                                 <option value="{{ $typeHebergement->idhebergement }}">{{ $typeHebergement->libelletypehebergement }}</option>
@@ -100,10 +106,10 @@
                             reedonly>
                                 
                             </input>
-                                <div id="divEquipement" class="dropdown-content" >
+                                <div id="divEquipement" class="dropdown-content" name="equipement">
                                     <div>
                                         @foreach( $equipements as $equipement)
-                                            <input type="checkbox" value="{{ $equipement->idequipement }}">{{ $equipement->libelleequipement}}</input>
+                                            <input name ="equipement2[]" type="checkbox" value="{{ $equipement->idequipement }}">{{ $equipement->libelleequipement}}</input>
                                         @endforeach
                                     </div>
                                 </div>
@@ -121,12 +127,13 @@
                                     <!-- <option value="" disabled selected hidden>Ajouter un service/accessibilité</option> -->
                             </input>  
                             
-                                <div id="divService" class="dropdown-content" >
+                                <div id="divService" class="dropdown-content" name="service" >
+                                
                                     @foreach( $serviceaccessibilittes as $serviceaccessibilitte)
-                                        <input type="checkbox" value="{{ $serviceaccessibilitte->idservice }}">{{ $serviceaccessibilitte->libelleservice}}</input>
+                                        <input type="checkbox" name ="service" value="{{ $serviceaccessibilitte->idservice }}">{{ $serviceaccessibilitte->libelleservice}}</input>
                                     @endforeach
-
                                 </div>
+                                
                     </div>
 
                     
@@ -152,12 +159,19 @@
                 <input name="departement" id="departement" type="hidden" />
                 <input name="pays" id="pays" type="hidden"/>
 
+
                 </br>
-                <label>Mode de paiement</label></br>
+
+                <label>Prix par nuit</label></br>
+
+                <input type="text"  id="add_prix" name="prix_par_nuit"></input>
+
+                </br>
+                <label>Paiement en ligne</label></br>
                     <input type="radio"  name="typeres" id="mode_paiement"  value="S" />
-                        <label for="secondaire" >Paiement en ligne</label>
+                        <label for="secondaire" >Oui</label>
                     <input type="radio" name="typeres"  id="mode_paiement" value="P" />
-                        <label for="principale">Paiement en main propre</label>
+                        <label for="principale">Non</label>
 
                 </br>
                 <button type="input" onclick="showDescriptionDeposit()">Continuer</button>

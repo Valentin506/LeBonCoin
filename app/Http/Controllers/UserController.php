@@ -76,13 +76,36 @@ class UserController extends Controller
         'photoUsers' => PhotoUser::all(), 'owners'=>Owner::all()]);
     }
 
+
+    
+
+    // public function redirectToProfile($id) {
+    //     // Récupérer l'utilisateur actuel
+    //     $owner = Owner::where('idcompte', $user -> idcompte)->first();
+    //     // Vérifier si l'utilisateur a déjà un owner associé
+    //     $owner = User::where('idcompte', $user->idcompte)->first();
+    
+    //     if ($owner ===null) {
+    //         // Si $owner n'existe pas, créer un nouvel utilisateur avec le même idproprietaire
+    //         $owner = new Owner();
+    //         $owner->idcompte = $user->idcompte;
+    //         $owner->idproprietaire = $user->idcompte; // Assurez-vous que votre modèle User a une colonne idproprietaire
+    //         // Vous pouvez également initialiser d'autres champs si nécessaire
+    //         $owner->save();
+    //     }
+    
+    //     // Rediriger vers l'URL spécifiée
+    //     return redirect()->to("profile/{$owner->idcompte}");
+    // }
+    
+
     public function updateSecurite(Request $request){
         $request->validate([
             'motdepasse' => [
                 'required',
                 'string',
                 'min:12', // par exemple, au moins 8 caractères
-                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/'
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!/%*?&])[A-Za-z\d@$!%*?&]+$/'
             ]
            
         ]);
