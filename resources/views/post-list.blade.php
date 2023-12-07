@@ -53,12 +53,12 @@
     <div id="filterDate">
       <div id="filterDateArrive">
         <label>Arrivée</label>
-        <input type="date" name="inputDateArrive" placeholder="Date arrivée" autocomplete="off" autocapitalize="off"/>
+        <input type="date" id="dateArrive" onclick="currentDate()" name="inputDateArrive" placeholder="Date arrivée" autocomplete="off" />
 
       </div>
       <div id="filterDateDepart">
         <label>Départ</label>
-        <input type="date" name="inputDateDepart" placeholder="Date départ" autocomplete="off" autocapitalize="off"/>
+        <input type="date" id="dateDepart" name="inputDateDepart" placeholder="Date départ" autocomplete="off"/>
       
       </div>
     </div>

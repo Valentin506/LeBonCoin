@@ -14,6 +14,19 @@ function clickDropdown() {
    document.getElementById("divDestination").classList.toggle("show");
  }
 
+// filter date
+
+function currentDate(){
+   var today = new Date(); 
+   var dd = String(today.getDate()).padStart(2, '0'); 
+   var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+   var yyyy = today.getFullYear(); 
+   
+   today = yyyy + '-' + mm + '-' + dd; 
+   document.getElementById('dateArrive').value = today; 
+}
+ 
+
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function(event) {
    if (!event.target.matches('.dropinput')) {
