@@ -53,6 +53,23 @@ class PostController extends Controller
         ]);
         $nomville=$request->get('city');
         $typeHebergementId = $request->get('type_hebergement');
+        $dateArrive=$request->get('inputDateArrive');
+        $datePart=$request->get('inputDatePart');
+
+        // $posts= Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville){
+        //     $query->where('nomville', $nomville);
+        // })->whereHas('calendar', function ($query) use($dateArrive){
+        //     $query->where('periodedebut', $dateArrive);
+        // })->get();
+
+        // $posts= Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville){
+        //     $query->where('nomville', $nomville);
+        // })->whereHas('calendar', function ($query) use($datePart){
+        //     $query->where('periodefin', $datePart);
+        // })->get();
+
+        // dd($dateArrive);
+        // dd($dateFin);
 
         if($typeHebergementId == ""){
             $posts = Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville){
@@ -67,6 +84,8 @@ class PostController extends Controller
                 $query->where('idhebergement', $typeHebergementId);
             })->get();
         }
+
+        
         
 
         
@@ -76,9 +95,10 @@ class PostController extends Controller
 
         $photoPosts = PhotoPost::all();
         $typeHebergements = TypeHebergement::all();
+        $calendars = Calendar::all();
         
         
-        return view('post-list', compact('posts', 'photoPosts', 'typeHebergements'));
+        return view('post-list', compact('posts', 'photoPosts', 'typeHebergements', 'calendars'));
     }
 
 

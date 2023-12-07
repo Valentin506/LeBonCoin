@@ -202,7 +202,7 @@
 
 
 
-/* filter */
+/*                 FILTER                 */
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
@@ -220,6 +220,8 @@
 
 /* Show the dropdown menu*/
 .show {visibility:visible;}
+
+/* filter address */
 
 #divDestination{
     display: flex;
@@ -276,6 +278,21 @@
 #completion li:hover{
     background-color: rgba(163,163,163,0.3)
 }
+
+/* filter date */
+
+#filterDate{
+    display: flex;
+}
+
+#filterDateArrive{
+    border: none;
+}
+
+#filterDateDepart{
+    border: none;
+}
+
 
 /* slider style */
 .postPhotoButton{

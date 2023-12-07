@@ -50,7 +50,18 @@
       onclick="clickDropdown()"
       autocomplete="off"
       required > -->
-    
+    <div id="filterDate">
+      <div id="filterDateArrive">
+        <label>Arrivée</label>
+        <input type="date" name="inputDateArrive" placeholder="Date arrivée" autocomplete="off" autocapitalize="off"/>
+
+      </div>
+      <div id="filterDateDepart">
+        <label>Départ</label>
+        <input type="date" name="inputDateDepart" placeholder="Date départ" autocomplete="off" autocapitalize="off"/>
+      
+      </div>
+    </div>
 
 
     @if(!is_null($typeHebergements) && count($typeHebergements) > 0)
@@ -66,12 +77,7 @@
 @endif
      
 </form>
-  <div>
-    <input type="date" placeholder="Dates" autocomplete="off" autocapitalize="off"/>
-    <select name="" id="">
-      <option value=""></option>
-    </select>
-  </div>
+  
   <div>
     <label>Voyageurs</label>
     <input id="plusMinusInput" type=number min=1 max=12>
