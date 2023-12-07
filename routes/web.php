@@ -23,6 +23,7 @@ use App\Models\TypeHebergement;
 use App\Models\CapaciteLogement;
 use App\Models\Equipement;
 use App\Models\Favorite;
+use App\Models\Calendar;
 
 
 /*

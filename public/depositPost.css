@@ -144,3 +144,8 @@ input[type=checkbox]{
 .categoryDescriptionDeposit {
     visibility: false;
 }
+
+#errorChamp {
+    color:red;
+    visibility: hidden;
+}

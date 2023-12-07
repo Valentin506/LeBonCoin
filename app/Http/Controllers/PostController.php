@@ -14,6 +14,7 @@ use App\Models\Adresse;
 use App\Models\PhotoUser;
 use App\Models\CapaciteLogement;
 use App\Models\Equipement;
+use App\Models\Calendar;
 
 class PostController extends Controller
 {
@@ -41,7 +42,8 @@ class PostController extends Controller
         $owner = Owner::find($id);
         $user = User::find($id);
         $equipements = Equipement::all();
-        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements'));
+        $calendar = Calendar::find($id);
+        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar'));
     }
 
     public function getPostsByCity(Request $request){

@@ -15,4 +15,9 @@ class Calendar extends Model
     public function posts(): HasOne{
         return $this->hasOne(Post::class, 'idannonce', 'idcalendrier');
     }
+
+    // public function posts(): BelongsTo{
+    //     return $this->belongsTo(Post::class, 'idcalendrier', 'idannonce');
+    // }
+
 }

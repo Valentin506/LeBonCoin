@@ -122,17 +122,38 @@
                         <!-- date avail div -->
                         <form action="{{url("/reservation/save") }}" method="post" class="form" >
                         <div id="postDateDiv">
-                                <div>
-                                        <p>Date de séjour</p>
-                                        <input type="date"  >
-                                        <input type="date"  >
-                                </div>
-                                <div>
-                                <input type="range" id="vol" name="vol" min="0" max="12">
-                                </div>
-                                <div>
-                                <p>A partir de </p>
-                                <input type="submit" value="Réserver">
+                                <div id="divDate">
+                                        <div id="divSelectDate">
+                                                <h4>Sélectionnez vos dates de séjour :</h4>
+                                                <div id="divDateArriveDepart">
+                                                        <div id="divDateArrive">
+                                                                <label>Arrivée</label>
+                                                                <input type="date"  >
+
+                                                        </div>
+                                                        <div id="divDateDepart">
+                                                                <label>Départ</label>
+                                                                <input type="date"  >
+
+                                                        </div>
+
+                                                </div>
+                                                <!-- <div>
+                                                        <input type="range" id="vol" name="vol" min="0" max="12">
+                                                </div> -->
+                                                <div>Disponibilité à jour</div>
+                                        </div>
+                                        <div id="divPriceVerifDate">
+                                                <div>
+                                                        
+                                                        <p>À partir de </p>
+                                                        <div>price € / nuit</div>
+                                                       
+
+                                                </div>
+                                                <div><button>Vérifier la disponibilité</button></div>
+                                        </div>
+
                                 </div>
                         </div>
                         <!-- photo and info owner div -->

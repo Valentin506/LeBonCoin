@@ -1,3 +1,17 @@
+function handleContinue() {
+  var titleInput = document.getElementById('title');
+  if (titleInput.value.trim() === '') {
+      // Le champ "title" est vide, affichez un message d'erreur ou prenez une autre action si nécessaire
+      errorChamp.style.visibility = 'visible';
+  } else {
+      // Le champ "title" n'est pas vide, appelez la fonction showCategoryDeposit()
+      showCategoryDeposit();
+      errorChamp.style.visibility = 'hidden';
+
+  }
+}
+
+
 function showCategoryDeposit() {
     var categoryDeposit = document.getElementById("divCategoryDeposit");
     categoryDeposit.style.visibility="visible";
@@ -25,7 +39,10 @@ window.onclick = function(event) {
     }
 }
 
+
 function showDescriptionDeposit() {
   var categoryDescriptionDeposit = document.getElementById("divDescriptionDeposit");
   categoryDescriptionDeposit.style.visibility="visible";
 }
+
+

@@ -32,13 +32,12 @@
             <h3>Commeçons par l'essentiel !</h3>
             <label for="inputTitlePost">Quel est le titre de l'annonce ? *</label>
             <div id="divTitlePost">
-                <input type="text" id="title" name="title" required></input>
-                @if($errors->has('title'))
-                    <p class="text-danger">{{ $errors->first('title') }}</p>
-                @endif
-                    
-                <button type="input" onclick="showCategoryDeposit()">Continuer</button>
+                <input type="text" id="title" name="title" required></input>                
+                    <button type="input" onclick="handleContinue()">Continuer</button>
+                </br><label id="errorChamp">Champ obligatoire</label>    
+
             </div>
+
             <div id="divCategoryDeposit">
                 <div id="divInputCatgory">
                     <h3>Dites-nous en plus</h3>
@@ -160,7 +159,7 @@
                         <label for="principale">Non</label>
 
                 </br>
-                <button type="input" onclick="showDescriptionDeposit()">Continuer</button>
+                <button type="input">Continuer</button>
         </div>
     </form>
 
