@@ -34,7 +34,7 @@
             <div id="divTitlePost">
                 <input type="text" id="title" name="title" required></input>                
                     <button type="input" onclick="handleContinue()">Continuer</button>
-                </br><label id="errorChamp">Champ obligatoire</label>    
+                </br><label id="errorChamp">Le champ titre est obligatoire</label>    
 
             </div>
 
@@ -55,14 +55,11 @@
                         
                         <select name="type_hebergement" id="type_hebergement">
                             <option value=""></option>
-                            @if($errors->has('title'))
-                                <p class="text-danger">{{ $errors->first('title') }}</p>
-                            @endif
-
                             @foreach($typeHebergements as $typeHebergement)
                                 <option value="{{ $typeHebergement->idhebergement }}">{{ $typeHebergement->libelletypehebergement }}</option>
                             @endforeach
-                        </select>                    
+                        </select>    
+                        <label id='errorChampType'>Le champ type hébergement est obligatoire</label>                
                         </form>
 
                     </div>
@@ -77,13 +74,13 @@
                                     @endforeach
                                 </div>
                             </select>                    
-                            
+                            </br><label id="errorChampCapacite">Le champ capacité est obligatoire</label>  
                     </div>
                     
 
                     </br>
 
-                    </br>
+                    
 
                     <div class="menu_equipement">
                             <input type="text" id="inputEquipement" class="dropselect" name="inputEquipement" placeholder="Ajouter un équipement"
@@ -98,7 +95,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-                            
+                              
                             
                     </div>
 
@@ -122,44 +119,55 @@
                     </div>
 
                     
+                
+                
+                    </br>
+
+                    <label>Description*</label></br>
+
+                    <input type="text"  id="add_description" name="description"></input>
+                    <button type="input" onclick="continueForm()">Continuer</button>
+                    </br><label id="errorChampDescription">Le champ description est obligatoire</label>  
                 </div>
+
+                <div id='divAdresse'>
+                    </br>
+                    <label>Adresse*</label></br>
+        
+                    <input type="adresse" name="adresse" id="adresse"  required>
+
+                    <p type="input" onclick="advancedForm()">Continuer</p>
+                    </br></br><label id="errorChampAdresse">Le champ adresse est obligatoire</label>  
+                    <ul name="completion" id="completion"></ul> 
+                    
+                    
+                    <input name="numero" id="numero" type="hidden"/>
+                    <input name="rueclient" id="rueclient" type="hidden"/>
+                    <input name="codepostal" id="codepostal" type="hidden"/>
+                    <input name="ville" id="ville" type="hidden"/>
+                    <input name="departement" id="departement" type="hidden" />
+                    <input name="pays" id="pays" type="hidden"/>
+                    
+
+                </div>
+
                 
-                </br>
+                <div id='divPrix'>
+                    <label>Prix par nuit*</label></br>
 
-                <label>Description*</label></br>
+                    <input type="number"  id="add_prix" name="prix_par_nuit"></input>
+                    </br></br><label id="errorChampAdresse">Le champ adresse est obligatoire</label>  
 
-                <input type="text"  id="add_description" name="description"></input>
+                    </br>
+                    <label>Paiement en ligne</label></br>
+                        <input type="radio"  name="typeres" id="mode_paiement"  value="S" />
+                            <label for="secondaire" >Oui</label>
+                        <input type="radio" name="typeres"  id="mode_paiement" value="P" />
+                            <label for="principale">Non</label>
 
-                
-                </br>
-                <label>Adresse*</label></br>
-    
-                <input type="adresse" name="adresse" id="adresse"  required>
-                <ul name="completion" id="completion"></ul> 
-
-                <input name="numero" id="numero" type="hidden"/>
-                <input name="rueclient" id="rueclient" type="hidden"/>
-                <input name="codepostal" id="codepostal" type="hidden"/>
-                <input name="ville" id="ville" type="hidden"/>
-                <input name="departement" id="departement" type="hidden" />
-                <input name="pays" id="pays" type="hidden"/>
-
-
-                
-                
-                <label>Prix par nuit*</label></br>
-
-                <input type="number"  id="add_prix" name="prix_par_nuit"></input>
-
-                </br>
-                <label>Paiement en ligne</label></br>
-                    <input type="radio"  name="typeres" id="mode_paiement"  value="S" />
-                        <label for="secondaire" >Oui</label>
-                    <input type="radio" name="typeres"  id="mode_paiement" value="P" />
-                        <label for="principale">Non</label>
-
-                </br>
-                <button type="input">Continuer</button>
+                    </br>
+                    <button type="input">Continuer</button>
+                </div>
         </div>
     </form>
 

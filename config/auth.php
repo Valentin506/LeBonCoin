@@ -64,6 +64,26 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        'employes' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Employe::class,
+        ],
+        // ...
+    ],
+    
+    'guards' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+    
+        'employe' => [
+            'driver' => 'session',
+            'provider' => 'employes',
+        ],
+        // ...
+    
+    
 
         // 'users' => [
         //     'driver' => 'database',

@@ -12,6 +12,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepositPostController;
 use App\Http\Controllers\AddPostController; 
 use App\Http\Controllers\FavorisController; 
+use App\Http\Controllers\ReservationController; 
+use App\Http\Controllers\EmployeController;
 
 use App\Models\Post;
 use App\Models\PhotoPost;
@@ -24,6 +26,7 @@ use App\Models\CapaciteLogement;
 use App\Models\Equipement;
 use App\Models\Favorite;
 use App\Models\Calendar;
+use App\Models\Employe;
 
 
 /*
@@ -68,6 +71,21 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 
+// Routes pour l'authentification des employés
+Route::get('/employe/login', [EmployeController::class, 'showLoginForm'])->name('employe.login');
+Route::post('/employe/login', [EmployeController::class, 'login']);
+Route::post('/employe/logout', [EmployeController::class, 'logout'])->name('employe.logout');
+
+
+Route::middleware(['auth'])->group(function () {
+    // Routes pour les employés
+    Route::get('/employe/dashboard', function () {
+        return view('employe.dashboard');
+    })->name('employe.dashboard');
+});
+
+
+
 // Route::get("/view-profile",[SiteController::class, "ownerRandom" ]);
 
 Route::get('/', function () {
@@ -92,8 +110,8 @@ Route::post('/create-account/save', [UserController::class, 'save']);
 Route::get('/favoris', [UserController::class, 'favoris']);
 Route::post('/favoris/{idannonce}/save', [FavorisController::class, 'save']);
 
-Route::get('/reservation', [ReservationController::class, 'reserve']);              
-Route::post('/reservation/save', [ReservationController::class, 'save']);
+Route::get('/reservation', [ReservationController::class, 'reservation']);              
+//Route::post('/reservation', [ReservationController::class, 'save']);
 // Route::post('/favoris/save', [FavorisController::class, 'save']);
 
 

@@ -9,7 +9,7 @@
     margin-right: 10px;
     border: 0.3px solid rgb(163, 163, 163);
     border-radius: 10px;
-    padding: 7px;
+    padding: 5px;
 
 
 }
@@ -23,6 +23,10 @@
     border-radius: 10px;
     border: 0.3px solid rgb(163, 163, 163);
     padding: 10px;
+}
+
+#divFormAddress{
+    display: flex;
 }
 
 .plusMinusTraveler{
@@ -278,6 +282,22 @@
 #completion li:hover{
     background-color: rgba(163,163,163,0.3)
 }
+.reservation{
+    
+    width: 50%;
+}
+
+
+.personne div{
+    padding: 10px;
+}
+
+.personne div p{
+    font-size: 10px;
+}
+
+
+  
 
 /* filter date */
 

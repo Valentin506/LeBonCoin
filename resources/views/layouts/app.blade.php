@@ -83,7 +83,7 @@
                         <li>•</li>
                         <li class="category">Loisirs</li>
                         <li>•</li>
-                        <li class="category">Autres</li>
+                        <li class="category"><a href="{{url("/employe/login")}}">Autres</a></li>
                     </ul>
                 </div>
 
@@ -115,9 +115,4 @@
 
 
     </body>
-    <footer>
-        <!-- <button>Côté employé</button> -->
-
-
-    </footer>
 </html>

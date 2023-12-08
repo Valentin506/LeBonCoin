@@ -12,6 +12,17 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        return $request->expectsJson() ? null : route('login');
+    if ($request->expectsJson()) {
+        return null;
     }
+
+    // Si l'utilisateur actuel est un employé
+    if (Auth::check() && Auth::user()->isEmploye()) {
+        return route('employe.login'); // Ajoutez la route appropriée pour la connexion des employés
+    }
+
+    return route('login');
+    }
+
+    
 }

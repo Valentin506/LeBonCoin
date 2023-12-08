@@ -54,18 +54,19 @@ class PostController extends Controller
         $nomville=$request->get('city');
         $typeHebergementId = $request->get('type_hebergement');
         $dateArrive=$request->get('inputDateArrive');
-        $datePart=$request->get('inputDatePart');
-
-        // $posts= Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville){
-        //     $query->where('nomville', $nomville);
-        // })->whereHas('calendar', function ($query) use($dateArrive){
+        $dateDepart=$request->get('inputDateDepart');
+        
+        // $posts= Post::whereHas('calendar', function ($query) use($dateArrive){
         //     $query->where('periodedebut', $dateArrive);
         // })->get();
+        
+
+        // dd($posts);
 
         // $posts= Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville){
         //     $query->where('nomville', $nomville);
-        // })->whereHas('calendar', function ($query) use($datePart){
-        //     $query->where('periodefin', $datePart);
+        // })->whereHas('calendar', function ($query) use($dateDepart){
+        //     $query->where('periodefin', $dateDepart);
         // })->get();
 
         // dd($dateArrive);
@@ -75,8 +76,15 @@ class PostController extends Controller
             $posts = Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville){
                 $query->where('nomville', $nomville);
             })->get();
-    
+            
         }
+        elseif($dateArrive){
+            $posts= Post::whereHas('calendar', function ($query) use($dateArrive){
+                $query->where('periodedebut', $dateArrive);
+            })->get();
+            dd($posts);
+        }
+    
         else{
             $posts = Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville){
                 $query->where('nomville', $nomville);

@@ -1,5 +1,6 @@
 <title>Location vacances maison, gite et appartement entre particuliers - leboncoin </title>
 <link rel="stylesheet" type="text/css" href="{{asset('post.css')}}"/> 
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> -->
 
 @extends('layouts.app')
 
@@ -28,7 +29,7 @@
     onclick="clickDropdown()"
     onkeyup="autocompleteDestination()"
     autocomplete="off"
-    required >
+     >
     <div id="divDestination" class="dropdown-content">
       <div id="divResult">
         <ul name="completion" id="completion"></ul> 
@@ -52,14 +53,13 @@
       required > -->
     <div id="filterDate">
       <div id="filterDateArrive">
-        <label>Arrivée</label>
-        <input type="date" id="dateArrive" onclick="currentDate()" name="inputDateArrive" placeholder="Date arrivée" autocomplete="off" />
+        <label for="inputDateArrive">Arrivée</label>
+        <input type="date" id="dateArrive" class="form-control js-daterangepicker" onclick="currentDate()" name="inputDateArrive" placeholder="Date arrivée" autocomplete="off" />
 
       </div>
       <div id="filterDateDepart">
-        <label>Départ</label>
-        <input type="date" id="dateDepart" name="inputDateDepart" placeholder="Date départ" autocomplete="off"/>
-      
+        <label for="inputDateDepart">Départ</label>
+        <input type="date" id="dateDepart" onclick="currentDate()" name="inputDateDepart" placeholder="Date départ" autocomplete="off"/>
       </div>
     </div>
 
@@ -72,9 +72,9 @@
             <option value="{{ $typeHebergement->idhebergement }}">{{ $typeHebergement->libelletypehebergement }}</option>
         @endforeach
     </select>
-@else
-    <p>No accommodation types available</p>
-@endif
+    @else
+        <p>No accommodation types available</p>
+    @endif
      
 </form>
   
@@ -93,32 +93,7 @@
     <button>Filtres</button>
     <!-- <input placeholder="Filtres" autocomplete="off" autocapitalize="off"/> -->
   </div>
-  <div>
-
- 
-  <form id="searchForm" action="/posts/type" method="post">
-    @csrf
-      
-    @if(!is_null($typeHebergements) && count($typeHebergements) > 0)
-    <select name="type_hebergement" id="type_hebergement">
-        <option value=""></option>
-
-        @foreach($typeHebergements as $typeHebergement)
-            <option value="{{ $typeHebergement->idhebergement }}">{{ $typeHebergement->libelletypehebergement }}</option>
-        @endforeach
-    </select>
-@else
-    <p>No accommodation types available</p>
-@endif
-    <button type="submit" name="submitForm">Envoyer</button>
-</form>
-
-
-    
-  </div>
-
   
-
 
 </div>
 
@@ -201,10 +176,21 @@
     </div>
   </div>
 
-    <button class="buttonSaveSearch" type="button">Sauvegarder la recherche</button>  
+  <button class="buttonSaveSearch" type="button">Sauvegarder la recherche</button>  
    
-    
-    @endsection
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script>
+$(function() {
+  $('input[name="inputDateArrive"]').daterangepicker({
+    opens: 'left',
+  }, function(start, end, label) {
+    console.log("Une date a été sélectionnée: " + start.format('DD-MM-YYYY') + ' à ' + end.format('DD-MM-YYYY'));
+  });
+});
+</script> -->
+@endsection
     
 
     

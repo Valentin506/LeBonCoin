@@ -115,8 +115,21 @@ input[type=checkbox]{
 
 #divInputCategory{
     display: flex;
+    visibility: hidden;
+
 }
 
+#divPrix{
+    display: flex;
+    visibility: hidden;
+
+}
+
+#divAdresse {
+    display: flex;
+    visibility: hidden; 
+
+}
 
 #divCategoryDeposit:nth-child(2){
     display: flex;
@@ -148,4 +161,28 @@ input[type=checkbox]{
 #errorChamp {
     color:red;
     visibility: hidden;
+}
+
+#errorChampType {
+    color:red;
+    visibility: hidden;
+}
+
+#errorChampDescription {
+    color:red;
+    visibility: hidden;
+}
+
+#errorChampCapacite {
+    color:red;
+    visibility: hidden;
+}
+
+
+#errorChampAdresse {
+    color:red;
+    visibility: hidden;
+    display: flex;
+    margin: left 20px;
+
 }

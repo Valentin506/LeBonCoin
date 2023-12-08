@@ -1,5 +1,7 @@
 function handleContinue() {
   var titleInput = document.getElementById('title');
+  var errorChamp = document.getElementById('errorChamp');
+
   if (titleInput.value.trim() === '') {
       // Le champ "title" est vide, affichez un message d'erreur ou prenez une autre action si nécessaire
       errorChamp.style.visibility = 'visible';
@@ -12,9 +14,63 @@ function handleContinue() {
 }
 
 
+function continueForm() {
+
+  var typelogementInput = document.getElementById('type_hebergement');
+  var capaciteInput = document.getElementById('capacite_hebergement');
+  var descriptionInput = document.getElementById('add_description');
+  
+
+  if (typelogementInput.value.trim() === '') {
+      // Le champ "title" est vide, affichez un message d'erreur ou prenez une autre action si nécessaire
+      errorChampType.style.visibility = 'visible';
+  }
+  else if (capaciteInput.value.trim() === '') {
+      // Le champ "title" est vide, affichez un message d'erreur ou prenez une autre action si nécessaire
+      errorChampCapacite.style.visibility = 'visible';
+  } 
+  else if (descriptionInput.value.trim() ===  ''){
+    errorChampDescription.style.visibility = 'visible';
+  }
+  else {  
+      // Le champ "title" n'est pas vide, appelez la fonction showCategoryDeposit()
+      showNextForm();
+      errorChampType.style.visibility = 'hidden';
+      errorChampCapacite.style.visibility = 'hidden';
+      errorChampDescription.style.visibility = 'hidden';
+
+  }
+}
+
+function advancedForm() {
+  var addressInput = document.getElementById('adresse');
+  
+  if (addressInput.value.trim() === '') {
+      // Le champ "title" est vide, affichez un message d'erreur ou prenez une autre action si nécessaire
+      errorChampAdresse.style.visibility = 'visible';
+      console.log('test')
+  } else {
+      // Le champ "title" n'est pas vide, appelez la fonction showCategoryDeposit()
+      showDivPrix();
+      errorChampAdresse.style.visibility = 'hidden';
+
+  }
+  return false;
+}
+
+function showDivPrix() {
+  var divPrix = document.getElementById("divPrix");
+  divPrix.style.visibility="visible";
+}
+
 function showCategoryDeposit() {
     var categoryDeposit = document.getElementById("divCategoryDeposit");
-    categoryDeposit.style.visibility="visible";
+    divInputCatgory.style.visibility="visible";
+}
+
+function showNextForm() {
+  var divAdresse = document.getElementById("divAdresse");
+  divAdresse.style.visibility="visible";
 }
 
 function clickDropdown() {

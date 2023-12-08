@@ -24,6 +24,9 @@ function currentDate(){
    
    today = yyyy + '-' + mm + '-' + dd; 
    document.getElementById('dateArrive').value = today; 
+   document.getElementById('dateDepart').value = today; 
+   document.getElementById('dateArrive').setAttribute("min", today);
+   document.getElementById('dateDepart').setAttribute("min", today);
 }
  
 

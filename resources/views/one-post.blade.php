@@ -120,21 +120,22 @@
                 <!-- div about owner -->
                 <div class="ownerPostDiv">
                         <!-- date avail div -->
-                        <form action="{{url("/reservation/save") }}" method="post" class="form" >
+                        <form action="{{url("/reservation") }}" method="get" class="form" >
+                        @csrf
                         <div id="postDateDiv">
                                 <div id="divDate">
                                         <div id="divSelectDate">
                                                 <h4>Sélectionnez vos dates de séjour :</h4>
                                                 <div id="divDateArriveDepart">
                                                         <div id="divDateArrive">
-                                                                <label>Arrivée</label>
-                                                                <input type="date"  >
+                                                        <label for="startDate">Date de début:</label>
+                                                        <input type="date" id="startDate" name="startDate">
 
-                                                        </div>
-                                                        <div id="divDateDepart">
-                                                                <label>Départ</label>
-                                                                <input type="date"  >
+                                                        <label for="numberOfDays">Nombre de jours:</label>
+                                                        <input type="number" id="numberOfDays" name="numberOfDays" min="1" value="1" oninput="updateEndDate()">
 
+                                                        <label for="endDate">Date de fin:</label>
+                                                        <input type="date" id="endDate" name="endDate" readonly>
                                                         </div>
 
                                                 </div>
@@ -147,7 +148,7 @@
                                                 <div>
                                                         
                                                         <p>À partir de </p>
-                                                        <div>price € / nuit</div>
+                                                        <div>Prix € / nuit</div>
                                                        
 
                                                 </div>
@@ -156,6 +157,7 @@
 
                                 </div>
                         </div>
+                        </form>
                         <!-- photo and info owner div -->
                         <div id="postOwnerDiv">
                                 <!-- photo for each owner of the post -->
@@ -218,6 +220,24 @@
         });
         </script>
 
+<script>
+    function updateEndDate() {
+      // Récupérer la valeur de la date de début
+      var startDateString = document.getElementById('startDate').value;
+
+      // Convertir la chaîne de date en objet Date
+      var startDate = new Date(startDateString);
+
+      // Récupérer le nombre de jours depuis l'élément d'entrée
+      var numberOfDays = parseInt(document.getElementById('numberOfDays').value);
+
+      // Calculer la date de fin en ajoutant le nombre de jours à la date de début
+      var endDate = new Date(startDate.getTime() + numberOfDays * 24 * 60 * 60 * 1000);
+
+      // Mettre à jour la valeur du champ de date de fin
+      document.getElementById('endDate').value = endDate.toISOString().split('T')[0];
+    }
+  </script>
 
 </body>
 

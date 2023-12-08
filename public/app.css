@@ -8,7 +8,9 @@
 
  body{
    display: block;
-   margin: 8px;
+   margin: 0;
+   padding:0;
+
  }
 
   
@@ -21,7 +23,6 @@
 
 .marginPage:not(.headerBorder){
    margin-left: 20%;
-   
 }
 
 .headerBorder{
@@ -261,9 +262,3 @@ div span{
    padding-right: 150px;
 
  }
-
-
-footer{
-   background-color: grey;
-   position: absolute;
-}
