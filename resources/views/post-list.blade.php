@@ -29,7 +29,7 @@
     onclick="clickDropdown()"
     onkeyup="autocompleteDestination()"
     autocomplete="off"
-     >
+    required >
     <div id="divDestination" class="dropdown-content">
       <div id="divResult">
         <ul name="completion" id="completion"></ul> 
@@ -42,8 +42,6 @@
     <!-- <select name="" id=""></select>  -->
     <input name="postalcode" id="postalcode" type="hidden"/>
     <input name="city" id="city" type="hidden"/>
-    <!-- <input name="department" id="department" type="hidden" /> -->
-    <!-- <input name="countries" id="countries" type="hidden"/> -->
 
     <!-- <form id="divFormRadius" method="post" action="/posts">
       @csrf
@@ -140,8 +138,7 @@
                 <button type="submit" name="favoris" class="favoris">
                     <img src="https://img.icons8.com/windows/20/filled-heart.png" alt="favori" width="20" height="20">
                 </button>
-            @else
-                @if(Auth::check())
+            @elseif(Auth::check())
                   <button type="submit" name="favoris" class="favoris">
                       <img src="https://img.icons8.com/ios/20/like--v1.png" alt="like--v1" width="20" height="20">
                   </button>
@@ -149,8 +146,8 @@
                 <button type="button" name="favoris" class="favoris">
                 <a href="{{url("/login")}}"><img src="https://img.icons8.com/ios/20/like--v1.png" alt=""></a>
                   </button>
-                    
-                @endif
+           
+            
             @endif 
          
           
@@ -162,6 +159,7 @@
           </button>
         </form> -->
     
+        
       </div>
       @endforeach
     </ul>
@@ -190,6 +188,8 @@ $(function() {
   });
 });
 </script> -->
+
+
 @endsection
     
 

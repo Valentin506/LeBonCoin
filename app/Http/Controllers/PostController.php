@@ -56,9 +56,11 @@ class PostController extends Controller
         $dateArrive=$request->get('inputDateArrive');
         $dateDepart=$request->get('inputDateDepart');
         
-        // $posts= Post::whereHas('calendar', function ($query) use($dateArrive){
-        //     $query->where('periodedebut', $dateArrive);
-        // })->get();
+        $posts= Post::whereHas('calendar', function ($query) use($dateArrive, $nomville){
+            $query->where('periodedebut', $dateArrive)->where('disponibilite', true);
+        })->get();
+
+        dd($posts);
         
 
         // dd($posts);
@@ -72,26 +74,33 @@ class PostController extends Controller
         // dd($dateArrive);
         // dd($dateFin);
 
-        if($typeHebergementId == ""){
-            $posts = Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville){
-                $query->where('nomville', $nomville);
-            })->get();
+        // if($nomville!=null){
+        //     if($typeHebergementId == ""){
+        //         $posts = Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville){
+        //             $query->where('nomville', $nomville);
+        //         })->get();
+        //     }
+        //     else{
+        //         $posts = Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville){
+        //             $query->where('nomville', $nomville);
+        //         })->whereHas('typeHebergement', function ($query) use ($typeHebergementId) {
+        //             $query->where('idhebergement', $typeHebergementId);
+        //         })->get();
+        //     }
+        //     if($dateArrive != null && $typeHebergementId == ""){
+        //         $posts= Post::whereHas('calendar', function ($query) use($dateArrive){
+        //             $query->where('periodedebut', $dateArrive);
+        //         })->get();
+        //         // dd($posts);
+        //     }
+        // }
+
             
-        }
-        elseif($dateArrive){
-            $posts= Post::whereHas('calendar', function ($query) use($dateArrive){
-                $query->where('periodedebut', $dateArrive);
-            })->get();
-            dd($posts);
-        }
+        
+        
+        
     
-        else{
-            $posts = Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville){
-                $query->where('nomville', $nomville);
-            })->whereHas('typeHebergement', function ($query) use ($typeHebergementId) {
-                $query->where('idhebergement', $typeHebergementId);
-            })->get();
-        }
+        
 
         
         

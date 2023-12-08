@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\PhotoPost;
+use App\Models\User;
 
 class ReservationController extends Controller
 {
     public function reservation()
     {
-        return view("/reservation");
+        // $posts = Post::all();
+        $photoPosts = PhotoPost::all();
+        $posts = Post::where('idcompte', $user->idcompte)->get();
+
+        return view("/reservation",compact('posts','photoPosts'));
     }
 }

@@ -216,7 +216,7 @@
     width: 362px;
     height: 159px;
     z-index: 1;
-    margin-top: 10px;
+    margin-top: 90px;
     margin-left: -10px;
     border: none;
     box-shadow: 0px 2px 10px grey;
@@ -287,16 +287,31 @@
     width: 50%;
 }
 
-
-.personne div{
-    padding: 10px;
+.nbPersonne {
+    text-align: right; /* Aligne le texte à droite */
 }
 
-.personne div p{
-    font-size: 10px;
+/* Facultatif : Ajoutez un peu d'espace entre les boutons et le texte */
+.nbPersonne input {
+    margin-left: 5px;
+}
+
+.personne input{
+    border-radius: 14px;
+    width: 20px;
+    height: 20px;
+}
+
+.description{
+    width: 60%;
+    height: 100px;
+    border-radius: 14px;
 }
 
 
+#info{
+    
+}
   
 
 /* filter date */

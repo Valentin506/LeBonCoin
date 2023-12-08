@@ -11,18 +11,23 @@ class Authenticate extends Middleware
      * Get the path the user should be redirected to when they are not authenticated.
      */
     protected function redirectTo(Request $request): ?string
-    {
+{
     if ($request->expectsJson()) {
         return null;
     }
 
-    // Si l'utilisateur actuel est un employé
-    if (Auth::check() && Auth::user()->isEmploye()) {
-        return route('employe.login'); // Ajoutez la route appropriée pour la connexion des employés
-    }
+    // Check the guard being used
+    $guard = auth()->getDefaultDriver();
 
-    return route('login');
+    // Redirect based on the guard
+    switch ($guard) {
+        case 'employe':
+            return route('employe.dashboard');
+        default:
+            return route('login');
     }
+}
+
 
     
 }

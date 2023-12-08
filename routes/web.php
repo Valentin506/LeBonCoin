@@ -71,18 +71,29 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 
+
+
 // Routes pour l'authentification des employés
 Route::get('/employe/login', [EmployeController::class, 'showLoginForm'])->name('employe.login');
 Route::post('/employe/login', [EmployeController::class, 'login']);
 Route::post('/employe/logout', [EmployeController::class, 'logout'])->name('employe.logout');
 
 
+
+Route::get('/register', [EmployeController::class, 'add'])->name('employe.register');
+Route::post('/employe/register',  [EmployeController::class, 'register'])->name('employe.register');
+
+Route::post('/register/save', [EmployeController::class, 'register']);
+
+
 Route::middleware(['auth'])->group(function () {
     // Routes pour les employés
-    Route::get('/employe/dashboard', function () {
+    Route::get('/dashboard', function () {
         return view('employe.dashboard');
     })->name('employe.dashboard');
 });
+// return redirect()->route('employe.dashboard');
+
 
 
 
@@ -109,6 +120,7 @@ Route::post('/create-account/save', [UserController::class, 'save']);
 
 Route::get('/favoris', [UserController::class, 'favoris']);
 Route::post('/favoris/{idannonce}/save', [FavorisController::class, 'save']);
+
 
 Route::get('/reservation', [ReservationController::class, 'reservation']);              
 //Route::post('/reservation', [ReservationController::class, 'save']);

@@ -93,6 +93,19 @@ header{
     font-weight: bold;
 }
 
+#button {
+    color: white;
+    border: none;
+    background-color: rgb(243,81,29);
+    border-radius: 15px;
+    height: 44px;
+    width: 104.69px;
+    font-weight: bold;
+    height: 50px; /* Remplacez par la hauteur de votre élément */
+    line-height: 50px; /* Assurez-vous que c'est égal à la hauteur de votre élément */
+    text-align: center;
+}
+
 #divTitlePost button:hover{
     background-color: rgba(243,81,29,0.8);
     
@@ -184,5 +197,29 @@ input[type=checkbox]{
     visibility: hidden;
     display: flex;
     margin: left 20px;
+
+}
+
+#errorPrix {
+    color:red;
+    visibility: hidden;
+
+}
+
+#errorPaiement {
+    color:red;
+    visibility: hidden;
+
+}
+
+#errorEquipement {
+    color:red;
+    visibility: hidden;
+
+}
+
+#errorService {
+    color:red;
+    visibility: hidden;
 
 }
