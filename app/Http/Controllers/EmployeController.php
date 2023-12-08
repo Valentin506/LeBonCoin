@@ -19,14 +19,16 @@ class EmployeController extends Controller
     }
 
     public function login(Request $request)
-{
-    // Utilize the 'employe' guard here
-        if (Auth::attempt(['emailemploye' => $request->emailemploye, 'password' => $request->password])) {
-            // Successful authentication for the employe user
-            return redirect()->intended('/employe/dashboard');
+    {
+        // Utilisez le guard 'employe' ici
+        if (Auth::guard('employe')->attempt(['emailemploye' => $request->emailemploye, 'motdepasseemploye' => $request->motdepasseemploye])) {
+            dd($employe);
+            // L'utilisateur employé est authentifié avec succès
+            return redirect()->intended('/dashboard');
         }
-
-        // Authentication failed, redirect to the login page
+        
+    
+        // Échec de l'authentification, redirigez vers la page de connexion
         return redirect('/employe/login');
     }
 
@@ -44,7 +46,7 @@ class EmployeController extends Controller
 
     public function register(Request $request)
     {
-
+        
         $employe = new Employe();
         $employe->nomemploye = $request->input('Nom');
         $employe->prenomemploye = $request->input('Prenom');

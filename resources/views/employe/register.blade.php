@@ -10,7 +10,7 @@
     <input type="text" name="Prenom" required>
 
     <label for="datenaissanceemploye">Date de naissance</label>
-    <input type="text" name="datenaissanceemploye" required>
+    <input type="date" name="datenaissanceemploye" required>
     
     <label for="emailemploye">Email</label>
     <input type="email" name="emailemploye" required>

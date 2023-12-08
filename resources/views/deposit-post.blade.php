@@ -53,7 +53,7 @@
                 @csrf
                 
                 
-                <select name="type_hebergement" id="type_hebergement">
+                <select name="type_hebergement" id="type_hebergement" required>
                     <option value=""></option>
                     @foreach($typeHebergements as $typeHebergement)
                     <option value="{{ $typeHebergement->idhebergement }}">{{ $typeHebergement->libelletypehebergement }}</option>
@@ -68,7 +68,7 @@
 </br>
 <label>Capacité*</label></br>
 <div>
-    <select name="capacite_hebergement" id="capacite_hebergement">
+    <select name="capacite_hebergement" id="capacite_hebergement" required>
         <option value=""></option>
         @foreach( $capacitelogements as $capacitelogement)
         <option value="{{ $capacitelogement->idcapacite }}">{{ $capacitelogement->idcapacite}}</option>
@@ -107,7 +107,7 @@
     
     <input type="text" id="inputService" class="dropselect" name="inputService" placeholder="Ajouter un service"
     onclick="clickDropdown2()"
-    readonly>
+    readonly >
     <!-- <option value="" disabled selected hidden>Ajouter un service/accessibilité</option> -->
 </br><label id="errorService">Le champ service et accessibilité est obligatoire</label>  
 </input>  
@@ -129,7 +129,7 @@
 
 <label>Description*</label></br>
 
-<input type="text"  id="add_description" name="description"></input>    
+<input type="text"  id="add_description" name="description" required></input>    
 <p id='button' type="input" onclick="continueForm()">Continuer</p>
 </br><label id="errorChampDescription">Le champ description est obligatoire</label>  
 </div>

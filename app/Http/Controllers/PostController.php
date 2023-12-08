@@ -56,11 +56,11 @@ class PostController extends Controller
         $dateArrive=$request->get('inputDateArrive');
         $dateDepart=$request->get('inputDateDepart');
         
-        $posts= Post::whereHas('calendar', function ($query) use($dateArrive, $nomville){
-            $query->where('periodedebut', $dateArrive)->where('disponibilite', true);
+        $posts= Post::whereHas('calendar', function ($query) use($dateArrive){
+            $query->where('periodedebut','<=', $dateArrive)->where('disponibilite', true);
         })->get();
 
-        dd($posts);
+        // dd($posts);
         
 
         // dd($posts);

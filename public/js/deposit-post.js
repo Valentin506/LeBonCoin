@@ -25,7 +25,7 @@ function continueForm() {
   var equipementInput = document.getElementById('equipement2[]');
   var serviceInput = document.getElementById('inputService');
 
-
+  
 
   if (typelogementInput.value.trim() === '') {
     // Le champ "title" est vide, affichez un message d'erreur ou prenez une autre action si nécessaire
@@ -37,15 +37,18 @@ function continueForm() {
   }
   if (atLeastOneCheckedEquipement === false) {
     errorEquipement.style.visibility = 'visible';
+    console.log(atLeastOneCheckedEquipement);
   }
   if (atLeastOneChecked === false) {
     errorService.style.visibility = 'visible';
+    console.log(atLeastOneChecked);
   }
   if (descriptionInput.value.trim() === '') {
     errorChampDescription.style.visibility = 'visible';
   }
-  if (!(typelogementInput.value.trim() === '' && capaciteInput.value.trim() === '' && atLeastOneCheckedEquipement === false && atLeastOneChecked === false && descriptionInput.value.trim() === '')) {
-    // Le champ "title" n'est pas vide, appelez la fonction showCategoryDeposit()
+  if (typelogementInput.value.trim() !== '' && capaciteInput.value.trim() !== '' && atLeastOneCheckedEquipement === true && atLeastOneChecked === true && descriptionInput.value.trim() !== '') {
+   
+  // Le champ "title" n'est pas vide, appelez la fonction showCategoryDeposit()
     showNextForm();
     errorChampType.style.visibility = 'hidden';
     errorChampCapacite.style.visibility = 'hidden';
@@ -125,7 +128,7 @@ function updateSelectedEquipements(atLeastOneCheckedEquipement) {
   checkboxesEquip.forEach(function (checkbox) {
     if (checkbox.checked) {
       atLeastOneCheckedEquipement = true;
-      console.log(atLeastOneCheckedEquipement)
+      console.log('equipement true')
     }
   });
 
@@ -141,7 +144,7 @@ function updateSelectedEquipements(atLeastOneCheckedEquipement) {
 
 const atLeastOneChecked = false;
 
-function updateSelectedServices(atLeastOneCheckedEquipement) {
+function updateSelectedServices(atLeastOneChecked) {
   var checkboxes = document.querySelectorAll('input[name="service"]');
   // var labelErrorService = document.getElementById('errorService');
 
@@ -150,7 +153,7 @@ function updateSelectedServices(atLeastOneCheckedEquipement) {
   checkboxes.forEach(function (checkbox) {
     if (checkbox.checked) {
       atLeastOneChecked = true;
-      console.log('test')
+      console.log('service true')
     }
   });
 
