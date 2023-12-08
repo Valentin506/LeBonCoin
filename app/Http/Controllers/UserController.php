@@ -30,7 +30,7 @@ class UserController extends Controller
     
 
     // public function view(){
-    // 	return view ("add-account", ['locataires'=>User::all() ]);
+    // 	return view ("add-account", ['locataires'=>User::all() ]);  
     // }
     // // // public function create(Request $request)
     // // // {
