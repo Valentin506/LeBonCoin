@@ -24,29 +24,68 @@ function continueForm() {
   var descriptionInput = document.getElementById('add_description');
   var equipementInput = document.getElementById('equipement2[]');
   var serviceInput = document.getElementById('inputService');
+  var checkTypeLogement = false;
+  var checkCapactite = false;
+  var checkEquipement = false;
+  var checkService = false;
+  var checkDescription = false;
 
-  
+
 
   if (typelogementInput.value.trim() === '') {
     // Le champ "title" est vide, affichez un message d'erreur ou prenez une autre action si nécessaire
     errorChampType.style.visibility = 'visible';
+    console.log('checkTypeLogement = ', checkTypeLogement )
   }
+  else{
+    checkTypeLogement = true;
+    console.log('checkTypeLogement = ', checkTypeLogement )
+  }
+
   if (capaciteInput.value.trim() === '') {
     // Le champ "title" est vide, affichez un message d'erreur ou prenez une autre action si nécessaire
     errorChampCapacite.style.visibility = 'visible';
+    console.log('checkCapactite = ', checkTypeLogement )
   }
+  else{
+    checkCapactite = true;
+    console.log('checkCapactite = ', checkTypeLogement )
+  }
+  
   if (atLeastOneCheckedEquipement === false) {
     errorEquipement.style.visibility = 'visible';
     console.log(atLeastOneCheckedEquipement);
+    console.log('checkEquipement = ', checkTypeLogement )
   }
+  else {
+    checkEquipement = true;
+    console.log('checkEquipement = ', checkTypeLogement )
+  }
+
   if (atLeastOneChecked === false) {
     errorService.style.visibility = 'visible';
     console.log(atLeastOneChecked);
+    console.log('checkService = ', checkTypeLogement )
+
   }
+  else {
+    checkService = true;
+    console.log('checkService = ', checkTypeLogement )
+
+  }
+
   if (descriptionInput.value.trim() === '') {
     errorChampDescription.style.visibility = 'visible';
+    console.log('checkDescription = ', checkTypeLogement )
+
   }
-  if (typelogementInput.value.trim() !== '' && capaciteInput.value.trim() !== '' && atLeastOneCheckedEquipement === true && atLeastOneChecked === true && descriptionInput.value.trim() !== '') {
+  else {
+    checkDescription = true;
+    console.log('checkDescription = ', checkTypeLogement )
+
+  }
+
+  if (checkTypeLogement === true && checkCapactite === true && checkEquipement === true && checkService === true && checkDescription === true) {
    
   // Le champ "title" n'est pas vide, appelez la fonction showCategoryDeposit()
     showNextForm();

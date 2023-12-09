@@ -107,22 +107,24 @@ class PostController extends Controller
                     $query->where('idhebergement', $typeHebergementId);
                 })->get();
             }
-            if($dateArrive != null){
+            if($dateArrive != null && $typeHebergementId == ""){
                 $posts=DB::table('annonce')
-                ->join('calendrier','annonce.idannonce','=','calendrier.idannonce')
-                ->where('annonce.datepublication','<=', $dateArrive)
-                ->where('calendrier.disponibilite','=',true)
-                ->get();
+                        ->join('calendrier','annonce.idannonce','=','calendrier.idannonce')
+                        ->where('annonce.datepublication','<', $dateArrive)
+                        ->where('calendrier.disponibilite','=','true')
+                        ->get();
                 dd($posts);
             }
-        }
-
+            if($dateDepart != null && $typeHebergementId == ""){
+                $posts=DB::table('annonce')
+                        ->join('calendrier','annonce.idannonce','=','calendrier.idannonce')
+                        ->where('annonce.datepublication','<', $dateDepart)
+                        ->where('calendrier.disponibilite','=','true')
+                        ->get();
+                dd($posts);
+            }
             
-    
-        
-
-        
-        
+        }
 
         
         // $typehebergements = Post::whereHas('typeHebergement', function ($query) use ($typeHebergementId) {

@@ -129,9 +129,10 @@
 
 <label>Description*</label></br>
 
-<input type="text"  id="add_description" name="description" required></input>    
+<input type="text"  id="add_description" name="description" required></input>  
+</br><label id="errorChampDescription">Le champ description est obligatoire</label>    
 <p id='button' type="input" onclick="continueForm()">Continuer</p>
-</br><label id="errorChampDescription">Le champ description est obligatoire</label>  
+
 </div>
 
 <div id='divAdresse'>
