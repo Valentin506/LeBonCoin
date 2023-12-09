@@ -21,7 +21,8 @@ class OwnerController extends Controller
         $owner = Owner::find($id);
         $posts = Post::where('idproprietaire', $owner->idproprietaire)->get();
         $photoPosts = PhotoPost::all();
-        return view ("one-profile", compact('owner','posts','photoPosts'));
+        $user = User::find($id);
+        return view ("one-profile", compact('owner','posts','photoPosts','user'));
     }
 
 }

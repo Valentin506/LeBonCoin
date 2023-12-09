@@ -160,7 +160,7 @@
 <div id='divPrix'>
     <label>Prix par nuit*</label></br>
     
-    <input type="number"  id="add_prix" name="prix_par_nuit"></input>
+    <input type="number"  id="add_price" name="price"></input>
 </br></br><label id="errorPrix">Le champ prix est obligatoire</label>  
 
 </br>
@@ -170,13 +170,20 @@
 <input type="radio" name="typeres"  id="mode_paiement" value="P" />
 <label for="principale">Non</label>
 
-</br></br><label id="errorPaiement">Le champ prix est obligatoire</label>  
+</br></br><label id="errorPaiement">Le champ prix est obligatoire</label>
+<p id='button' type="input" onclick="endForm()">Continuer</p>
 
 
 </br>
-<button id='button' type="input">Continuer</button>
+</br>
 </div>
+<div id='divPicture'>
+
+    <button id='button' type="input">Valider</button>
 </div>
+
+</div>
+
 </form>
 
 

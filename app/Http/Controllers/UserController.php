@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Adresse;
 use App\Models\Ville;
@@ -74,13 +74,44 @@ class UserController extends Controller
         return view('modif-securite', ['user'=>User::find($id)]);
     }
 
+    // MODIFICATION POST
     public function modifPost($id){
         $user = User::find($id);
         $posts = Post::all();
         $post = Post::find($id);
         $owner = Owner::find($id);
-        $photoPosts = PhotoPost::all();
+        $photoPosts = DB::table('photo')
+                    ->join('annonce', 'annonce.idannonce','=','photo.idannonce')
+                    ->join('proprietaire','proprietaire.idproprietaire','=','annonce.idproprietaire')
+                    ->join('compte','compte.idcompte','=','proprietaire.idcompte')
+                    ->get();
+
         return view('modif-post', compact('user','posts','post','owner','photoPosts'));
+    }
+
+    // UPDATE POST
+    public function updatePost(Request $request){
+        
+        
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+
+        if ($request->hasFile('addPhotoPost')->isValid()){
+            
+            $photoUpload= $request->file('addPhotoPost')->getClientOriginalName();
+            $request->file('addPhotoPost')->move(public_path('images'), $photoUpload);
+            $photoPost = new PhotoPost(['image'=> $photoUpload]);
+            dd($photoUpload);
+            // $photoPost->save();
+        }
+
+           
+        
+
+
+        // $photoPost->update();
+        return redirect('/');
     }
 
 

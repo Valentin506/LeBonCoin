@@ -144,6 +144,11 @@ input[type=checkbox]{
 
 }
 
+#divPicture {
+    display: flex;
+    visibility: hidden; 
+}
+
 #divCategoryDeposit:nth-child(2){
     display: flex;
     flex-direction: column;

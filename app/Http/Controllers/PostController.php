@@ -110,7 +110,7 @@ class PostController extends Controller
             if($dateArrive != null && $typeHebergementId == ""){
                 $posts=DB::table('annonce')
                         ->join('calendrier','annonce.idannonce','=','calendrier.idannonce')
-                        ->where('annonce.datepublication','<', $dateArrive)
+                        ->where('annonce.datepublication','<=', $dateArrive)
                         ->where('calendrier.disponibilite','=','true')
                         ->get();
                 dd($posts);
@@ -118,7 +118,7 @@ class PostController extends Controller
             if($dateDepart != null && $typeHebergementId == ""){
                 $posts=DB::table('annonce')
                         ->join('calendrier','annonce.idannonce','=','calendrier.idannonce')
-                        ->where('annonce.datepublication','<', $dateDepart)
+                        ->where('annonce.datepublication','<=', $dateDepart)
                         ->where('calendrier.disponibilite','=','true')
                         ->get();
                 dd($posts);

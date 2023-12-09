@@ -96,9 +96,9 @@
 
     <div class="userPost">
         <div id="userInfoPost">
-            @foreach($posts as $post)
             @php $totalPost =0; @endphp
-                @if($post->proprietaire === $post->owner->proprietaire)
+            @foreach($posts as $post)
+                @if($post->owner->idcompte)
                     @php $totalPost++; @endphp
                 @endif
             @endforeach

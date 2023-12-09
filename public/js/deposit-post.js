@@ -35,53 +35,55 @@ function continueForm() {
   if (typelogementInput.value.trim() === '') {
     // Le champ "title" est vide, affichez un message d'erreur ou prenez une autre action si nécessaire
     errorChampType.style.visibility = 'visible';
-    console.log('checkTypeLogement = ', checkTypeLogement )
+    
   }
   else{
     checkTypeLogement = true;
-    console.log('checkTypeLogement = ', checkTypeLogement )
+    errorChampType.style.visibility = 'hidden';
+
   }
 
   if (capaciteInput.value.trim() === '') {
     // Le champ "title" est vide, affichez un message d'erreur ou prenez une autre action si nécessaire
     errorChampCapacite.style.visibility = 'visible';
-    console.log('checkCapactite = ', checkTypeLogement )
   }
   else{
     checkCapactite = true;
-    console.log('checkCapactite = ', checkTypeLogement )
+    errorChampCapacite.style.visibility = 'hidden';
+
   }
   
+
+
   if (atLeastOneCheckedEquipement === false) {
     errorEquipement.style.visibility = 'visible';
-    console.log(atLeastOneCheckedEquipement);
-    console.log('checkEquipement = ', checkTypeLogement )
   }
   else {
     checkEquipement = true;
-    console.log('checkEquipement = ', checkTypeLogement )
+    errorEquipement.style.visibility = 'hidden';
+
   }
 
   if (atLeastOneChecked === false) {
     errorService.style.visibility = 'visible';
-    console.log(atLeastOneChecked);
-    console.log('checkService = ', checkTypeLogement )
 
   }
   else {
     checkService = true;
-    console.log('checkService = ', checkTypeLogement )
+    errorService.style.visibility = 'hidden';
 
   }
 
+
+
   if (descriptionInput.value.trim() === '') {
     errorChampDescription.style.visibility = 'visible';
-    console.log('checkDescription = ', checkTypeLogement )
 
   }
   else {
     checkDescription = true;
-    console.log('checkDescription = ', checkTypeLogement )
+    errorChampDescription.style.visibility = 'hidden';
+
 
   }
 
@@ -103,7 +105,6 @@ function advancedForm() {
   if (addressInput.value.trim() === '') {
     // Le champ "title" est vide, affichez un message d'erreur ou prenez une autre action si nécessaire
     errorChampAdresse.style.visibility = 'visible';
-    console.log('test')
   } else {
     // Le champ "title" n'est pas vide, appelez la fonction showCategoryDeposit()
     showDivPrix();
@@ -113,9 +114,33 @@ function advancedForm() {
   return false;
 }
 
+function endForm() {
+  console.log('enter')
+  var priceInput = document.getElementById('add_price');
+
+  if (priceInput.value.trim() === '') {
+    // Le champ "title" est vide, affichez un message d'erreur ou prenez une autre action si nécessaire
+    errorPaiement.style.visibility = 'visible';
+    errorPrix.style.visibility = 'visible';
+
+  } else {
+    // Le champ "title" n'est pas vide, appelez la fonction showCategoryDeposit()
+    showDivPrix();
+    errorPaiement.style.visibility = 'visible';
+    errorPrix.style.visibility = 'visible';
+
+  }
+  return false;
+}
+
 function showDivPrix() {
   var divPrix = document.getElementById("divPrix");
   divPrix.style.visibility = "visible";
+}
+
+function showDivPicture() {
+  var divPicture = document.getElementById("divPicture");
+  divPicture.style.visibility = "visible";
 }
 
 function showCategoryDeposit() {
@@ -157,9 +182,9 @@ function showDescriptionDeposit() {
 }
 
 
-const atLeastOneCheckedEquipement = false;
+let atLeastOneCheckedEquipement = false;
 
-function updateSelectedEquipements(atLeastOneCheckedEquipement) {
+function updateSelectedEquipements() {
   var checkboxesEquip = document.querySelectorAll('input[name="equipement2[]"]');
   // var labelErrorService = document.getElementById('errorService');
 
@@ -167,7 +192,6 @@ function updateSelectedEquipements(atLeastOneCheckedEquipement) {
   checkboxesEquip.forEach(function (checkbox) {
     if (checkbox.checked) {
       atLeastOneCheckedEquipement = true;
-      console.log('equipement true')
     }
   });
 
@@ -181,9 +205,9 @@ function updateSelectedEquipements(atLeastOneCheckedEquipement) {
 }
 
 
-const atLeastOneChecked = false;
+let atLeastOneChecked = false;
 
-function updateSelectedServices(atLeastOneChecked) {
+function updateSelectedServices() {
   var checkboxes = document.querySelectorAll('input[name="service"]');
   // var labelErrorService = document.getElementById('errorService');
 
@@ -192,7 +216,6 @@ function updateSelectedServices(atLeastOneChecked) {
   checkboxes.forEach(function (checkbox) {
     if (checkbox.checked) {
       atLeastOneChecked = true;
-      console.log('service true')
     }
   });
 
