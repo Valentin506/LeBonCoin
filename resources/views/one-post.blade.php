@@ -30,9 +30,15 @@
                                 <div class="postTotalPhotoDiv">
                                         @foreach ($photoPosts as $photoPost)
                                         @if($photoPost->image && $photoPost->idannonce === $post->idannonce)
-                                        <div class="postPhotoDiv">
-                                                <img src="{{ $photoPost -> image}}" alt="Image de l'annonce">
-                                        </div>
+                                                @if(Str::startsWith($photoPost -> image, 'https'))
+                                                <div class="postPhotoDiv">
+                                                        <img src="{{ $photoPost -> image}}" alt="Image de l'annonce">
+                                                </div>
+                                                @else
+                                                <div class="postPhotoDiv">
+                                                        <img src="/images/{{ $photoPost -> image}}" alt="Image de l'annonce">
+                                                </div>
+                                                @endif
                                         @endif
                                         @endforeach
                                         

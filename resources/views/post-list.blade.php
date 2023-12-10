@@ -107,8 +107,13 @@
           @php $hasPhoto = false; @endphp
           @foreach ($photoPosts as $photoPost)
             @if($photoPost->image && $photoPost-> idannonce === $post->idannonce)
+              @if (Str::startsWith($photoPost -> image, 'https'))
+              <img src="{{ $photoPost -> image}}" alt="Image de l'annonce">
+              @php $hasPhoto = true; break; @endphp
+              @else
               <img src="/images/{{ $photoPost -> image}}" alt="Image de l'annonce">
               @php $hasPhoto = true; break; @endphp
+              @endif
             @endif
           @endforeach
           @if (!$hasPhoto)
