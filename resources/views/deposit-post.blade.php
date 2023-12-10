@@ -165,9 +165,9 @@
 
 </br>
 <label>Paiement en ligne</label></br>
-<input type="radio"  name="typeres" id="mode_paiement"  value="S" />
+<input type="radio"  name="typeres" id="mode_paiement_oui"  value="S" />
 <label for="secondaire" >Oui</label>
-<input type="radio" name="typeres"  id="mode_paiement" value="P" />
+<input type="radio" name="typeres"  id="mode_paiement_non" value="P" />
 <label for="principale">Non</label>
 
 </br></br><label id="errorPaiement">Le champ prix est obligatoire</label>
@@ -178,8 +178,16 @@
 </br>
 </div>
 <div id='divPicture'>
-
-    <button id='button' type="input">Valider</button>
+    </br>
+    <!-- Ajoutez le champ d'envoi de fichier -->
+    <label for="photo">Ajouter des photos :</label>
+    <input type="file" name="photo[]" id="photo" accept="image/*" multiple>
+    
+    
+    <div>
+        </br>
+        <button id='button' type="input">Valider</button>
+    </div>
 </div>
 
 </div>

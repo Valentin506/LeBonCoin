@@ -1,15 +1,19 @@
 
 <head>
+        <title>{{ $post-> titreannonce." - Locations saisonières"}}</title>
         <link rel="stylesheet" type="text/css" href="{{asset('post.css')}}"/> 
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" />
-        <title>{{ $post-> titreannonce." - Locations saisonières"}}</title>
         
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+      
 </head>
 
 @extends('layouts.app')
 
 
 @section('content')
+<script src="/js/one-post.js"></script>
+
 <body> 
 <div id="fb-root"></div>
 
@@ -128,21 +132,26 @@
                                                 <h4>Sélectionnez vos dates de séjour :</h4>
                                                 <div id="divDateArriveDepart">
                                                         <div id="divDateArrive">
-                                                        <label for="startDate">Date de début:</label>
-                                                        <input type="date" id="startDate" name="startDate">
+                                                                <label for="startDate">Arrivée</label>
+                                                                <input type="date" id="startDate" name="startDate" onclick="currentDate()">
+                                                        </div>
 
-                                                        <label for="numberOfDays">Nombre de jours:</label>
-                                                        <input type="number" id="numberOfDays" name="numberOfDays" min="1" value="1" oninput="updateEndDate()">
+                                                        <!-- <label for="numberOfDays">Nombre de jours:</label>
+                                                        <input type="number" id="numberOfDays" name="numberOfDays" min="1" value="1" oninput="updateEndDate()"> -->
 
-                                                        <label for="endDate">Date de fin:</label>
-                                                        <input type="date" id="endDate" name="endDate" readonly>
+                                                        <div id="divDateDepart">
+
+                                                                <label for="endDate">Départ</label>
+                                                                <input type="date" id="endDate" name="endDate" onclick="currentDate()">
                                                         </div>
 
                                                 </div>
                                                 <!-- <div>
                                                         <input type="range" id="vol" name="vol" min="0" max="12">
                                                 </div> -->
-                                                <div>Disponibilité à jour</div>
+                                                <div class="form-group">Disponibilité à jour</div>
+                                                <input type="date" name="dateAvailable" class="form-control" placeholder="" required readonly>
+                                                
                                         </div>
                                         <div id="divPriceVerifDate">
                                                 <div>
@@ -169,7 +178,11 @@
                                         <!-- link owner with post -->
                                         <h3><a href="{{ url("/profile/".$post->idproprietaire) }}">{{ $post -> owner->user->pseudocompte}}</a></h3>
                                         <!-- total of owner's posts -->
-                                        
+                                        <!-- @php $totalPost = 0; @endphp
+                                        @if($post->owner->idcompte)
+                                                @php $totalPost++; @endphp
+                                        @endif
+                                        <p>{{ $totalPost}} annonce(s)</p> -->
                                         <!--  -->
                                         <p>Note de x sur x</p>
                                 </div>
@@ -220,24 +233,22 @@
         });
         </script>
 
-<script>
-    function updateEndDate() {
-      // Récupérer la valeur de la date de début
-      var startDateString = document.getElementById('startDate').value;
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script>
+                var array = ["$nonAvailable"];
 
-      // Convertir la chaîne de date en objet Date
-      var startDate = new Date(startDateString);
-
-      // Récupérer le nombre de jours depuis l'élément d'entrée
-      var numberOfDays = parseInt(document.getElementById('numberOfDays').value);
-
-      // Calculer la date de fin en ajoutant le nombre de jours à la date de début
-      var endDate = new Date(startDate.getTime() + numberOfDays * 24 * 60 * 60 * 1000);
-
-      // Mettre à jour la valeur du champ de date de fin
-      document.getElementById('endDate').value = endDate.toISOString().split('T')[0];
-    }
-  </script>
+                $(function () {
+                        $('input').datepicker({
+                        dateFormat: 'yy-mm-dd',
+                        beforeShowDay: function(date) {
+                                var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+                                return [array.indexOf(string) == -1]
+                                }
+                        });
+                });
+        </script>
+        
 
 </body>
 

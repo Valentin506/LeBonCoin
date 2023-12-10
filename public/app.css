@@ -118,9 +118,9 @@ input[type='image']{
    display: block;
    
 }
-form label{
+/* form label{
    margin-left: 15%;
-}
+} */
 .text-danger{
    color: red;
 }

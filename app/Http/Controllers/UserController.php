@@ -21,6 +21,7 @@ use App\Models\PhotoUser;
 use App\Models\Post;
 use App\Models\PhotoPost;
 use App\Models\TypeHebergement;
+use App\Models\Calendar;
 
 
 
@@ -78,15 +79,15 @@ class UserController extends Controller
     public function modifPost($id){
         $user = User::find($id);
         $posts = Post::all();
-        $post = Post::find($id);
         $owner = Owner::find($id);
+        $calendars = Calendar::all();
         $photoPosts = DB::table('photo')
                     ->join('annonce', 'annonce.idannonce','=','photo.idannonce')
                     ->join('proprietaire','proprietaire.idproprietaire','=','annonce.idproprietaire')
                     ->join('compte','compte.idcompte','=','proprietaire.idcompte')
                     ->get();
 
-        return view('modif-post', compact('user','posts','post','owner','photoPosts'));
+        return view('modif-post', compact('user','posts','owner','photoPosts','calendars'));
     }
 
     // UPDATE POST
@@ -106,9 +107,19 @@ class UserController extends Controller
             // $photoPost->save();
         }
 
-           
-        
-
+        $selectDispo = $request->get('selectDispo');
+        if($selectDispo='Disponible'){
+            dd($selectDispo);
+            $post=Post::whereHas('calendar', function($query) use($selectDispo){
+                $query->where('disponibilite', '=','true');
+            })->update();
+        }
+        else{
+            dd($selectDispo);
+            $post=Post::whereHas('calendar', function($query) use($selectDispo){
+                $query->where('disponibilite', '=','false');
+            })->update();
+        }
 
         // $photoPost->update();
         return redirect('/');

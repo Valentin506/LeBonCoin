@@ -203,6 +203,10 @@
     display: flex;
 }
 
+#calendar{
+    max-width: 30px;
+    /* visibility: hidden; */
+}
 
 
 /*                 FILTER                 */

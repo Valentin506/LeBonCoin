@@ -115,19 +115,35 @@ function advancedForm() {
 }
 
 function endForm() {
-  console.log('enter')
   var priceInput = document.getElementById('add_price');
+  var modePaiementOuiInput = document.getElementById('mode_paiement_oui');
+  var modePaiementNonInput = document.getElementById('mode_paiement_non');
+  var checkPrice = false;
+  var checkMode = false;
 
   if (priceInput.value.trim() === '') {
-    // Le champ "title" est vide, affichez un message d'erreur ou prenez une autre action si nécessaire
-    errorPaiement.style.visibility = 'visible';
     errorPrix.style.visibility = 'visible';
+  }
+  else {
+    checkPrice = true;
+    errorPrix.style.visibility = 'hidden';
+  } 
 
-  } else {
-    // Le champ "title" n'est pas vide, appelez la fonction showCategoryDeposit()
-    showDivPrix();
+  if (!modePaiementNonInput.checked && !modePaiementOuiInput.checked){
     errorPaiement.style.visibility = 'visible';
-    errorPrix.style.visibility = 'visible';
+  } 
+  else 
+  {
+    errorPaiement.style.visibility = 'hidden';
+    var checkMode = true;
+  }
+
+
+  if (checkMode === true && checkPrice === true)
+  {
+    showDivPicture();
+    errorPaiement.style.visibility = 'hiden';
+    errorPrix.style.visibility = 'hiden';
 
   }
   return false;
@@ -195,13 +211,7 @@ function updateSelectedEquipements() {
     }
   });
 
-  // if (atLeastOneChecked) {
-  //     labelErrorService.innerText = 'on';
-  //     consol.log('test');
-  // } else {
-  //     labelErrorService.innerText = '';
-  //     dd('vide');
-  // }
+
 }
 
 
@@ -219,13 +229,7 @@ function updateSelectedServices() {
     }
   });
 
-  // if (atLeastOneChecked) {
-  //     labelErrorService.innerText = 'on';
-  //     consol.log('test');
-  // } else {
-  //     labelErrorService.innerText = '';
-  //     dd('vide');
-  // }
+
 }
 
 

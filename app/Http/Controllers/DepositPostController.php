@@ -16,11 +16,12 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Possess;
 use App\Models\Hold;
 use App\Models\Calendar;
+use App\Models\PhotoPost;
 
 class DepositPostController extends Controller
 {
     public function post(){
-        return view("deposit-post", ['posts'=>Post::all(), 'typeHebergements'=>TypeHebergement::all(),'capacitelogements'=>CapaciteLogement::all(),'equipements'=>Equipement::all(),'serviceaccessibilittes'=>ServiceAccessibilite::all(),'possess'=>Possess::all(), 'hold'=>Hold::all()]);
+        return view("deposit-post", ['posts'=>Post::all(), 'typeHebergements'=>TypeHebergement::all(),'capacitelogements'=>CapaciteLogement::all(),'equipements'=>Equipement::all(),'serviceaccessibilittes'=>ServiceAccessibilite::all(),'possess'=>Possess::all(), 'hold'=>Hold::all(), 'photoPost'=>PhotoPost::all()]);
     }
 
     public function publish(Request $request)
@@ -28,8 +29,6 @@ class DepositPostController extends Controller
         $typeHebergements = Post::all();
         // Validate the form data as needed
         $typeHebergementId = $request->input('type_hebergement');
-        
-
         
        
         
@@ -44,31 +43,6 @@ class DepositPostController extends Controller
     {
         $typeHebergements = Post::all();
         $user = Auth::user();
-        
-       
-        
-        // if (empty($request->input('title'))) {
-        //     // Champ "title" vide, ajout d'un message d'erreur à la session
-        //     session()->flash('error', 'Ce champ est obligatoire');
-        //     // Rediriger l'utilisateur vers le formulaire
-        //     return redirect('deposit-post');
-        // }
-        
-        // elseif (empty($request->input('type_hebergement'))) {
-        //     // Champ "title" vide, ajout d'un message d'erreur à la session
-        //     session()->flash('error', 'Ce champ est obligatoire');
-        //     // Rediriger l'utilisateur vers le formulaire
-        //     return redirect('deposit-post');
-        // }
-            
-   
-        // if (empty($request->input('type_hebergement'))) {
-        //     return redirect('deposit-post')
-        //         ->withInput()
-        //         ->withErrors(['title' => 'Champ obligatoire']);
-        // }
-
-        // else{
                 
             //    Annonces
                 $post = new Post;
@@ -142,7 +116,6 @@ class DepositPostController extends Controller
                     $hold->save();
                 }
 
-                //dd($request ->input("prix_par_nuit"));
                 //calendar
                 $calendar = new Calendar;
                 $request ->input("prix_par_nuit");
@@ -150,10 +123,27 @@ class DepositPostController extends Controller
                 $calendar ->  idannonce = $post -> idannonce;
                 $calendar ->save();
 
-                $post->save();
+                //picture
+                if ($request->hasFile('photos')) {
+                    foreach ($request->file('photos') as $photo) {
+                        // Assurez-vous de traiter correctement les fichiers, par exemple en les téléchargeant dans un répertoire spécifique
+                        $path = $photo->store('photos', 'public');
+                
+                        // Créez une nouvelle instance de PhotoPost et liez-la à l'annonce actuelle
+                        $photoPost = new PhotoPost;
+                        $photoPost->path = $path;
+                
+                        // Récupérez l'id de l'annonce après l'avoir enregistrée
+                        $post->save();
+                        $photoPost->idannonce = $post->idannonce;
+                
+                        $photoPost->save();
+                    }
+                }
+
              return redirect('/');
         
-        // }
+        
 
     
 

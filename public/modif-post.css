@@ -1,0 +1,22 @@
+#formUpdatePost{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#divInfoPost{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+#divInfoPost form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#divImagePost{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

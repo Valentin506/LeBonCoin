@@ -45,6 +45,7 @@ Route::get('/', [SiteController::class, "index" ]);
 // Route::get("/create-account",[AccountController::class, "create" ]);
 Route::get("/posts",[PostController::class, "post" ]);
 Route::get("/post/{id}",[PostController::class, "one" ]);
+Route::post("/post/{id}",[PostrController::class, "getAvailableDates" ]);
 Route::get("/profiles",[OwnerController::class, "owner" ]);
 Route::get("/profile/{id}",[OwnerController::class, "one" ]);
 Route::get("/view-profile",[SiteController::class, "photoRandom" ]);

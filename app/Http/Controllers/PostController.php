@@ -44,7 +44,31 @@ class PostController extends Controller
         $user = User::find($id);
         $equipements = Equipement::all();
         $calendar = Calendar::find($id);
+
+        
+        // $availability = DB::table('calendrier')
+        //                 ->join('annonce','annonce.idannonce','=','calendrier.idannonce')
+        //                 ->where('periodedebut','<=',$dateArrive)
+        //                 ->where('periodefin','>=', $dateDepart)
+        //                 ->where('disponibilite', true)
+        //                 ->get();
+
+        // $availability = Calendar::where('periodedebut', '<=', $dateArrive)
+        //                 ->where('periodefin','>=',$dateDepart)
+        //                 ->where('disponibilite', true)
+        //                 ->get();
+
         return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar'));
+    }
+
+    public function getAvailableDates(Request $request){
+        $dateArrive = $request->get('startDate');
+        $dateDepart = $request->get('endDate');
+        $nonAvailable = Calendar::where('periodedebut', '<=', $dateArrive)
+                        ->where('periodefin','>=',$dateDepart)
+                        ->where('disponibilite', false)
+                        ->get();
+        return view ("one-post", compact('nonAvailable'));
     }
 
     public function getPostsByCity(Request $request){

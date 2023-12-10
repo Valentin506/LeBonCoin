@@ -21,7 +21,7 @@ class Post extends Model
     public $timestamps = false;
 
     public function photoPost(): HasMany{
-        return $this->hasMany(PhotoPost::class, 'idimage');
+        return $this->hasMany(PhotoPost::class, 'idannonce', 'idannonce');
     }
 
     public function owner(): HasOne{
