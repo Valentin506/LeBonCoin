@@ -23,15 +23,15 @@
                         @endif
                         @if($photoPost->idannonce != $post->idannonce)
                             @php $hasText = false; @endphp 
+                            <form action="{{url("/account/{idcompte}/my-posts/update") }}" method="post" enctype="multipart/form-data">
                             <div id="divImagePost">
                                 <p>Aucune image associée</p>
-                                <form action="/modif-post/updatePost" method="post" enctype="multipart/form-data" id="formUpdatePost">
                                     @csrf
-                                    <h4>Ajoutez photo pour votre annonce</h4>
+                                    <!-- <h4>Ajoutez photo pour votre annonce</h4> -->
                                     <input type="file" name="addPhotoPost" id="addPhotoPost" required>
                                     <button type="submit">Chargez l'image</button>
-                                </form>
-                                @php $hasText = true; break; @endphp
+                                    @php $hasText = true; break; @endphp
+                            </form>
                             </div>
         
                         @endif
@@ -39,16 +39,15 @@
                     <div id="divInfoPost">
                         <h3><a href="{{ url("/post/".$post->idannonce) }}">{{ $post-> titreannonce}}</a></h3>
 
-                        <form action="/modif-post/updatePost" method="post">
-                            @csrf
+                        <form action="{{url("/account/{idcompte}/my-posts/update") }}" method="post" enctype="multipart/form-data">
                             <label for="inputDispo">Vous voulez changer la disponibilité ?</label>
                             <select name="selectDispo" id="selectDispo">
                                 <option value="selectDisponible">Disponible</option>
                                 <option value="selectIndisponible">Indisponible</option>
                             </select>
                             <button type="submit">Confirmer</button>
-
                         </form>
+                        
                     </div>
                 </div>
             

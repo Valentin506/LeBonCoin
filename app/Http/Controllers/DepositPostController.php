@@ -21,7 +21,7 @@ use App\Models\PhotoPost;
 class DepositPostController extends Controller
 {
     public function post(){
-        return view("deposit-post", ['posts'=>Post::all(), 'typeHebergements'=>TypeHebergement::all(),'capacitelogements'=>CapaciteLogement::all(),'equipements'=>Equipement::all(),'serviceaccessibilittes'=>ServiceAccessibilite::all(),'possess'=>Possess::all(), 'hold'=>Hold::all(), 'photoPost'=>PhotoPost::all()]);
+        return view("deposit-post", ['posts'=>Post::all(), 'typeHebergements'=>TypeHebergement::all(),'capacitelogements'=>CapaciteLogement::all(),'equipements'=>Equipement::all(),'serviceaccessibilittes'=>ServiceAccessibilite::all(),'possess'=>Possess::all(), 'hold'=>Hold::all(), 'photoPost'=>PhotoPost::all(),'photos'=>PhotoPost::all()]);
     }
 
     public function publish(Request $request)
@@ -37,6 +37,7 @@ class DepositPostController extends Controller
     public function one($id){
         return view ("my-account", ['user'=>User::find($id)]);
     }
+    
     
 
     public function save(Request $request)
@@ -123,25 +124,34 @@ class DepositPostController extends Controller
                 $calendar ->  idannonce = $post -> idannonce;
                 $calendar ->save();
 
+                
                 //picture
-                if ($request->hasFile('photos')) {
-                    foreach ($request->file('photos') as $photo) {
+                $pictureBool = false;
+                    
+                    // Traitez chaque fichier téléchargé
+                    // foreach ($request->file('images') as $photo) {
                         // Assurez-vous de traiter correctement les fichiers, par exemple en les téléchargeant dans un répertoire spécifique
-                        $path = $photo->store('photos', 'public');
+                        $photo = $request->file('images')->getClientOriginalName();
+                        //dd($photo);
+                        if (!is_null($photo)) {
+                            //foreach ($request->file('images') as $photo) {
+                                //$path = $photo->store('images', 'public');
+                                $request -> file('images')->move(public_path('images'),$photo);
+                                // Créez une nouvelle instance de PhotoPost et liez-la à l'annonce actuelle
+                                $photoPost = new PhotoPost(['image' => $photo]);
+                                
+                                // Récupérez l'id de l'annonce après l'avoir enregistrée
+                                $post->save();
+                                $photoPost->idannonce = $post->idannonce;
+                        
+                                $photoPost->save();
+                                $pictureBool = true;
+                            //}
+                        }
+                    //}
                 
-                        // Créez une nouvelle instance de PhotoPost et liez-la à l'annonce actuelle
-                        $photoPost = new PhotoPost;
-                        $photoPost->path = $path;
-                
-                        // Récupérez l'id de l'annonce après l'avoir enregistrée
-                        $post->save();
-                        $photoPost->idannonce = $post->idannonce;
-                
-                        $photoPost->save();
-                    }
-                }
 
-             return redirect('/');
+             return redirect('/')->with('pictureBool', $pictureBool);
         
         
 
@@ -149,9 +159,11 @@ class DepositPostController extends Controller
 
    
     }
+
+
     public function add()
     {
-        return view('deposit-post');
+        return view('deposit-post');    
     }
 }
 

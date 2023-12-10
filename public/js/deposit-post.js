@@ -16,6 +16,9 @@ function handleContinue() {
   }
 }
 
+function veryEndForm() {
+  errorChampPhoto.style.visibility = 'visible';
+}
 
 function continueForm() {
 

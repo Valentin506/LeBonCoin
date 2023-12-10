@@ -45,7 +45,7 @@ Route::get('/', [SiteController::class, "index" ]);
 // Route::get("/create-account",[AccountController::class, "create" ]);
 Route::get("/posts",[PostController::class, "post" ]);
 Route::get("/post/{id}",[PostController::class, "one" ]);
-Route::post("/post/{id}",[PostrController::class, "getAvailableDates" ]);
+Route::post("/post/{id}",[PostController::class, "getAvailableDates" ]);
 Route::get("/profiles",[OwnerController::class, "owner" ]);
 Route::get("/profile/{id}",[OwnerController::class, "one" ]);
 Route::get("/view-profile",[SiteController::class, "photoRandom" ]);
@@ -53,7 +53,7 @@ Route::get("/deposit-post",[DepositPostController::class, "post" ]);
 Route::post("/deposit-post/save",[DepositPostController::class, 'save' ]);
 Route::post("/posts",[PostController::class, "getPostsByCity" ]);
 Route::get("/account/{idcompte}/my-posts",[UserController::class, "modifPost" ]);
-Route::post("/modif-post/updatePost",[UserController::class, "updatePost" ]);
+Route::post("/account/{idcompte}/my-posts/update",[UserController::class, "updatePost" ]);
 
 
 

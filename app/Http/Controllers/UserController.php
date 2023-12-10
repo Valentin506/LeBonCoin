@@ -93,19 +93,19 @@ class UserController extends Controller
     // UPDATE POST
     public function updatePost(Request $request){
         
-        
+       
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
-        if ($request->hasFile('addPhotoPost')->isValid()){
+        
             
-            $photoUpload= $request->file('addPhotoPost')->getClientOriginalName();
-            $request->file('addPhotoPost')->move(public_path('images'), $photoUpload);
-            $photoPost = new PhotoPost(['image'=> $photoUpload]);
-            dd($photoUpload);
-            // $photoPost->save();
-        }
+        $photoUpload= $request->file('addPhotoPost')->getClientOriginalName();
+        $request->file('addPhotoPost')->move(public_path('images'), $photoUpload);
+        $photoPost = new PhotoPost(['image'=> $photoUpload]);
+        dd($photoUpload);
+        // $photoPost->save();
+        
 
         $selectDispo = $request->get('selectDispo');
         if($selectDispo='Disponible'){

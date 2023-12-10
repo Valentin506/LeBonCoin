@@ -24,7 +24,7 @@
 
 @section('content')
 <div>
-    <form action="{{url("/deposit-post/save") }}" method="post" class="form">
+    <form action="{{url("/deposit-post/save") }}" method="post" class="form" enctype="multipart/form-data">
     <div id="form">
         
         
@@ -40,6 +40,8 @@
     
     <div id="divCategoryDeposit">
         <div id="divInputCatgory">
+        </br>
+        </br>
             <h3>Dites-nous en plus</h3>
             
             
@@ -178,15 +180,25 @@
 </br>
 </div>
 <div id='divPicture'>
-    </br>
+    </br>   
     <!-- Ajoutez le champ d'envoi de fichier -->
-    <label for="photo">Ajouter des photos :</label>
-    <input type="file" name="photo[]" id="photo" accept="image/*" multiple>
+    <label for="images">Ajouter des photos</label>
+    <input type="file" name="images" id="images" multiple accept="image/*">
+    </br></br><label id="errorChampPhoto">Ajouter au moins une photo</label>  
+
+    
     
     
     <div>
         </br>
-        <button id='button' type="input">Valider</button>
+        @if (session('pictureBool') === true)
+            <button id='button' type="input">Valider</button>
+        @endif
+
+        @if (session('pictureBool') === false)
+        <p id='button' type="input" onclick="veryEndForm()">Valider</p>
+        @endif
+        
     </div>
 </div>
 

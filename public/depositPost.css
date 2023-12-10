@@ -211,6 +211,12 @@ input[type=checkbox]{
 
 }
 
+#errorChampPhoto {
+    color:red;
+    visibility: hidden;
+
+}
+
 #errorPaiement {
     color:red;
     visibility: hidden;

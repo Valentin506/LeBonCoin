@@ -14,7 +14,7 @@ class PhotoPost extends Model
     protected $primaryKey = "idimage";
     
     public $timestamps = false;
-
+    protected $fillable = ['image'];
     public function post(): BelongsTo{
         return $this->belongsTo(Post::class, 'idannonce', 'idannonce');
     }

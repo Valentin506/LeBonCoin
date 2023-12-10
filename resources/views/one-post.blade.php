@@ -150,7 +150,7 @@
                                                         <input type="range" id="vol" name="vol" min="0" max="12">
                                                 </div> -->
                                                 <div class="form-group">Disponibilité à jour</div>
-                                                <input type="date" name="dateAvailable" class="form-control" placeholder="" required readonly>
+                                                <input type="date" name="dateAvailable" id="dateAvailable" class="form-control" placeholder="" required readonly>
                                                 
                                         </div>
                                         <div id="divPriceVerifDate">
