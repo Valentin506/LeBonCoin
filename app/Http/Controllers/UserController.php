@@ -86,8 +86,11 @@ class UserController extends Controller
                     ->join('proprietaire','proprietaire.idproprietaire','=','annonce.idproprietaire')
                     ->join('compte','compte.idcompte','=','proprietaire.idcompte')
                     ->get();
+        $calendar = DB::table('calendrier')
+                    ->join('annonce','annonce.idannonce','=','calendrier.idannonce')
+                    ->get();
 
-        return view('modif-post', compact('user','posts','owner','photoPosts','calendars'));
+        return view('modif-post', compact('user','posts','owner','photoPosts','calendars','calendar'));
     }
 
     // UPDATE POST
@@ -107,19 +110,19 @@ class UserController extends Controller
         // $photoPost->save();
         
 
-        $selectDispo = $request->get('selectDispo');
-        if($selectDispo='Disponible'){
-            dd($selectDispo);
-            $post=Post::whereHas('calendar', function($query) use($selectDispo){
-                $query->where('disponibilite', '=','true');
-            })->update();
-        }
-        else{
-            dd($selectDispo);
-            $post=Post::whereHas('calendar', function($query) use($selectDispo){
-                $query->where('disponibilite', '=','false');
-            })->update();
-        }
+        // $selectDispo = $request->get('selectDispo');
+        // if($selectDispo='Disponible'){
+        //     dd($selectDispo);
+        //     $post=Post::whereHas('calendar', function($query) use($selectDispo){
+        //         $query->where('disponibilite', '=','true');
+        //     })->update();
+        // }
+        // else{
+        //     dd($selectDispo);
+        //     $post=Post::whereHas('calendar', function($query) use($selectDispo){
+        //         $query->where('disponibilite', '=','false');
+        //     })->update();
+        // }
 
         // $photoPost->update();
         return redirect('/');

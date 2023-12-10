@@ -150,7 +150,7 @@
                                                         <input type="range" id="vol" name="vol" min="0" max="12">
                                                 </div> -->
                                                 <div class="form-group">Disponibilité à jour</div>
-                                                <input type="date" name="dateAvailable" id="dateAvailable" class="form-control" placeholder="" required readonly>
+                                                
                                                 
                                         </div>
                                         <div id="divPriceVerifDate">
@@ -236,17 +236,53 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         <script>
-                var array = ["$nonAvailable"];
+                
+                $array[] = $calendar->nonAvailable->format('Y-m-d');
+  
+                var dateToday = new Date();
+                var selectedDate;
+                var unavailableDates = $array[];
+                $("#startDate").datepicker({
+                        minDate: dateToday,
+                        onSelect: function (dateText, inst) {
+                                selectedDate = $(this).datepicker( "getDate" );
+                                var slctdDate = selectedDate.getDate()
+                                // alert(selectedDate);
+                                $("#endDate").datepicker({
+                                        minDate: inst.day,
+                                        beforeShowDay: function(date){
+                                        //Only allow fri, sat
+                                                var day = date.getDay();
+                                                return [ day != 0 && day != 6 && $.inArray(date.toISOString().slice(0, 10), unavailableDates) === -1,
+                                                ''
+                                                ];
+                                                // return [date.getDate()==slctdDate];
 
-                $(function () {
-                        $('input').datepicker({
-                        dateFormat: 'yy-mm-dd',
-                        beforeShowDay: function(date) {
-                                var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-                                return [array.indexOf(string) == -1]
-                                }
-                        });
+                                        }
+                                });
+
+                        }
                 });
+
+                $("#endDate").datepicker({
+                        minDate: dateToday,
+                        onSelect: function (dateText, inst) {
+                                selectedDate = $(this).datepicker( "getDate" );
+                                var slctdDate = selectedDate.getDate($noAvailable)
+                                // alert(selectedDate);
+                                $("#endDate").datepicker({
+                                        minDate: inst.day,
+                                        beforeShowDay: function(date){
+                                        //Only allow fri, sat
+
+                                                return [date.getDate()==slctdDate];
+
+                                        }
+                                });
+
+                        }
+                });
+
         </script>
         
 

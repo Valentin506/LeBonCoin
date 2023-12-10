@@ -15,6 +15,10 @@
     align-items: flex-end;
 }
 
+#divInfoPost h3 a:hover {
+    color: orange;
+}
+
 #divImagePost{
     display: flex;
     flex-direction: column;

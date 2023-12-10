@@ -12,8 +12,9 @@ class ReservationController extends Controller
     public function reservation()
     {
         // $posts = Post::all();
+        
         $photoPosts = PhotoPost::all();
-        $posts = Post::where('idcompte', $user->idcompte)->get();
+        $posts = Post::where('idcompte',idcompte)->get();
 
         return view("/reservation",compact('posts','photoPosts'));
     }

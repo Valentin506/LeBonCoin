@@ -53,7 +53,7 @@ Route::get("/deposit-post",[DepositPostController::class, "post" ]);
 Route::post("/deposit-post/save",[DepositPostController::class, 'save' ]);
 Route::post("/posts",[PostController::class, "getPostsByCity" ]);
 Route::get("/account/{idcompte}/my-posts",[UserController::class, "modifPost" ]);
-Route::post("/account/{idcompte}/my-posts/update",[UserController::class, "updatePost" ]);
+Route::post("/modif-post/updatePost",[UserController::class, "updatePost" ]);
 
 
 

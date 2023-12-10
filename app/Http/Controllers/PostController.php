@@ -65,9 +65,9 @@ class PostController extends Controller
         $dateArrive = $request->get('startDate');
         $dateDepart = $request->get('endDate');
         $nonAvailable = Calendar::where('periodedebut', '<=', $dateArrive)
-                        ->where('periodefin','>=',$dateDepart)
-                        ->where('disponibilite', false)
-                        ->get();
+                         ->where('periodefin','>=',$dateDepart)
+                         ->where('disponibilite', false)
+                         ->get();
         return view ("one-post", compact('nonAvailable'));
     }
 

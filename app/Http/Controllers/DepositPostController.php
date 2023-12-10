@@ -129,16 +129,18 @@ class DepositPostController extends Controller
                 $pictureBool = false;
                     
                     // Traitez chaque fichier téléchargé
-                    // foreach ($request->file('images') as $photo) {
+                     foreach ($request->file('images') as $photo) {
                         // Assurez-vous de traiter correctement les fichiers, par exemple en les téléchargeant dans un répertoire spécifique
-                        $photo = $request->file('images')->getClientOriginalName();
+                        $photoName = $photo->getClientOriginalName();
+                        //$photo = $request->file('images')->getClientOriginalName();
                         //dd($photo);
-                        if (!is_null($photo)) {
+                        if (!is_null($photoName)) {
                             //foreach ($request->file('images') as $photo) {
                                 //$path = $photo->store('images', 'public');
-                                $request -> file('images')->move(public_path('images'),$photo);
+                                $photo->move(public_path('images'), $photoName);
+                                //$request -> file('images')->move(public_path('images'),$photo);
                                 // Créez une nouvelle instance de PhotoPost et liez-la à l'annonce actuelle
-                                $photoPost = new PhotoPost(['image' => $photo]);
+                                $photoPost = new PhotoPost(['image' => $photoName]);
                                 
                                 // Récupérez l'id de l'annonce après l'avoir enregistrée
                                 $post->save();
@@ -148,7 +150,7 @@ class DepositPostController extends Controller
                                 $pictureBool = true;
                             //}
                         }
-                    //}
+                    }
                 
 
              return redirect('/')->with('pictureBool', $pictureBool);

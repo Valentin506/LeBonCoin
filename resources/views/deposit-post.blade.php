@@ -183,7 +183,7 @@
     </br>   
     <!-- Ajoutez le champ d'envoi de fichier -->
     <label for="images">Ajouter des photos</label>
-    <input type="file" name="images" id="images" multiple accept="image/*">
+    <input type="file" name="images[]" id="images" multiple accept="image/*">
     </br></br><label id="errorChampPhoto">Ajouter au moins une photo</label>  
 
     
@@ -191,13 +191,14 @@
     
     <div>
         </br>
-        @if (session('pictureBool') === true)
+        <button id='button' type="input">Valider</button>
+        <!-- @if (session('pictureBool') === true)
             <button id='button' type="input">Valider</button>
         @endif
 
         @if (session('pictureBool') === false)
         <p id='button' type="input" onclick="veryEndForm()">Valider</p>
-        @endif
+        @endif -->
         
     </div>
 </div>
