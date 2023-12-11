@@ -14,6 +14,7 @@ use App\Http\Controllers\AddPostController;
 use App\Http\Controllers\FavorisController; 
 use App\Http\Controllers\ReservationController; 
 use App\Http\Controllers\EmployeController;
+use App\Http\Controllers\EquipementController;
 use App\Http\Controllers\TypeHebergementController;
 
 use App\Models\Post;
@@ -28,6 +29,7 @@ use App\Models\Equipement;
 use App\Models\Favorite;
 use App\Models\Calendar;
 use App\Models\Employe;
+
 
 
 /*
@@ -141,13 +143,16 @@ Route::get('/reservation', [ReservationController::class, 'reservation']);
 
 
 
-
-
-
+//Visualisation et ajout de type d'hébergement par le service petite annonce
 Route::get('/types-hebergements', [TypeHebergementController::class, 'index'])->name('types-hebergements.index');
-
 Route::get('/types-hebergements/create', [TypeHebergementController::class, 'create'])->name('types-hebergements.create');
 Route::post('/types-hebergements/store', [TypeHebergementController::class, 'store']);
+
+
+//Visualisation et ajout d'équipements' par le service petite annonce
+Route::get('/equipements', [EquipementController::class, 'index'])->name('equipements.index');
+Route::get('/equipements/create', [EquipementController::class, 'create'])->name('equipements.create');
+Route::post('/equipements/store', [EquipementController::class, 'store']);
 
 
 

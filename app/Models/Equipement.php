@@ -12,4 +12,9 @@ class Equipement extends Model
     protected $primaryKey = "idequipement";
     public $timestamps = false;
 
+
+    public function post(): HasMany{
+        return $this->hasMany(Post::class, 'idequipement', 'idannonce');
+    }
+
 }

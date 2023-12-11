@@ -38,7 +38,7 @@
 
 
 
-            <div>Equipements</div>
+            <div><a href="{{ route('equipements.index') }}">Equipements</div>
 
 
             <div>Paramètres</div>
