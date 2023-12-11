@@ -44,7 +44,7 @@ class PostController extends Controller
         $user = User::find($id);
         $equipements = Equipement::all();
         $calendar = Calendar::find($id);
-
+        
         
         // $availability = DB::table('calendrier')
         //                 ->join('annonce','annonce.idannonce','=','calendrier.idannonce')
@@ -64,11 +64,17 @@ class PostController extends Controller
     public function getAvailableDates(Request $request){
         $dateArrive = $request->get('startDate');
         $dateDepart = $request->get('endDate');
-        $nonAvailable = Calendar::where('periodedebut', '<=', $dateArrive)
-                         ->where('periodefin','>=',$dateDepart)
-                         ->where('disponibilite', false)
-                         ->get();
-        return view ("one-post", compact('nonAvailable'));
+        
+        $dateAvailable = Post::whereHas('calendar', function ($query) use ($dateArrive) {
+            $query->where('disponibilite', true)
+                  ->where('periodedebut', '<=', $dateArrive);
+        })->where('datepublication', '<', $dateArrive)
+          ->get();
+        
+        if ($dateAvailable->isNotEmpty()) {
+            return response()->json(['message' => 'Available dates found']);
+        }
+        return view ("one-post", compact('dateAvailable'));
     }
 
     public function getPostsByCity(Request $request){

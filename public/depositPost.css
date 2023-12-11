@@ -154,6 +154,11 @@ input[type=checkbox]{
     flex-direction: column;
 }
 
+#divValidate {
+    display: flex;
+    visibility: hidden; 
+
+}
 
 /* dropdown content */
 

@@ -11,6 +11,7 @@ use Illuminate\Validation\Rules\Password;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection;
 use App\Models\User;
 use App\Models\Adresse;
 use App\Models\Ville;
@@ -79,6 +80,7 @@ class UserController extends Controller
     public function modifPost($id){
         $user = User::find($id);
         $posts = Post::all();
+        $post = Post::find($id);
         $owner = Owner::find($id);
         $calendars = Calendar::all();
         $photoPosts = DB::table('photo')
@@ -90,7 +92,7 @@ class UserController extends Controller
                     ->join('annonce','annonce.idannonce','=','calendrier.idannonce')
                     ->get();
 
-        return view('modif-post', compact('user','posts','owner','photoPosts','calendars','calendar'));
+        return view('modif-post', compact('user','posts','owner','photoPosts','calendars','calendar','post'));
     }
 
     // UPDATE POST
@@ -98,16 +100,28 @@ class UserController extends Controller
         
        
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'addPhotoPost' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
+        $idPost=$request->get('idannonce');
+        $post = Post::find($idPost);
+        // dd($post);
+        
+        if ($request->hasFile('addPhotoPost')){
+            $photoUpload= $request->file('addPhotoPost')->getClientOriginalName();
+            $request->file('addPhotoPost')->move(public_path('images'), $photoUpload);
+            $photoPost = new PhotoPost(['image'=> $photoUpload]);
+            $post->photoPost()->save($photoPost);
+            // $photoPost->post()->associate($post);
+            // $photoPost->save();
+            $post->save();
+            dd($photoPost);
+            // $post->save($photoPost);
+            dd($post);
+            
+
+        }
 
         
-            
-        $photoUpload= $request->file('addPhotoPost')->getClientOriginalName();
-        $request->file('addPhotoPost')->move(public_path('images'), $photoUpload);
-        $photoPost = new PhotoPost(['image'=> $photoUpload]);
-        dd($photoUpload);
-        // $photoPost->save();
         
 
         // $selectDispo = $request->get('selectDispo');
@@ -124,7 +138,6 @@ class UserController extends Controller
         //     })->update();
         // }
 
-        // $photoPost->update();
         return redirect('/');
     }
 

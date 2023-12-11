@@ -68,6 +68,19 @@
     margin-bottom: 10px;
 }
 
+.divEachPostSimiliar{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+}
+
+#divPostSimilar{
+    display: flex;
+    flex-direction: row;
+}
+
+
 
 #postTitle a:hover{
     color: rgb(247, 120, 47);

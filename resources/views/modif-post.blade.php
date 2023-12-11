@@ -23,15 +23,15 @@
                         @endif
                         @if($photoPost->idannonce != $post->idannonce)
                             @php $hasText = false; @endphp 
-                            <form action="/modif-post/updatePost" method="post" enctype="multipart/form-data">
                             <div id="divImagePost">
                                 <p>Aucune image associée</p>
+                                <form action="/account/{idcompte}/my-posts/update" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <h4>Ajoutez photo pour votre annonce :</h4>
                                     <input type="file" name="addPhotoPost" id="addPhotoPost" required>
                                     <button type="submit">Chargez l'image</button>
                                     @php $hasText = true; break; @endphp
-                            </form>
+                                </form>
                             </div>
         
                         @endif
@@ -39,7 +39,8 @@
                     <div id="divInfoPost">
                         <h3><a href="{{ url("/post/".$post->idannonce) }}">{{ $post-> titreannonce}}</a></h3>
 
-                        <form action="/modif-post/updatePost" method="post" enctype="multipart/form-data">
+                        <form action="/account/{idcompte}/my-posts/update" method="post" enctype="multipart/form-data">
+                            @csrf
                             <label for="inputDispo">Vous voulez changer la disponibilité ?</label>
                             <select name="selectDispo" id="selectDispo">
                                 <option value="selectDisponible">Disponible</option>

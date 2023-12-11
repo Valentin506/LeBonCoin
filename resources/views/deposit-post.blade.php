@@ -117,7 +117,7 @@
 <div id="divService" class="dropdown-content" name="service" >
     
     @foreach( $serviceaccessibilittes as $serviceaccessibilitte)
-    <input type="checkbox" name ="service" value="{{ $serviceaccessibilitte->idservice }}" onchange="updateSelectedServices()">{{ $serviceaccessibilitte->libelleservice}}</input>
+    <input type="checkbox" name ="service[]" id='service[]' value="{{ $serviceaccessibilitte->idservice }}" onchange="updateSelectedServices()">{{ $serviceaccessibilitte->libelleservice}}</input>
     @endforeach
     <p value="labelErrorService.innerText"></p>
 </div>
@@ -162,7 +162,7 @@
 <div id='divPrix'>
     <label>Prix par nuit*</label></br>
     
-    <input type="number"  id="add_price" name="price"></input>
+    <input type="number"  id="add_price" name="price" min='1'></input>
 </br></br><label id="errorPrix">Le champ prix est obligatoire</label>  
 
 </br>
@@ -183,26 +183,20 @@
     </br>   
     <!-- Ajoutez le champ d'envoi de fichier -->
     <label for="images">Ajouter des photos</label>
-    <input type="file" name="images[]" id="images" multiple accept="image/*">
+    <input type="file" name="images[]" id="images" accept="image/*" multiple >
     </br></br><label id="errorChampPhoto">Ajouter au moins une photo</label>  
+    <p id='button' type="input" onclick="veryEndForm()">Continuer</p>
 
     
     
     
-    <div>
+    
+</div>
+<div id='divValidate'>
         </br>
         <button id='button' type="input">Valider</button>
-        <!-- @if (session('pictureBool') === true)
-            <button id='button' type="input">Valider</button>
-        @endif
-
-        @if (session('pictureBool') === false)
-        <p id='button' type="input" onclick="veryEndForm()">Valider</p>
-        @endif -->
         
     </div>
-</div>
-
 </div>
 
 </form>

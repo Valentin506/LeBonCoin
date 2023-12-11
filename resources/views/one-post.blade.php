@@ -123,15 +123,17 @@
                                 <!-- to return to locations page -->
                                 <h3><p><a href="{{ url("/posts") }}">Retour vers les locations saisonières</a></p></h3>
 
+                                
+
                         </div>
                 
                 </div>
+
                 
                 <!-- div about owner -->
                 <div class="ownerPostDiv">
                         <!-- date avail div -->
-                        <form action="{{url("/reservation") }}" method="get" class="form" >
-                        @csrf
+                        <!-- y avait form de Val ici -->
                         <div id="postDateDiv">
                                 <div id="divDate">
                                         <div id="divSelectDate">
@@ -139,7 +141,7 @@
                                                 <div id="divDateArriveDepart">
                                                         <div id="divDateArrive">
                                                                 <label for="startDate">Arrivée</label>
-                                                                <input type="date" id="startDate" name="startDate" onclick="currentDate()">
+                                                                <input type="date" id="startDate" name="startDate" >
                                                         </div>
 
                                                         <!-- <label for="numberOfDays">Nombre de jours:</label>
@@ -148,14 +150,19 @@
                                                         <div id="divDateDepart">
 
                                                                 <label for="endDate">Départ</label>
-                                                                <input type="date" id="endDate" name="endDate" onclick="currentDate()">
+                                                                <input type="date" id="endDate" name="endDate" >
                                                         </div>
 
                                                 </div>
                                                 <!-- <div>
                                                         <input type="range" id="vol" name="vol" min="0" max="12">
                                                 </div> -->
-                                                <div class="form-group">Disponibilité à jour</div>
+                                                <form action="{{ url("/post/{id}/check") }}" method="post">
+                                                        @csrf
+                                                        <div class="form-group">Disponibilité à jour</div>
+                                                        <!-- <button type="submit">Check</button> -->
+                                                </form>
+                                                
                                                 
                                                 
                                         </div>
@@ -165,14 +172,16 @@
                                                         <p>À partir de </p>
                                                         <div>Prix € / nuit</div>
                                                        
-
-                                                </div>
-                                                <div><button>Vérifier la disponibilité</button></div>
+                                                <form action="{{url("/reservation") }}" method="get" class="form" >
+                                                        @csrf
+                                                        </div>
+                                                        <div><button>Vérifier la disponibilité</button></div>
+                                                </form>
                                         </div>
 
                                 </div>
                         </div>
-                        </form>
+                        <!-- y avait fin de form de Val ici                 -->
                         <!-- photo and info owner div -->
                         <div id="postOwnerDiv">
                                 <!-- photo for each owner of the post -->
@@ -202,6 +211,50 @@
         
         </div>
 
+
+        <div >
+        
+
+
+
+
+        <!-- Supposons que $post est une instance de App\Models\Post -->
+        <form action="{{ url("/favoris/".$post->idannonce."/save") }}" method="post">
+            @csrf
+          
+            @if (Auth::check() && Auth::user()->estDansLesFavoris($post->idannonce))
+                <button type="submit" name="favoris" class="favoris">
+                    <img src="https://img.icons8.com/windows/20/filled-heart.png" alt="favori" width="20" height="20">
+                </button>
+            @elseif(Auth::check())
+                  <button type="submit" name="favoris" class="favoris">
+                      <img src="https://img.icons8.com/ios/20/like--v1.png" alt="like--v1" width="20" height="20">
+                  </button>
+                @else
+                <button type="button" name="favoris" class="favoris">
+                <a href="{{url("/login")}}"><img src="https://img.icons8.com/ios/20/like--v1.png" alt=""></a>
+                  </button>
+           
+            
+            @endif 
+         
+          
+        </form>
+        <!-- <form action="{{ url("/favoris/".$post->idannonce."/save") }}" method="post">
+          @csrf
+          <button type="submit" name="favoris" class="favoris">
+              <img src="https://img.icons8.com/ios/20/like--v1.png " alt="like--v1" width="20" height="20">
+          </button>
+        </form> -->
+    
+        
+     
+    
+    
+    
+  </div>
+        </div>
+
         <!-- slider -->
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
@@ -212,6 +265,7 @@
                         prevArrow: $(".prevArrow"),
                         nextArrow: $(".nextArrow")
                 });
+               
         </script>
        
 
@@ -243,50 +297,36 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         <script>
                 
-                $array[] = $calendar->nonAvailable->format('Y-m-d');
+                // var disabledDates = ["2023-12-15"]
   
-                var dateToday = new Date();
-                var selectedDate;
-                var unavailableDates = $array[];
+                // $('input').datepicker({
+                //         beforeShowDay: function(date){
+                //                 var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+                //                 return [ disabledDates.indexOf(string) == -1 ]
+                //         }
+                // });
+                var today = new Date();
+                var availableDates = ["2023-12-10","2023-12-11","2023-12-12"];
+
+                function available(date) {
+                        // dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+                        ymd = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" +  date.getDate();
+
+                        return [availableDates.includes(ymd)];
+                }
+
                 $("#startDate").datepicker({
-                        minDate: dateToday,
-                        onSelect: function (dateText, inst) {
-                                selectedDate = $(this).datepicker( "getDate" );
-                                var slctdDate = selectedDate.getDate()
-                                // alert(selectedDate);
-                                $("#endDate").datepicker({
-                                        minDate: inst.day,
-                                        beforeShowDay: function(date){
-                                        //Only allow fri, sat
-                                                var day = date.getDay();
-                                                return [ day != 0 && day != 6 && $.inArray(date.toISOString().slice(0, 10), unavailableDates) === -1,
-                                                ''
-                                                ];
-                                                // return [date.getDate()==slctdDate];
-
-                                        }
-                                });
-
-                        }
+                        dateFormat: 'yy MM dd',
+                        startDate: '-0m',
+                        todayHighlight:'TRUE',
+                        beforeShowDay: available
                 });
 
                 $("#endDate").datepicker({
-                        minDate: dateToday,
-                        onSelect: function (dateText, inst) {
-                                selectedDate = $(this).datepicker( "getDate" );
-                                var slctdDate = selectedDate.getDate($noAvailable)
-                                // alert(selectedDate);
-                                $("#endDate").datepicker({
-                                        minDate: inst.day,
-                                        beforeShowDay: function(date){
-                                        //Only allow fri, sat
-
-                                                return [date.getDate()==slctdDate];
-
-                                        }
-                                });
-
-                        }
+                        dateFormat: 'yy MM dd',
+                        startDate: '-0m',
+                        todayHighlight:'TRUE',
+                        beforeShowDay: available
                 });
 
         </script>

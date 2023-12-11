@@ -14,6 +14,7 @@ use App\Http\Controllers\AddPostController;
 use App\Http\Controllers\FavorisController; 
 use App\Http\Controllers\ReservationController; 
 use App\Http\Controllers\EmployeController;
+use App\Http\Controllers\TypeHebergementController;
 
 use App\Models\Post;
 use App\Models\PhotoPost;
@@ -41,19 +42,25 @@ use App\Models\Employe;
 */
 
 Route::get('/', [SiteController::class, "index" ]);
-// Route::get("/annonces",[AccountController::class, "index" ]);
-// Route::get("/create-account",[AccountController::class, "create" ]);
+
+// post controller
 Route::get("/posts",[PostController::class, "post" ]);
+Route::post("/posts",[PostController::class, "getPostsByCity" ]);
 Route::get("/post/{id}",[PostController::class, "one" ]);
-Route::post("/post/{id}",[PostController::class, "getAvailableDates" ]);
+Route::post("/post/{id}/check",[PostController::class, "getAvailableDates" ]);
+
+// profile owner controller
 Route::get("/profiles",[OwnerController::class, "owner" ]);
 Route::get("/profile/{id}",[OwnerController::class, "one" ]);
-Route::get("/view-profile",[SiteController::class, "photoRandom" ]);
+// Route::get("/view-profile",[SiteController::class, "photoRandom" ]);
+
+//deposit post controller
 Route::get("/deposit-post",[DepositPostController::class, "post" ]);
 Route::post("/deposit-post/save",[DepositPostController::class, 'save' ]);
-Route::post("/posts",[PostController::class, "getPostsByCity" ]);
+
+//modification post controller
 Route::get("/account/{idcompte}/my-posts",[UserController::class, "modifPost" ]);
-Route::post("/modif-post/updatePost",[UserController::class, "updatePost" ]);
+Route::post("/account/{idcompte}/my-posts/update",[UserController::class, "updatePost" ]);
 
 
 
@@ -132,6 +139,15 @@ Route::get('/reservation', [ReservationController::class, 'reservation']);
 // Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
 // Route::post('/login', [AuthController::class, 'doLogin']);
 
+
+
+
+
+
+Route::get('/types-hebergements', [TypeHebergementController::class, 'index'])->name('types-hebergements.index');
+
+Route::get('/types-hebergements/create', [TypeHebergementController::class, 'create'])->name('types-hebergements.create');
+Route::post('/types-hebergements/store', [TypeHebergementController::class, 'store']);
 
 
 

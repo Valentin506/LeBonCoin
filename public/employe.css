@@ -1,0 +1,16 @@
+#categories div{
+    border-radius: 1.6rem;
+    padding: 2rem;
+    background: rgb(255, 255, 255);
+    cursor: pointer;
+    border: 0.1rem solid rgba(222, 226, 231, 0.568);
+    border-radius: 1.6rem;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.20) 1.95px 1px 2.6px;
+    margin-top: 10px
+    ;}
+
+ul{
+
+    margin-bottom: 10px;
+}

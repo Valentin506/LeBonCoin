@@ -17,7 +17,17 @@ function handleContinue() {
 }
 
 function veryEndForm() {
-  errorChampPhoto.style.visibility = 'visible';
+  var imageInput = document.getElementById('images');
+
+  if (!imageInput.files.length > 0)
+  {
+    errorChampPhoto.style.visibility = 'visible';
+  }
+  else
+  {
+    errorChampPhoto.style.visibility = 'hidden';
+    showDivValidate();
+  }
 }
 
 function continueForm() {
@@ -167,6 +177,11 @@ function showCategoryDeposit() {
   divInputCatgory.style.visibility = "visible";
 }
 
+function showDivValidate() {
+  var divValidate = document.getElementById("divValidate");
+  divValidate.style.visibility = "visible";
+}
+
 function showNextForm() {
   var divAdresse = document.getElementById("divAdresse");
   divAdresse.style.visibility = "visible";
@@ -221,7 +236,7 @@ function updateSelectedEquipements() {
 let atLeastOneChecked = false;
 
 function updateSelectedServices() {
-  var checkboxes = document.querySelectorAll('input[name="service"]');
+  var checkboxes = document.querySelectorAll('input[name="service[]"]');
   // var labelErrorService = document.getElementById('errorService');
 
   

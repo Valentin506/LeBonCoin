@@ -107,7 +107,7 @@ class DepositPostController extends Controller
                 
 
                 //detient services
-                foreach ($request->input("equipement2") as $idservice )
+                foreach ($request->input("service") as $idservice )
                 {
 
                     $hold = new Hold;
@@ -126,19 +126,11 @@ class DepositPostController extends Controller
 
                 
                 //picture
-                $pictureBool = false;
-                    
-                    // Traitez chaque fichier téléchargé
-                     foreach ($request->file('images') as $photo) {
-                        // Assurez-vous de traiter correctement les fichiers, par exemple en les téléchargeant dans un répertoire spécifique
-                        $photoName = $photo->getClientOriginalName();
-                        //$photo = $request->file('images')->getClientOriginalName();
-                        //dd($photo);
-                        if (!is_null($photoName)) {
-                            //foreach ($request->file('images') as $photo) {
-                                //$path = $photo->store('images', 'public');
+                       
+                            foreach ($request->file('images') as $photo) {
+                                $photoName = $photo->getClientOriginalName();
+
                                 $photo->move(public_path('images'), $photoName);
-                                //$request -> file('images')->move(public_path('images'),$photo);
                                 // Créez une nouvelle instance de PhotoPost et liez-la à l'annonce actuelle
                                 $photoPost = new PhotoPost(['image' => $photoName]);
                                 
@@ -147,19 +139,12 @@ class DepositPostController extends Controller
                                 $photoPost->idannonce = $post->idannonce;
                         
                                 $photoPost->save();
-                                $pictureBool = true;
-                            //}
-                        }
-                    }
-                
-
-             return redirect('/')->with('pictureBool', $pictureBool);
-        
-        
-
-    
-
-   
+                                
+                                
+                            
+                            } 
+                            
+        return redirect('/');   
     }
 
 

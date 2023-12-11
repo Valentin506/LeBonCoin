@@ -54,8 +54,8 @@ class EmployeController extends Controller
         $employe->motdepasseemploye = bcrypt($request->input('password'));
         $employe->datenaissanceemploye = $request->input('datenaissanceemploye');
         $employe->save();
-        // Auth::guard('employe')->login($employe);
-        Auth::login($employe);
+        Auth::guard('employe')->login($employe);
+        //Auth::login($employe);
         return redirect()->route('employe.dashboard');
 
 
