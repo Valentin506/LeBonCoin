@@ -18,5 +18,9 @@ class Ville extends Model
         return $this->hasOne(Departement::class, "iddepartement","idville");
     }
 
+    public function adresseAnnonce(): HasOne
+    {
+        return $this->hasOne(Adresse::class, "idville" ,"idadresse" );
+    }
 
 }

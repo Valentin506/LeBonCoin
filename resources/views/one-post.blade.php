@@ -56,7 +56,8 @@
                                                 <li>•</li>
                                                 <li>{{ $post -> capaciteLogement -> nombrepersonne }} personnes</li>
                                                 <li>•</li>
-                                                <li>{{ $post -> adresseAnnonce -> ville -> nomville }}</li>
+                                                <li>{{ $post -> adresseAnnonce ->ville->nomville }}</li>
+                                                <!-- $post -> adresseAnnonce -> idville -> nomville  -->
                                         </ul>
                                         
                                         @if($post->paiementenligne)
@@ -126,8 +127,10 @@
                                 
 
                         </div>
-                
+
                 </div>
+
+                
 
                 
                 <!-- div about owner -->
@@ -307,6 +310,7 @@
                 // });
                 var today = new Date();
                 var availableDates = ["2023-12-10","2023-12-11","2023-12-12"];
+                // var availableDates = ["$availability"];
 
                 function available(date) {
                         // dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
@@ -330,6 +334,10 @@
                 });
 
         </script>
+
+
+        
+        
         
 
 </body>

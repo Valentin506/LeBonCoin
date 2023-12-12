@@ -44,6 +44,8 @@ class PostController extends Controller
         $user = User::find($id);
         $equipements = Equipement::all();
         $calendar = Calendar::find($id);
+        $ville = Ville::find($id);
+        // dd($ville);
         
         
         // $availability = DB::table('calendrier')
@@ -58,7 +60,7 @@ class PostController extends Controller
         //                 ->where('disponibilite', true)
         //                 ->get();
 
-        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar'));
+        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar', 'ville'));
     }
 
     public function getAvailableDates(Request $request){

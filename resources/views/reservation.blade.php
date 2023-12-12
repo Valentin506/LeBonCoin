@@ -25,86 +25,105 @@
 
 <hr>
 
-
+<form action="{{url("/fiche-reservation/save") }}" method="post">
+@csrf
 <h3>Nombre de voyageurs</h3>
 <div class="personne">
     <div>
         Adultes <br>
         <p>18 ans et plus</p>
         <div class="nbPersonne">
-            <input type="button" value="-" onclick="decrement(this, 'adultes')">
-            <span id="adultesCount">0</span>
-            <input type="button" value="+" onclick="increment(this, 'adultes')">
+            <!-- <input type="button" value="-" onclick="decrement(this, 'adultes')">
+            <span id="adultes">0</span>
+            <input type="button" value="+" onclick="increment(this, 'adultes')"> -->
+            <input type="integer" name="adultes">
         </div>
     </div>
     <div>
         Enfants<br>
         <p>3 à 17 ans</p>
         <div class="nbPersonne">
-            <input type="button" value="-" onclick="decrement(this, 'enfants')">
-            <span id="enfantsCount">0</span>
-            <input type="button" value="+" onclick="increment(this, 'enfants')">
+            <!-- <input type="button" value="-" onclick="decrement(this, 'enfants')">
+            <span id="enfants">0</span>
+            <input type="button" value="+" onclick="increment(this, 'enfants')"> -->
+            <input type="integer" name="enfants">
         </div>
     </div>
     <div>
         Bébés<br>
         <p>Moins de 3 ans</p>
         <div class="nbPersonne">
-            <input type="button" value="-" onclick="decrement(this, 'bebes')">
-            <span id="bebesCount">0</span>
-            <input type="button" value="+" onclick="increment(this, 'bebes')">
+            <!-- <input type="button" value="-" onclick="decrement(this, 'bebes')">
+            <span id="bebes">0</span>
+            <input type="button" value="+" onclick="increment(this, 'bebes')"> -->
+            <input type="integer" name="bebes">
         </div>
     </div>
     <div>
         Animaux
         <div class="nbPersonne">
-            <input type="button" value="-" onclick="decrement(this, 'animaux')">
-            <span id="animauxCount">0</span>
-            <input type="button" value="+" onclick="increment(this, 'animaux')">
+            <!-- <input type="button" value="-" onclick="decrement(this, 'animaux')">
+            <span id="animaux">0</span>
+            <input type="button" value="+" onclick="increment(this, 'animaux')"> -->
+            <input type="integer" name="animaux">
         </div>
     </div>
 </div>
+
+<div>
+        Infos bancaires
+        <div class="Infosbancaire">
+            <input type="integer" name="carte">
+        </div>
+        <div class="Infosbancaire">
+            <input type="integer" name="cvv">
+        </div>
+        <div class="Infosbancaire">
+            <input type="month" name="dateexpiration">
+        </div>
+    </div>
+</div>
+
+<div><input type="submit" value="Résever"></div>
+</form>
 <hr>
 
-<h3>Vos Informations </h3>
+<h3>Vos Informations</h3>
 <div>
-<div><label for="Prénom">Prénom<input type="text"></label></div>
-<div><label for="Nom">Nom<input type="text"></label></div>
-<div><label for="telephone">Numéro de téléphone<input type="tel"></label></div>
+    <div><label for="Prénom">Prénom<input type="text" name="prenom"></label></div>
+    <div><label for="Nom">Nom<input type="text" name="nom"></label></div>
+    <div><label for="telephone">Numéro de téléphone<input type="tel" name="telephone"></label></div>
 </div>
-@php $hasUser=false; @endphp
-@foreach($posts as $post)
-<hr>
-<h3>Envoyer un message à {{ $post -> owner->user->pseudocompte}}</h3>
-@php $hasUser=true; break; @endphp
-@endforeach
+
+<!-- @if($posts && $posts->count() > 0)
+    @foreach($posts as $post)
+        <h3>Envoyer un message à {{ $post->owner->user->pseudocompte }}</h3>
+    @endforeach
+@else
+    <p>Aucun message trouvé.</p>
+@endif
 
 <input type="text" class="description" placeholder="Dites quelque chose à votre hôte">
-</div>
 
 <div id="info">
-
-                @foreach ($posts as $post)
-                    @if($post -> idproprietaire === $owner->idproprietaire)
-                    <div class="divForEachPost">
-                        <div>
-                            <h3><a href="{{ url("/post/".$post->idannonce) }}">{{ $post-> titreannonce}}</a></h3>
+    @foreach ($posts as $post)
+        @if($post->idproprietaire === $owner->idproprietaire)
+            <div class="divForEachPost">
+                <div>
+                    <h3><a href="{{ url("/post/".$post->idannonce) }}">{{ $post->titreannonce}}</a></h3>
+                </div>
+                @php $hasPhoto = false; @endphp
+                @foreach ($photoPosts as $photoPost)
+                    @if($photoPost->idannonce === $post->idannonce)
+                        <div id="divImagePost">
+                            <img src="{{ $photoPost->image }}" alt="Image de l'annonce">
+                            @php $hasPhoto = true; break; @endphp
                         </div>
-                        @php $hasPhoto = false; @endphp
-                        @foreach ($photoPosts as $photoPost)
-                            @if($photoPost-> idannonce === $post->idannonce)
-                                <div id="divImagePost">
-                                    <img src="{{ $photoPost -> image}}" alt="Image de l'annonce">
-                                    @php $hasPhoto = true; break; @endphp
-                                </div>
-                            @endif
-                        @endforeach
                     @endif
                 @endforeach
-                    
-                
-</div>
-
+            </div>
+        @endif
+    @endforeach -->
 </div>
 
 

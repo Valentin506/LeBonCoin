@@ -33,6 +33,7 @@ class Post extends Model
     public function capaciteLogement(): HasOne{
         return $this->hasOne(CapaciteLogement::class, 'idcapacite', 'idcapacite');
     }
+    
     public function adresseAnnonce(): HasOne{
         return $this->hasOne(Adresse::class, 'idadresse', 'idadresse');
     }

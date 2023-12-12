@@ -29,6 +29,7 @@ use App\Models\Equipement;
 use App\Models\Favorite;
 use App\Models\Calendar;
 use App\Models\Employe;
+use App\Models\Reservation;
 
 
 
@@ -128,6 +129,9 @@ Route::get('/politique-confidentialite', function () {
 
 Route::get('/create-account', [UserController::class, 'add']);
 Route::post('/create-account/save', [UserController::class, 'save']);
+
+Route::get('/fiche-reservation', [ReservationController::class, 'add']);
+Route::post('/fiche-reservation/save', [ReservationController::class, 'save']);
 
 Route::get('/favoris', [UserController::class, 'favoris']);
 Route::post('/favoris/{idannonce}/save', [FavorisController::class, 'save']);

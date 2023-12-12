@@ -110,13 +110,14 @@ class UserController extends Controller
             $photoUpload= $request->file('addPhotoPost')->getClientOriginalName();
             $request->file('addPhotoPost')->move(public_path('images'), $photoUpload);
             $photoPost = new PhotoPost(['image'=> $photoUpload]);
-            $post->photoPost()->save($photoPost);
+            $photoPost->idannonce = $request->get("idannonce");
+            $photoPost-> save();
             // $photoPost->post()->associate($post);
             // $photoPost->save();
             $post->save();
-            dd($photoPost);
+            // dd($photoPost);
             // $post->save($photoPost);
-            dd($post);
+            // dd($post);
             
 
         }
@@ -343,9 +344,10 @@ class UserController extends Controller
             'password' => [
                 'required',
                 'string',
-                'min:12', // par exemple, au moins 8 caractères
-                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/'
+                'min:12',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\/])[A-Za-z\d@$!%*?&\/]+$/'
             ]
+        
            
         ],[
             'password.regex' => 'Le mot de passe doit respecter les critères suivants :'
@@ -353,7 +355,7 @@ class UserController extends Controller
             . "\n. Au moins une lettre minuscule."
             . "\n. Au moins une lettre majuscule."
             . "\n. Au moins un chiffre."
-            . "\n. Au moins un caractère spécial parmi @$!%*?&.'",
+            . "\n. Au moins un caractère spécial parmi @$!%*?&/\.'",
         ]);
 
         
