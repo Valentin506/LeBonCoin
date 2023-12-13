@@ -14,8 +14,15 @@
     
     <div class="userFrame">
         <div class="userInfo">
+
+            
             <div id="photoUser">
-                <img src="{{$owner->user->photoUser->urlphotoprofil}}" alt="photo utilisateurs">
+                @if (Str::startsWith($owner->user->photoUser->urlphotoprofil, 'https'))
+                        <img src="{{$owner->user->photoUser->urlphotoprofil}}" alt="photo utilisateurs">
+                @else
+                        <img id="photoUser" src="/images/{{ $owner->user->photoUser->urlphotoprofil}}" alt="Photo de profil">
+                @endif
+                
             </div>
             <div id="basicUserInfo">
                 <h3> {{ $owner -> user -> pseudocompte}} </h3>

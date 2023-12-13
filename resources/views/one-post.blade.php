@@ -2,6 +2,7 @@
 <head>
         <title>{{ $post-> titreannonce." - Locations saisonières"}}</title>
         <link rel="stylesheet" type="text/css" href="{{asset('post.css')}}"/> 
+        <link rel="stylesheet" type="text/css" href="{{asset('one-post.css')}}"/> 
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" />
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
@@ -57,7 +58,7 @@
                                                 <li>{{ $post -> capaciteLogement -> nombrepersonne }} personnes</li>
                                                 <li>•</li>
                                                 <li>{{ $post -> adresseAnnonce ->ville->nomville }}</li>
-                                                <!-- $post -> adresseAnnonce -> idville -> nomville  -->
+                                                
                                         </ul>
                                         
                                         @if($post->paiementenligne)
@@ -163,7 +164,7 @@
                                                 <form action="{{ url("/post/{id}/check") }}" method="post">
                                                         @csrf
                                                         <div class="form-group">Disponibilité à jour</div>
-                                                        <!-- <button type="submit">Check</button> -->
+                                                        <button type="submit">Check</button>
                                                 </form>
                                                 
                                                 
@@ -178,7 +179,12 @@
                                                 <form action="{{url("/reservation") }}" method="get" class="form" >
                                                         @csrf
                                                         </div>
-                                                        <div><button>Vérifier la disponibilité</button></div>
+                                                        @if (Auth::check())
+                                                                <button>Vérifier la disponibilité</button>
+                                                        @else
+                                                        <button><a href="{{ url("/login") }}">Vérifier la disponibilité</a></button>
+                                                        @endif
+                                                        
                                                 </form>
                                         </div>
 
@@ -188,8 +194,15 @@
                         <!-- photo and info owner div -->
                         <div id="postOwnerDiv">
                                 <!-- photo for each owner of the post -->
+
+
                                 <div id="divPhotoOwner">
-                                        <img src="{{$post->owner->user->photoUser->urlphotoprofil}}" alt="photo utilisateurs">
+                                        @if (Str::startsWith($post->owner->user->photoUser->urlphotoprofil, 'https'))
+                                                 <img src="{{$post->owner->user->photoUser->urlphotoprofil}}" alt="photo utilisateurs">
+                                        @else
+                                                <img id="photoUser" src="/images/{{ $post->owner->user->photoUser->urlphotoprofil }}" alt="Photo de profil">
+                                        @endif
+                                       
                                 </div>
                                 <!-- basic info owner -->
                                 <div id="basicInfoDiv">
@@ -255,7 +268,45 @@
     
     
     
-  </div>
+        </div id="annoncSim">
+                </div>
+
+                <div>
+                        @foreach ($posts as $post)
+                                <div id="divImageOnePost">
+                                        @php $hasPhoto = false; @endphp
+                                        @foreach ($photoPosts as $photoPost)
+                                        @if($photoPost->image && $photoPost-> idannonce === $post->idannonce)
+                                        @if (Str::startsWith($photoPost -> image, 'https'))
+                                        <img src="{{ $photoPost -> image}}" alt="Image de l'annonce">
+                                        @php $hasPhoto = true; break; @endphp
+                                        @else
+                                        <img src="/images/{{ $photoPost -> image}}" alt="Image de l'annonce">
+                                        @php $hasPhoto = true; break; @endphp
+                                        @endif
+                                        @endif
+                                        @endforeach
+                                        @if (!$hasPhoto)
+                                        <p>Aucune image associée</p>
+                                        @endif
+                                </div>
+                                
+                                <div >
+                                        <li id="OnepostTitle"><h3><a href="{{ url("/post/".$post->idannonce) }}">{{ $post-> titreannonce}}</a></h3></li>
+                                        <li>{{ $post -> idcapacite}} pers. • {{ $post -> typeHebergement ->libelletypehebergement }}</li>
+                                        @if($post->paiementenligne)
+                                        Paiement en ligne disponible
+                                        @else
+                                        Paiement en ligne pas disponible
+                                        @endif
+                                
+                                </div>
+                        </div>
+                        @endforeach
+                <div id="navigationButtons">
+                        <button class="button" onclick="prevPage()">Précédent</button>
+                        <button class="button" onclick="nextPage()">Suivant</button>
+                </div>
         </div>
 
         <!-- slider -->

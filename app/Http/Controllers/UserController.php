@@ -80,19 +80,14 @@ class UserController extends Controller
     public function modifPost($id){
         $user = User::find($id);
         $posts = Post::all();
-        $post = Post::find($id);
         $owner = Owner::find($id);
         $calendars = Calendar::all();
-        $photoPosts = DB::table('photo')
-                    ->join('annonce', 'annonce.idannonce','=','photo.idannonce')
-                    ->join('proprietaire','proprietaire.idproprietaire','=','annonce.idproprietaire')
-                    ->join('compte','compte.idcompte','=','proprietaire.idcompte')
-                    ->get();
+        $photoPosts = PhotoPost::all();
         $calendar = DB::table('calendrier')
                     ->join('annonce','annonce.idannonce','=','calendrier.idannonce')
                     ->get();
 
-        return view('modif-post', compact('user','posts','owner','photoPosts','calendars','calendar','post'));
+        return view('modif-post', compact('user','posts','owner','photoPosts','calendars','calendar'));
     }
 
     // UPDATE POST

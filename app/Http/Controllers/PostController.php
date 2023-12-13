@@ -44,8 +44,7 @@ class PostController extends Controller
         $user = User::find($id);
         $equipements = Equipement::all();
         $calendar = Calendar::find($id);
-        $ville = Ville::find($id);
-        // dd($ville);
+        
         
         
         // $availability = DB::table('calendrier')
@@ -60,18 +59,15 @@ class PostController extends Controller
         //                 ->where('disponibilite', true)
         //                 ->get();
 
-        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar', 'ville'));
+        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar'));
     }
 
     public function getAvailableDates(Request $request){
         $dateArrive = $request->get('startDate');
         $dateDepart = $request->get('endDate');
         
-        $dateAvailable = Post::whereHas('calendar', function ($query) use ($dateArrive) {
-            $query->where('disponibilite', true)
-                  ->where('periodedebut', '<=', $dateArrive);
-        })->where('datepublication', '<', $dateArrive)
-          ->get();
+        $dateAvailable = Calendar::whereBetween([$dateArrive, $dateDepart])
+                    ->where('disponibilite', true)->get();
         
         if ($dateAvailable->isNotEmpty()) {
             return response()->json(['message' => 'Available dates found']);

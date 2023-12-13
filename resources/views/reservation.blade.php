@@ -33,39 +33,40 @@
         Adultes <br>
         <p>18 ans et plus</p>
         <div class="nbPersonne">
-            <!-- <input type="button" value="-" onclick="decrement(this, 'adultes')">
-            <span id="adultes">0</span>
-            <input type="button" value="+" onclick="increment(this, 'adultes')"> -->
-            <input type="integer" name="adultes">
+            <input type="button" value="-" onclick="decrement(this, 'adultes')">
+            <input type="integer" name="adultes" value="-">
+            <input type="button" value="+" onclick="increment(this, 'adultes')">
+            
         </div>
     </div>
     <div>
         Enfants<br>
         <p>3 à 17 ans</p>
         <div class="nbPersonne">
-            <!-- <input type="button" value="-" onclick="decrement(this, 'enfants')">
-            <span id="enfants">0</span>
-            <input type="button" value="+" onclick="increment(this, 'enfants')"> -->
-            <input type="integer" name="enfants">
+            <input type="button" value="-" onclick="decrement(this, 'enfants')">
+            <input type="integer" name="enfants" value="-">
+            <input type="button" value="+" onclick="increment(this, 'enfants')">
+            
         </div>
     </div>
     <div>
         Bébés<br>
         <p>Moins de 3 ans</p>
         <div class="nbPersonne">
-            <!-- <input type="button" value="-" onclick="decrement(this, 'bebes')">
-            <span id="bebes">0</span>
-            <input type="button" value="+" onclick="increment(this, 'bebes')"> -->
-            <input type="integer" name="bebes">
+            <input type="button" value="-" onclick="decrement(this, 'bebes')">
+            <input type="integer" name="bebes" value="-">
+            <input type="button" value="+" onclick="increment(this, 'bebes')">
+            
         </div>
     </div>
     <div>
         Animaux
         <div class="nbPersonne">
-            <!-- <input type="button" value="-" onclick="decrement(this, 'animaux')">
-            <span id="animaux">0</span>
-            <input type="button" value="+" onclick="increment(this, 'animaux')"> -->
-            <input type="integer" name="animaux">
+            <input type="button" value="-" onclick="decrement(this, 'animaux')">
+            <input type="integer" name="animaux" value="-">
+            <input type="button" value="+" onclick="increment(this, 'animaux')">
+
+            
         </div>
     </div>
 </div>
@@ -133,34 +134,19 @@
 
 
 <script>
-    var totalPersons = 0;
-    var maxPersons = 12;
-
-    function increment(button, type) {
-        var span = button.parentNode.querySelector('span');
-        var count = parseInt(span.textContent) + 1;
-
-        if (totalPersons < maxPersons) {
-            totalPersons++;
-            span.textContent = count;
-            updateTotalCount();
+        function increment(button, inputName) {
+            var inputElement = document.getElementsByName(inputName)[0];
+            var currentValue = parseInt(inputElement.value, 10) || 0;
+            inputElement.value = currentValue + 1;
         }
-    }
 
-    function decrement(button, type) {
-        var span = button.parentNode.querySelector('span');
-        var count = parseInt(span.textContent) - 1;
-
-        if (count >= 0) {
-            totalPersons--;
-            span.textContent = count;
-            updateTotalCount();
+        function decrement(button, inputName) {
+            var inputElement = document.getElementsByName(inputName)[0];
+            var currentValue = parseInt(inputElement.value, 10) || 0;
+            if (currentValue > 0) {
+                inputElement.value = currentValue - 1;
+            }
         }
-    }
-
-    function updateTotalCount() {
-        document.getElementById('totalCount').textContent = totalPersons;
-    }
-</script>
+    </script>
 
 @endsection

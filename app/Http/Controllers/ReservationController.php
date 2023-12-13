@@ -33,18 +33,18 @@ class ReservationController extends Controller
             $user = auth()->user();
             
 
-            $bancaire = new Bancaire;
-            $bancaire->idcompte = $user->idcompte;
-            $bancaire->numcarte = $request->input("carte");
-            $bancaire->numcvv = $request->input("cvv");
-            $bancaire->dateexpiration = $formattedDate;
+            // $bancaire = new Bancaire;
+            // $bancaire->idcompte = $user->idcompte;
+            // $bancaire->numcarte = $request->input("carte");
+            // $bancaire->numcvv = $request->input("cvv");
+            // $bancaire->dateexpiration = $formattedDate;
             
-            $bancaire->save();
+            // $bancaire->save();
 
             $fiche = new Reservation;
             $fiche->timestamps = false;
             $fiche->idcompte = $user->idcompte;
-            $fiche->idinfobancaire = $bancaire->idinfobancaire;
+            //$fiche->idinfobancaire = $bancaire->idinfobancaire;
             $fiche->nbadulte = $request->input("adultes");
             $fiche->nbenfant = $request->input("enfants");
             $fiche->nbbebe = $request->input("bebes");

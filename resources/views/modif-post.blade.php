@@ -13,6 +13,7 @@
             <hr>
                 <div id="divEachPost">
                     @foreach ($photoPosts as $photoPost)
+                        {{ $photoPost-> idannonce}} {{$post->idannonce}}
                         @if($photoPost->idannonce === $post->idannonce)
                             @php $hasPhoto = false; @endphp 
                             <div id="divImagePost">

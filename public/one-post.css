@@ -1,0 +1,38 @@
+#annoncSim {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+#divImageOnePost {
+    flex: 0 0 calc(33.33% - 20px); /* Ajustez la largeur et la marge selon votre conception */
+    margin: 10px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#divImageOnePost img {
+    max-width: 100%;
+    max-height: 200px; /* Ajoutez une hauteur maximale selon votre besoin */
+    object-fit: cover; /* Ajuste la façon dont l'image s'adapte à la boîte */
+    border-radius: 8px; /* Ajoutez une bordure arrondie si désiré */
+}
+
+#OnepostTitle {
+    margin-top: 10px; /* Ajustez la marge selon votre conception */
+}
+
+#navigationButtons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.button {
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
