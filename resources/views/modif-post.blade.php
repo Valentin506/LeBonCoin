@@ -29,7 +29,7 @@
                                 <form action="/account/{idcompte}/my-posts/update" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <h4>Ajoutez photo pour votre annonce :</h4>
-                                    <input type="file" name="addPhotoPost" id="addPhotoPost" required>
+                                    <input type="file" name="addPhotoPost" id="addPhotoPost">
                                     <button type="submit">Chargez l'image</button>
                                     <input type="hidden" name="idannonce" value="{{ $post->idannonce }}"/>
                                     @php $hasText = true; break; @endphp

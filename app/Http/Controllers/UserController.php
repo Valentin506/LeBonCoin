@@ -23,6 +23,7 @@ use App\Models\Post;
 use App\Models\PhotoPost;
 use App\Models\TypeHebergement;
 use App\Models\Calendar;
+use App\Models\Reservation;
 
 
 
@@ -75,6 +76,17 @@ class UserController extends Controller
     {
         return view('modif-securite', ['user'=>User::find($id)]);
     }
+    public function bookings($id)
+    {
+        $user = auth()->user();
+        
+
+        $bookings = Reservation::where('idcompte', $user->idcompte)->get();
+
+        return view('my-bookings', [
+            'user' => $user,
+            'bookings' => $bookings,]);
+       }
 
     // MODIFICATION POST
     public function modifPost($id){
@@ -83,12 +95,11 @@ class UserController extends Controller
         $owner = Owner::find($id);
         $calendars = Calendar::all();
         $photoPosts = DB::table('photo')
-                    ->select('photo.idannonce','annonce.idannonce')
                     ->join('annonce', 'annonce.idannonce','=','photo.idannonce')
                     ->join('proprietaire','proprietaire.idproprietaire','=','annonce.idproprietaire')
                     ->join('compte','compte.idcompte','=','proprietaire.idcompte')
                     ->get();
-        dd($photoPosts);
+        // dd($photoPosts);
         $calendar = DB::table('calendrier')
                     ->join('annonce','annonce.idannonce','=','calendrier.idannonce')
                     ->get();
@@ -103,6 +114,7 @@ class UserController extends Controller
         $request->validate([
             'addPhotoPost' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
+
         $idPost=$request->get('idannonce');
         $post = Post::find($idPost);
         // dd($post);
@@ -123,16 +135,17 @@ class UserController extends Controller
 
         }
 
-        
-        
+        // $user->sexe = $request->input("sexe");    
 
-        // $selectDispo = $request->get('selectDispo');
-        // if($selectDispo='Disponible'){
-        //     dd($selectDispo);
-        //     $post=Post::whereHas('calendar', function($query) use($selectDispo){
-        //         $query->where('disponibilite', '=','true');
-        //     })->update();
-        // }
+        $calendar->disponibilite = $request->get('selectDispo');
+
+        $selectDispo = $request->get('selectDispo');
+        if($selectDispo='Disponible'){
+            $post=Post::whereHas('calendar', function($query) use($selectDispo){
+                $query->where('disponibilite', '=',$selectDispo);
+            })->get();
+            dd($selectDispo);
+        }
         // else{
         //     dd($selectDispo);
         //     $post=Post::whereHas('calendar', function($query) use($selectDispo){
@@ -148,6 +161,7 @@ class UserController extends Controller
         return view("my-account", ['users' => User::all(), 
         'photoUsers' => PhotoUser::all(), 'owners'=>Owner::all()]);
     }
+    
     public function favoris()
     {
         // Assurez-vous que l'utilisateur est authentifié

@@ -43,6 +43,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Favorite::class, 'idcompte');
     }
+    public function bookings()
+    {
+        return $this->hasMany(Reservation::class, 'idcompte');
+    }
     public function estDansLesFavoris($idannonce)
     {
         return $this->favoris()->where('met_en_favoris.idannonce', $idannonce)->exists();

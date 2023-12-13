@@ -265,19 +265,16 @@
     
         
      
-</dvi>
-<form action="{{ url("/post/".$post->idannonce) }}" method="post">
-    @csrf
-    
+</div>
+        
         <div id="annoncSim">
         
-        
-        
-                
+        @foreach ($annoncesSimilaires as $index => $annonceSimilaire)
+                <div class="annonceWrapper annonce-{{ $index }}">
                 <div id="divImageOnePost">
                         @php $hasPhoto = false; @endphp
                         @foreach ($photoPosts as $photoPost)
-                        @if($photoPost->image && $photoPost->idannonce === $post->idannonce)
+                        @if($photoPost->image && $photoPost->idannonce === $annonceSimilaire->idannonce)
                                 @if (Str::startsWith($photoPost->image, 'https'))
                                 <img src="{{ $photoPost->image }}" alt="Image de l'annonce">
                                 @php $hasPhoto = true; break; @endphp
@@ -293,24 +290,25 @@
                 </div>
 
                 <div class="annonceDetails">
-                        <li id="OnepostTitle"><h3><a href="{{ url("/post/".$post->idannonce) }}">{{ $post->titreannonce }}</a></h3></li>
-                        <li>{{ $post->idcapacite }} pers. • {{ $post->typeHebergement->libelletypehebergement }}</li>
-                        @if($post->paiementenligne)
+                        <li id="OnepostTitle"><h3><a href="{{ url("/post/".$annonceSimilaire->idannonce) }}">{{ $annonceSimilaire->titreannonce }}</a></h3></li>
+                        <li>{{ $annonceSimilaire->idcapacite }} pers. • {{ $annonceSimilaire->typeHebergement->libelletypehebergement }}</li>
+                        @if($annonceSimilaire->paiementenligne)
                         Paiement en ligne disponible
                         @else
                         Paiement en ligne pas disponible
                         @endif
                 </div>
                 </div>
-        
+        @endforeach
 
         <div id="navigationButtons">
                 <button class="button" onclick="prevPage()">Précédent</button>
                 <button class="button" onclick="nextPage()">Suivant</button>
         </div>
+        
         </div>
-        <button type="submit">Envoyer</button>
-</form>
+        
+
         <script>
         let currentIndex = 0; // Index actuel du carrousel
 

@@ -64,8 +64,9 @@ Route::post("/deposit-post/save",[DepositPostController::class, 'save' ]);
 //modification post controller
 Route::get("/account/{idcompte}/my-posts",[UserController::class, "modifPost" ]);
 Route::post("/account/{idcompte}/my-posts/update",[UserController::class, "updatePost" ]);
+Route::get("/account/{idcompte}/my-bookings",[UserController::class, "bookings" ]);
 
-Route::post('/post/{id}', [PostController::class, "annoncesSimilaires"]);
+Route::post('/post/{id}', [PostController::class, "one"]);
 
 Route::get('/account/{idcompte}', [UserController::class, 'one']);
 Route::get('/account/{idcompte}/modif-account', [UserController::class, 'modifAccount']);
@@ -137,7 +138,11 @@ Route::get('/favoris', [UserController::class, 'favoris']);
 Route::post('/favoris/{idannonce}/save', [FavorisController::class, 'save']);
 
 
-Route::get('/reservation/{id}', [ReservationController::class, 'reservation'])->name('reservation');              
+Route::get('/reservation/{id}', [ReservationController::class, 'reservation'])->name('reservation');   
+
+
+
+
 //Route::post('/reservation', [ReservationController::class, 'save']);
 // Route::post('/favoris/save', [FavorisController::class, 'save']);
 

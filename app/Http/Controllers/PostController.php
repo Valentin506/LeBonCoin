@@ -45,6 +45,17 @@ class PostController extends Controller
         $equipements = Equipement::all();
         $calendar = Calendar::find($id);
         
+        $annoncePrincipale = Post::findOrFail($id);
+    
+        // Récupérer les annonces similaires dans la même ville et avec le même type d'hébergement
+        $annoncesSimilaires = Post::where('idannonce', '!=', $id)
+            ->whereHas('adresseAnnonce.ville', function ($query) use ($annoncePrincipale) {
+                $query->where('nomville', $annoncePrincipale->adresseAnnonce->ville->nomville);
+            })
+            ->where('idhebergement', $annoncePrincipale->idhebergement)
+            ->get();
+        
+        // Passer les annonces similaires à la vue
         
         
         // $availability = DB::table('calendrier')
@@ -58,8 +69,8 @@ class PostController extends Controller
         //                 ->where('periodefin','>=',$dateDepart)
         //                 ->where('disponibilite', true)
         //                 ->get();
-
-        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar'));
+        // dd($annoncesSimilaires);
+        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar','annoncePrincipale', 'annoncesSimilaires'));
     }
 
     public function getAvailableDates(Request $request){
@@ -196,19 +207,6 @@ class PostController extends Controller
     //     return view('post-list', compact('posts', 'photoPosts','typeHebergements'));
         
     // }
-    public function annoncesSimilaires($idAnnonce) {
-        // Récupérer les détails de l'annonce principale
-        $annoncePrincipale = Post::findOrFail($idAnnonce);
-    
-        // Récupérer les annonces similaires dans la même ville et avec le même type d'hébergement
-        $annoncesSimilaires = Post::where('idannonce', '!=', $idAnnonce)
-            ->whereHas('adresseAnnonce.ville', function ($query) use ($annoncePrincipale) {
-                $query->where('nomville', $annoncePrincipale->adresseAnnonce->ville->nomville);
-            })
-            ->where('idhebergement', $annoncePrincipale->idhebergement)
-            ->get();
-        // Passer les annonces similaires à la vue
-        return view('one-post', compact('annoncePrincipale', 'annoncesSimilaires'));
-    }
+
 
 }
