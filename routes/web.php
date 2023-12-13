@@ -50,7 +50,7 @@ Route::get('/', [SiteController::class, "index" ]);
 Route::get("/posts",[PostController::class, "post" ]);
 Route::post("/posts",[PostController::class, "getPostsByCity" ]);
 Route::get("/post/{id}",[PostController::class, "one" ]);
-Route::post("/post/{id}/check",[PostController::class, "getAvailableDates" ]);
+// Route::post("/post/{id}/check",[PostController::class, "getAvailableDates" ]);
 
 // profile owner controller
 Route::get("/profiles",[OwnerController::class, "owner" ]);
@@ -65,7 +65,7 @@ Route::post("/deposit-post/save",[DepositPostController::class, 'save' ]);
 Route::get("/account/{idcompte}/my-posts",[UserController::class, "modifPost" ]);
 Route::post("/account/{idcompte}/my-posts/update",[UserController::class, "updatePost" ]);
 
-
+Route::post('/post/{id}', [PostController::class, "annoncesSimilaires"]);
 
 Route::get('/account/{idcompte}', [UserController::class, 'one']);
 Route::get('/account/{idcompte}/modif-account', [UserController::class, 'modifAccount']);
@@ -137,7 +137,7 @@ Route::get('/favoris', [UserController::class, 'favoris']);
 Route::post('/favoris/{idannonce}/save', [FavorisController::class, 'save']);
 
 
-Route::get('/reservation', [ReservationController::class, 'reservation']);              
+Route::get('/reservation/{id}', [ReservationController::class, 'reservation'])->name('reservation');              
 //Route::post('/reservation', [ReservationController::class, 'save']);
 // Route::post('/favoris/save', [FavorisController::class, 'save']);
 

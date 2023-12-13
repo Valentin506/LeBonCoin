@@ -115,7 +115,6 @@
 }
 #postDescriptionDiv{
     width: 676.89px;
-    height: 140px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -314,6 +313,7 @@
     height: 20px;
     text-align: center;
     border: solid 2px black;
+    background-color: white;
 }
 
 .description{

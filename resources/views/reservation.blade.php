@@ -24,18 +24,24 @@
     
 
 <hr>
+<div>
+                   
+                        
+                                <div><p>Capacité logement </p>{{ $post -> capaciteLogement -> nombrepersonne }}</div>
+                                
 
 <form action="{{url("/fiche-reservation/save") }}" method="post">
 @csrf
 <h3>Nombre de voyageurs</h3>
 <div class="personne">
+    
     <div>
         Adultes <br>
         <p>18 ans et plus</p>
         <div class="nbPersonne">
             <input type="button" value="-" onclick="decrement(this, 'adultes')">
-            <input type="integer" name="adultes" value="-">
-            <input type="button" value="+" onclick="increment(this, 'adultes')">
+            <input type="integer" name="adultes" value="" required>
+            <input type="button" value="+" onclick="increment(this, 'adultes',8)">
             
         </div>
     </div>
@@ -43,9 +49,9 @@
         Enfants<br>
         <p>3 à 17 ans</p>
         <div class="nbPersonne">
-            <input type="button" value="-" onclick="decrement(this, 'enfants')">
-            <input type="integer" name="enfants" value="-">
-            <input type="button" value="+" onclick="increment(this, 'enfants')">
+            <input type="button" class="button" value="-" onclick="decrement(this, 'enfants')">
+            <input type="integer" name="enfants" value="" required>
+            <input type="button" class="button" value="+" onclick="increment(this, 'enfants',8)">
             
         </div>
     </div>
@@ -54,8 +60,8 @@
         <p>Moins de 3 ans</p>
         <div class="nbPersonne">
             <input type="button" value="-" onclick="decrement(this, 'bebes')">
-            <input type="integer" name="bebes" value="-">
-            <input type="button" value="+" onclick="increment(this, 'bebes')">
+            <input type="integer" name="bebes" value="">
+            <input type="button" value="+" onclick="increment(this, 'bebes',4)">
             
         </div>
     </div>
@@ -63,8 +69,8 @@
         Animaux
         <div class="nbPersonne">
             <input type="button" value="-" onclick="decrement(this, 'animaux')">
-            <input type="integer" name="animaux" value="-">
-            <input type="button" value="+" onclick="increment(this, 'animaux')">
+            <input type="integer" name="animaux" value="">
+            <input type="button" value="+" onclick="increment(this, 'animaux',4)">
 
             
         </div>
@@ -85,7 +91,7 @@
     </div>
 </div>
 
-<div><input type="submit" value="Résever"></div>
+<div><input type="submit" id="buttonPostDeposit" value="Payer et valider ma réservation"></div>
 </form>
 <hr>
 
@@ -96,35 +102,6 @@
     <div><label for="telephone">Numéro de téléphone<input type="tel" name="telephone"></label></div>
 </div>
 
-<!-- @if($posts && $posts->count() > 0)
-    @foreach($posts as $post)
-        <h3>Envoyer un message à {{ $post->owner->user->pseudocompte }}</h3>
-    @endforeach
-@else
-    <p>Aucun message trouvé.</p>
-@endif
-
-<input type="text" class="description" placeholder="Dites quelque chose à votre hôte">
-
-<div id="info">
-    @foreach ($posts as $post)
-        @if($post->idproprietaire === $owner->idproprietaire)
-            <div class="divForEachPost">
-                <div>
-                    <h3><a href="{{ url("/post/".$post->idannonce) }}">{{ $post->titreannonce}}</a></h3>
-                </div>
-                @php $hasPhoto = false; @endphp
-                @foreach ($photoPosts as $photoPost)
-                    @if($photoPost->idannonce === $post->idannonce)
-                        <div id="divImagePost">
-                            <img src="{{ $photoPost->image }}" alt="Image de l'annonce">
-                            @php $hasPhoto = true; break; @endphp
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-        @endif
-    @endforeach -->
 </div>
 
 

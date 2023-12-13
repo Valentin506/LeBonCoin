@@ -8,23 +8,57 @@ use App\Models\PhotoPost;
 use App\Models\User;
 use App\Models\Reservation;
 use App\Models\Bancaire;
+use App\Models\Owner;
 
 class ReservationController extends Controller
 {
-    public function reservation()
+    public function reservation($id)
     {
-        // $posts = Post::all();
         $user = auth()->user();
+
+      
+        
+         
         
         $photoPosts = PhotoPost::all();
-       $posts = Post::where('idproprietaire', $user->idproprietaire)->get();
+        $posts = Post::all();
         
+        $post = Post::find($id);
 
-        return view("/reservation",compact('posts','photoPosts'));
+
+        return view("/reservation",compact('post','photoPosts'));
     }
+
+    // public function one($id){
+    //     $post = Post::find($id);
+    //     $posts = Post::all();
+    //     $photoPosts = PhotoPost::all();
+    //     $photoUser = PhotoUser::find($id);
+    //     $owner = Owner::find($id);
+    //     $user = User::find($id);
+    //     $equipements = Equipement::all();
+    //     $calendar = Calendar::find($id);
+        
+        
+        
+    //     // $availability = DB::table('calendrier')
+    //     //                 ->join('annonce','annonce.idannonce','=','calendrier.idannonce')
+    //     //                 ->where('periodedebut','<=',$dateArrive)
+    //     //                 ->where('periodefin','>=', $dateDepart)
+    //     //                 ->where('disponibilite', true)
+    //     //                 ->get();
+
+    //     // $availability = Calendar::where('periodedebut', '<=', $dateArrive)
+    //     //                 ->where('periodefin','>=',$dateDepart)
+    //     //                 ->where('disponibilite', true)
+    //     //                 ->get();
+
+    //     return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar'));
+    // }
 
     public function save(Request $request)
     {
+
 
 
         $dateExpiration = $request->input('dateexpiration');

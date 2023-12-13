@@ -17,6 +17,10 @@ class SiteController extends Controller
         return view("view-profile", ["todaysPhoto" => PhotoUser::inRandomOrder()->first() ]);
     }
 
+    public function postSimRandom() {
+        return view("one-post", ["postSim" => Post::inRandomOrder()->first() ]);
+    }
+
     public function ownerRandom(){
         return view("view-profile", ["todaysOwner" => Owner::inRandomOrder()->first() ]);
     }

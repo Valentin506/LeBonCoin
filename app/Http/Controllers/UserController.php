@@ -82,7 +82,13 @@ class UserController extends Controller
         $posts = Post::all();
         $owner = Owner::find($id);
         $calendars = Calendar::all();
-        $photoPosts = PhotoPost::all();
+        $photoPosts = DB::table('photo')
+                    ->select('photo.idannonce','annonce.idannonce')
+                    ->join('annonce', 'annonce.idannonce','=','photo.idannonce')
+                    ->join('proprietaire','proprietaire.idproprietaire','=','annonce.idproprietaire')
+                    ->join('compte','compte.idcompte','=','proprietaire.idcompte')
+                    ->get();
+        dd($photoPosts);
         $calendar = DB::table('calendrier')
                     ->join('annonce','annonce.idannonce','=','calendrier.idannonce')
                     ->get();

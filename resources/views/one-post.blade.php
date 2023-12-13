@@ -176,7 +176,7 @@
                                                         <p>À partir de </p>
                                                         <div>Prix € / nuit</div>
                                                        
-                                                <form action="{{url("/reservation") }}" method="get" class="form" >
+                                                <form action="{{url("/reservation/".$post->idannonce) }}" method="get" class="form" >
                                                         @csrf
                                                         </div>
                                                         @if (Auth::check())
@@ -186,7 +186,7 @@
                                                         @endif
                                                         
                                                 </form>
-                                        </div>
+                                                                                        </div>
 
                                 </div>
                         </div>
@@ -228,7 +228,7 @@
         </div>
 
 
-        <div >
+        
         
 
 
@@ -265,49 +265,86 @@
     
         
      
+</dvi>
+<form action="{{ url("/post/".$post->idannonce) }}" method="post">
+    @csrf
     
-    
-    
-        </div id="annoncSim">
+        <div id="annoncSim">
+        
+        
+        
+                
+                <div id="divImageOnePost">
+                        @php $hasPhoto = false; @endphp
+                        @foreach ($photoPosts as $photoPost)
+                        @if($photoPost->image && $photoPost->idannonce === $post->idannonce)
+                                @if (Str::startsWith($photoPost->image, 'https'))
+                                <img src="{{ $photoPost->image }}" alt="Image de l'annonce">
+                                @php $hasPhoto = true; break; @endphp
+                                @else
+                                <img src="/images/{{ $photoPost->image }}" alt="Image de l'annonce">
+                                @php $hasPhoto = true; break; @endphp
+                                @endif
+                        @endif
+                        @endforeach
+                        @if (!$hasPhoto)
+                        <p>Aucune image associée</p>
+                        @endif
                 </div>
 
-                <div>
-                        @foreach ($posts as $post)
-                                <div id="divImageOnePost">
-                                        @php $hasPhoto = false; @endphp
-                                        @foreach ($photoPosts as $photoPost)
-                                        @if($photoPost->image && $photoPost-> idannonce === $post->idannonce)
-                                        @if (Str::startsWith($photoPost -> image, 'https'))
-                                        <img src="{{ $photoPost -> image}}" alt="Image de l'annonce">
-                                        @php $hasPhoto = true; break; @endphp
-                                        @else
-                                        <img src="/images/{{ $photoPost -> image}}" alt="Image de l'annonce">
-                                        @php $hasPhoto = true; break; @endphp
-                                        @endif
-                                        @endif
-                                        @endforeach
-                                        @if (!$hasPhoto)
-                                        <p>Aucune image associée</p>
-                                        @endif
-                                </div>
-                                
-                                <div >
-                                        <li id="OnepostTitle"><h3><a href="{{ url("/post/".$post->idannonce) }}">{{ $post-> titreannonce}}</a></h3></li>
-                                        <li>{{ $post -> idcapacite}} pers. • {{ $post -> typeHebergement ->libelletypehebergement }}</li>
-                                        @if($post->paiementenligne)
-                                        Paiement en ligne disponible
-                                        @else
-                                        Paiement en ligne pas disponible
-                                        @endif
-                                
-                                </div>
-                        </div>
-                        @endforeach
-                <div id="navigationButtons">
-                        <button class="button" onclick="prevPage()">Précédent</button>
-                        <button class="button" onclick="nextPage()">Suivant</button>
+                <div class="annonceDetails">
+                        <li id="OnepostTitle"><h3><a href="{{ url("/post/".$post->idannonce) }}">{{ $post->titreannonce }}</a></h3></li>
+                        <li>{{ $post->idcapacite }} pers. • {{ $post->typeHebergement->libelletypehebergement }}</li>
+                        @if($post->paiementenligne)
+                        Paiement en ligne disponible
+                        @else
+                        Paiement en ligne pas disponible
+                        @endif
                 </div>
+                </div>
+        
+
+        <div id="navigationButtons">
+                <button class="button" onclick="prevPage()">Précédent</button>
+                <button class="button" onclick="nextPage()">Suivant</button>
         </div>
+        </div>
+        <button type="submit">Envoyer</button>
+</form>
+        <script>
+        let currentIndex = 0; // Index actuel du carrousel
+
+        function showPage() {
+                const annonces = document.querySelectorAll('.annonceWrapper');
+                annonces.forEach((annonce, index) => {
+                if (index >= currentIndex && index < currentIndex + 3) {
+                        annonce.style.display = 'flex';
+                } else {
+                        annonce.style.display = 'none';
+                }
+                });
+        }
+
+        function nextPage() {
+                const annonces = document.querySelectorAll('.annonceWrapper');
+                if (currentIndex + 3 < annonces.length) {
+                currentIndex += 3;
+                showPage();
+                }
+        }
+
+        function prevPage() {
+                if (currentIndex - 3 >= 0) {
+                currentIndex -= 3;
+                showPage();
+                }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+                showPage(); // Affiche les premières annonces au chargement de la page
+        });
+        </script>
+
 
         <!-- slider -->
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -385,10 +422,6 @@
                 });
 
         </script>
-
-
-        
-        
         
 
 </body>
