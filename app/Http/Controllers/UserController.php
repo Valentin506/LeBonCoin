@@ -130,33 +130,32 @@ class UserController extends Controller
             $photoPost = new PhotoPost(['image'=> $photoUpload]);
             $photoPost->idannonce = $request->get("idannonce");
             $photoPost-> save();
-            // $photoPost->post()->associate($post);
-            // $photoPost->save();
             $post->save();
-            // dd($photoPost);
-            // $post->save($photoPost);
-            // dd($post);
-            
-
         }
 
-        // $user->sexe = $request->input("sexe");    
+        // $user->sexe = $request->input("sexe"); 
+        
+        $selectDispo=$request->get('selectDispo');
 
-        $calendar->disponibilite = $request->get('selectDispo');
-
-        $selectDispo = $request->get('selectDispo');
-        if($selectDispo='Disponible'){
+        // dd($calendar->disponibilite);
+        if($selectDispo == 'Disponible'){
             $post=Post::whereHas('calendar', function($query) use($selectDispo){
-                $query->where('disponibilite', '=',$selectDispo);
-            })->get();
-            dd($selectDispo);
+                $query->where('disponibilite', '=', false);
+            });
+            $post->calendar->updateExistingPivot($post->idannonce, ['disponibilite' => true]);
+            // dd($post);
+            $post->save();
         }
-        // else{
-        //     dd($selectDispo);
-        //     $post=Post::whereHas('calendar', function($query) use($selectDispo){
-        //         $query->where('disponibilite', '=','false');
-        //     })->update();
-        // }
+        else{
+            $post=Post::whereHas('calendar', function($query) use($selectDispo){
+                $query->where('disponibilite', '=', true);
+            })->get();
+            dd($post);
+            $post->calendar->updateExistingPivot($post->idannonce, ['disponibilite' => false]);
+
+            $post->save();
+
+        }
 
         return redirect('/');
     }

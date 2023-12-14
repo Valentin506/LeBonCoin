@@ -46,3 +46,8 @@
     /* ... (votre style existant) ... */
     display: none; /* Cache initialement tous les éléments */
 }
+
+#formFavorite{
+    display: flex;
+    flex-direction: row-reverse;
+}

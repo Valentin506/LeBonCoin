@@ -13,8 +13,8 @@
             <hr>
                 <div id="divEachPost">
                     @foreach ($photoPosts as $photoPost)
-                        {{ $photoPost-> idannonce}} {{ $post->idannonce}}
-                        @if($photoPost->idannonce === $post->idannonce)
+                        {{ $photoPost->idannonce}} {{ $post->idannonce}}
+                        @if($photoPost-> idannonce === $post->idannonce)
                             @php $hasPhoto = false; @endphp 
                             <div id="divImagePost">
                                 <img src="{{ $photoPost -> image}}" alt="Image de l'annonce">
@@ -45,8 +45,8 @@
                             @csrf
                             <label for="inputDispo">Vous voulez changer la disponibilité ?</label>
                             <select name="selectDispo" id="selectDispo">
-                                <option value="selectDisponible">Disponible</option>
-                                <option value="selectIndisponible">Indisponible</option>
+                                <option value="Disponible">Disponible</option>
+                                <option value="Indisponible">Indisponible</option>
                             </select>
                             <button type="submit">Confirmer</button>
                         </form>
