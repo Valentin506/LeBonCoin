@@ -30,7 +30,7 @@
                                 <div><p>Capacité logement </p>{{ $post -> capaciteLogement -> nombrepersonne }}</div>
                                 
 
-<form action="{{url("/fiche-reservation/save") }}" method="post">
+<form action="{{url("/fiche-reservation/".$post->idannonce."/save") }}" method="post">
 @csrf
 <h3>Nombre de voyageurs</h3>
 <div class="personne">
@@ -40,7 +40,7 @@
         <p>18 ans et plus</p>
         <div class="nbPersonne">
             <input type="button" value="-" onclick="decrement(this, 'adultes')">
-            <input type="integer" name="adultes" value="" required>
+            <input type="integer" name="adultes" value="0" required>
             <input type="button" value="+" onclick="increment(this, 'adultes',8)">
             
         </div>
@@ -50,7 +50,7 @@
         <p>3 à 17 ans</p>
         <div class="nbPersonne">
             <input type="button" class="button" value="-" onclick="decrement(this, 'enfants')">
-            <input type="integer" name="enfants" value="" required>
+            <input type="integer" name="enfants" value="0" required>
             <input type="button" class="button" value="+" onclick="increment(this, 'enfants',8)">
             
         </div>
@@ -60,7 +60,7 @@
         <p>Moins de 3 ans</p>
         <div class="nbPersonne">
             <input type="button" value="-" onclick="decrement(this, 'bebes')">
-            <input type="integer" name="bebes" value="">
+            <input type="integer" name="bebes" value="0">
             <input type="button" value="+" onclick="increment(this, 'bebes',4)">
             
         </div>
@@ -69,7 +69,7 @@
         Animaux
         <div class="nbPersonne">
             <input type="button" value="-" onclick="decrement(this, 'animaux')">
-            <input type="integer" name="animaux" value="">
+            <input type="integer" name="animaux" value="0">
             <input type="button" value="+" onclick="increment(this, 'animaux',4)">
 
             
@@ -80,16 +80,31 @@
 <div>
         Infos bancaires
         <div class="Infosbancaire">
-            <input type="integer" name="carte">
+        <label for="">Numero de carte</label>
+            <input type="integer" name="carte" maxlength="16">
         </div>
         <div class="Infosbancaire">
-            <input type="integer" name="cvv">
+        <label for="">CVV</label>
+            <input type="integer" name="cvv" maxlength="3">
         </div>
         <div class="Infosbancaire">
+            <label for="">Date d'expiration</label>
             <input type="month" name="dateexpiration">
         </div>
+
+        
     </div>
 </div>
+<div class="card-container">
+  <div class="card">
+
+  </div>
+</div>
+
+<label>
+        <input type="checkbox" name="enregistrerDonneesBancaires" value="1">
+        Enregistrer mes données bancaires
+    </label>
 
 <div><input type="submit" id="buttonPostDeposit" value="Payer et valider ma réservation"></div>
 </form>

@@ -43,7 +43,7 @@ class DepositPostController extends Controller
     public function save(Request $request)
     {
         $typeHebergements = Post::all();
-        $user = Auth::user();
+        
                 
             //    Annonces
                 $post = new Post;

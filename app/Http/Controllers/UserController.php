@@ -24,6 +24,7 @@ use App\Models\PhotoPost;
 use App\Models\TypeHebergement;
 use App\Models\Calendar;
 use App\Models\Reservation;
+use App\Models\Reserve;
 
 
 
@@ -79,13 +80,17 @@ class UserController extends Controller
     public function bookings($id)
     {
         $user = auth()->user();
+        $photoPosts = PhotoPost::all();
+        $post = Post::find($id);
         
 
         $bookings = Reservation::where('idcompte', $user->idcompte)->get();
-
+        $res = Reserve::where('idcompte', $user->idcompte)->get();
         return view('my-bookings', [
             'user' => $user,
-            'bookings' => $bookings,]);
+            'bookings' => $bookings,
+            'ress' => $res],
+        compact('photoPosts','post'));
        }
 
     // MODIFICATION POST

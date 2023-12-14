@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Reservation;
 use App\Models\Bancaire;
 use App\Models\Owner;
+use App\Models\Reserve;
 
 class ReservationController extends Controller
 {
@@ -56,24 +57,31 @@ class ReservationController extends Controller
     //     return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar'));
     // }
 
-    public function save(Request $request)
+    public function save(Request $request,$id)
     {
+
+        $enregistrerDonneesBancaires = $request->input('enregistrerDonneesBancaires');
 
 
 
         $dateExpiration = $request->input('dateexpiration');
         $formattedDate = $dateExpiration . '-01';
-   
-            $user = auth()->user();
-            
+        $posts = Post::all();
 
-            // $bancaire = new Bancaire;
-            // $bancaire->idcompte = $user->idcompte;
-            // $bancaire->numcarte = $request->input("carte");
-            // $bancaire->numcvv = $request->input("cvv");
-            // $bancaire->dateexpiration = $formattedDate;
+        $post = Post::find($id);
+        $user = auth()->user();
             
-            // $bancaire->save();
+        if ($enregistrerDonneesBancaires) {
+            $bancaire = new Bancaire;
+            $bancaire->idcompte = $user->idcompte;
+            $bancaire->numcarte = $request->input("carte");
+            $bancaire->numcvv = $request->input("cvv");
+            $bancaire->dateexpiration = $formattedDate;
+            
+            $bancaire->save(); 
+        } else {
+                // Ne rien faire, car l'utilisateur ne souhaite pas enregistrer les données bancaires
+            }
 
             $fiche = new Reservation;
             $fiche->timestamps = false;
@@ -85,7 +93,11 @@ class ReservationController extends Controller
             $fiche->nbanimaux = $request->input("animaux");
             $fiche->save();
 
-            
+            $reserve = new Reserve;
+            $reserve->idcompte = $user->idcompte;
+            $reserve->idannonce = $post->idannonce;
+            $reserve->idfiche = $fiche->idfiche;
+            $reserve->save();
 
            
 
@@ -130,18 +142,18 @@ class ReservationController extends Controller
         /*
         Database Insert
         */
-        $user = User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'tel' => $request->tel,
-            'name' => $request->name,
-            'firstname' => $request->firstname,
-            'date' => $request->date,
-            'adresse' => $request->address,
+        // $user = User::create([
+        //     'email' => $request->email,
+        //     'password' => Hash::make($request->password),
+        //     'tel' => $request->tel,
+        //     'name' => $request->name,
+        //     'firstname' => $request->firstname,
+        //     'date' => $request->date,
+        //     'adresse' => $request->address,
 
-        ]);
+        // ]);
 
-        return back();
+        // return back();
       
         
     }}

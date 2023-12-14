@@ -29,7 +29,7 @@
     onclick="clickDropdown()"
     onkeyup="autocompleteDestination()"
     autocomplete="off"
-    required >
+    required onchange="updateFields()">
     <div id="divDestination" class="dropdown-content">
       <div id="divResult">
         <ul name="completion" id="completion"></ul> 
@@ -41,7 +41,7 @@
     </div>
     <!-- <select name="" id=""></select>  -->
     <input name="postalcode" id="postalcode" type="hidden"/>
-    <input name="city" id="city" type="hidden"/>
+    <input name="city" id="city" type="hidden" />
 
     <!-- <form id="divFormRadius" method="post" action="/posts">
       @csrf
@@ -52,12 +52,12 @@
     <div id="filterDate">
       <div id="filterDateArrive">
         <label for="inputDateArrive">Arrivée</label>
-        <input type="date" id="dateArrive" class="form-control js-daterangepicker" onclick="currentDate()" name="inputDateArrive" placeholder="Date arrivée" autocomplete="off" />
+        <input type="date" id="dateArrive" class="form-control js-daterangepicker" onclick="currentDate()" name="inputDateArrive" placeholder="Date arrivée" autocomplete="off" onchange="updateFields()" />
 
       </div>
       <div id="filterDateDepart">
         <label for="inputDateDepart">Départ</label>
-        <input type="date" id="dateDepart" onclick="currentDate()" name="inputDateDepart" placeholder="Date départ" autocomplete="off"/>
+        <input type="date" id="dateDepart" onclick="currentDate()" name="inputDateDepart" placeholder="Date départ" autocomplete="off" onchange="updateFields()" />
       </div>
     </div>
 
@@ -78,9 +78,9 @@
   
   <div>
     <label>Voyageurs</label>
-    <input id="plusMinusInput" type=number min=1 max=12>
-    <button class="plusMinusTraveler" onclick="increment()">+</button>
-    <button class="plusMinusTraveler" onclick="decrement()">-</button>
+    <input id="plusMinusInput" name="plusMinusInput" type=number min=1 max=12 onchange="updateFields()" >
+    <button class="plusMinusTraveler" onclick="increment()" onchange="updateFields()" >+</button>
+    <button class="plusMinusTraveler" onclick="decrement()" onchange="updateFields()" >-</button>
   </div>
   <div>
     <!-- <input type="text" placeholder="Paiement en ligne" autocomplete="off" autocapitalize="off"/> -->
@@ -92,10 +92,29 @@
     <!-- <input placeholder="Filtres" autocomplete="off" autocapitalize="off"/> -->
   </div>
   
+  
+
+
 
 </div>
+<form method="post" action="/search/save">
+  @csrf
+    <div>
+        <button class="buttonSaveSearch" type="submite">Sauvegarder la recherche</button>
+        <input type="text" id="rechercheName" name="rechercheName"></input>
+        <input id="city2" name="city2" ></input>
+        <input id="plusMinusInput2" name="plusMinusInput2" ></input>
+        <input id="dateArrive2" name="dateArrive2" ></input>
+        <input id="dateDepart" name="dateDepart" ></input>
+
+    </div>
+</form>
 
 
+
+
+
+  </br>
 <div class="mapContainer">
   <div id="divPost">
 
@@ -179,7 +198,7 @@
     </div>
   </div>
 
-  <button class="buttonSaveSearch" type="button">Sauvegarder la recherche</button>  
+    
    
 <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -197,5 +216,23 @@ $(function() {
 
 @endsection
     
+<script>
+    // Fonction pour mettre à jour les champs Ville2 et Capacité2
+    function updateFields() {
+        // Sélectionnez les champs
+        var villeInput = document.getElementById('inputDestination');
+        var capaciteInput = document.getElementById('plusMinusInput');
+        var ville2Input = document.getElementById('city2');
+        var capacite2Input = document.getElementById('plusMinusInput2');
+        var dateDebutInput = document.getElementById('dateArrive');
+        var dateDebut2Input = document.getElementById('dateArrive2');
+        var dateDepartInput = document.getElementById('dateDepart');
+        var dateDepart2Input = document.getElementById('dateDepart2');
 
-    
+        // Mettez à jour les valeurs des champs Ville2 et Capacité2 avec les valeurs des champs correspondants
+        ville2Input.value = villeInput.value;
+        capacite2Input.value = capaciteInput.value;
+        dateDebut2Input.value = dateDebutInput.value;
+        dateDepart2Input.value = dateDepartInput.value;
+    }
+</script>

@@ -323,9 +323,31 @@
 }
 
 
-#info{
-    
+.booking-details{
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 14px;
+    padding: 10px;
+    margin: 10px;
+    width: 30%;
+   
 }
+.card-container {
+    background: #34495e;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.1); 
+    border-bottom: 6px solid #2c3e50;
+    border-right: 6px solid #2c3e50;
+  }
+  
+  .card {
+    position: relative;
+    padding-top: 60%;
+    overflow: hidden;
+  }
   
 
 /* filter date */

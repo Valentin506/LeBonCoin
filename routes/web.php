@@ -50,6 +50,7 @@ Route::get('/', [SiteController::class, "index" ]);
 Route::get("/posts",[PostController::class, "post" ]);
 Route::post("/posts",[PostController::class, "getPostsByCity" ]);
 Route::get("/post/{id}",[PostController::class, "one" ]);
+Route::post('/search/save', [PostController::class, 'searchSave']);
 // Route::post("/post/{id}/check",[PostController::class, "getAvailableDates" ]);
 
 // profile owner controller
@@ -81,7 +82,6 @@ Route::post('/modif-account/updateSecurite', [UserController::class, 'updateSecu
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
 
 
 
@@ -132,7 +132,7 @@ Route::get('/create-account', [UserController::class, 'add']);
 Route::post('/create-account/save', [UserController::class, 'save']);
 
 Route::get('/fiche-reservation', [ReservationController::class, 'add']);
-Route::post('/fiche-reservation/save', [ReservationController::class, 'save']);
+Route::post('/fiche-reservation/{id}/save', [ReservationController::class, 'save']);
 
 Route::get('/favoris', [UserController::class, 'favoris']);
 Route::post('/favoris/{idannonce}/save', [FavorisController::class, 'save']);
