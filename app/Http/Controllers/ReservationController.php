@@ -70,6 +70,7 @@ class ReservationController extends Controller
 
         $post = Post::find($id);
         $user = auth()->user();
+        
             
         if ($enregistrerDonneesBancaires) {
             $bancaire = new Bancaire;

@@ -23,7 +23,7 @@
 
                 <!-- <img id="photoUser" src="/images/{{$user->photoUser->urlphotoprofil}}" alt="Photo de profil"> -->
                 <h3>{{$user-> pseudocompte}}</h3>
-                <a href="{{ url("/profile/".$user->idcompte) }}">Accéder à mon profil public</a>
+                <!-- <a href="{{ url("/profile/".$user->idcompte) }}">Accéder à mon profil public</a> -->
             </div>
 
             <div class="tableUser">

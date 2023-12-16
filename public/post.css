@@ -23,10 +23,34 @@
     border-radius: 10px;
     border: 0.3px solid rgb(163, 163, 163);
     padding: 10px;
+
+}
+
+#buttonValidate{
+    width: 63.28px;
+    height: 40px;
+    margin-top: 25px;
+    border-radius: 10px;
+}
+
+#plusMinusInput{
+    
+    border-radius: 5px;
 }
 
 #divFormAddress{
     display: flex;
+}
+
+#divTypeHebergement{
+    width: 200px;
+    font-size: 14px;
+}
+
+#type_hebergement{
+    border-radius: 5px;
+    width: 180px;
+    
 }
 
 .plusMinusTraveler{
@@ -358,11 +382,14 @@
 
 #filterDateArrive{
     border: none;
+    font-size: 14px;
 }
 
 #filterDateDepart{
     border: none;
+    font-size: 14px;
 }
+
 
 
 /* slider style */
@@ -473,3 +500,4 @@
     height: 18px;
     width: 18px;
 }
+

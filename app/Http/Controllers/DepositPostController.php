@@ -44,7 +44,7 @@ class DepositPostController extends Controller
     {
         $typeHebergements = Post::all();
         
-                
+                $user = auth()->user();
             //    Annonces
                 $post = new Post;
                 $post -> titreannonce = $request->input("title");

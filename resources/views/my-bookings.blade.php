@@ -23,9 +23,11 @@
         @foreach($ress->where('idfiche', $booking->idfiche) as $res)
             <div class="booking-details">
                 <p>Annonce n°: {{ $res->idannonce }}</p>
-                <!-- Autres détails spécifiques à la réservation si nécessaire -->
+                
+                
             </div>
         @endforeach
+        
 
 
       

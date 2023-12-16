@@ -77,11 +77,13 @@ class UserController extends Controller
     {
         return view('modif-securite', ['user'=>User::find($id)]);
     }
+
+
     public function bookings($id)
     {
         $user = auth()->user();
         $photoPosts = PhotoPost::all();
-        $post = Post::find($id);
+        $posts = Post::find($id);
         
 
         $bookings = Reservation::where('idcompte', $user->idcompte)->get();
@@ -90,7 +92,7 @@ class UserController extends Controller
             'user' => $user,
             'bookings' => $bookings,
             'ress' => $res],
-        compact('photoPosts','post'));
+        compact('photoPosts','posts'));
        }
 
     // MODIFICATION POST

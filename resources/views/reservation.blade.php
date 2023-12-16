@@ -81,7 +81,7 @@
         Infos bancaires
         <div class="Infosbancaire">
         <label for="">Numero de carte</label>
-            <input type="integer" name="carte" maxlength="16">
+            <input type="integer" name="carte" maxlength="16" >
         </div>
         <div class="Infosbancaire">
         <label for="">CVV</label>

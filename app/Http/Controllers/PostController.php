@@ -183,7 +183,7 @@ class PostController extends Controller
         $search -> datefin = $request -> input("inputDateDepart");
         $search -> ville = $request -> input("city2");
 
-        dd($search);
+        //dd($search);
         $search -> save();
    }
 

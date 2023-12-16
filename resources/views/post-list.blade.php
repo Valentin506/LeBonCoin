@@ -36,7 +36,7 @@
       </div>
       <div id="divEraseValidate">
         <button id="buttonErase">Effacer</button>
-        <button id="buttonValidate">Valider</button>
+        
       </div>
     </div>
     <!-- <select name="" id=""></select>  -->
@@ -61,36 +61,38 @@
       </div>
     </div>
 
+    <div id="divTypeHebergement">
+      <label for="type_hebergement">Type d'hébergement</label>
+      @if(!is_null($typeHebergements) && count($typeHebergements) > 0)
+      <select name="type_hebergement" id="type_hebergement">
+          <option value=""></option>
+  
+          @foreach($typeHebergements as $typeHebergement)
+              <option value="{{ $typeHebergement->idhebergement }}">{{ $typeHebergement->libelletypehebergement }}</option>
+          @endforeach
+      </select>
+      @else
+          <p>No accommodation types available</p>
+      @endif
+    </div>
 
-    @if(!is_null($typeHebergements) && count($typeHebergements) > 0)
-    <select name="type_hebergement" id="type_hebergement">
-        <option value=""></option>
+    
+    
+    <div>
+      <label>Voyageurs</label>
+      <input id="plusMinusInput" name="plusMinusInput" type=number min=1 max=12 onchange="updateFields()" >
+      
+    </div>
+    <div>
+      <!-- <input type="text" placeholder="Paiement en ligne" autocomplete="off" autocapitalize="off"/> -->
+      <button>Paiement en ligne</button>
+      
+    </div>
+    
 
-        @foreach($typeHebergements as $typeHebergement)
-            <option value="{{ $typeHebergement->idhebergement }}">{{ $typeHebergement->libelletypehebergement }}</option>
-        @endforeach
-    </select>
-    @else
-        <p>No accommodation types available</p>
-    @endif
-     
+    <button id="buttonValidate">Valider</button>
 </form>
   
-  <div>
-    <label>Voyageurs</label>
-    <input id="plusMinusInput" name="plusMinusInput" type=number min=1 max=12 onchange="updateFields()" >
-    <button class="plusMinusTraveler" onclick="increment()" onchange="updateFields()" >+</button>
-    <button class="plusMinusTraveler" onclick="decrement()" onchange="updateFields()" >-</button>
-  </div>
-  <div>
-    <!-- <input type="text" placeholder="Paiement en ligne" autocomplete="off" autocapitalize="off"/> -->
-    <button>Paiement en ligne</button>
-    
-  </div>
-  <div>
-    <button>Filtres</button>
-    <!-- <input placeholder="Filtres" autocomplete="off" autocapitalize="off"/> -->
-  </div>
   
   
 
@@ -100,12 +102,12 @@
 <form method="post" action="/search/save">
   @csrf
     <div>
-        <button class="buttonSaveSearch" type="submite">Sauvegarder la recherche</button>
+        <button class="buttonSaveSearch" type="submite" onclick="updateFields()">Sauvegarder la recherche</button>
         <input type="text" id="rechercheName" name="rechercheName"></input>
         <input id="city2" name="city2" ></input>
         <input id="plusMinusInput2" name="plusMinusInput2" ></input>
         <input id="dateArrive2" name="dateArrive2" ></input>
-        <input id="dateDepart" name="dateDepart" ></input>
+        <input id="dateDepart2" name="dateDepart2" ></input>
 
     </div>
 </form>
