@@ -65,8 +65,10 @@ Route::post("/deposit-post/save",[DepositPostController::class, 'save' ]);
 //modification post controller
 Route::get("/account/{idcompte}/my-posts",[UserController::class, "modifPost" ]);
 Route::post("/account/{idcompte}/my-posts/update",[UserController::class, "updatePost" ]);
+Route::post("/account/{idcompte}/my-posts/update-disponibilite",[UserController::class, "updateDisponibilite" ]);
 Route::get("/account/{idcompte}/my-bookings",[UserController::class, "bookings" ]);
 
+// return one post
 Route::post('/post/{id}', [PostController::class, "one"]);
 
 Route::get('/account/{idcompte}', [UserController::class, 'one']);

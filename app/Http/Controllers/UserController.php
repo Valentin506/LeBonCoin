@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Log;
 use App\Models\User;
 use App\Models\Adresse;
 use App\Models\Ville;
@@ -135,31 +136,60 @@ class UserController extends Controller
             $post->save();
         }
 
-        // $user->sexe = $request->input("sexe"); 
         
-        $selectDispo=$request->get('selectDispo');
+        
+        // $selectDispo=$request->get('selectDispo');
 
-        // dd($calendar->disponibilite);
-        if($selectDispo == 'Disponible'){
-            $post=Post::whereHas('calendar', function($query) use($selectDispo){
-                $query->where('disponibilite', '=', false);
-            });
-            $post->calendar->updateExistingPivot($post->idannonce, ['disponibilite' => true]);
-            // dd($post);
-            $post->save();
-        }
-        else{
-            $post=Post::whereHas('calendar', function($query) use($selectDispo){
-                $query->where('disponibilite', '=', true);
-            })->get();
-            dd($post);
-            $post->calendar->updateExistingPivot($post->idannonce, ['disponibilite' => false]);
+        // if($selectDispo == 'Disponible'){
+        //     $posts=Post::whereHas('calendar', function($query) use($selectDispo){
+        //         $query->where('disponibilite', '=', false);
+        //     })->get();
 
-            $post->save();
+        //     foreach ($posts as $post) {
+        //         $post->calendar->disponibilite = true;
+        //         $post->calendar->save();
 
-        }
+        //         // Get a fresh instance of the calendar model from the database
+        //         $freshCalendar = $post->calendar->fresh();
+
+        //         // Display the updated disponibilite
+        //         dd($freshCalendar->disponibilite);
+        //     }
+        // }
+        // else{
+        //     $posts=Post::whereHas('calendar', function($query) use($selectDispo){
+        //         $query->where('disponibilite', '=', true);
+        //     })->get();
+
+        //     foreach ($posts as $post) {
+        //         $post->calendar->disponibilite = false;
+        //         $post->calendar->save();
+
+        //         // Get a fresh instance of the calendar model from the database
+        //         $freshCalendar = $post->calendar->fresh();
+
+        //         // Display the updated disponibilite
+        //         dd($freshCalendar->disponibilite);
+        //     }
+        // }
 
         return redirect('/');
+    }
+
+    public function updateDisponibilite(Request $request)
+    {
+        Log::info('Post ID: ' . $request->postId); // Log the post ID
+
+        $post = Post::find($request->postId);
+
+        if ($post) {
+            $post->calendar->disponibilite = !$post->calendar->disponibilite;
+            $post->calendar->save();
+
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['error' => 'Post not found'], 404);
     }
 
 

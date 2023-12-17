@@ -24,3 +24,10 @@
     flex-direction: column;
     align-items: flex-start;
 }
+
+#divImagePost img{
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    border-radius: 5px;
+}
