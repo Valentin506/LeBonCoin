@@ -67,17 +67,20 @@
         $(document).ready(function(){
             $('.update-disponibilite').click(function(){
                 var postId = $(this).data('post-id');
-                var disponibilite = $('#selectDispo').val();
+                console.log(postId);
                 $.ajax({
                     url: '/account/{idcompte}/my-posts/update-disponibilite',
                     method: 'post',
                     data: {
                         _token: '{{ csrf_token() }}',
-                        postId: postId,
-                        disponibilite: disponibilite
+                        postId: postId,    
                     },
-                    success: function(result){
-                        alert('Disponibilité modifiée');
+                    success: function(result) {
+                        if(result.status === 'success') {
+                            alert(result.message);
+                        } else if(result.status === 'error') {
+                            alert(result.message);
+                        }
                     }
                 });
             });

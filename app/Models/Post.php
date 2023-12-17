@@ -70,7 +70,7 @@ class Post extends Model
     }
 
     public function calendar(): hasMany{
-        return $this->hasMany(Calendar::class, 'idcalendrier');
+        return $this->hasMany(Calendar::class, 'idannonce');
     }
 
     

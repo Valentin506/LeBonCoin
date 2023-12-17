@@ -98,6 +98,7 @@ class UserController extends Controller
 
     // MODIFICATION POST
     public function modifPost($id){
+
         $user = User::find($id);
         $posts = Post::all();
         $owner = Owner::find($id);
@@ -136,60 +137,46 @@ class UserController extends Controller
             $post->save();
         }
 
-        
-        
-        // $selectDispo=$request->get('selectDispo');
-
-        // if($selectDispo == 'Disponible'){
-        //     $posts=Post::whereHas('calendar', function($query) use($selectDispo){
-        //         $query->where('disponibilite', '=', false);
-        //     })->get();
-
-        //     foreach ($posts as $post) {
-        //         $post->calendar->disponibilite = true;
-        //         $post->calendar->save();
-
-        //         // Get a fresh instance of the calendar model from the database
-        //         $freshCalendar = $post->calendar->fresh();
-
-        //         // Display the updated disponibilite
-        //         dd($freshCalendar->disponibilite);
-        //     }
-        // }
-        // else{
-        //     $posts=Post::whereHas('calendar', function($query) use($selectDispo){
-        //         $query->where('disponibilite', '=', true);
-        //     })->get();
-
-        //     foreach ($posts as $post) {
-        //         $post->calendar->disponibilite = false;
-        //         $post->calendar->save();
-
-        //         // Get a fresh instance of the calendar model from the database
-        //         $freshCalendar = $post->calendar->fresh();
-
-        //         // Display the updated disponibilite
-        //         dd($freshCalendar->disponibilite);
-        //     }
-        // }
 
         return redirect('/');
     }
 
     public function updateDisponibilite(Request $request)
     {
-        Log::info('Post ID: ' . $request->postId); // Log the post ID
+        
 
-        $post = Post::find($request->postId);
+        $selectDispo=$request->get('selectDispo');
+        $idPost=$request->get('idannonce');
+        $post = Post::find($idPost);
 
-        if ($post) {
-            $post->calendar->disponibilite = !$post->calendar->disponibilite;
-            $post->calendar->save();
-
-            return response()->json(['success' => true]);
+        if ($selectDispo == 'Disponible') {
+            $posts = Post::whereHas('calendar', function($query) {
+                $query->where('disponibilite', '=', false);
+            })->get();
+        
+            foreach ($posts as $post) {
+                foreach ($post->calendar as $calendar) {
+                    $calendar->disponibilite = true;
+                    $calendar->save();
+                }
+            }
+            
+        } else if ($selectDispo == 'Indisponible') {
+            $posts = Post::whereHas('calendar', function($query) {
+                $query->where('disponibilite', '=', true);
+            })->get();
+        
+            foreach ($posts as $post) {
+                foreach ($post->calendar as $calendar) {
+                    $calendar->disponibilite = false;
+                    $calendar->save();
+                }
+            }
+            
         }
-
-        return response()->json(['error' => 'Post not found'], 404);
+        return redirect ('/');
+    
+        
     }
 
 
