@@ -148,31 +148,24 @@ class UserController extends Controller
         $selectDispo=$request->get('selectDispo');
         $idPost=$request->get('idannonce');
         $post = Post::find($idPost);
+        // dd($post);
 
-        if ($selectDispo == 'Disponible') {
-            $posts = Post::whereHas('calendar', function($query) {
-                $query->where('disponibilite', '=', false);
-            })->get();
-        
-            foreach ($posts as $post) {
+        if ($post) {
+            if ($selectDispo == 'Disponible') {
                 foreach ($post->calendar as $calendar) {
-                    $calendar->disponibilite = true;
-                    $calendar->save();
+                    if (!$calendar->disponibilite) {
+                        $calendar->disponibilite = true;
+                        $calendar->save();
+                    }
+                }
+            } else if ($selectDispo == 'Indisponible') {
+                foreach ($post->calendar as $calendar) {
+                    if ($calendar->disponibilite) {
+                        $calendar->disponibilite = false;
+                        $calendar->save();
+                    }
                 }
             }
-            
-        } else if ($selectDispo == 'Indisponible') {
-            $posts = Post::whereHas('calendar', function($query) {
-                $query->where('disponibilite', '=', true);
-            })->get();
-        
-            foreach ($posts as $post) {
-                foreach ($post->calendar as $calendar) {
-                    $calendar->disponibilite = false;
-                    $calendar->save();
-                }
-            }
-            
         }
         return redirect ('/');
     

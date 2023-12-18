@@ -47,6 +47,7 @@
                             </select>
                             {{$post->idannonce}}
                             <button class="update-disponibilite" data-post-id="{{ $post->idannonce }}">Confirmer</button>
+                            <input type="hidden" name="idannonce" value="{{ $post->idannonce }}">
                         </form>
                         
                     </div>
