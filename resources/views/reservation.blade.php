@@ -77,28 +77,29 @@
     </div>
 </div>
 
-<div>
+<div id="infobancaire">
         Infos bancaires
         <div class="Infosbancaire">
-        <label for="">Numero de carte</label>
-            <input type="integer" name="carte" maxlength="16" >
-        </div>
-        <div class="Infosbancaire">
-        <label for="">CVV</label>
-            <input type="integer" name="cvv" maxlength="3">
-        </div>
-        <div class="Infosbancaire">
-            <label for="">Date d'expiration</label>
-            <input type="month" name="dateexpiration">
-        </div>
+    <label for="">Numero de carte</label>
+    <input type="text" name="carte" id="carte" maxlength="16" oninput="updateCard()">
+</div>
+<div class="Infosbancaire">
+    <label for="">CVV</label>
+    <input type="text" name="cvv" maxlength="3">
+</div>
+<div class="Infosbancaire">
+    <label for="">Date d'expiration</label>
+    <input type="month" name="dateexpiration">
+</div>
+
 
         
     </div>
 </div>
-<div class="card-container">
-  <div class="card">
+<!-- <div class="card-container">
+  <div id="card">
 
-  </div>
+  </div> -->
 </div>
 
 <label>
@@ -139,6 +140,15 @@
                 inputElement.value = currentValue - 1;
             }
         }
+
+
+        function updateCard() {
+        // Récupérer la valeur du champ de saisie du numéro de carte
+        var cardNumber = document.getElementById("carte").value;
+
+        // Mettre à jour le contenu de la div "card"
+        document.getElementById("card").innerHTML =  cardNumber;
+    }
     </script>
 
 @endsection

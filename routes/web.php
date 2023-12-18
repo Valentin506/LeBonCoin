@@ -68,9 +68,6 @@ Route::post("/account/{idcompte}/my-posts/update",[UserController::class, "updat
 Route::post("/account/{idcompte}/my-posts/update-disponibilite",[UserController::class, "updateDisponibilite" ]);
 Route::get("/account/{idcompte}/my-bookings",[UserController::class, "bookings" ]);
 
-// return one post
-Route::post('/post/{id}', [PostController::class, "one"]);
-
 Route::get('/account/{idcompte}', [UserController::class, 'one']);
 Route::get('/account/{idcompte}/modif-account', [UserController::class, 'modifAccount']);
 Route::get('/account/{idcompte}/modif-profile', [UserController::class, 'modifProfile']);

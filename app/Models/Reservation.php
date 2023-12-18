@@ -11,5 +11,6 @@ class Reservation extends Model
 
     protected $table = "fichereservation";
     protected $primaryKey = "idfiche";
+    protected $fillable = ['numcarte','numcvv','dateexpiration'];
     public $timestamps = false;
 }

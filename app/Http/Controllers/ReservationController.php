@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Crypt;
+
 use App\Models\Post;
 use App\Models\PhotoPost;
 use App\Models\User;
@@ -10,6 +13,8 @@ use App\Models\Reservation;
 use App\Models\Bancaire;
 use App\Models\Owner;
 use App\Models\Reserve;
+
+
 
 class ReservationController extends Controller
 {
@@ -57,7 +62,7 @@ class ReservationController extends Controller
     //     return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar'));
     // }
 
-    public function save(Request $request,$id)
+    public function save(Request $request, $id): RedirectResponse
     {
 
         $enregistrerDonneesBancaires = $request->input('enregistrerDonneesBancaires');
@@ -78,8 +83,14 @@ class ReservationController extends Controller
             $bancaire->numcarte = $request->input("carte");
             $bancaire->numcvv = $request->input("cvv");
             $bancaire->dateexpiration = $formattedDate;
+
+            $bancaire->fill([
+                'numcarte' => Crypt::encryptString($bancaire->numcarte),
+                'numcvv' => Crypt::encryptString($bancaire->numcvv),
+                'dateexpiration' => Crypt::encryptString($bancaire->dateexpiration),
+            ])->save();
             
-            $bancaire->save(); 
+            // $bancaire->save();
         } else {
                 // Ne rien faire, car l'utilisateur ne souhaite pas enregistrer les données bancaires
             }

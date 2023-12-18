@@ -38,7 +38,7 @@ class PostController extends Controller
                     'search'=>Search::all()]);
     }
 
-    public function one($id){
+    public function one($id, Request $request){
         $post = Post::find($id);
         $posts = Post::all();
         $photoPosts = PhotoPost::all();
@@ -58,22 +58,34 @@ class PostController extends Controller
             ->where('idhebergement', $annoncePrincipale->idhebergement)
             ->get();
         
-        
-        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar','annoncePrincipale', 'annoncesSimilaires'));
-    }
-
-    public function getAvailableDates(Request $request){
+        // Récupérer les dates disponibles
         $dateArrive = $request->get('startDate');
         $dateDepart = $request->get('endDate');
         
-        $dateAvailable = Calendar::whereBetween([$dateArrive, $dateDepart])
-                    ->where('disponibilite', true)->get();
+
+      
+    
+
+
+
+        $availableDates = Calendar::where('idannonce', $post->idannonce)
+                        ->where('disponibilite','=', true)
+                        ->get()
+                        
+                        ->map(function($calendar){
+                            return [
+                                'periodedebut' => \Carbon\Carbon::parse($calendar->periodedebut)->format('Y-m-d')
+                                
+                            ];
+                        });
+                        
+        // dd($availableDates);
+                                
+      
         
-        if ($dateAvailable->isNotEmpty()) {
-            return response()->json(['message' => 'Available dates found']);
-        }
-        return view ("one-post", compact('dateAvailable'));
+        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar','annoncePrincipale', 'annoncesSimilaires','availableDates'));
     }
+
 
     public function getPostsByCity(Request $request){
 
@@ -85,42 +97,6 @@ class PostController extends Controller
         $dateArrive=$request->get('inputDateArrive');
         $dateDepart=$request->get('inputDateDepart');
         
-        // $posts= Post::whereHas('calendar', function ($query) use($dateArrive){
-        //     $query->where('periodedebut','<=', $dateArrive)->where('disponibilite', true);
-        // })->whereHas('post', function ($query) use($dateArrive){
-        //     $query->where('datepublication','<=', $dateArrive);
-        // })->get();
-
-
-        // $posts= Post::where(function ($query) use($dateArrive){
-        //     $query->where('datepublication','<=', $dateArrive);
-        // })->whereHas('calendar', function ($query) use($dateArrive){
-        //     $query->where('periodedebut','<=', $dateArrive)->where('disponibilite', true);
-        // })->get();
-                                
-
-        // $posts= Post::whereHas('post', function($query) use ( $dateArrive){
-        //     $query->where('datepublication','<=', $dateArrive);
-        // })->whereHas('calendar', function ($query){
-        //     $query->where('disponibilite', true);
-        // })->get();
-
-        // $posts=DB::table('annonce')
-        //         ->join('calendrier','annonce.idannonce','=','calendrier.idannonce')
-        //         ->where('annonce.datepublication','<=', $dateArrive)
-        //         ->where('calendrier.disponibilite','=',true)
-        //         ->get();
-
-        // dd($posts);
-
-        // $posts=DB::table('annonce')
-        //         ->join('calendrier','annonce.idannonce','=','calendrier.idannonce')
-        //         ->where('annonce.datepublication','>=', $dateDepart)
-        //         ->where('calendrier.disponibilite','=',true)
-        //         ->get();
-        
-
-        // dd($posts);
 
         if($nomville!=null){
             if($typeHebergementId == ""){
@@ -136,21 +112,15 @@ class PostController extends Controller
                 })->get();
             }
             if($dateArrive != null && $typeHebergementId == ""){
-                $posts=DB::table('annonce')
-                        ->join('calendrier','annonce.idannonce','=','calendrier.idannonce')
-                        ->where('annonce.datepublication','<=', $dateArrive)
-                        ->where('calendrier.disponibilite','=','true')
-                        ->get();
-                dd($posts);
+                $posts=Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville, $dateArrive){
+                    $query->where('nomville', $nomville)->where('datepublication','<=', $dateArrive);
+                })->whereHas('calendar', function ($query) use($dateArrive, $dateDepart){
+                    $query->whereBetween('periodedebut',[$dateArrive,$dateDepart])
+                    ->where('disponibilite', true);
+                })->get();
+                
             }
-            if($dateDepart != null && $typeHebergementId == ""){
-                $posts=DB::table('annonce')
-                        ->join('calendrier','annonce.idannonce','=','calendrier.idannonce')
-                        ->where('annonce.datepublication','<=', $dateDepart)
-                        ->where('calendrier.disponibilite','=','true')
-                        ->get();
-                dd($posts);
-            }
+            
             
         }
 
@@ -175,14 +145,29 @@ class PostController extends Controller
         
 
         $search = new Search;
-        $idcapacite = $request -> input("plusMinusInput");
+        $idcapacite = $request -> input("plusMinusInput2");
         $search -> idcapacite = $idcapacite;
         $search -> idcompte = $user -> idcompte;
         $search -> libellerecherche = $request -> input("rechercheName");
-        $search -> datedebut = $request -> input("inputDateArrive"); 
-        $search -> datefin = $request -> input("inputDateDepart");
-        $search -> ville = $request -> input("city2");
+        $search -> datedebut = $request -> input("dateArrive2"); 
+        $search -> datefin = $request -> input("dateDepart2");
+        
+        
+        //$search -> idville = $request -> input("city2");
+        dd($nomville = $request -> input("city2"));
+        $ville = Ville::where('nomville', $nomville)->first();
 
+        if (!$ville) {
+            // La ville n'existe pas, donc nous la créons
+            $ville = new Ville();
+            $ville->nomville = $nomville;
+            // Vous pouvez ajouter d'autres colonnes si nécessaire
+            $ville->save();
+        }
+
+        $idVille = $ville->id;
+
+        $search -> idville = $idVille;
         //dd($search);
         $search -> save();
    }

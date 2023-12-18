@@ -10,5 +10,6 @@ class Bancaire extends Model
     use HasFactory;
     protected $table = "infobancaire";
     protected $primaryKey = "idinfobancaire";
+    protected $fillable = ['numcarte','numcvv','dateexpiration'];
     public $timestamps = false;
 }

@@ -119,8 +119,7 @@ class DepositPostController extends Controller
 
                 //calendar
                 $calendar = new Calendar;
-                $request ->input("prix_par_nuit");
-                $calendar -> prixpardate = $request ->input("prix_par_nuit");
+                $calendar -> prixpardate = $request ->input("price");
                 $calendar ->  idannonce = $post -> idannonce;
                 $calendar ->save();
 

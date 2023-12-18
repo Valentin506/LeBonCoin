@@ -1,10 +1,7 @@
-
 @extends('layouts.app')
 <link rel="stylesheet" type="text/css" href="{{asset('post.css')}}"/> 
 
 @section('title', 'Leboncoin')
-
-
 
 @section('content')
 
@@ -17,26 +14,13 @@
         <p>Enfants: {{ $booking->nbenfant}}</p>
         <p>Bébés: {{ $booking->nbbebe}}</p>
         <p>Animaux: {{ $booking->nbanimaux}}</p>
-       
-
 
         @foreach($ress->where('idfiche', $booking->idfiche) as $res)
             <div class="booking-details">
                 <p>Annonce n°: {{ $res->idannonce }}</p>
-                
-                
             </div>
         @endforeach
-        
-
-
-      
-    </div>
+    <input type="submit" Value="Modifier">
 @endforeach
-           
-        </div>
-
-    
-
 
 @endsection

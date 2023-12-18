@@ -95,7 +95,7 @@ class UserController extends Controller
             'ress' => $res],
         compact('photoPosts','posts'));
        }
-
+       
     // MODIFICATION POST
     public function modifPost($id){
 
