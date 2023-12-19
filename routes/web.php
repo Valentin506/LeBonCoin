@@ -50,7 +50,7 @@ Route::get('/', [SiteController::class, "index" ]);
 Route::get("/posts",[PostController::class, "post" ]);
 Route::post("/posts",[PostController::class, "getPostsByCity" ]);
 Route::get("/post/{id}",[PostController::class, "one" ]);
-Route::post("/post/{id}",[PostController::class, "getNonAvailableDates" ]); // date non available
+Route::post("/post/{id}/update-disponibilite",[PostController::class, "getNonAvailableDates" ]); // date non available
 Route::post('/search/save', [PostController::class, 'searchSave']);
 
 // profile owner controller

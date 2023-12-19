@@ -159,12 +159,12 @@
                 <!-- div about owner -->
                 <div class="ownerPostDiv">
                         <!-- date avail div -->
-                        <!-- y avait form de Val ici -->
+                        
                         <div id="postDateDiv">
                                 <div id="divDate">
                                         <div id="divSelectDate">
                                                 <h4>Sélectionnez vos dates de séjour :</h4>
-                                                <form id="formDisponibility" action="{{ url("/post/".$post->idannonce) }}" method="post">
+                                                <form id="formDisponibility" action="{{ url("/post/".$post->idannonce."/update-disponibilite") }}" method="post">
                                                         @csrf
                                                         <div id="divDateArriveDepart">
                                                                 <div id="divDateArrive">
@@ -213,7 +213,7 @@
 
                                 </div>
                         </div>
-                        <!-- y avait fin de form de Val ici                 -->
+                        
                         <!-- photo and info owner div -->
                         <div id="postOwnerDiv">
                                 <!-- photo for each owner of the post -->
@@ -456,6 +456,18 @@
                         beforeShowDay: available
                 });
 
+        </script>
+        <script>
+                
+                ['startDate', 'endDate', 'startDateIcon', 'endDateIcon'].forEach(function(id) {
+                        var element = document.getElementById(id);
+                        if (element) {
+                                element.addEventListener('click', function(event) {
+                                        event.preventDefault();
+                                });
+                        }
+                });
+                
         </script>
         
 
