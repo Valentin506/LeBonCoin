@@ -35,7 +35,19 @@ class PostController extends Controller
                     'cities'=>Ville::all(),
                     'departments'=>Departement::all(),
                     'users'=>User::all(),
-                    'searchs'=>Search::all()]);
+                    'searchs' => Search::all()->map(function ($search) {
+                        return [
+                            'idrecherche' => $search->idrecherche,
+                            'libellerecherche' => $search->libellerecherche,
+                            'city' => $search->ville->nomville,
+                            'capacity' => $search->idcapacite,
+                            'startDate' => $search->datedebut,
+                            'endDate' => $search->datefin,
+                            'typeHebergement' => $search->typehebergement->idhebergement,
+                            'postalcode' => $search->ville->codepostal,
+                        ];
+                    }),
+                ]);
     }
 
     public function one($id, Request $request){
@@ -145,9 +157,11 @@ class PostController extends Controller
                         });
 
         $nonAvailableDates = Calendar::where('idannonce', $post->idannonce)
-                                    ->whereBetween('periodedebut', [$dateArrive, $dateDepart])
-                                    ->orWhereBetween('periodefin', [$dateArrive, $dateDepart])
-                                    ->update(['disponibilite' => false]);
+                            ->whereBetween('periodedebut', [$dateArrive, $dateDepart])
+                            ->orWhereBetween('periodefin', [$dateArrive, $dateDepart])
+                            ->get();
+
+        dd($nonAvailableDates);
         
         return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar','annoncePrincipale', 'annoncesSimilaires','availableDates'));
 
@@ -209,6 +223,9 @@ class PostController extends Controller
 
    public function searchSave(Request $request)
    {
+        $request->validate([
+            'city2' => 'required', // Adjust validation rules as needed
+        ]);
         $user = auth()->user();
        
 

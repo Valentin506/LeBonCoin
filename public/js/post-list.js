@@ -94,6 +94,21 @@ function autocompleteDestination(){
    })
 }
 
+function handleContinue() {
+   var destination = document.getElementById('inputDestination');
+   var errorChamp = document.getElementById('errorChampDestination');
+ 
+   if (destination.value.trim() === '') {
+     // Le champ "title" est vide, affichez un message d'erreur ou prenez une autre action si nécessaire
+     errorChamp.style.display = 'flex';
+   } else {
+     // Le champ "title" n'est pas vide, appelez la fonction showCategoryDeposit()
+     
+     errorChamp.style.display = 'none';
+ 
+   }
+ }
+
 
 // autocomplete address
 

@@ -68,7 +68,7 @@
           <option value=""></option>
   
           @foreach($typeHebergements as $typeHebergement)
-              <option value="{{ $typeHebergement->idhebergement }}">{{ $typeHebergement->libelletypehebergement }}</option>
+              <option value="{{ $typeHebergement->idhebergement }}" onclick="fillSearchFields()">{{ $typeHebergement->libelletypehebergement }}</option>
           @endforeach
       </select>
       @else
@@ -104,9 +104,10 @@
 <form method="post" action="/search/save">
   @csrf
     <div>
+
         <button class="buttonSaveSearch" type="submite" onclick="updateFields()">Sauvegarder la recherche</button>
         <select name="recherches" id="recherches">
-          
+          <option></option>
             @foreach($searchs as $search)
                 <option value="{{ $search->idrecherche }}">{{ $search->libellerecherche }}</option>
                 
@@ -114,12 +115,12 @@
 
         </select>
 
-        <input id="city2" name="city2" type="hidden"></input>
+        <input id="city2" name="city2" type="hidden" required></input>
         <input id="plusMinusInput2" name="plusMinusInput2" type="hidden"></input>
         <input id="dateArrive2" name="dateArrive2" type="hidden"></input>
         <input id="dateDepart2" name="dateDepart2" type="hidden"></input>
         <input id="typehebergement2" name="typehebergement2" type="hidden"></input>
-        <input id="postalcode2" name="postalcode2"></input>
+        <input id="postalcode2" name="postalcode2" type="hidden"></input>
     </div>
 </form>
 
@@ -256,4 +257,19 @@ $(function() {
         type2.value = type.value;
         postalcode2.value = postalcode.value;
     }
-</script>
+
+        function fillSearchFields() {
+            // Récupérez l'élément select
+            var select = document.getElementById('recherches');
+            // Récupérez les détails de la recherche sélectionnée
+            var selectedSearch = select.options[select.selectedIndex];
+            
+            // Remplissez les champs du formulaire avec les détails de la recherche
+            document.getElementById('inputDestination').value = selectedSearch.dataset.city;
+            document.getElementById('plusMinusInput').value = selectedSearch.dataset.capacity;
+            document.getElementById('dateArrive').value = selectedSearch.dataset.startDate;
+            document.getElementById('dateDepart').value = selectedSearch.dataset.endDate;
+            document.getElementById('typehebergement').value = selectedSearch.dataset.typeHebergement;
+            document.getElementById('postalcode').value = selectedSearch.dataset.postalcode;
+        }
+    </script>

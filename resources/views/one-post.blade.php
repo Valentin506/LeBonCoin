@@ -179,7 +179,8 @@
 
                                                 </div>
 
-                                                <form id="formDisponibility" action="{{ url("/.$post->idannonce") }}" method="post">
+                                                <form id="formDisponibility" action="{{ url("/post/".$post->idannonce) }}" method="post">
+                                                        @csrf
                                                         <button>Check disponibility</button>
                                                 </form>
 

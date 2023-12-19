@@ -513,3 +513,9 @@
     width: 18px;
 }
 
+#errorChampDestination {
+    color:red;
+    display: none;
+    margin: left 20px;
+
+}
