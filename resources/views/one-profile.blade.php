@@ -18,9 +18,9 @@
             
             <div id="photoUser">
                 @if (Str::startsWith($owner->user->photoUser->urlphotoprofil, 'https'))
-                        <img src="{{$owner->user->photoUser->urlphotoprofil}}" alt="photo utilisateurs">
+                    <img src="{{$owner->user->photoUser->urlphotoprofil}}" alt="photo utilisateurs">
                 @else
-                        <img id="photoUser" src="/images/{{ $owner->user->photoUser->urlphotoprofil}}" alt="Photo de profil">
+                    <img id="photoUser" src="/images/{{ $owner->user->photoUser->urlphotoprofil}}" alt="Photo de profil">
                 @endif
                 
             </div>
@@ -122,11 +122,18 @@
                 </div>
                 @php $hasPhoto = false; @endphp
                 @foreach ($photoPosts as $photoPost)
-                @if($photoPost-> idannonce === $post->idannonce)
-                    <div id="divImagePost">
-                        <img src="{{ $photoPost -> image}}" alt="Image de l'annonce">
-                        @php $hasPhoto = true; break; @endphp
-                    </div>
+                    @if($photoPost->image && $photoPost-> idannonce === $post->idannonce)
+                        @if (Str::startsWith($photoPost -> image, 'https'))
+                        <div id="divImagePost">
+                            <img src="{{ $photoPost -> image}}" alt="Image de l'annonce">
+                            @php $hasPhoto = true; break; @endphp
+                        </div>
+                        @else
+                        <div id="divImagePost">
+                            <img src="/images/{{ $photoPost -> image}}" alt="Image de l'annonce">
+                            @php $hasPhoto = true; break; @endphp
+                        </div>
+                        @endif
                     @endif
                 @endforeach
             @endforeach

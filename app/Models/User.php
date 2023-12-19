@@ -39,6 +39,9 @@ class User extends Authenticatable
     public function adresse(){
         return $this->hasOne(Adresse::class, "idadresse", "idadresse");
     }
+    public function bancaire(){
+        return $this->hasOne(Bancaire::class, "idinfobancaire", "idinfobancaire");
+    }
     public function favoris()
     {
         return $this->hasMany(Favorite::class, 'idcompte');

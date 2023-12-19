@@ -166,7 +166,7 @@
                                                 <div id="divDateArriveDepart">
                                                         <div id="divDateArrive">
                                                                 <label for="startDate">Arrivée</label>
-                                                                <input type="date" id="startDate" name="startDate">
+                                                                <input type="date" id="startDate" name="startDate" onclick="currentDate()">
                                                         </div>
 
                                                         <!-- <label for="numberOfDays">Nombre de jours:</label>
@@ -386,37 +386,52 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         <script>
                 
-                // var disabledDates = ["2023-12-15"]
-  
-                // $('input').datepicker({
-                //         beforeShowDay: function(date){
-                //                 var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-                //                 return [ disabledDates.indexOf(string) == -1 ]
-                //         }
-                // });
+                
                 
                 //var availableDates = ["2023-12-10","2023-12-11","2023-12-12"];
+                var disabledDates = ["2024-01-01", "2023-12-25"]; // replace with your actual dates
                 var availableDates = @json($availableDates);
-                
+                function getDatesBetween(start, end) {
+                        var dates = [];
+                        var currentDate = new Date(start);
+                        var endDate = new Date(end);
+
+                        while (currentDate <= endDate) {
+                                dates.push(new Date(currentDate).toISOString().split('T')[0]); // format date as 'yyyy-mm-dd'
+                                currentDate.setDate(currentDate.getDate() + 1);
+                        }
+
+                        return dates;
+                }
+
+                availableDates = availableDates.flatMap(item => getDatesBetween(item.periodedebut, item.periodefin));
+
+                console.log(availableDates);
 
                 function available(date) {
-                        
-                        ymd = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" +  date.getDate();
+                        var y = date.getFullYear();
+                        var m = ("0" + (date.getMonth() + 1)).slice(-2); // pad with a leading zero if necessary
+                        var d = ("0" + date.getDate()).slice(-2); // pad with a leading zero if necessary
+                        var ymd = y + "-" + m + "-" + d;
+
+                        if (disabledDates.includes(ymd)) {
+                                return [false]; // disable this date
+    }
 
                         return [availableDates.includes(ymd)];
                 }
 
                 $("#startDate").datepicker({
-                        dateFormat: 'yy MM dd',
-                        startDate: '-0m',
-                        todayHighlight:'TRUE',
+                        dateFormat: 'yy-mm-dd',
+                        minDate: 0,
+                        todayHighlight: true,
                         beforeShowDay: available
                 });
 
                 $("#endDate").datepicker({
-                        dateFormat: 'yy MM dd',
-                        startDate: '-0m',
-                        todayHighlight:'TRUE',
+                        dateFormat: 'yy-mm-dd',
+                        minDate: 0,
+                        todayHighlight: true,
                         beforeShowDay: available
                 });
 

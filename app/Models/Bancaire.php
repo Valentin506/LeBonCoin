@@ -12,4 +12,10 @@ class Bancaire extends Model
     protected $primaryKey = "idinfobancaire";
     protected $fillable = ['numcarte','numcvv','dateexpiration'];
     public $timestamps = false;
+
+    public function user(){
+        return $this->hasOne(User::class, "idcompte", "idcompte");
+    }
 }
+
+

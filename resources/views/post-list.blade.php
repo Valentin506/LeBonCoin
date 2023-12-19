@@ -64,7 +64,7 @@
     <div id="divTypeHebergement">
       <label for="type_hebergement">Type d'hébergement</label>
       @if(!is_null($typeHebergements) && count($typeHebergements) > 0)
-      <select name="type_hebergement" id="type_hebergement">
+      <select name="type_hebergement" id="type_hebergement" onchange="updateFields()">
           <option value=""></option>
   
           @foreach($typeHebergements as $typeHebergement)
@@ -103,12 +103,20 @@
   @csrf
     <div>
         <button class="buttonSaveSearch" type="submite" onclick="updateFields()">Sauvegarder la recherche</button>
-        <input type="text" id="rechercheName" name="rechercheName"></input>
-        <input id="city2" name="city2" ></input>
-        <input id="plusMinusInput2" name="plusMinusInput2" ></input>
-        <input id="dateArrive2" name="dateArrive2" ></input>
-        <input id="dateDepart2" name="dateDepart2" ></input>
+        <select name="recherches" id="recherches">
+          
+            @foreach($searchs as $search)
+                <option value="{{ $search->idrecherche }}">{{ $search->libellerecherche }}</option>
+                
+            @endforeach
 
+        </select>
+
+        <input id="city2" name="city2" type="hidden"></input>
+        <input id="plusMinusInput2" name="plusMinusInput2" type="hidden"></input>
+        <input id="dateArrive2" name="dateArrive2" type="hidden"></input>
+        <input id="dateDepart2" name="dateDepart2" type="hidden"></input>
+        <input id="typehebergement2" name="typehebergement2" type="hidden"></input>
     </div>
 </form>
 
@@ -138,7 +146,9 @@
             @endif
           @endforeach
           @if (!$hasPhoto)
-            <p>Aucune image associée</p>
+            <div id="divImagePost">
+              <img src="/images/No_Image_Available.jpg" alt="Image de l'annonce">
+            </div>
           @endif
         </div>
         
@@ -222,7 +232,7 @@ $(function() {
     // Fonction pour mettre à jour les champs Ville2 et Capacité2
     function updateFields() {
         // Sélectionnez les champs
-        var villeInput = document.getElementById('inputDestination');
+        var villeInput = document.getElementById('city');
         var capaciteInput = document.getElementById('plusMinusInput');
         var ville2Input = document.getElementById('city2');
         var capacite2Input = document.getElementById('plusMinusInput2');
@@ -230,11 +240,14 @@ $(function() {
         var dateDebut2Input = document.getElementById('dateArrive2');
         var dateDepartInput = document.getElementById('dateDepart');
         var dateDepart2Input = document.getElementById('dateDepart2');
+        var type = document.getElementById('type_hebergement');
+        var type2 = document.getElementById('typehebergement2');
 
         // Mettez à jour les valeurs des champs Ville2 et Capacité2 avec les valeurs des champs correspondants
         ville2Input.value = villeInput.value;
         capacite2Input.value = capaciteInput.value;
         dateDebut2Input.value = dateDebutInput.value;
         dateDepart2Input.value = dateDepartInput.value;
+        type2.value = type.value;
     }
 </script>

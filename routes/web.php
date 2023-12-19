@@ -77,6 +77,8 @@ Route::post('/modif-profile/updateProfile', [UserController::class, 'updateProfi
 Route::post('/modif-account/updateSecurite', [UserController::class, 'updateSecurite']);
 
 
+
+
 // Route::post('/posts/type', [PostController::class, 'search'])->name('posts');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);

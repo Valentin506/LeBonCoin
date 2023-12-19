@@ -9,6 +9,7 @@
 
 @foreach($bookings as $booking)
     <div class="booking-details">
+    
         <p>Réservation ID: {{ $booking->idfiche }}</p>
         <p>Adultes: {{ $booking->nbadulte}}</p>
         <p>Enfants: {{ $booking->nbenfant}}</p>
@@ -19,8 +20,9 @@
             <div class="booking-details">
                 <p>Annonce n°: {{ $res->idannonce }}</p>
             </div>
+</div>    
         @endforeach
-    <input type="submit" Value="Modifier">
+    
 @endforeach
 
 @endsection

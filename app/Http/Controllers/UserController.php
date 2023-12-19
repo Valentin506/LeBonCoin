@@ -79,6 +79,8 @@ class UserController extends Controller
         return view('modif-securite', ['user'=>User::find($id)]);
     }
 
+    
+
 
     public function bookings($id)
     {

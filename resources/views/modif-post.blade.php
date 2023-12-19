@@ -27,16 +27,20 @@
                             </div>
                         @endif
                     @endforeach
-                    @if(!$hasPhoto)
-                        @php $hasText = false; @endphp 
+                    @if($hasPhoto === false)
                         <div id="divImagePost">
-                            <p>Aucune image associée</p>
-                            <form action="/account/{idcompte}/my-posts/update" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <h4>Ajoutez photo pour votre annonce :</h4>
+                            <img src="/images/No_Image_Available.jpg" alt="Image de l'annonce">
+                        </div>
                     @endif
                     <div id="divInfoPost">
                         <h3><a href="{{ url("/post/".$post->idannonce) }}">{{ $post-> titreannonce}}</a></h3>
+                        <form action="/account/{idcompte}/my-posts/update" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <h4>Ajoutez photo pour votre annonce :</h4>
+                                <input id="addPhotoPost" name="addPhotoPost" type="file">
+                                <button type="submit">Chargez l'image</button>
+                                <input type="hidden" name="idannonce" value="{{ $post->idannonce }}">
+                        </form>
 
                         <form action="/account/{idcompte}/my-posts/update-disponibilite" method="post" enctype="multipart/form-data">
                             @csrf

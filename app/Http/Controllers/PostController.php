@@ -35,7 +35,7 @@ class PostController extends Controller
                     'cities'=>Ville::all(),
                     'departments'=>Departement::all(),
                     'users'=>User::all(),
-                    'search'=>Search::all()]);
+                    'searchs'=>Search::all()]);
     }
 
     public function one($id, Request $request){
@@ -47,6 +47,7 @@ class PostController extends Controller
         $user = User::find($id);
         $equipements = Equipement::all();
         $calendar = Calendar::find($id);
+        $searchs = Search::all();
         
         $annoncePrincipale = Post::findOrFail($id);
     
@@ -63,10 +64,6 @@ class PostController extends Controller
         $dateDepart = $request->get('endDate');
         
 
-      
-    
-
-
 
         $availableDates = Calendar::where('idannonce', $post->idannonce)
                         ->where('disponibilite','=', true)
@@ -74,16 +71,29 @@ class PostController extends Controller
                         
                         ->map(function($calendar){
                             return [
-                                'periodedebut' => \Carbon\Carbon::parse($calendar->periodedebut)->format('Y-m-d')
+                                'periodedebut' => \Carbon\Carbon::parse($calendar->periodedebut)->format('Y-m-d'),
+                                'periodefin' => \Carbon\Carbon::parse($calendar->periodefin)->format('Y-m-d')
                                 
                             ];
                         });
-                        
+
+        $nonAvailableDates = Calendar::where('idannonce', $post->idannonce)
+                        ->where('disponibilite','=', false)
+                        ->get()
+        
+                        ->map(function($calendar){
+                            return [
+                                'periodedebut' => \Carbon\Carbon::parse($calendar->periodedebut)->format('Y-m-d'),
+                                'periodefin' => \Carbon\Carbon::parse($calendar->periodefin)->format('Y-m-d')
+                                
+                            ];
+        });
+
         // dd($availableDates);
                                 
       
         
-        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar','annoncePrincipale', 'annoncesSimilaires','availableDates'));
+        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar','annoncePrincipale', 'annoncesSimilaires','availableDates','searchs'));
     }
 
 
@@ -96,6 +106,7 @@ class PostController extends Controller
         $typeHebergementId = $request->get('type_hebergement');
         $dateArrive=$request->get('inputDateArrive');
         $dateDepart=$request->get('inputDateDepart');
+        $user = auth()->user();
         
 
         if($nomville!=null){
@@ -132,29 +143,30 @@ class PostController extends Controller
         $photoPosts = PhotoPost::all();
         $typeHebergements = TypeHebergement::all();
         $calendars = Calendar::all();
+        $searchs = Search::all();
         
         
-        return view('post-list', compact('posts', 'photoPosts', 'typeHebergements', 'calendars'));
+        return view('post-list', compact('posts', 'photoPosts', 'typeHebergements', 'calendars', 'user', 'searchs'));
     }
 
 
    public function searchSave(Request $request)
    {
         $user = auth()->user();
-    
-        
+       
 
         $search = new Search;
         $idcapacite = $request -> input("plusMinusInput2");
         $search -> idcapacite = $idcapacite;
         $search -> idcompte = $user -> idcompte;
-        $search -> libellerecherche = $request -> input("rechercheName");
+        
         $search -> datedebut = $request -> input("dateArrive2"); 
         $search -> datefin = $request -> input("dateDepart2");
         
-        
+        $search -> idhebergement = $request -> input("typehebergement2");
+
         //$search -> idville = $request -> input("city2");
-        dd($nomville = $request -> input("city2"));
+        $nomville = $request -> input("city2");
         $ville = Ville::where('nomville', $nomville)->first();
 
         if (!$ville) {
@@ -165,11 +177,22 @@ class PostController extends Controller
             $ville->save();
         }
 
-        $idVille = $ville->id;
+        $idVille = $ville->idville;
 
         $search -> idville = $idVille;
         //dd($search);
+        $libelleRecherche = $ville->nomville . ' - '. $search->datedebut . ' - '  . $search->datedebut . ' - ' . $search->datefin . ' - ' . $search->idcapacite;
+
+        $search->libellerecherche = $libelleRecherche;
         $search -> save();
+
+
+        $photoPosts = PhotoPost::all();
+        $typeHebergements = TypeHebergement::all();
+        $calendars = Calendar::all();
+        $posts = Post::all();
+        $searchs = Search::all();
+        return view('post-list',  compact('posts', 'photoPosts', 'typeHebergements', 'calendars', 'searchs', 'user'));
    }
 
 

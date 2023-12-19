@@ -35,45 +35,39 @@
 <h3>Nombre de voyageurs</h3>
 <div class="personne">
     
-    <div>
-        Adultes <br>
-        <p>18 ans et plus</p>
-        <div class="nbPersonne">
-            <input type="button" value="-" onclick="decrement(this, 'adultes')">
-            <input type="integer" name="adultes" value="0" required>
-            <input type="button" value="+" onclick="increment(this, 'adultes',8)">
-            
-        </div>
+<div>
+    Adultes <br>
+    <p>18 ans et plus</p>
+    <div class="nbPersonne">
+        <input type="button" value="-" onclick="decrement('adultes')">
+        <input type="number" name="adultes" value="0" required min="0" max="{{ $post->capaciteLogement->nombrepersonne }}">
+        <input type="button" value="+" onclick="increment('adultes')">
     </div>
-    <div>
-        Enfants<br>
-        <p>3 à 17 ans</p>
-        <div class="nbPersonne">
-            <input type="button" class="button" value="-" onclick="decrement(this, 'enfants')">
-            <input type="integer" name="enfants" value="0" required>
-            <input type="button" class="button" value="+" onclick="increment(this, 'enfants',8)">
-            
-        </div>
+</div>
+<div>
+    Enfants<br>
+    <p>3 à 17 ans</p>
+    <div class="nbPersonne">
+        <input type="button" class="button" value="-" onclick="decrement('enfants')">
+        <input type="number" name="enfants" value="0" required min="0" max="{{ $post->capaciteLogement->nombrepersonne }}">
+        <input type="button" class="button" value="+" onclick="increment('enfants')">
     </div>
-    <div>
-        Bébés<br>
-        <p>Moins de 3 ans</p>
-        <div class="nbPersonne">
-            <input type="button" value="-" onclick="decrement(this, 'bebes')">
-            <input type="integer" name="bebes" value="0">
-            <input type="button" value="+" onclick="increment(this, 'bebes',4)">
-            
-        </div>
+</div>
+<div>
+    Bébés<br>
+    <p>Moins de 3 ans</p>
+    <div class="nbPersonne">
+        <input type="button" value="-" onclick="decrement('bebes')">
+        <input type="number" name="bebes" value="0" min="0" max="{{ $post->capaciteLogement->nombrepersonne }}">
+        <input type="button" value="+" onclick="increment('bebes')">
     </div>
-    <div>
-        Animaux
-        <div class="nbPersonne">
-            <input type="button" value="-" onclick="decrement(this, 'animaux')">
-            <input type="integer" name="animaux" value="0">
-            <input type="button" value="+" onclick="increment(this, 'animaux',4)">
-
-            
-        </div>
+</div>
+<div>
+    Animaux
+    <div class="nbPersonne">
+        <input type="button" value="-" onclick="decrement('animaux')">
+        <input type="number" name="animaux" value="0" min="0" max="{{ $post->capaciteLogement->nombrepersonne }}">
+        <input type="button" value="+" onclick="increment('animaux')">
     </div>
 </div>
 
@@ -81,7 +75,9 @@
         Infos bancaires
         <div class="Infosbancaire">
     <label for="">Numero de carte</label>
-    <input type="text" name="carte" id="carte" maxlength="16" oninput="updateCard()">
+    <input type="text" name="carte" id="carte" maxlength="16" oninput="updateCard()" >
+    
+
 </div>
 <div class="Infosbancaire">
     <label for="">CVV</label>
@@ -120,35 +116,26 @@
 
 </div>
 
-
-
-
-
-
-
 <script>
-        function increment(button, inputName) {
-            var inputElement = document.getElementsByName(inputName)[0];
-            var currentValue = parseInt(inputElement.value, 10) || 0;
-            inputElement.value = currentValue + 1;
+    function increment(type) {
+        var inputField = document.querySelector(`input[name="${type}"]`);
+        var maxCapacity = {{ $post->capaciteLogement->nombrepersonne }};
+        var remainingCapacity = maxCapacity - parseInt(document.querySelector('input[name="adultes"]').value);
+
+        // Vérifier si la capacité restante est positive
+        if (remainingCapacity > 0) {
+            var suggestedValue = Math.min(parseInt(inputField.value) + 1, remainingCapacity);
+            inputField.value = suggestedValue;
         }
-
-        function decrement(button, inputName) {
-            var inputElement = document.getElementsByName(inputName)[0];
-            var currentValue = parseInt(inputElement.value, 10) || 0;
-            if (currentValue > 0) {
-                inputElement.value = currentValue - 1;
-            }
-        }
-
-
-        function updateCard() {
-        // Récupérer la valeur du champ de saisie du numéro de carte
-        var cardNumber = document.getElementById("carte").value;
-
-        // Mettre à jour le contenu de la div "card"
-        document.getElementById("card").innerHTML =  cardNumber;
     }
-    </script>
+
+    function decrement(type) {
+        var inputField = document.querySelector(`input[name="${type}"]`);
+        var value = parseInt(inputField.value, 10);
+        if (value > 0) {
+            inputField.value = value - 1;
+        }
+    }
+</script>
 
 @endsection
