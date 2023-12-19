@@ -11,6 +11,14 @@ class Calendar extends Model
     protected $table = "calendrier";
     protected $primaryKey = "idcalendrier";
     public $timestamps = false;
+    protected $fillable = [
+        'idannonce',
+        'periodedebut',
+        'periodefin',
+        'disponibilite',
+        'prixpardate',
+        
+    ];
 
     public function posts(): HasOne{
         return $this->hasOne(Post::class, 'idannonce', 'idcalendrier');

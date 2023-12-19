@@ -52,7 +52,6 @@ Route::post("/posts",[PostController::class, "getPostsByCity" ]);
 Route::get("/post/{id}",[PostController::class, "one" ]);
 Route::post("/post/{id}",[PostController::class, "getNonAvailableDates" ]); // date non available
 Route::post('/search/save', [PostController::class, 'searchSave']);
-// Route::post("/post/{id}/check",[PostController::class, "getAvailableDates" ]);
 
 // profile owner controller
 Route::get("/profiles",[OwnerController::class, "owner" ]);

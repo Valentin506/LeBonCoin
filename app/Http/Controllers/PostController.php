@@ -88,32 +88,25 @@ class PostController extends Controller
                                 
                             ];
                         });
-
-        // $nonAvailableDates = Calendar::where('idannonce', $post->idannonce)
-        //                 ->where('disponibilite','=', false)
-        //                 ->orWhere(function($query) use ($dateArrive, $dateDepart) {
-        //                     $query->whereBetween('periodedebut', [$dateArrive, $dateDepart])
-        //                           ->orWhereBetween('periodefin', [$dateArrive, $dateDepart]);
-        //                 })
-        //                 ->get()
-        //                 ->map(function($calendar){
-        //                     return [
-        //                         'periodedebut' => \Carbon\Carbon::parse($calendar->periodedebut)->format('Y-m-d'),
-        //                         'periodefin' => \Carbon\Carbon::parse($calendar->periodefin)->format('Y-m-d')
-        //                     ];
-        //                 });
         
-        $nonAvailableDates = Calendar::where('idannonce', $post->idannonce)
-                                    ->whereBetween('periodedebut', [$dateArrive, $dateDepart])
-                                    ->orWhereBetween('periodefin', [$dateArrive, $dateDepart])
-                                    ->update(['disponibilite' => false]);
+        $unavailableDates = Calendar::where('idannonce', $post->idannonce)
+                        ->where('disponibilite','=', false)
+                        ->get()
+                        
+                        ->map(function($calendar){
+                            return [
+                                'periodedebut' => \Carbon\Carbon::parse($calendar->periodedebut)->format('Y-m-d'),
+                                'periodefin' => \Carbon\Carbon::parse($calendar->periodefin)->format('Y-m-d')
+                                
+                            ];
+                        });
         
         
         // dd($availableDates);
                                 
       
         
-        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar','annoncePrincipale', 'annoncesSimilaires','availableDates','searchs'));
+        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar','annoncePrincipale', 'annoncesSimilaires','availableDates','unavailableDates','searchs'));
     }
 
     public function getNonAvailableDates($id, Request $request){
@@ -125,6 +118,7 @@ class PostController extends Controller
         $owner = Owner::find($id);
         $user = User::find($id);
         $equipements = Equipement::all();
+        $calendars = Calendar::where('idannonce', $post->idannonce)->get();
         $calendar = Calendar::find($id);
         $searchs = Search::all();
         
@@ -156,14 +150,30 @@ class PostController extends Controller
                             ];
                         });
 
-        $nonAvailableDates = Calendar::where('idannonce', $post->idannonce)
-                            ->whereBetween('periodedebut', [$dateArrive, $dateDepart])
-                            ->orWhereBetween('periodefin', [$dateArrive, $dateDepart])
-                            ->get();
+        // dd($dateArrive, $dateDepart);
+        foreach($calendars as $calendar){
+            $unavailableDatesCreate = Calendar::create([
+                                'idannonce' => $post->idannonce,
+                                'periodedebut' => $dateArrive,
+                                'periodefin' => $dateDepart,
+                                'disponibilite' => false,
+                                'prixpardate' => $calendar->prixpardate
+            ]);
+        }
 
-        dd($nonAvailableDates);
+        $unavailableDates = Calendar::where('idannonce', $post->idannonce)
+                        ->where('disponibilite','=', false)
+                        ->get()
+                        
+                        ->map(function($calendar){
+                            return [
+                                'periodedebut' => \Carbon\Carbon::parse($calendar->periodedebut)->format('Y-m-d'),
+                                'periodefin' => \Carbon\Carbon::parse($calendar->periodefin)->format('Y-m-d')
+                                
+                            ];
+                        });
         
-        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar','annoncePrincipale', 'annoncesSimilaires','availableDates'));
+        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar','annoncePrincipale', 'annoncesSimilaires','availableDates','unavailableDates','calendars'));
 
     }
 

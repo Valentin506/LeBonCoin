@@ -3,8 +3,9 @@
         <title>{{ $post-> titreannonce." - Locations saisonières"}}</title>
         <link rel="stylesheet" type="text/css" href="{{asset('post.css')}}"/> 
         <link rel="stylesheet" type="text/css" href="{{asset('one-post.css')}}"/> 
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" />
+        <link rel="icon" type="image/x-icon" href="https://img.utdstc.com/icon/f01/c30/f01c30e1ae7730771565e60e5b26d888a6a6a49f2112235ba23d30abbc4b4923:200">   
         
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
       
 </head>
@@ -163,25 +164,26 @@
                                 <div id="divDate">
                                         <div id="divSelectDate">
                                                 <h4>Sélectionnez vos dates de séjour :</h4>
-                                                <div id="divDateArriveDepart">
-                                                        <div id="divDateArrive">
-                                                                <label for="startDate">Arrivée</label>
-                                                                <input type="date" id="startDate" name="startDate">
-                                                        </div>
-
-                                                        
-
-                                                        <div id="divDateDepart">
-
-                                                                <label for="endDate">Départ</label>
-                                                                <input type="date" id="endDate" name="endDate">
-                                                        </div>
-
-                                                </div>
-
                                                 <form id="formDisponibility" action="{{ url("/post/".$post->idannonce) }}" method="post">
                                                         @csrf
-                                                        <button>Check disponibility</button>
+                                                        <div id="divDateArriveDepart">
+                                                                <div id="divDateArrive">
+                                                                        <label for="startDate">Arrivée</label>
+                                                                        <input type="date" id="startDate" name="startDate">
+                                                                </div>
+
+                                                                
+
+                                                                <div id="divDateDepart">
+
+                                                                        <label for="endDate">Départ</label>
+                                                                        <input type="date" id="endDate" name="endDate">
+                                                                </div>
+
+                                                        </div>
+
+                                                
+                                                        <button type="submit">Confirmez vos dates</button>
                                                 </form>
 
                                                 
@@ -389,10 +391,10 @@
         <script>
                 
                 
-                
-                //var availableDates = ["2023-12-10","2023-12-11","2023-12-12"];
-                var disabledDates = ["2024-01-01", "2023-12-25"]; // replace with your actual dates
-                var availableDates = @json($availableDates);
+                var availableDates = @json($availableDates); // dates that are available
+                var disabledDates = @json($unavailableDates); // dates that are not available
+
+                // function to get the dates between two dates
                 function getDatesBetween(start, end) {
                         var dates = [];
                         var currentDate = new Date(start);
@@ -406,9 +408,12 @@
                         return dates;
                 }
 
+                // get items from database
                 availableDates = availableDates.flatMap(item => getDatesBetween(item.periodedebut, item.periodefin));
+                disabledDates = disabledDates.flatMap(item => getDatesBetween(item.periodedebut, item.periodefin));
 
-                console.log(availableDates);
+                // console.log(availableDates);
+                console.log(disabledDates);
 
                 function available(date) {
                         var y = date.getFullYear();
