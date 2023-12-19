@@ -77,23 +77,80 @@ class PostController extends Controller
                             ];
                         });
 
-        $nonAvailableDates = Calendar::where('idannonce', $post->idannonce)
-                        ->where('disponibilite','=', false)
-                        ->get()
+        // $nonAvailableDates = Calendar::where('idannonce', $post->idannonce)
+        //                 ->where('disponibilite','=', false)
+        //                 ->orWhere(function($query) use ($dateArrive, $dateDepart) {
+        //                     $query->whereBetween('periodedebut', [$dateArrive, $dateDepart])
+        //                           ->orWhereBetween('periodefin', [$dateArrive, $dateDepart]);
+        //                 })
+        //                 ->get()
+        //                 ->map(function($calendar){
+        //                     return [
+        //                         'periodedebut' => \Carbon\Carbon::parse($calendar->periodedebut)->format('Y-m-d'),
+        //                         'periodefin' => \Carbon\Carbon::parse($calendar->periodefin)->format('Y-m-d')
+        //                     ];
+        //                 });
         
+        $nonAvailableDates = Calendar::where('idannonce', $post->idannonce)
+                                    ->whereBetween('periodedebut', [$dateArrive, $dateDepart])
+                                    ->orWhereBetween('periodefin', [$dateArrive, $dateDepart])
+                                    ->update(['disponibilite' => false]);
+        
+        
+        // dd($availableDates);
+                                
+      
+        
+        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar','annoncePrincipale', 'annoncesSimilaires','availableDates','searchs'));
+    }
+
+    public function getNonAvailableDates($id, Request $request){
+
+        $post = Post::find($id);
+        $posts = Post::all();
+        $photoPosts = PhotoPost::all();
+        $photoUser = PhotoUser::find($id);
+        $owner = Owner::find($id);
+        $user = User::find($id);
+        $equipements = Equipement::all();
+        $calendar = Calendar::find($id);
+        $searchs = Search::all();
+        
+        $annoncePrincipale = Post::findOrFail($id);
+    
+        // Récupérer les annonces similaires dans la même ville et avec le même type d'hébergement
+        $annoncesSimilaires = Post::where('idannonce', '!=', $id)
+            ->whereHas('adresseAnnonce.ville', function ($query) use ($annoncePrincipale) {
+                $query->where('nomville', $annoncePrincipale->adresseAnnonce->ville->nomville);
+            })
+            ->where('idhebergement', $annoncePrincipale->idhebergement)
+            ->get();
+        
+        // Récupérer les dates disponibles
+        $dateArrive = $request->get('startDate');
+        $dateDepart = $request->get('endDate');
+        
+
+
+        $availableDates = Calendar::where('idannonce', $post->idannonce)
+                        ->where('disponibilite','=', true)
+                        ->get()
+                        
                         ->map(function($calendar){
                             return [
                                 'periodedebut' => \Carbon\Carbon::parse($calendar->periodedebut)->format('Y-m-d'),
                                 'periodefin' => \Carbon\Carbon::parse($calendar->periodefin)->format('Y-m-d')
                                 
                             ];
-        });
+                        });
 
-        // dd($availableDates);
-                                
-      
+        $nonAvailableDates = Calendar::where('idannonce', $post->idannonce)
+                                    ->whereBetween('periodedebut', [$dateArrive, $dateDepart])
+                                    ->orWhereBetween('periodefin', [$dateArrive, $dateDepart])
+                                    ->update(['disponibilite' => false]);
         
-        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar','annoncePrincipale', 'annoncesSimilaires','availableDates','searchs'));
+        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar','annoncePrincipale', 'annoncesSimilaires','availableDates'));
+
     }
 
 
@@ -165,14 +222,18 @@ class PostController extends Controller
         
         $search -> idhebergement = $request -> input("typehebergement2");
 
+        
         //$search -> idville = $request -> input("city2");
         $nomville = $request -> input("city2");
         $ville = Ville::where('nomville', $nomville)->first();
-
+        
         if (!$ville) {
             // La ville n'existe pas, donc nous la créons
             $ville = new Ville();
             $ville->nomville = $nomville;
+            $iddep = $request -> input("postalcode2");
+            $ville -> iddepartement = substr($iddep,0,2);
+            $ville -> codepostal = $request -> input("postalcode2");
             // Vous pouvez ajouter d'autres colonnes si nécessaire
             $ville->save();
         }

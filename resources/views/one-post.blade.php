@@ -166,11 +166,10 @@
                                                 <div id="divDateArriveDepart">
                                                         <div id="divDateArrive">
                                                                 <label for="startDate">Arrivée</label>
-                                                                <input type="date" id="startDate" name="startDate" onclick="currentDate()">
+                                                                <input type="date" id="startDate" name="startDate">
                                                         </div>
 
-                                                        <!-- <label for="numberOfDays">Nombre de jours:</label>
-                                                        <input type="number" id="numberOfDays" name="numberOfDays" min="1" value="1" oninput="updateEndDate()"> -->
+                                                        
 
                                                         <div id="divDateDepart">
 
@@ -180,10 +179,12 @@
 
                                                 </div>
 
+                                                <form id="formDisponibility" action="{{ url("/.$post->idannonce") }}" method="post">
+                                                        <button>Check disponibility</button>
+                                                </form>
+
                                                 
-                                                <!-- <div>
-                                                        <input type="range" id="vol" name="vol" min="0" max="12">
-                                                </div> -->
+                                                
                                                 
                                                 
                                                 
@@ -425,12 +426,26 @@
                         dateFormat: 'yy-mm-dd',
                         minDate: 0,
                         todayHighlight: true,
-                        beforeShowDay: available
+                        beforeShowDay: available,
+                        onSelect: function(dateText) {
+                                var endDatePicker = $("#endDate");
+                                var startDate = $(this).datepicker('getDate');
+
+                                // Set the minDate of the end datepicker to the selected start date
+                                endDatePicker.datepicker('option', 'minDate', startDate);
+
+                                // Clear the end date if it's before the start date
+                                var endDate = endDatePicker.datepicker('getDate');
+                                if (endDate && endDate < startDate) {
+                                        endDatePicker.datepicker('setDate', null);
+                                }
+                        }
+                        
                 });
 
                 $("#endDate").datepicker({
                         dateFormat: 'yy-mm-dd',
-                        minDate: 0,
+                        minDate: 0, // disable all dates before today
                         todayHighlight: true,
                         beforeShowDay: available
                 });

@@ -33,6 +33,7 @@
         <!-- <p>Votre email: {{ auth('employe')->user()->emailemploye }}</p>
         <p>Votre date de naissance: {{ auth('employe')->user()->datenaissanceemploye }}</p> -->
 
+        <iframe title="SprintPowerBi" width="1024" height="1060" src="https://app.powerbi.com/view?r=eyJrIjoiYzBkMDM2NjMtOGU2Zi00NjJlLWIyNmMtYWQzMzhlZWNkZmEwIiwidCI6ImUyMWU5NzgzLWQwYTAtNDhmOC04NTBlLTBiMDgxYjQ2ZDc4OCIsImMiOjh9&pageName=ReportSection" frameborder="0" allowFullScreen="true"></iframe>
         <div id="categories">
         <div><a href="{{ route('types-hebergements.index') }}">Types d'Hébergements</a></div>
 
@@ -43,7 +44,6 @@
 
             <div>Paramètres</div>
         </div>
-
 
         <form action="{{ route('employe.logout') }}" method="post">
             @csrf

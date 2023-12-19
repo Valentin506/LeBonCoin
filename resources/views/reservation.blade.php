@@ -79,13 +79,14 @@
     
 
 </div>
+
 <div class="Infosbancaire">
     <label for="">CVV</label>
-    <input type="text" name="cvv" maxlength="3">
+    <input type="text" name="cvv" maxlength="3" id="carte">
 </div>
 <div class="Infosbancaire">
     <label for="">Date d'expiration</label>
-    <input type="month" name="dateexpiration">
+    <input type="month" name="dateexpiration" id="carte">
 </div>
 
 
@@ -137,5 +138,4 @@
         }
     }
 </script>
-
 @endsection

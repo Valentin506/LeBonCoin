@@ -99,6 +99,8 @@
 
 
 </div>
+<label id='errorChampDestination'>Le champ type destination est obligatoire</label>
+
 <form method="post" action="/search/save">
   @csrf
     <div>
@@ -117,6 +119,7 @@
         <input id="dateArrive2" name="dateArrive2" type="hidden"></input>
         <input id="dateDepart2" name="dateDepart2" type="hidden"></input>
         <input id="typehebergement2" name="typehebergement2" type="hidden"></input>
+        <input id="postalcode2" name="postalcode2"></input>
     </div>
 </form>
 
@@ -242,6 +245,8 @@ $(function() {
         var dateDepart2Input = document.getElementById('dateDepart2');
         var type = document.getElementById('type_hebergement');
         var type2 = document.getElementById('typehebergement2');
+        var postalcode2 = document.getElementById('postalcode2');
+        var postalcode = document.getElementById('postalcode');
 
         // Mettez à jour les valeurs des champs Ville2 et Capacité2 avec les valeurs des champs correspondants
         ville2Input.value = villeInput.value;
@@ -249,5 +254,6 @@ $(function() {
         dateDebut2Input.value = dateDebutInput.value;
         dateDepart2Input.value = dateDepartInput.value;
         type2.value = type.value;
+        postalcode2.value = postalcode.value;
     }
 </script>
