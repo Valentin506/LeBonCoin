@@ -4,25 +4,23 @@
 @section('content')
 
 
-
-<div id="page">
+<div id="page" style="display: flex; justify-content: space-between;">
 <div class="reservation">
 
 <div>
     <H1>Votre réservation</H1>
 </div>
 <hr>
-    <h3>Vos dates de séjour</h3>
+    <!-- <h3>Vos dates de séjour</h3> -->
 
    
-        <p>Arrivé </p>
+        <!-- <p>Arrivé {{$calendar->periodedebut}}</p>
        
     
    
-        <p>Départ </p>
+        <p>Départ {{$calendar->periodefin}} </p>
         
-    
-
+        -->
 <hr>
 <div>
                    
@@ -40,7 +38,7 @@
     <p>18 ans et plus</p>
     <div class="nbPersonne">
         <input type="button" value="-" onclick="decrement('adultes')">
-        <input type="number" name="adultes" value="0" required min="0" max="{{ $post->capaciteLogement->nombrepersonne }}">
+        <input type="number" name="adultes" value="0" required min="1" max="{{ $post->capaciteLogement->nombrepersonne }}">
         <input type="button" value="+" onclick="increment('adultes')">
     </div>
 </div>
@@ -75,18 +73,21 @@
         Infos bancaires
         <div class="Infosbancaire">
     <label for="">Numero de carte</label>
-    <input type="text" name="carte" id="carte" maxlength="16" oninput="updateCard()" >
+    <input type="numeric" name="carte" id="carte" minlength="16" maxlength="16" oninput="updateCard()" required>
     
 
 </div>
 
 <div class="Infosbancaire">
     <label for="">CVV</label>
-    <input type="text" name="cvv" maxlength="3" id="carte">
+    <input type="numeric" name="cvv" minlength="3" maxlength="3" id="carte" required>
 </div>
 <div class="Infosbancaire">
     <label for="">Date d'expiration</label>
-    <input type="month" name="dateexpiration" id="carte">
+    <input type="month" name="dateexpiration" id="carte" required>
+    @if($errors->has('dateexpiration'))
+            <p class="text-danger">{{ $errors->first('dateexpiration') }}</p>
+        @endif
 </div>
 
 
@@ -108,13 +109,24 @@
 </form>
 <hr>
 
-<h3>Vos Informations</h3>
-<div>
-    <div><label for="Prénom">Prénom<input type="text" name="prenom"></label></div>
-    <div><label for="Nom">Nom<input type="text" name="nom"></label></div>
-    <div><label for="telephone">Numéro de téléphone<input type="tel" name="telephone"></label></div>
-</div>
 
+
+</div >
+
+       
+<div style="float: right; width: 30%;" id="prix">
+@php
+            $dateDebut = new DateTime($calendar->periodedebut);
+            $dateFin = new DateTime($calendar->periodefin);
+            $difference = $dateDebut->diff($dateFin);
+            $nombreDeJours = $difference->days;
+            $prix = $post->prix;
+            $montantTotal = $nombreDeJours * $prix;
+        @endphp
+
+<p>Nombre de jours : {{$nombreDeJours}} jours</p>
+<p>Prix par jour : {{$prix}} €</p>
+<p>Montant total : {{$montantTotal}} €</p>
 </div>
 
 <script>

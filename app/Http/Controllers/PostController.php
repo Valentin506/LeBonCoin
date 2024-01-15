@@ -35,18 +35,8 @@ class PostController extends Controller
                     'cities'=>Ville::all(),
                     'departments'=>Departement::all(),
                     'users'=>User::all(),
-                    'searchs' => Search::all()->map(function ($search) {
-                        return [
-                            'idrecherche' => $search->idrecherche,
-                            'libellerecherche' => $search->libellerecherche,
-                            'city' => $search->ville->nomville,
-                            'capacity' => $search->idcapacite,
-                            'startDate' => $search->datedebut,
-                            'endDate' => $search->datefin,
-                            'typeHebergement' => $search->typehebergement->idhebergement,
-                            'postalcode' => $search->ville->codepostal,
-                        ];
-                    }),
+                    'searchs' => Search::all()
+                    
                 ]);
     }
 
@@ -156,8 +146,7 @@ class PostController extends Controller
                                 'idannonce' => $post->idannonce,
                                 'periodedebut' => $dateArrive,
                                 'periodefin' => $dateDepart,
-                                'disponibilite' => false,
-                                'prixpardate' => $calendar->prixpardate
+                                'disponibilite' => false
             ]);
         }
 
@@ -173,7 +162,7 @@ class PostController extends Controller
                             ];
                         });
         
-        return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar','annoncePrincipale', 'annoncesSimilaires','availableDates','unavailableDates','calendars'));
+        return view ("reservation", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar','annoncePrincipale', 'annoncesSimilaires','availableDates','unavailableDates','calendars'));
 
     }
 
@@ -205,10 +194,11 @@ class PostController extends Controller
             }
             if($dateArrive != null && $typeHebergementId == ""){
                 $posts=Post::whereHas('adresseAnnonce.ville', function($query) use ($nomville, $dateArrive){
-                    $query->where('nomville', $nomville)->where('datepublication','<=', $dateArrive);
+                    $query->where('nomville', $nomville);
                 })->whereHas('calendar', function ($query) use($dateArrive, $dateDepart){
                     $query->whereBetween('periodedebut',[$dateArrive,$dateDepart])
-                    ->where('disponibilite', true);
+                            ->orWhereBetween('periodefin',[$dateArrive,$dateDepart])
+                            ->where('disponibilite', true);
                 })->get();
                 
             }
@@ -249,7 +239,6 @@ class PostController extends Controller
         
         $search -> idhebergement = $request -> input("typehebergement2");
 
-        
         //$search -> idville = $request -> input("city2");
         $nomville = $request -> input("city2");
         $ville = Ville::where('nomville', $nomville)->first();
@@ -269,7 +258,7 @@ class PostController extends Controller
 
         $search -> idville = $idVille;
         //dd($search);
-        $libelleRecherche = $ville->nomville . ' - '. $search->datedebut . ' - '  . $search->datedebut . ' - ' . $search->datefin . ' - ' . $search->idcapacite;
+        $libelleRecherche = $ville->nomville . ' - '. $search->datedebut . ' - '  . $search->datefin . ' - ' . $search->idhebergement . ' - ' . $search->idcapacite;
 
         $search->libellerecherche = $libelleRecherche;
         $search -> save();

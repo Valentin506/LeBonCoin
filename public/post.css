@@ -13,6 +13,14 @@
 
 
 }
+#prix{
+    margin-top: 40px;
+    border: solid 2px black;
+    border-radius: 14px;
+    height: 70px;
+    box-shadow: 2px 2px 2px 2px black;
+
+}
 
 .filterBar div input{
     border: none;

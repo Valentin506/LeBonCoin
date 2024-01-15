@@ -66,6 +66,7 @@ class DepositPostController extends Controller
                 $post -> idcapacite = $idcapacite;
                 $post -> description = $request->input("description");
                 $post -> paiementenligne = $request->input("typeres");
+                $post -> prix = $request->input("price");
 
                 if ($post -> paiementenligne = $request->input("typeres") == "S")
                     $post -> paiementenligne = true;

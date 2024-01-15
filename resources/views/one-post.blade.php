@@ -164,12 +164,12 @@
                                 <div id="divDate">
                                         <div id="divSelectDate">
                                                 <h4>Sélectionnez vos dates de séjour :</h4>
-                                                <form id="formDisponibility" action="{{ url("/post/".$post->idannonce."/update-disponibilite") }}" method="post">
+                                                <form id="formDisponibility" action="{{ url("/reservation/".$post->idannonce) }}" method="post">
                                                         @csrf
                                                         <div id="divDateArriveDepart">
                                                                 <div id="divDateArrive">
                                                                         <label for="startDate">Arrivée</label>
-                                                                        <input type="date" id="startDate" name="startDate">
+                                                                        <input type="date" id="startDate" name="startDate" required>
                                                                 </div>
 
                                                                 
@@ -177,14 +177,14 @@
                                                                 <div id="divDateDepart">
 
                                                                         <label for="endDate">Départ</label>
-                                                                        <input type="date" id="endDate" name="endDate">
+                                                                        <input type="date" id="endDate" name="endDate" required>
                                                                 </div>
 
                                                         </div>
 
                                                 
-                                                        <button type="submit">Confirmez vos dates</button>
-                                                </form>
+                                                        
+                                                
 
                                                 
                                                 
@@ -197,20 +197,23 @@
                                                 <div>
                                                         
                                                         <p>À partir de </p>
-                                                        <div>Prix € / nuit</div>
-                                                       
+                                                        @if($calendar && $post->prix !== null)
+                                                                <div>Prix € {{$post->prix}}/ nuit</div>
+                                                        @else
+                                                                <div></div>
+                                                        @endif
                                                 <form action="{{url("/reservation/".$post->idannonce) }}" method="get" class="form" >
                                                         @csrf
                                                         </div>
                                                         @if (Auth::check())
-                                                                <button>Vérifier la disponibilité</button>
+                                                                <button type="submit">Vérifier la disponibilité</button>
                                                         @else
                                                         <button><a href="{{ url("/login") }}">Vérifier la disponibilité</a></button>
                                                         @endif
                                                         
                                                 </form>
                                                                                         </div>
-
+                                                </form>
                                 </div>
                         </div>
                         

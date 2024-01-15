@@ -239,15 +239,15 @@ class UserController extends Controller
     
 
     public function updateSecurite(Request $request){
-        $request->validate([
-            'motdepasse' => [
-                'required',
-                'string',
-                'min:12', // par exemple, au moins 8 caractères
-                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!/%*?&])[A-Za-z\d@$!%*?&]+$/'
-            ]
+        // $request->validate([
+        //     'motdepasse' => [
+        //         'required',
+        //         'string',
+        //         'min:12', // par exemple, au moins 8 caractères
+        //         'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!/*?&])[A-Za-z\d@$!*?&]+$/'
+        //     ]
            
-        ]);
+        // ]);
         if ($request->input("motdepasse") == "")  {
             
             return redirect('modif-securite')->withInput();

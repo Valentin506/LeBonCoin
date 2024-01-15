@@ -33,9 +33,11 @@
                         </div>
                         <input type="text" id="search" placeholder="Rechercher sur leboncoin" />
                         <i class="fa fa-search" aria-hidden="true"></i>
-                        <div class="buttonMySearch">  
-                        <input type="image" alt="Mes recherches" src="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/alarm-37.png"/>
-                            <span>Mes recherches</span>
+                        <div class="buttonMySearch"> 
+                            
+                        
+                        <a href="{{url("/help")}}"><input type="image"  alt="Aide" src="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/alarm-37.png"/>
+                            <span>Aide</span>
                         </div>
 
 
@@ -115,4 +117,13 @@
 
 
     </body>
+    <script>
+        var botmanWidget = {
+            aboutText: '',
+            introMessage: "Bienvenue dans notre site web"
+        };
+    </script>
+   
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+
 </html>

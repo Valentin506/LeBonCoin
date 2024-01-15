@@ -1,5 +1,7 @@
 <title>Location vacances maison, gite et appartement entre particuliers - leboncoin </title>
 <link rel="stylesheet" type="text/css" href="{{asset('post.css')}}"/> 
+<link rel="icon" type="image/x-icon" href="https://img.utdstc.com/icon/f01/c30/f01c30e1ae7730771565e60e5b26d888a6a6a49f2112235ba23d30abbc4b4923:200">   
+
 <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> -->
 
 @extends('layouts.app')
@@ -106,10 +108,10 @@
     <div>
 
         <button class="buttonSaveSearch" type="submite" onclick="updateFields()">Sauvegarder la recherche</button>
-        <select name="recherches" id="recherches">
+        <select name="recherches" id="recherches" onclick="updateChamps()">
           <option></option>
             @foreach($searchs as $search)
-                <option value="{{ $search->idrecherche }}">{{ $search->libellerecherche }}</option>
+                <option value="{{ $search->idrecherche }}" onclick="updateChamps()">{{ $search->libellerecherche }}</option>
                 
             @endforeach
 
@@ -272,4 +274,40 @@ $(function() {
             document.getElementById('typehebergement').value = selectedSearch.dataset.typeHebergement;
             document.getElementById('postalcode').value = selectedSearch.dataset.postalcode;
         }
+
+        function updateChamps() {
+    // Sélectionnez les champs
+    var villeInput = document.getElementById('inputDestination');
+    var capaciteInput = document.getElementById('plusMinusInput');
+    var dateDebutInput = document.getElementById('dateArrive');
+    var dateDepartInput = document.getElementById('dateDepart');
+    var type = document.getElementById('type_hebergement');
+    var postalcode = document.getElementById('postalcode');
+
+    var selectSearch = document.getElementById('recherches');
+
+    // Récupérez la valeur de l'option sélectionnée
+    var selectedValue = selectSearch.value;
+
+    // Diviser la chaîne en tableau en utilisant ' - ' comme délimiteur
+    var elements = selectedValue.split(' - ');
+
+    // Vérifiez si le tableau a suffisamment d'éléments
+    if (elements.length >= 5) {
+        // Attribuer chaque élément à une variable
+        var nomville = elements[0];
+        var datedebut = elements[1];
+        var datefin = elements[2];
+        var idhebergement = elements[3];
+        var idcapacite = elements[4];
+
+        // Mettez à jour les valeurs des champs correspondants avec les valeurs extraites
+        villeInput.value = nomville;
+        dateDebutInput.value = datedebut;
+        dateDepartInput.value = datefin;
+        type.value = ''; // Vous pouvez attribuer idhebergement à type si c'est l'ID que vous souhaitez
+        capaciteInput.value = idcapacite;
+    }
+
+}
     </script>

@@ -13,6 +13,7 @@ use App\Models\Reservation;
 use App\Models\Bancaire;
 use App\Models\Owner;
 use App\Models\Reserve;
+use App\Models\Calendar;
 
 
 
@@ -30,41 +31,32 @@ class ReservationController extends Controller
         $posts = Post::all();
         
         $post = Post::find($id);
+        $calendar= Calendar::find($id);
 
 
-        return view("/reservation",compact('post','photoPosts'));
+
+        return view("/reservation",compact('post','photoPosts','calendar'));
     }
 
-    // public function one($id){
-    //     $post = Post::find($id);
-    //     $posts = Post::all();
-    //     $photoPosts = PhotoPost::all();
-    //     $photoUser = PhotoUser::find($id);
-    //     $owner = Owner::find($id);
-    //     $user = User::find($id);
-    //     $equipements = Equipement::all();
-    //     $calendar = Calendar::find($id);
-        
-        
-        
-    //     // $availability = DB::table('calendrier')
-    //     //                 ->join('annonce','annonce.idannonce','=','calendrier.idannonce')
-    //     //                 ->where('periodedebut','<=',$dateArrive)
-    //     //                 ->where('periodefin','>=', $dateDepart)
-    //     //                 ->where('disponibilite', true)
-    //     //                 ->get();
-
-    //     // $availability = Calendar::where('periodedebut', '<=', $dateArrive)
-    //     //                 ->where('periodefin','>=',$dateDepart)
-    //     //                 ->where('disponibilite', true)
-    //     //                 ->get();
-
-    //     return view ("one-post", compact('post', 'posts', 'photoPosts', 'photoUser','owner', 'user', 'equipements', 'calendar'));
-    // }
+    
 
     public function save(Request $request, $id): RedirectResponse
     {
+      
+        $request->validate([
+            'dateexpiration' => ['required', 'date', 'after:today'],[
+                'dateexpiration.required' => 'La date d\'expiration est requise.',
+                'dateexpiration.date' => 'La date d\'expiration doit être une date valide.',
+                'dateexpiration.after' => 'La date d\'expiration doit être ultérieure à la date actuelle.'
+            ]
+        ]);
+        if (Reservation::where(strtotime($request->input("dateexpiration")) <= strtotime(now()))) {
+            return redirect('create-account')
+                ->withInput()
+                ->withErrors([
 
+                    'dateexpiration' => 'La date d\'expiration doit être ultérieure à la date actuelle.'
+                ]);}
         $enregistrerDonneesBancaires = $request->input('enregistrerDonneesBancaires');
 
 

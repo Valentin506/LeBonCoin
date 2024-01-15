@@ -16,6 +16,7 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\EquipementController;
 use App\Http\Controllers\TypeHebergementController;
+Use App\Http\Controllers\BotManController;
 
 use App\Models\Post;
 use App\Models\PhotoPost;
@@ -50,7 +51,7 @@ Route::get('/', [SiteController::class, "index" ]);
 Route::get("/posts",[PostController::class, "post" ]);
 Route::post("/posts",[PostController::class, "getPostsByCity" ]);
 Route::get("/post/{id}",[PostController::class, "one" ]);
-Route::post("/post/{id}/update-disponibilite",[PostController::class, "getNonAvailableDates" ]); // date non available
+// Route::post("/post/{id}/update-disponibilite",[PostController::class, "getNonAvailableDates" ]); // date non available
 Route::post('/search/save', [PostController::class, 'searchSave']);
 
 // profile owner controller
@@ -67,6 +68,9 @@ Route::get("/account/{idcompte}/my-posts",[UserController::class, "modifPost" ])
 Route::post("/account/{idcompte}/my-posts/update",[UserController::class, "updatePost" ]);
 Route::post("/account/{idcompte}/my-posts/update-disponibilite",[UserController::class, "updateDisponibilite" ]);
 Route::get("/account/{idcompte}/my-bookings",[UserController::class, "bookings" ]);
+
+//botman
+Route::match(['get','post'], '/botman', 'App\Http\Controllers\BotManController@handle');
 
 Route::get('/account/{idcompte}', [UserController::class, 'one']);
 Route::get('/account/{idcompte}/modif-account', [UserController::class, 'modifAccount']);
@@ -125,6 +129,10 @@ Route::get('/politique-confidentialite', function () {
     return view('politique-confidentialite');
 });
 
+Route::get('/help', function () {
+    return view('help');
+});
+
 
 // Route::get('/create-account', [AccountController::class, 'add']);
 // Route::post('/create-account/save', [AccountController::class, 'save']);
@@ -139,7 +147,10 @@ Route::get('/favoris', [UserController::class, 'favoris']);
 Route::post('/favoris/{idannonce}/save', [FavorisController::class, 'save']);
 
 
-Route::get('/reservation/{id}', [ReservationController::class, 'reservation'])->name('reservation');   
+
+Route::get('/reservation/{id}', [ReservationController::class, 'reservation'])->name('reservation');
+Route::post("/reservation/{id}",[PostController::class, "getNonAvailableDates" ]); // date non available
+
 
 
 
