@@ -120,7 +120,11 @@
     <script>
         var botmanWidget = {
             aboutText: '',
-            introMessage: "Bienvenue dans notre site web"
+            title: 'Chatbot Leboncoin',
+            mainColor: '#ff9817',
+            bubbleBackground: '#ff9817',
+            bubbleAvatarUrl: 'https://botman.io//img//logo.png',
+            introMessage: "Bienvenue sur le chatbot de notre site Leboncoin"
         };
     </script>
    

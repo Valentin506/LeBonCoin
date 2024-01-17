@@ -50,13 +50,7 @@ class ReservationController extends Controller
                 'dateexpiration.after' => 'La date d\'expiration doit être ultérieure à la date actuelle.'
             ]
         ]);
-        if (Reservation::where(strtotime($request->input("dateexpiration")) <= strtotime(now()))) {
-            return redirect('create-account')
-                ->withInput()
-                ->withErrors([
-
-                    'dateexpiration' => 'La date d\'expiration doit être ultérieure à la date actuelle.'
-                ]);}
+        
         $enregistrerDonneesBancaires = $request->input('enregistrerDonneesBancaires');
 
 

@@ -16,11 +16,12 @@
         <p>Bébés: {{ $booking->nbbebe}}</p>
         <p>Animaux: {{ $booking->nbanimaux}}</p>
 
-        @foreach($ress->where('idfiche', $booking->idfiche) as $res)
+        
+    </div>    
+    @foreach($ress->where('idfiche', $booking->idfiche) as $res)
             <div class="booking-details">
                 <p>Annonce n°: {{ $res->idannonce }}</p>
             </div>
-</div>    
         @endforeach
     
 @endforeach
